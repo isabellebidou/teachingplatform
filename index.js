@@ -14,16 +14,21 @@ require('./models/Faq');
 require('./models/Link');
 require('./models/Offer');
 require('./models/StarReview');
+
 //require('./services/passport');
 //mongoose.set('strictQuery', false);
 
 
 //mongoose.connect(keys.mongoURI);
 const app = express();
+// body parsing
+app.use(express.json());
+
 
 app.get("/health", (req, res) => {
   res.json({ status: "ok", mode: "no-db" });
 });
+require("./routes/feedbackRoutes")(app);
 
 if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
