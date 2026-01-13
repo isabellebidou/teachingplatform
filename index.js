@@ -1,7 +1,7 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const cookieSession = require('cookie-session');
-const passport = require('passport');
+//const mongoose = require('mongoose');
+//const cookieSession = require('cookie-session');
+//const passport = require('passport');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const enforce = require('express-sslify');
@@ -14,14 +14,16 @@ require('./models/Faq');
 require('./models/Link');
 require('./models/Offer');
 require('./models/StarReview');
-require('./services/passport');
-mongoose.set('strictQuery', false);
+//require('./services/passport');
+//mongoose.set('strictQuery', false);
 
 
-mongoose.connect(keys.mongoURI);
+//mongoose.connect(keys.mongoURI);
 const app = express();
 
-
+app.get("/health", (req, res) => {
+  res.json({ status: "ok", mode: "no-db" });
+});
 
 if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
@@ -50,7 +52,10 @@ const db = async () => {
 
 const PORT = process.env.PORT || 8000;
 //app.listen(PORT);
-db().then(() => {
+app.listen(PORT, () => {
+  console.log("🚀 Server running WITHOUT DB (dev mode)");
+});
+/*db().then(() => {
   app.listen(PORT, () => {
     console.log("listening for requests");
     app.use(
@@ -91,6 +96,6 @@ db().then(() => {
   })
 
 
-})
+})*/
 
 
