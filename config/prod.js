@@ -1,6 +1,6 @@
 module.exports = {
 
-googleClientID: process.env.GOOGLE_CLIENT_ID,
+    googleClientID: process.env.GOOGLE_CLIENT_ID,
     googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
     mongoURI: process.env.MONGO_URI,
     cookieKey: process.env.COOKIE_KEY,
@@ -12,5 +12,6 @@ googleClientID: process.env.GOOGLE_CLIENT_ID,
     accessKeyId: process.env.ACCESS_KEY_ID,
     awsRegion: process.env.AWS_REGION,
     awsSecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    bucketName: process.env.BUCKET_NAME
+    bucketName: process.env.BUCKET_NAME,
+    openAIKey: process.env.OPENAI_KEY
 }
