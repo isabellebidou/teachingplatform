@@ -31,28 +31,28 @@ class Header extends Component {
 
       <div className="authentication">
         <a key={9 + '/herbs'}
-          href='https://herb.iridologyreadings.com/'
+          href=''
           className="button"
         >
-          Isabelle's herbs
+          link
         </a>
         <Link key={4 + '/shop'}
           to={'/shop'}
           className="button"
         >
-          Affiliate shop
+          link
         </Link>
         <Link key={3 + '/parasitedetox'}
           to={'/parasitedetox'}
           className="button"
         >
-          GI track detox
+          link
         </Link>
         <Link key={3 + '/adrenalfatigue'}
           to={'/adrenalfatigue'}
           className="button"
         >
-          Adrenal fatigue
+          link
         </Link>
         {isAdmin && (
           <a key={9} className="button" href="/users"><FaUsers

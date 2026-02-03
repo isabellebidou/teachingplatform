@@ -10,11 +10,11 @@ const MentionsLegales = () => {
 </p>
             <h2>Edition du site </h2>
             <p className='itemp'>
-            Le présent site, accessible à l’URL <a href="https://iridologyreadings.com/">https://iridologyreadings.com</a>(le « Site »), est édité par :<br />
+            Le présent site, accessible à l’URL <a href=""></a>(le « Site »), est édité par :<br />
 
 Isabelle Bidou, résidant 52 avenue de Choisy, 75013 Paris, France de nationalité Française (France), né(e) le 28/10/1971,  inscrite au R.C.S. de PARIS sous le numéro Paris 919846113,
 
-Le numéro individuel TVA de l’éditeur est : FR95919846113.
+Le numéro individuel TVA de l’éditeur est : .
 
             </p>
             <h2>Hébergement
