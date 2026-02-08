@@ -8,8 +8,6 @@ const userSchema = new Schema ({
     type: {type: String, default: 'user'},
     email: String,
     hasReviews: {type: Boolean, default: false},
-  
-
 
 })
 

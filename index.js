@@ -1,13 +1,12 @@
 const express = require('express');
-//const mongoose = require('mongoose');
-//const cookieSession = require('cookie-session');
-//const passport = require('passport');
+const mongoose = require('mongoose');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const enforce = require('express-sslify');
 
 require('./models/User');
-require('./models/EyePic');
 require('./models/UserData');
 require('./models/Reading');
 require('./models/Faq');
@@ -16,11 +15,11 @@ require('./models/Offer');
 require('./models/StarReview');
 
 
-//require('./services/passport');
-//mongoose.set('strictQuery', false);
+require('./services/passport');
+mongoose.set('strictQuery', false);
 
 
-//mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI);
 const app = express();
 // body parsing
 app.use(express.json());
@@ -35,33 +34,24 @@ if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
 }
 
-
 const db = async () => {
-
 
   try {
     const conn = await mongoose.connect(keys.mongoURI);
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-
-
+    //console.log(`MongoDB Connected: ${conn.connection.readyState}`);
+    console.log('MongoDB Connected to DB:', mongoose.connection.name);
   } catch (error) {
     console.log(error);
     process.exit(1);
   }
 }
 
-
-
-
-
-
-
 const PORT = process.env.PORT || 8000;
 //app.listen(PORT);
-app.listen(PORT, () => {
+/*app.listen(PORT, () => {
   console.log("🚀 Server running WITHOUT DB (dev mode)");
-});
-/*db().then(() => {
+});*/
+db().then(() => {
   app.listen(PORT, () => {
     console.log("listening for requests");
     app.use(
@@ -77,7 +67,6 @@ app.listen(PORT, () => {
     require('./routes/authRoutes')(app);
     require('./routes/billingRoutes')(app);
     require('./routes/readingRoutes')(app);
-    require('./routes/eyeRoutes')(app);
     require('./routes/userDataRoutes')(app);
     require('./routes/usersRoutes')(app);
     require('./routes/faqRoutes')(app);
@@ -96,12 +85,7 @@ app.listen(PORT, () => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
       });
     }
-
-
-
   })
-
-
-})*/
+})
 
 
