@@ -32,14 +32,14 @@ const LegalNotice = () => {
                 By mail: 52 avenue de Choisy, 75013 Paris, France<br />
             </p>
             <h2>Personal data</h2>
-            <p className='itemp'>The company provides services including the writing of iridology reports. Customers provide information and photos of their irises, make an online payment. Once the balance sheet is completed, it is made available to the buyer by download or sent by email.
+            <p className='itemp'>The company provides services including the teaching of languages.
             </p>
             <h2>Terms of Sales</h2>
-            <p className='itemp'>The company provides services including the writing of iridology reports. Customers provide information and photos of their irises, make an online payment. Once the balance sheet is completed, it is made available to the buyer by download or sent by email.
+            <p className='itemp'>The company provides services including the teaching of languages.
             </p>
             <h2>Delivery delay
             </h2>
-            <p className='itemp'>Two weeks after payment.
+            <p className='itemp'>Lorem Ipsum.
             </p>
             <h2>Terms of payment and reimbursement
             </h2>

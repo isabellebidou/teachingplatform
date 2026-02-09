@@ -169,7 +169,7 @@ class Landing extends Component {
 
                     <div id="contact" >
                     <img className ="me"  src="/me.png" alt="isabelle bidou" loading="lazy" title="Isabelle Bidou"></img>
-                        <p className="itemp">My name is Isabelle Bidou. If you have questions, if you would like to book a reading and don't want to do it online... feel free to contact me. <a href="mailto:isa.bidou@gmail.com?subject=iridology information">isa.bidou@gmail.com</a></p>
+                        <p className="itemp">My name is Isabelle Bidou. If you have questions don't want to do it online... feel free to contact me. <a href="mailto:isa.bidou@gmail.com?subject=iridology information">isa.bidou@gmail.com</a></p>
 
                     </div>
 
