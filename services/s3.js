@@ -35,6 +35,17 @@ function deleteSeveral(array) {
         });
     }
 }
+function deleteSeveralAudios(array) {
+    if (Array.isArray(array)) {
+        array.forEach(element => {
+            const fn1 = "audio/" +element.audioPath + '_resized'
+            const fn2 = "audio/" +element.audioPath + '_raw'
+            deleteFile(fn1)
+            deleteFile(fn2)
+        });
+    }
+}
+
 
 
 function deleteFile(fileName) {
@@ -61,8 +72,8 @@ async function getObjectSignedUrl(key) {
 
 module.exports = {
     uploadFile,
-    deleteFile,
     deleteSeveral,
+    deleteSeveralAudios,
     getObjectSignedUrl
 
 };

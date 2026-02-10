@@ -16,12 +16,11 @@ import { fetchCookieValue } from '../actions';
 
 
 
+
 class Landing extends Component {
     componentDidMount() {
         this.props.fetchCookieValue();
        // $(".logo").removeClass("logo").addClass("logo_mounted");
-
-       
 
     }
 
@@ -39,17 +38,12 @@ class Landing extends Component {
 
             );
 
-
         }
 
     }
     renderLinkForm() {
         if (this.props.auth && this.props.auth.type === "admin") {
             return 
-
-
-
-    
 
         }
 
@@ -119,6 +113,7 @@ class Landing extends Component {
 
                 </div>
                 <fieldset>
+
 
                 <Feedback></Feedback>
                 </fieldset>

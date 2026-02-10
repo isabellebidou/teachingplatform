@@ -39,7 +39,7 @@ const ReadingNew = () => {
       })
         .finally(function () {
           // always executed
-          history.push("/readings");
+          history.push("/dashboard");
         });
     } catch (error) {
       logError(error)

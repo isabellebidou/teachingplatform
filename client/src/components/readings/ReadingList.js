@@ -18,7 +18,7 @@ function ReadingList() {
     return (
         <section>
             <fieldset>
-                <legend><h2> Iridology Readings </h2></legend>
+                <legend><h2> Audios </h2></legend>
                 <div className="grid-container">
 
 

@@ -1,9 +1,9 @@
 import React from "react";
 
-import ReadingList from './readings/ReadingList';
 import UserData from './UserData';
 
-import EyeList from './eyes/EyeList';
+import AudioList from "./audios/AudioList";
+import AudioRecorder from "./audios/AudioRecorder";
 
 import Buttons from './Buttons';
 import StarReview from './StarReview';
@@ -18,13 +18,11 @@ const Dashboard = () => {
         <div className="page">
             <StarReview />
             <Buttons />
-            <ReadingList />
+            <AudioRecorder />
+            <AudioList />
+
             <UserData />
-            <EyeList />
-
-
-
-
+        
         </div>
     )
 

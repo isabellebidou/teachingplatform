@@ -23,7 +23,7 @@ class Header extends Component {
   renderContent() {
 
     const isAdmin = this.props.auth && this.props.auth.type === 'admin';
-    const isOnProfile = this.props.location.pathname === '/readings';
+    const isOnProfile = this.props.location.pathname === '/dashboard';
     const isHome = this.props.location.pathname === '/';
 
 
@@ -77,7 +77,7 @@ class Header extends Component {
 
         {(this.props.auth && isOnProfile === false) &&
           <Link key={3}
-            to={'/readings'}
+            to={'/dashboard'}
             className="button"
           >
             <AiOutlineUser

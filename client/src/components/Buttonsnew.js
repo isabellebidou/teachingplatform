@@ -10,7 +10,7 @@ function Buttons() {
         fetchData();
     }, []);
     const [data, setData] = useState([]);
-    const [eyes, setEyes] = useState([]);
+    const [audios, setAudios] = useState([]);
     const fetchData = async () => {
         const userData = await fetch(`/api/user_data/`);
         const data = await userData.json();
@@ -22,13 +22,13 @@ function Buttons() {
         <section>
             <div className="grid-container">
                 {
-                    items.map(reading => {
+                    items.map(audio => {
                         return (
 
-                            <div className="" key={reading._id}>
+                            <div className="" key={audio._id}>
                                 <div className="item photoThumbnail">
                                     <p className="item">
-                                        {reading.comments} recording sent on: {new Date(reading.dateSent).toLocaleDateString()}
+                                        {audio.comments} recording sent on: {new Date(audio.dateSent).toLocaleDateString()}
                                     </p>
                                 </div>
                             </div>

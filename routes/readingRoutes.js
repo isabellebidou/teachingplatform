@@ -92,14 +92,13 @@ module.exports = (app) => {
 
     const readings = await Reading.find(({ _user: req.user.id }))
     const readingPromises = readings.map(async (reading) => {
-      // const path = await getObjectSignedUrl( video.videoPath );
-      //https://youtu.be/EIYrhbBk7do?list=PL0X6fGhFFNTcU-_MCPe9dkH6sqmgfhy_M
       if (reading.pdfPath) { reading.pdfUrl = await getObjectSignedUrl(reading.pdfPath); }
 
       return reading;
     });
     const readingsWithUrls = await Promise.all(readingPromises);
     res.send(readingsWithUrls);
+
 
   })
 

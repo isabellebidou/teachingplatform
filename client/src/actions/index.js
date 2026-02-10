@@ -13,6 +13,7 @@ import {
   UPDATE_COOKIE_ACCEPTANCE
 
 } from "./types";
+import { FETCH_USER_AUDIOS } from "./types";
 
 
 export const updateCookieAcceptance = (accepted) => ({
@@ -100,3 +101,9 @@ export const fetchReadings = () => async (dispatch) => {
   const res = await axios.get("/api/readings");
   dispatch({ type: FETCH_READINGS, payload: res.data });
 };
+export const fetchUserAudios = () => async (dispatch) => {
+  console.log("fetchUserAudios from index.js")
+  const res = await axios.get("/api/user_audios");
+  dispatch({ type: FETCH_USER_AUDIOS, payload: res.data });
+};
+

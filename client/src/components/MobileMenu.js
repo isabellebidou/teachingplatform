@@ -21,7 +21,7 @@ class MobileMenu extends Component {
     }
 
     renderMobileMenu() {
-        const currentlyOnProfile = this.props.location.pathname === '/readings' ? true : false;
+        const currentlyOnProfile = this.props.location.pathname === '/dashboard' ? true : false;
         //const otherRoute = currentlyOnProfile ? '/' : '/readings';
         //const otherRouteName = currentlyOnProfile ? 'home' : 'profile';
         const ready = this.props.auth && this.props.userdata.length > 0 && this.props.eyes.length > 2 && currentlyOnProfile ? true : false;
@@ -43,7 +43,7 @@ class MobileMenu extends Component {
                         />
                     </Link></li>}
                 {(ready && currentlyOnProfile) &&
-                    <li><Link key={6} to="/readings/new" className="mobilemenuli button" >
+                    <li><Link key={6} to="/dashboard" className="mobilemenuli button" >
                         record an audio
                     </Link></li>}
                 {isHome === false &&
@@ -60,7 +60,7 @@ class MobileMenu extends Component {
                 {(this.props.auth && currentlyOnProfile === false) &&
                     <li>
 
-                        <a key={4} className="mobilemenuli button" href="/readings"><AiOutlineUser
+                        <a key={4} className="mobilemenuli button" href="/dashboard"><AiOutlineUser
                             style={{ color: "#7f5f87" }}
                             key={'AiOutlineUser'}
                         /></a>

@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Feedback from "./FeedbackForm";
 import Header from "./Header";
 import Footer from "./Footer";
+import Dashboard from "./Dashboard";
 import MobileMenu from "./MobileMenu";
 import Landing from "./Landing";
 import { connect } from "react-redux";
@@ -13,6 +14,7 @@ import ReadingNew from "./readings/ReadingNew";
 import UserData from "./UserData";
 import UserDataFormEdit from "./userData/UserDataFormEdit";
 import UserDataFormNew from "./userData/UserDataFormNew";
+import UserDashboard from "./UserDashboard"
 import ProtectedRoute from "./ProtectedRoute";
 //import RestrictedRoute from "./RestrictedRoute";
 import AdminDashboard  from "./AdminDashboard";
@@ -50,7 +52,7 @@ class App extends Component {
             <Route path="/api/feedback" component={Feedback } />
             <Route path="/payment" component={Payment } />
             <Route exact path="/completion" component={Completion } />
-            
+            <ProtectedRoute exact path="/dashboard" component={Dashboard} />
             <ProtectedRoute exact path="/readings/new" component={ReadingNew} />
             <ProtectedRoute exact path="/userdata/new" component={UserDataFormNew} />
             <ProtectedRoute exact path="/userdata" component={UserData} />

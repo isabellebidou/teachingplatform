@@ -4,6 +4,7 @@ export const FETCH_READINGS = 'fetch_readings';
 export const FETCH_LINKS = 'fetch_links';
 export const FETCH_FAQS = 'fetch_faqs';
 export const FETCH_USER_DATA = 'fetch_user_data';
+export const FETCH_USER_AUDIOS = 'fetch_user_audios';
 export const FETCH_COOKIE_VALUE = 'FETCH_COOKIE_VALUE';
 export const FETCH_USER_EYE_PICS = 'fetch_user_eye_pics';
 export const UPDATE_USER_DATA = 'update_user_data';
