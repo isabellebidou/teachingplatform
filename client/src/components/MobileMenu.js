@@ -44,7 +44,7 @@ class MobileMenu extends Component {
                     </Link></li>}
                 {(ready && currentlyOnProfile) &&
                     <li><Link key={6} to="/readings/new" className="mobilemenuli button" >
-                        book a reading
+                        record an audio
                     </Link></li>}
                 {isHome === false &&
                     <li><Link key={3}
@@ -78,25 +78,25 @@ class MobileMenu extends Component {
                     to={'/parasitedetox'}
                     className="mobilemenuli button"
                 >
-                    GI track detox
+                    link1
                 </Link></li>
                 <li><Link key={3 + '/adrenalfatigue'}
                     to={'/adrenalfatigue'}
                     className="mobilemenuli button"
                 >
-                    Adrenal fatigue
+                    link2
                 </Link></li>
                 <li><Link key={4 + '/shop'}
                     to={'/shop'}
                     className="mobilemenuli button"
                 >
-                    Affiliate shop
+                    link3
                 </Link></li>
                 <a key={9 + '/herbs'}
-                    href='https://herb.iridologyreadings.com/'
+                    href=' '
                     className="mobilemenuli button"
                 >
-                    Isabelle's herbs
+                    link4
                 </a>
             </ul>
         )

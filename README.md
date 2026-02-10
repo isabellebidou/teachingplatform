@@ -1,4 +1,4 @@
 # teaching platform
 
-start the server only : npm run server
-start both server and client : npm run dev
+to start the server only : npm run server    
+to start both server and client : npm run dev

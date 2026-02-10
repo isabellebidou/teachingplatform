@@ -28,7 +28,7 @@ function Buttons() {
                             <div className="" key={reading._id}>
                                 <div className="item photoThumbnail">
                                     <p className="item">
-                                        {reading.comments} reading ordered on: {new Date(reading.dateSent).toLocaleDateString()}
+                                        {reading.comments} recording sent on: {new Date(reading.dateSent).toLocaleDateString()}
                                     </p>
                                 </div>
                             </div>

@@ -71,7 +71,7 @@ class Landing extends Component {
             return (
 
                 <Link to="/readings" className="">
-                    <button className="actionbook" >book your reading today</button>
+                    <button className="actionbook" >test your pronunciation skills</button>
                 </Link>
 
             );
@@ -80,7 +80,7 @@ class Landing extends Component {
         } else {
             return (
                 <span className="actionsign button" >
-                    Sign in and start Learning today!<br />
+                    Sign in and start learning today!<br />
                     <span className="closeWindow" onClick={this.handleClose}>x</span>
                     <a href="/auth/google" ><img alt="google sign in" loading="eager" title="sign in with google" src="/btn_google_signin_dark_normal_web.png" /></a>
                 </span>

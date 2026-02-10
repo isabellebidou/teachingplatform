@@ -45,7 +45,7 @@ class DropMenu extends Component {
                     </Link></li>}
                 {(ready && currentlyOnProfile) &&
                     <li><Link key={6} to="/readings/new" className="mobilemenuli button" >
-                        book a reading
+                        record an audio
                     </Link></li>}
                 {isHome === false &&
                     <li><Link key={3}

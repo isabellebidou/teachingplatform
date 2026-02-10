@@ -34,25 +34,25 @@ class Header extends Component {
           href=''
           className="button"
         >
-          link
+          link1
         </a>
         <Link key={4 + '/shop'}
           to={'/shop'}
           className="button"
         >
-          link
+          link2
         </Link>
         <Link key={3 + '/parasitedetox'}
           to={'/parasitedetox'}
           className="button"
         >
-          link
+          link3
         </Link>
         <Link key={3 + '/adrenalfatigue'}
           to={'/adrenalfatigue'}
           className="button"
         >
-          link
+          link4
         </Link>
         {isAdmin && (
           <a key={9} className="button" href="/users"><FaUsers
