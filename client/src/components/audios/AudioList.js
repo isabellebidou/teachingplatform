@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Audio from "./Audio";
 import { fetchUserAudios } from "../../actions";
 import axios from "axios";
+import AudioPlayer from "../AudioPlayer";
 
 
 
@@ -79,17 +80,24 @@ return (
                 <div  key={audio._id + '_container'} >
                   <div className="item photoThumbnail">
 
-                    <Audio
-                      id={audio._id}
+                  {audios.map((audio) => (
+                      <div key={audio._id} className="item photoThumbnail">
 
-                      dateSent={audio.dateSent}
+                        <AudioPlayer src={audio.audioUrl} />
 
-                    />
+                        <input
+                          type="checkbox"
+                          value={audio._id}
+                          style={{ visibility }}
+                          onChange={handleSelected}
+                        />
 
-                    <input type={'checkbox'} value={audio._id} style={{ visibility }} onChange={handleSelected}></input>
-                    <p className="item">
-                       audio sent on: {new Date(audio.dateSent).toLocaleDateString()}
-                    </p>
+                        <p className="item">
+                          audio sent on:{" "}
+                          {new Date(audio.dateSent).toLocaleDateString()}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               );
