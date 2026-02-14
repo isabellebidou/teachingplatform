@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
-import Audio from "./Audio";
 import { fetchUserAudios } from "../../actions";
 import axios from "axios";
 import AudioPlayer from "../AudioPlayer";
+
 
 
 
@@ -14,12 +14,14 @@ function AudioList({ audios, fetchUserAudios }) {
 
   useEffect(() => {
     fetchUserAudios();
-  }, [fetchUserAudios, audios]);
+  }, [fetchUserAudios]);
 
   const [visibility, setVisibility] = useState("hidden");
   const [editMode, setEditMode] = useState(false);
   const [selectedAudios, setSelectedAudios] = useState([]);
-
+  // Remove duplicates by audio id
+  const uniqueAudios = Array.from(new Set(audios.map(a => a.id)))
+                           .map(id => audios.find(a => a.id === id));
   
   
   const handleEditButtonToggleText = () => {
@@ -31,9 +33,10 @@ function AudioList({ audios, fetchUserAudios }) {
     fetchUserAudios();
   }
   const deleteAudios = async () => {
+    console.log("deleteAudios from AudioList.js " +selectedAudios)
 
     try {
-      await axios.delete("/api/user_eye_pics/delete", {
+      await axios.delete("/api/user_audios/delete", {
         data: { idsToDelete: selectedAudios }
       })
         .then(function (response) {
@@ -80,10 +83,10 @@ return (
                 <div  key={audio._id + '_container'} >
                   <div className="item photoThumbnail">
 
-                  {audios.map((audio) => (
+                  {uniqueAudios.map((audio,i) => (
                       <div key={audio._id} className="item photoThumbnail">
 
-                        <AudioPlayer src={audio.audioUrl} />
+                        <AudioPlayer src={audio.url} />
 
                         <input
                           type="checkbox"
@@ -91,10 +94,17 @@ return (
                           style={{ visibility }}
                           onChange={handleSelected}
                         />
-
                         <p className="item">
                           audio sent on:{" "}
-                          {new Date(audio.dateSent).toLocaleDateString()}
+                          {new Date(audio.createdAt).toLocaleDateString()}
+                        </p>
+                        <p className="item">
+                          audio id:{" "}
+                          {audio._id}
+                        </p>
+                        <p className="item">
+                          audio index:{" "}
+                          {i}
                         </p>
                       </div>
                     ))}
@@ -112,8 +122,8 @@ return (
         }
         {audios.length >= 1 &&
           <>
-            <button id="editeyes" className="editeyes" onClick={toggleEditMode}>{handleEditButtonToggleText()}</button>
-            <button id="deleteeyes" className="deleteeyes" onClick={deleteAudios} style={{ visibility }} >Delete Selected</button>
+            <button id="editaudios" className="editaudios" onClick={toggleEditMode}>{handleEditButtonToggleText()}</button>
+            <button id="deleteaudios" className="deleteaudios" onClick={deleteAudios} style={{ visibility }} >Delete Selected</button>
           </>
         }
       </fieldset>
@@ -123,9 +133,7 @@ return (
 
 
     
-function mapStateToProps({ audios }) {
-  
-
-  return { audios };
+function mapStateToProps(state) {
+  return { audios: state.audios };
 }
 export default connect(mapStateToProps, { fetchUserAudios })(AudioList);

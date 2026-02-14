@@ -13,6 +13,8 @@ require('./models/Faq');
 require('./models/Link');
 require('./models/Offer');
 require('./models/StarReview');
+require('./models/Audio');
+
 
 
 require('./services/passport');
@@ -73,6 +75,7 @@ db().then(() => {
     require('./routes/linkRoutes')(app);
     require('./routes/offerRoutes')(app);
     require('./routes/starReviewRoutes')(app);
+    require("./routes/audioRoutes")(app);
   
 
     if (process.env.NODE_ENV == 'production') {

@@ -9,11 +9,11 @@ import {
   FETCH_LINKS,
   FETCH_USER_DATA,
   FETCH_COOKIE_VALUE,
-  FETCH_USER_EYE_PICS,
+  FETCH_USER_AUDIOS,
   UPDATE_COOKIE_ACCEPTANCE
 
 } from "./types";
-import { FETCH_USER_AUDIOS } from "./types";
+
 
 
 export const updateCookieAcceptance = (accepted) => ({
@@ -60,22 +60,6 @@ export const submitReading = (values, history) => async (dispatch) => {
   history.push("/readings");
 }
 
-export const fetchUserEyePics = () => async (dispatch) => {
-  const res = await axios.get("api/user_eye_pics");
-  dispatch({ type: FETCH_USER_EYE_PICS, payload: res.data });
-};
-
-
-export const uploadLeftEyePic = (values, history) => async (dispatch) => {
-  const res = await axios.post("/api/eyes_left", values);
-  history.push("/readings");
-  dispatch({ type: FETCH_USER, payload: res.data });
-};
-export const uploadRightEyePic = (values, history) => async (dispatch) => {
-  const res = await axios.post("/api/eyes_right", values);
-  history.push("/readings");
-  dispatch({ type: FETCH_USER, payload: res.data });
-};
 export const handleToken = (token) => async (dispatch) => {
   const res = await axios.post("/api/stripe", token);
   dispatch({ type: FETCH_USER, payload: res.data });

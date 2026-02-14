@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 const keys = require('../config/keys');
 const requireLogin = require('../middlewares/requireLogin');
 const { uploadFile, deleteFile, deleteSeveral, getObjectSignedUrl } = require('../services/s3.js');
-const upload = require("../config/storage-config");
+const upload = require("../config/audioUpload.js");
 
 
 const { response } = require('express');

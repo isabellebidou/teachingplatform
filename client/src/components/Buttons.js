@@ -1,7 +1,7 @@
 import React from "react";
 import { Component } from "react";
 import { connect } from "react-redux";
-import { fetchUserEyePics } from "../actions";
+import { fetchUserAudios } from "../actions";
 import { fetchUserData } from "../actions";
 import { Link } from "react-router-dom";
 //import Payments from "./Payments";
@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 class Buttons extends Component {
   componentDidMount() {
-    this.props.fetchUserEyePics();
+    this.props.fetchUserAudios();
     this.props.fetchUserData();
 
   }
@@ -30,17 +30,17 @@ class Buttons extends Component {
         );
   
       } 
-      else if (this.props.eyes.length < 2) {
+      else if (this.props.audios.length < 2) {
       return (
         <div className="">
-            <a href="#eyes" className="">
-          <button className="actionbook ">upload eye pics</button>
+            <a href="#audios" className="">
+          <button className="actionbook ">upload audio</button>
         </a>
           
         </div>
       )}
 
-     else if (this.props.eyes.length >= 2){
+     else if (this.props.audios.length >= 2){
       return (<div className="">
         
         <Link to="/readings/new" className="">
@@ -64,8 +64,8 @@ class Buttons extends Component {
   }
 }
 
-function mapStateToProps({ eyes, userdata, auth }) {
-  return { eyes, userdata, auth };
+function mapStateToProps({ audios, userdata, auth }) {
+  return { audios, userdata, auth };
 }
 
-export default connect(mapStateToProps, { fetchUserEyePics, fetchUserData })(Buttons);
+export default connect(mapStateToProps, { fetchUserAudios, fetchUserData })(Buttons);

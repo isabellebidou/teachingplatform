@@ -20,8 +20,6 @@ function UserData() {
 
   };
 
-
-
   return (
     <section>
       <fieldset>
@@ -144,10 +142,6 @@ function UserData() {
 
                 </dd>
 
-
-
-
-
               </dl>
 
             </div>
@@ -163,7 +157,7 @@ function UserData() {
           >
             data needed
           </Link>
-          <p className='itemp'>To book a reading start by filling in the form, some basic information is needed about yourself like weight an height, make sure you specify the unit. Some information about your dietary habits, if you are vegan , on a restricted diet.. and medical history. You can write in english, spanish or french. </p>
+          <p className='itemp'>lorem ipsum </p>
           
           </div>
 

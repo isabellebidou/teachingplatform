@@ -1,46 +1,63 @@
 import React, { useRef, useState } from "react";
+import axios from "axios";
 
-export default function AudioRecorder() {
+export default function AudioRecorder({ onUploadSuccess }) {
   const mediaRecorderRef = useRef(null);
   const chunksRef = useRef([]);
 
   const [isRecording, setIsRecording] = useState(false);
   const [audioURL, setAudioURL] = useState(null);
+  const [audioBlob, setAudioBlob] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
   const startRecording = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-      const mediaRecorder = new MediaRecorder(stream);
-      mediaRecorderRef.current = mediaRecorder;
+    const mediaRecorder = new MediaRecorder(stream);
+    mediaRecorderRef.current = mediaRecorder;
+    chunksRef.current = [];
 
-      chunksRef.current = [];
+    mediaRecorder.ondataavailable = (e) => {
+      if (e.data.size > 0) chunksRef.current.push(e.data);
+    };
 
-      mediaRecorder.ondataavailable = (event) => {
-        if (event.data.size > 0) {
-          chunksRef.current.push(event.data);
-        }
-      };
+    mediaRecorder.onstop = () => {
+      const blob = new Blob(chunksRef.current, { type: "audio/webm" });
+      setAudioBlob(blob);
+      setAudioURL(URL.createObjectURL(blob));
+    };
 
-      mediaRecorder.onstop = () => {
-        const audioBlob = new Blob(chunksRef.current, {
-          type: "audio/webm",
-        });
-
-        const url = URL.createObjectURL(audioBlob);
-        setAudioURL(url);
-      };
-
-      mediaRecorder.start();
-      setIsRecording(true);
-    } catch (err) {
-      console.error("Mic access denied:", err);
-    }
+    mediaRecorder.start();
+    setIsRecording(true);
   };
 
   const stopRecording = () => {
     mediaRecorderRef.current.stop();
     setIsRecording(false);
+  };
+
+  const uploadAudio = async () => {
+    console.log('uploadAudio   from AudioRecorder.js')
+    if (!audioBlob) return;
+
+    const formData = new FormData();
+    formData.append("audio", audioBlob, "recording.webm");
+
+    try {
+      setUploading(true);
+      await axios.post("/api/audio", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      setAudioBlob(null);
+      setAudioURL(null);
+
+      if (onUploadSuccess) onUploadSuccess();
+    } catch (err) {
+      console.error("Upload failed", err);
+    } finally {
+      setUploading(false);
+    }
   };
 
   return (
@@ -54,7 +71,13 @@ export default function AudioRecorder() {
       )}
 
       {audioURL && (
-        <audio controls src={audioURL} style={{ width: "100%" }} />
+        <>
+          <audio controls src={audioURL} />
+          <br />
+          <button onClick={uploadAudio} disabled={uploading}>
+            {uploading ? "Uploading..." : "⬆ Upload"}
+          </button>
+        </>
       )}
     </div>
   );

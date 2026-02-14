@@ -5,14 +5,12 @@ import readingsReducer from "./readingsReducer";
 import userDataReducer from "./userDataReducer";
 import usersReducer from "./usersReducer";
 import selectUserReducer from "./selectUserReducer";
-import eyesReducer from "./eyesReducer";
 import cookieReducer from "./cookieReducer";
 import audiosReducer from './audiosReducer';
 export default combineReducers({
     auth : authReducer,
    // form : reduxForm,
     readings: readingsReducer,
-    eyes: eyesReducer,
     userdata: userDataReducer,
     users: usersReducer,
     selectedUser:  selectUserReducer,
