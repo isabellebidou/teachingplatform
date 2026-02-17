@@ -1,21 +1,37 @@
-import React from "react";
-import AudioList from "./audios/AudioList";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { fetchUserAudios } from "../actions";
 import AudioRecorder from "./audios/AudioRecorder";
+import AudioList from "./audios/AudioList";
 
-const UserDashboard = () => {
+function UserDashboard({ audios = [], fetchUserAudios }) {
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  // 🔄 Fetch audios on mount AND when refreshKey changes
+  useEffect(() => {
+    fetchUserAudios();
+  }, [fetchUserAudios, refreshKey]);
+
+  const triggerRefresh = () => {
+    setRefreshKey(prev => prev + 1);
+  };
+
   return (
-    <div className="container">
-      <fieldset>
-        <legend>New recording</legend>
-        <AudioRecorder />
-      </fieldset>
-
-      <fieldset>
-        <legend>Your recordings</legend>
-        <AudioList />
-      </fieldset>
-    </div>
+    <>
+      <div className="page">
+        <AudioRecorder onUploadSuccess={triggerRefresh} />
+        <AudioList
+          audios={audios}
+          onDeleteSuccess={triggerRefresh}
+        />
+      </div>
+    </>
   );
-};
+}
 
-export default UserDashboard;
+function mapStateToProps(state) {
+    console.log("mapStateToProps audios:", state.audios);
+  return { audios: state.audios };
+}
+
+export default connect(mapStateToProps, { fetchUserAudios })(UserDashboard);

@@ -86,8 +86,10 @@ export const fetchReadings = () => async (dispatch) => {
   dispatch({ type: FETCH_READINGS, payload: res.data });
 };
 export const fetchUserAudios = () => async (dispatch) => {
-  console.log("fetchUserAudios from index.js")
+  console.log("fetchUserAudios called from actions index.js")
   const res = await axios.get("/api/user_audios");
+
+  console.log("ACTION: audios received", res.data);
   dispatch({ type: FETCH_USER_AUDIOS, payload: res.data });
 };
 

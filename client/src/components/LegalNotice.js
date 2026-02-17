@@ -12,22 +12,22 @@ const LegalNotice = () => {
             </p>
             <h2>Editing the site</h2>
             <p className='itemp'>
-                This site, accessible at the URL <a href="https://iridologyreadings.com/">https://iridologyreadings.com </a> (the “Site”), is published by:<br />
+                This site, accessible at the URL <a href="Lorem Ipsum">Lorem Ipsum </a> (the “Site”), is published by:<br />
 
-                Isabelle Bidou, residing at 52 avenue de Choisy, 75013 Paris, France of French nationality (France), born on 28/10/1971, registered with the RCS of PARIS under number Paris 919846113,
+                Isabelle Bidou, residing at xxxxxxxx France of xxxxxxx nationality (France), born on xxxxxxxxx, registered with the RCS of PARIS under number Paris 919846113,
 
-                The publisher's individual VAT number is: FR95919846113.
+                The publisher's individual VAT number is: xxxxxxxxxxxxxxx.
             </p>
             <h2>Accommodation</h2>
             <p className='itemp'>
-                The Site is hosted by Heroku, located at 415 Mission St Ste 300, San Francisco, California, 94105, United States, (telephone or email contact: +14155205622).
+                The Site is hosted by xxxxxxxxxxxxxxxxxxxxxxx, (telephone or email contact: +Lorem Ipsum).
 
             </p>
             <h2>Publication director</h2>
             <p className='itemp'>The Publication Director of the Site is Isabelle Bidou.
             </p>
             <h2>Contact us</h2>
-            <p className='itemp'>By phone: +33753672587<br />
+            <p className='itemp'>By phone: Lorem Ipsum<br />
                 By email : isa.bidou@gmail.com<br />
                 By mail: 52 avenue de Choisy, 75013 Paris, France<br />
             </p>
@@ -43,7 +43,7 @@ const LegalNotice = () => {
             </p>
             <h2>Terms of payment and reimbursement
             </h2>
-            <p className='itemp'>Payments are made online, in case of withdrawal please contact me by email as soon as possible to cancel the order. No order can be canceled after delivery. I reserve the right to cancel an order if I consider that the elements and information made available to me are insufficient.
+            <p className='itemp'>Payments are Lorem Ipsum.
             </p>
 
         </div>

@@ -36,6 +36,12 @@ export default function AudioRecorder({ onUploadSuccess }) {
     setIsRecording(false);
   };
 
+  /*async function handleSendRecording(blob) {
+    await uploadRecording(blob);
+    onUploadSuccess(); // 🔥 tell parent “something changed”
+  }*/
+
+
   const uploadAudio = async () => {
     console.log('uploadAudio   from AudioRecorder.js')
     if (!audioBlob) return;

@@ -6,13 +6,13 @@ const MentionsLegales = () => {
         <div className='page'>
             <h1>MENTIONS LÉGALES</h1>
             <p className='itemp'>
-            Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique, il est précisé aux utilisateurs du site iridology l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi.
+            Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique, il est précisé aux utilisateurs du site.....
 </p>
             <h2>Edition du site </h2>
             <p className='itemp'>
             Le présent site, accessible à l’URL <a href=""></a>(le « Site »), est édité par :<br />
 
-Isabelle Bidou, résidant 52 avenue de Choisy, 75013 Paris, France de nationalité Française (France), né(e) le 28/10/1971,  inscrite au R.C.S. de PARIS sous le numéro Paris 919846113,
+Isabelle Bidou, résidant Lorem Ipsum, Lorem Ipsum, France de nationalité xxxxxxxxxxx (xxxxx), né(e) le Lorem Ipsum,  inscrite au R.C.S. de PARIS sous le numéro Paris xxxxxxx,
 
 Le numéro individuel TVA de l’éditeur est : .
 
@@ -20,7 +20,7 @@ Le numéro individuel TVA de l’éditeur est : .
             <h2>Hébergement
 </h2>
             <p className='itemp'>
-            Le Site est hébergé par la société Heroku, situé 415 Mission St Ste 300, San Francisco, California, 94105, United States, (contact téléphonique ou email : +14155205622).
+            Le Site est hébergé par la société Lorem Ipsum, (contact téléphonique ou email : +Lorem Ipsum).
 </p>
             <h2>Directeur de publication 
 </h2>
@@ -28,7 +28,7 @@ Le numéro individuel TVA de l’éditeur est : .
 
             </p>
             <h2>Nous contacter </h2>
-            <p className='itemp'>Par téléphone : +33753672587<br />
+            <p className='itemp'>Par téléphone : +Lorem Ipsum<br />
 Par email : isa.bidou@gmail.com<br />
 Par courrier : 52 avenue de Choisy, 75013 Paris, France<br />
 
@@ -39,7 +39,7 @@ Par courrier : 52 avenue de Choisy, 75013 Paris, France<br />
 </p>
             <h2>Conditions Generales de vente
 </h2>
-            <p className='itemp'>La société fournit des services dont la rédaction de bilans d'iridologie. Les clients fournissent des informations et des photos de leurs iris, effectuent un paiement en ligne. Une fois le bilan achevé il est mis à disposition de l'acheteur par téléchargement ou envoyé par email.
+            <p className='itemp'>LLorem Ipsum.
 </p>
             <h2>Delais de livraison
             </h2>
@@ -49,7 +49,7 @@ Par courrier : 52 avenue de Choisy, 75013 Paris, France<br />
             <h2>Modalités de paiement et remboursement
 
             </h2>
-            <p className='itemp'>Les paiements se font en ligne, en cas de rétractation veuillez me contacter par email au plus vite pour annuler la commande. Aucune commande ne pourra être annulée après livraison. Je me réserve le droit d'annuler une commande si j'estime que les éléments et informations mis à ma disposition sont insuffisants.
+            <p className='itemp'>Lorem Ipsum.
 </p>
 
         </div>

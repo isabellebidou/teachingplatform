@@ -6,7 +6,7 @@ import userDataReducer from "./userDataReducer";
 import usersReducer from "./usersReducer";
 import selectUserReducer from "./selectUserReducer";
 import cookieReducer from "./cookieReducer";
-import audiosReducer from './audiosReducer';
+import audioReducer from './audioReducer';
 export default combineReducers({
     auth : authReducer,
    // form : reduxForm,
@@ -15,6 +15,6 @@ export default combineReducers({
     users: usersReducer,
     selectedUser:  selectUserReducer,
     cookie: cookieReducer,
-    audios: audiosReducer,
+    audios: audioReducer
 
 });
