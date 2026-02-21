@@ -10,7 +10,8 @@ import {
   FETCH_USER_DATA,
   FETCH_COOKIE_VALUE,
   FETCH_USER_AUDIOS,
-  UPDATE_COOKIE_ACCEPTANCE
+  UPDATE_COOKIE_ACCEPTANCE,
+  FETCH_SCRIPTS
 
 } from "./types";
 
@@ -92,4 +93,15 @@ export const fetchUserAudios = () => async (dispatch) => {
   console.log("ACTION: audios received", res.data);
   dispatch({ type: FETCH_USER_AUDIOS, payload: res.data });
 };
+export const fetchScripts = () => async (dispatch) => {
+  console.log("fetchScripts called from actions index.js")
+  const res = await axios.get("/api/scripts");
+
+  console.log("ACTION: scripts received", res.data);
+  dispatch({ type: FETCH_SCRIPTS, payload: res.data });
+
+};
+
+
+ 
 

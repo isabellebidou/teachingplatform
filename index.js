@@ -14,6 +14,7 @@ require('./models/Link');
 require('./models/Offer');
 require('./models/StarReview');
 require('./models/Audio');
+require('./models/Script');
 
 
 
@@ -76,6 +77,7 @@ db().then(() => {
     require('./routes/offerRoutes')(app);
     require('./routes/starReviewRoutes')(app);
     require("./routes/audioRoutes")(app);
+    require("./routes/scriptRoutes")(app);
   
 
     if (process.env.NODE_ENV == 'production') {

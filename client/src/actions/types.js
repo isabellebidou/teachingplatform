@@ -9,4 +9,6 @@ export const FETCH_COOKIE_VALUE = 'FETCH_COOKIE_VALUE';
 export const UPDATE_USER_DATA = 'update_user_data';
 export const SELECT_USER = 'select_user';
 export const UPDATE_COOKIE_ACCEPTANCE = 'UPDATE_COOKIE_ACCEPTANCE';
+export const FETCH_SCRIPTS='fetch_scripts';
+
 

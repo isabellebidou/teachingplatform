@@ -4,6 +4,7 @@ const upload = require("../config/audioUpload");
 const { uploadFile, deleteSeveralAudios, getObjectSignedUrl } = require("../services/s3");
 
 const Audio = mongoose.model("audios");
+const Script = mongoose.model("Script");
 
 module.exports = (app) => {
 
@@ -21,18 +22,20 @@ module.exports = (app) => {
       try {
         if (!req.file) {
           return res.status(400).send("No audio file provided");
-        }
-
+        } 
         const { buffer, mimetype, originalname } = req.file;
-
+        const { scriptId } = req.body;
+        //===============> 1) async call to /api/audio/transcribe with the buffer to whisper
+        console.log(`script: ${scriptId}from audioRoutes POST audio`)
         const s3Key = `audios/${req.user.id}/${Date.now()}-${originalname}`;
-
+        // ==============> 2) upon return with feedback from whisper we store the audio file on AWS s3 
         // Upload to S3
         await uploadFile(buffer, s3Key, mimetype);
-
+        // ==============> 3) what about the text feedback ? on AWS S3 too? or just in the Audio object on Mongo db?
         // Save metadata to MongoDB
         const audio = await new Audio({
           _user: req.user.id,
+          _script: scriptId,
           s3Key,
           mimeType: mimetype,
         }).save();
@@ -44,7 +47,9 @@ module.exports = (app) => {
       }
     }
   );
-    function findAudiosKeys(ids) {
+
+
+  function findAudiosKeys(ids) {
     return new Promise((resolve, reject) => {
       Audio.find({ _id: { $in: ids } }, {  s3Key:1 })
         .exec(function (err, docs) {
@@ -78,19 +83,22 @@ module.exports = (app) => {
   app.get("/api/user_audios", requireLogin, async (req, res) => {
     try {
       console.log("app.get   /api/user_audios from audioroutes")
-      const audios = await Audio.find({ _user: req.user.id });
+      const audios = await Audio
+  .find({ _user: req.user.id })
+  .populate({
+        path: "_script",
+        select: "sentence"
+      });
 
       for (let index = 0; index < audios.length; index++) {
         const element = audios[index];
         console.log(element._id);
-        
       }
 
       let audiosWithUrls = [];
-       audiosWithUrls= await Promise.all(
+       audiosWithUrls = await Promise.all(
         audios.map(async (audio) => {
           const url = await getObjectSignedUrl(audio.s3Key);
-
           return {
             ...audio.toObject(),
             url
@@ -103,23 +111,6 @@ module.exports = (app) => {
     } catch (err) {
       console.error(err);
       res.status(500).send("Failed to fetch audios");
-    }
-  });
-
-
-    app.get("/api/user_audioss", async (req, res) => {
-    try {
-      const audios = await Audio.find({ _user: req.params.id });
-      const audioPromises = audios.map(async (audio) => {
-        const url = await getObjectSignedUrl(audio.s3Key);
-        //audio.imageUrl = path;
-        return audio;
-      });
-      const audiosWithUrls = await Promise.all(audioPromises);
-      res.send(audiosWithUrls);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send({ error: 'Internal Server Error' });
     }
   });
 };

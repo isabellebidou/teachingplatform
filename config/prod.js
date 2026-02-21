@@ -13,5 +13,9 @@ module.exports = {
     awsRegion: process.env.AWS_REGION,
     awsSecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     bucketName: process.env.BUCKET_NAME,
-    openAIKey: process.env.OPENAI_KEY
+    openAIKey: process.env.OPENAI_KEY,
+    elevenLabsSpeechToTextKey: process.env.ELEVENLABS_SPEECH_TO_TEXT_KEY,
+    elevenLabsSpeechToSpeechKey: process.env.ELEVENLABS_SPEECH_TO_SPEECH_KEY,
+    elevenLabsTextToSpeechKey: process.env.ELEVENLABS_TEXT_TO_SPEECH_KEY,
+
 }

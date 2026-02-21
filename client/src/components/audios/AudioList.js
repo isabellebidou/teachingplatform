@@ -47,7 +47,8 @@ function AudioList({ audios = [], onDeleteSuccess }) {
               />
             )}
 
-            <p>audio #{i + 1}</p>
+            <p>audio #{i + 1 }: "{audio._script?.sentence}" recorded on {new Date(audio.createdAt).toLocaleDateString()}</p>
+            
           </div>
         ))}
         </div>

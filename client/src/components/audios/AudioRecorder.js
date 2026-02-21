@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
 
-export default function AudioRecorder({ onUploadSuccess }) {
+export default function AudioRecorder({ onUploadSuccess, script }) {
   const mediaRecorderRef = useRef(null);
   const chunksRef = useRef([]);
 
@@ -47,7 +47,9 @@ export default function AudioRecorder({ onUploadSuccess }) {
     if (!audioBlob) return;
 
     const formData = new FormData();
-    formData.append("audio", audioBlob, "recording.webm");
+    console.log(script._id)
+    formData.append("audio", audioBlob,"recording.webm");
+    formData.append("scriptId", script._id);
 
     try {
       setUploading(true);
@@ -68,6 +70,7 @@ export default function AudioRecorder({ onUploadSuccess }) {
 
   return (
     <div>
+
       {!isRecording && (
         <button onClick={startRecording}>🎙 Start recording</button>
       )}
