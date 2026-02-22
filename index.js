@@ -19,6 +19,7 @@ require('./models/Script');
 
 
 require('./services/passport');
+require('./services/elevenLabsTranscription');
 mongoose.set('strictQuery', false);
 
 

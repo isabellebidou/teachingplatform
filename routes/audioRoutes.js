@@ -1,8 +1,9 @@
+
 const mongoose = require("mongoose");
 const requireLogin = require("../middlewares/requireLogin");
+const { transcribeAudio } = require("../services/elevenLabsTranscription");
 const upload = require("../config/audioUpload");
 const { uploadFile, deleteSeveralAudios, getObjectSignedUrl } = require("../services/s3");
-
 const Audio = mongoose.model("audios");
 const Script = mongoose.model("Script");
 
@@ -25,14 +26,26 @@ module.exports = (app) => {
         } 
         const { buffer, mimetype, originalname } = req.file;
         const { scriptId } = req.body;
-        //===============> 1) async call to /api/audio/transcribe with the buffer to whisper
+        //===============> async call to /api/audio/transcribe with the buffer to elevenlab  TODO
+        //===============> eleven labs returns a text file  TODO
+        //===============> we process the text file  TODO
+        // ========== TRANSCRIBE AUDIO ==========
+      const transcriptionResult = await transcribeAudio(
+        buffer,
+        mimetype,
+        originalname
+      );
+
+      const transcriptText = transcriptionResult.text; // ← usually here
+      console.log("Transcription:", transcriptText);
+
+      // ========== 2️⃣ PROCESS TEXT (your logic) ==========
+      // e.g. compare with script, scoring, AI feedback, etc.
         console.log(`script: ${scriptId}from audioRoutes POST audio`)
         const s3Key = `audios/${req.user.id}/${Date.now()}-${originalname}`;
-        // ==============> 2) upon return with feedback from whisper we store the audio file on AWS s3 
-        // Upload to S3
+        // ==============> we store the audio file on AWS s3 : done
         await uploadFile(buffer, s3Key, mimetype);
-        // ==============> 3) what about the text feedback ? on AWS S3 too? or just in the Audio object on Mongo db?
-        // Save metadata to MongoDB
+        // Save metadata to MongoDB: done
         const audio = await new Audio({
           _user: req.user.id,
           _script: scriptId,
