@@ -34,11 +34,11 @@ p {
 
 .col {
 
-  -moz-column-count: 2;
+  -moz-column-count: 3;
   /* Firefox */
-  -webkit-column-count: 2;
+  -webkit-column-count: 3;
   /* Safari and Chrome */
-  column-count: 2;
+  column-count: 3;
   -moz-column-gap: 40px;
   /* Firefox */
   -webkit-column-gap: 40px;
@@ -140,7 +140,7 @@ input {
 } */
 
 .photothumbnail {
-  margin: 1em;
+  margin: 0.5em;
   position: relative;
   display: inline-block;
   display: grid;
@@ -652,9 +652,9 @@ h3 {
 }
 
 p {
-  padding-top: 1em;
+  padding-top: 0.5em;
   padding-right: 2em;
-  padding-bottom: 1em;
+  padding-bottom: 0.5em;
   padding-left: 2em;
   text-align: justify;
 }
@@ -664,11 +664,13 @@ p {
   color: rgb(90, 149, 79);
   display: grid;
   align-content: center;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto;
   grid-gap: 5px;
   /* background-color: #2196F3;  Comment this out later to remove the background color when not needed */
-  padding: 1em;
+  padding: 0.5em;
+  /*grid-auto-flow: column;https://css-tricks.com/equal-columns-with-flexbox-its-more-complicated-than-you-might-think/*/
   overflow-y: auto;
+
 }
 .shop-grid-container {
   margin: auto;

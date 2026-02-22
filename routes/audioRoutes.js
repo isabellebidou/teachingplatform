@@ -27,8 +27,6 @@ module.exports = (app) => {
         } catch (error) {
           return res.status(404).send("Script not found"+ error);
         }
-        //===============> async call to /api/audio/transcribe with the buffer to elevenlab  TODO
-        //===============> eleven labs returns a text file  TODO
         // ==========> TRANSCRIBE AUDIO 
       const transcriptionResult = await transcribeAudio(
         buffer,
@@ -106,10 +104,10 @@ module.exports = (app) => {
     try {
       console.log("app.get   /api/user_audios from audioroutes")
       const audios = await Audio
-  .find({ _user: req.user.id })
-  .populate({
-        path: "_script",
-        select: "sentence"
+        .find({ _user: req.user.id })
+          .populate({
+            path: "_script",
+            select: "sentence"
       });
 
       for (let index = 0; index < audios.length; index++) {

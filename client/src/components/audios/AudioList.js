@@ -36,7 +36,7 @@ function AudioList({ audios = [], onDeleteSuccess }) {
         {audios.length === 0 && <p>You may record yourself</p>}
 
         {audios.map((audio, i) => (
-          <div key={audio._id}>
+          <div key={audio._id} className="photothumbnail">
             <AudioPlayer src={audio.url} />
 
             {editMode && (
