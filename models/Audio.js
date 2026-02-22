@@ -8,6 +8,9 @@ const audioSchema = new Schema({
   s3Key: String,
   audioPath: String,
   mimeType: String,
+  transcript: String,
+  feedback: [String]
+  
 });
 
 mongoose.model("audios", audioSchema);

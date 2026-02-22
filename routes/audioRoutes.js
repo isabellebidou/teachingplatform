@@ -6,15 +6,10 @@ const upload = require("../config/audioUpload");
 const { uploadFile, deleteSeveralAudios, getObjectSignedUrl } = require("../services/s3");
 const Audio = mongoose.model("audios");
 const Script = mongoose.model("Script");
+const helpers = require("./helpers");    
 
 module.exports = (app) => {
 
-  /**
-   * Upload audio
-   * POST /api/audio
-   * multipart/form-data
-   * field name: "audio"
-   */
   app.post(
     "/api/audio",
     requireLogin,
@@ -26,33 +21,48 @@ module.exports = (app) => {
         } 
         const { buffer, mimetype, originalname } = req.file;
         const { scriptId } = req.body;
+        let script;
+        try {
+          script = await Script.findById(scriptId);
+        } catch (error) {
+          return res.status(404).send("Script not found"+ error);
+        }
         //===============> async call to /api/audio/transcribe with the buffer to elevenlab  TODO
         //===============> eleven labs returns a text file  TODO
-        //===============> we process the text file  TODO
-        // ========== TRANSCRIBE AUDIO ==========
+        // ==========> TRANSCRIBE AUDIO 
       const transcriptionResult = await transcribeAudio(
         buffer,
         mimetype,
         originalname
       );
 
-      const transcriptText = transcriptionResult.text; // ← usually here
+      const transcriptText = transcriptionResult.text; 
       console.log("Transcription:", transcriptText);
-
-      // ========== 2️⃣ PROCESS TEXT (your logic) ==========
-      // e.g. compare with script, scoring, AI feedback, etc.
-        console.log(`script: ${scriptId}from audioRoutes POST audio`)
-        const s3Key = `audios/${req.user.id}/${Date.now()}-${originalname}`;
+      
+      // ==========> PROCESS TEXT  
+      /// find missing , added or matching words
+      const feedback = helpers.generateFeedback (
+        helpers.compareWords(
+          helpers.normalize(script.sentence).split(" "),
+          helpers.normalize(transcriptText).split(" ")
+        ) 
+      );
+      
+      console.log(`script: ${scriptId}from audioRoutes POST audio`);
+      console.log(`feedback: ${feedback}from audioRoutes POST audio`);
+      console.log("feedback:", feedback, Array.isArray(feedback));
+      const s3Key = `audios/${req.user.id}/${Date.now()}-${originalname}`;
         // ==============> we store the audio file on AWS s3 : done
-        await uploadFile(buffer, s3Key, mimetype);
+      await uploadFile(buffer, s3Key, mimetype);
         // Save metadata to MongoDB: done
-        const audio = await new Audio({
+      const audio = await new Audio({
           _user: req.user.id,
           _script: scriptId,
           s3Key,
           mimeType: mimetype,
+          transcript: transcriptText,
+          feedback:feedback,
         }).save();
-
         res.send(audio);
       } catch (err) {
         console.error("Audio upload error:", err);
@@ -88,7 +98,6 @@ module.exports = (app) => {
     }
   });
   
-
   /**
    * List user's audios (with signed URLs)
    * GET /api/user_audios
