@@ -43,9 +43,11 @@ module.exports = (app) => {
         helpers.compareWords(
           helpers.normalize(script.sentence).split(" "),
           helpers.normalize(transcriptText).split(" ")
-        ) 
+        ) , transcriptText
       );
-      
+      /*const feedback = helpers.generateFeedback(
+        helpers.compareWords(script.sentence,transcriptText),transcriptText
+      )*/
       console.log(`script: ${scriptId}from audioRoutes POST audio`);
       console.log(`feedback: ${feedback}from audioRoutes POST audio`);
       console.log("feedback:", feedback, Array.isArray(feedback));
