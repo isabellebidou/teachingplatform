@@ -39,7 +39,7 @@ export function generateFeedback( {missing, extra, coverage}, text) {
 
 if (missingWithS.length > 0) {
   feedback.push(
-    `Be careful: the final "S" is pronounced in the present simple with he, she, and it: ${missingWithS.join(", ")}.`
+    `Be careful: You may have missed the -s ending. The final "S" is pronounced in the present simple with he, she, and it: ${missingWithS.join(", ")}.`
   );
 }
 

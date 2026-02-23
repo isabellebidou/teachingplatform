@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 import { AiOutlineLogout } from "react-icons/ai";
 import { AiOutlineUser } from "react-icons/ai";
+import { AiOutlineAudio } from "react-icons/ai";
 import { AiOutlineHome } from "react-icons/ai";
 import { FaUsers } from "react-icons/fa";
 import $ from 'jquery';
@@ -60,9 +61,9 @@ class MobileMenu extends Component {
                 {(this.props.auth && currentlyOnProfile === false) &&
                     <li>
 
-                        <a key={4} className="mobilemenuli button" href="/dashboard"><AiOutlineUser
+                        <a key={4} className="mobilemenuli button" href="/dashboard"><AiOutlineAudio
                             style={{ color: "#7f5f87" }}
-                            key={'AiOutlineUser'}
+                            key={'AiOutlineAudio'}
                         /></a>
 
                     </li>}
@@ -70,7 +71,7 @@ class MobileMenu extends Component {
                     <li>
                         <a key={4} className="mobilemenuli button" href="/api/logout"><AiOutlineLogout
                             style={{ color: "#7f5f87" }}
-                            key={'AiOutlineMenu'}
+                            key={'AiOutlineLogout'}
                         /></a>
                     </li>}
 

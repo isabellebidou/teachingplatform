@@ -15,6 +15,7 @@ import UserData from "./UserData";
 import UserDataFormEdit from "./userData/UserDataFormEdit";
 import UserDataFormNew from "./userData/UserDataFormNew";
 import UserDashboard from "./UserDashboard";
+import UserBoard from "./UserBoard";
 import ProtectedRoute from "./ProtectedRoute";
 //import RestrictedRoute from "./RestrictedRoute";
 import AdminDashboard  from "./AdminDashboard";
@@ -53,6 +54,7 @@ class App extends Component {
             <Route path="/payment" component={Payment } />
             <Route exact path="/completion" component={Completion } />
             <ProtectedRoute exact path="/dashboard" component={UserDashboard} />
+            <ProtectedRoute exact path="/board" component={UserBoard} />
             <ProtectedRoute exact path="/readings/new" component={ReadingNew} />
             <ProtectedRoute exact path="/userdata/new" component={UserDataFormNew} />
             <ProtectedRoute exact path="/userdata" component={UserData} />
@@ -60,6 +62,7 @@ class App extends Component {
             <ProtectedRoute exact path="/userdata/edit" component={UserDataFormEdit} />
 
             <ProtectedRoute exact path="/users/dashboard" component={SelectedUserDashboard} />
+            
            
             <Route exact path="/users" component={AdminDashboard} />
             <Route exact path="/faq/list" component={FaqList} />

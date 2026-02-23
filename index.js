@@ -15,9 +15,6 @@ require('./models/Offer');
 require('./models/StarReview');
 require('./models/Audio');
 require('./models/Script');
-
-
-
 require('./services/passport');
 require('./services/elevenLabsTranscription');
 mongoose.set('strictQuery', false);

@@ -112,11 +112,7 @@ class Landing extends Component {
                 <div className="col">
 
                 </div>
-                <fieldset>
-
-
-                <Feedback></Feedback>
-                </fieldset>
+                
                 <fieldset>
                     <legend><h2> Reviews </h2></legend>
 
