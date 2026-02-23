@@ -25,6 +25,7 @@ class Header extends Component {
   renderContent() {
 
     const isAdmin = this.props.auth && this.props.auth.type === 'admin';
+    const isGuest = this.props.auth && this.props.auth.type === 'guest';
     const isOnDashboard = this.props.location.pathname === '/dashboard';
     const isHome = this.props.location.pathname === '/';
     const isOnBoard = this.props.location.pathname === '/board';
@@ -64,7 +65,7 @@ class Header extends Component {
 
 
 
-        {(this.props.auth && isOnDashboard === false) &&
+        {(this.props.auth && isOnDashboard === false && isGuest === false) &&
           <Link key={3+"dashboard"}
             to={'/dashboard'}
             className="button"
@@ -74,7 +75,7 @@ class Header extends Component {
               key={'AiOutlineAudio'}
             />
           </Link>}
-        {(this.props.auth && isOnBoard === false) &&
+        {(this.props.auth && isOnBoard === false && isGuest === false) &&
           <Link key={3+ 'board'}
             to={'/board'}
             className="button"
