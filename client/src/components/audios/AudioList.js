@@ -51,9 +51,16 @@ function AudioList({ audios = [], onDeleteSuccess }) {
             {audio.transcript && (
              <p>transcript:  "{audio.transcript}"</p>
              )}
-            {audio.feedback && (
-             <p>Feedback:  "{audio.feedback}"</p>
-             )}
+            {audio.feedback && audio.feedback.length > 0 && (
+              <div>
+                <p><strong>Feedback:</strong></p>
+                <ul>
+                  {audio.feedback.map((line, index) => (
+                    <li key={index}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
             
           </div>
         ))}

@@ -21,7 +21,7 @@ export function generateFeedback( {missing, extra, coverage}, text) {
     feedback.push("✅ You said all the expected words.");
   } else {
     feedback.push(
-      `⚠️ You missed ${missing.length} word(s): ${missing.join(", ")}.`
+      `⚠️ You missed or mispronounced ${missing.length} word(s): ${missing.join(", ")}.`
     );
     // TODO: check if missing words end in 's'  
 //a missing word ends in "s" AND the base form exists as a verb AND the previous word is a 3rd person subject (he, she, it, name) 
@@ -32,17 +32,23 @@ export function generateFeedback( {missing, extra, coverage}, text) {
 
 // 👉 Feedback: “Be careful: the H is pronounced in this word.” 
     const missingWordsWithHArray = checkMissingWithH(missing);
-    if (missingWordsWithHArray){
-      feedback.push( `Be careful: the H is pronounced in : ${missingWordsWithHArray.join(", ")}.`)
+    if (missingWordsWithHArray.length > 0){
+      feedback.push( `Be careful: the "H" is pronounced in : ${missingWordsWithHArray.join(", ")}.`)
     }
-    //const missingWordsWithSArray = checkMissingWithS(missing, text);
+    const missingWithS = checkMissingWithS(missing, text);
+
+if (missingWithS.length > 0) {
+  feedback.push(
+    `Be careful: the final "S" is pronounced in the present simple with he, she, and it: ${missingWithS.join(", ")}.`
+  );
+}
 
 
   }
 
   if (extra.length > 0) {
     feedback.push(
-      `You added extra word(s): ${extra.join(", ")}. That’s okay if it was intentional.`
+      `Extra word(s)found: ${extra.join(", ")}. That’s okay if it was intentional.`
     );
 
     switch (coverage) {
@@ -81,16 +87,35 @@ function checkMissingWithH(missing){
   if (element.startsWith("h") && !silentHWordsSet.has(element))
     wordsStartingInH.push (element);
 });
-return wordsStartingInH.length >= 1 ? wordsStartingInH: false;
+return wordsStartingInH;
 }
 
-function checkMissingWithS(missing, text){
-  const baseVerForm=["play", "give", "do", "go","make", "sing", "eat", "drink", "like", "love", "read"];
+function checkMissingWithS(missing, text) {
   const verbsEndingInS = [];
 
-  missing.forEach(element => {
-   // if (element.toLowerCase.endsWith("s") && () &&())
-     // verbsEndingInS.push (element);
+  const verbFormsEndingInS = new Set([
+    "plays", "lives", "gives", "does", "goes", "makes",
+    "sings", "eats", "drinks", "likes", "loves", "reads"
+  ]);
+
+  const thirdPersonSet = new Set(["he", "she", "it"]);
+  const textArray = text.split(" ");
+  const thirdPerson = textArray.filter(w => thirdPersonSet.has(w));
+
+  missing.forEach(word => {
+    if (
+      word.endsWith("s") &&
+      (
+        verbFormsEndingInS.has(word) ||
+        (
+          thirdPerson.length > 0 &&
+          textArray.indexOf(thirdPerson[0]) < textArray.indexOf(word)
+        )
+      )
+    ) {
+      verbsEndingInS.push(word);
+    }
   });
-return verbsEndingInS.length >= 1 ? verbsEndingInS: false;
+
+  return verbsEndingInS; 
 }
