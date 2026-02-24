@@ -1,6 +1,6 @@
 import React from "react";
 import Feedback from "./FeedbackForm";
-
+import UploadPdfDocument from "./UploadPdfDocument";
 
 
 
@@ -10,8 +10,8 @@ function UserBoard(){
 
         <div className="page" >
 
-    <Feedback></Feedback>
 
+    <UploadPdfDocument></UploadPdfDocument>
 
     </div>
     );

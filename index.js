@@ -9,6 +9,7 @@ const enforce = require('express-sslify');
 require('./models/User');
 require('./models/UserData');
 require('./models/Reading');
+require('./models/Document');
 require('./models/Faq');
 require('./models/Link');
 require('./models/Offer');

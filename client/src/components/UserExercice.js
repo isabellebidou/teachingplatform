@@ -5,16 +5,16 @@ import Feedback from "./FeedbackForm";
 
 
 
-function UserBoard(){
+function UserExercice(){
     return (
 
         <div className="page" >
 
-    <Feedback></Feedback>
 
 
-    </div>
+
+        </div>
     );
 
 }
-export default UserBoard;
+export default UserExercice;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import store from "../store";
-import UploadDocument from './UploadDocument';
+import UploadDocument from '../UploadDocument';
 import axios from "axios";
 
 

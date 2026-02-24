@@ -1,35 +1,28 @@
 
 import { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import {  logError } from "../../utils/utils";
-
+import {  logError } from "../utils/utils";
 import axios from "axios";
 
 //https://www.youtube.com/watch?v=McF22__Jz_I&t=372s&ab_channel=V%E1%BB%89%C4%90%E1%BA%B7ng
 //https://codesandbox.io/s/comment-product-yelj6?file=/package.json
-function UploadDocument({ readingId }) {
+function UploadPdfDocument() {
     const [document, setDocument] = useState('');
     const [visibility, setVisibility] = useState("hidden");
-
     const handleDocument = (event) => {
       const selectedFile = event.target.files[0];
       if (selectedFile) {
         setDocument(selectedFile);
       }
     };
-    
   const handleSubmit = async (event) => {
     event.preventDefault()
     const formData = new FormData();
     formData.append("document", document);
-    formData.append("readingId", readingId);
-
     try {
       await axios({
         method: "post",
-        url: "/api/document_upload",
+        url: "/api/pdf_document_upload",
         data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
       }).then(function (response) {
         // handle success
         setDocument('');
@@ -47,8 +40,6 @@ function UploadDocument({ readingId }) {
     }
   }
 
-
-
   const toggleVisibility = () => {
     setVisibility(visibility === 'visible' ? 'hidden' : 'visible');
     const toggleUploadDiv = document.getElementById('toggleRightUploadDiv');
@@ -63,9 +54,6 @@ function UploadDocument({ readingId }) {
       toggleUploadDiv.style.visibility = 'visible';
     }
   }
-
-
-
 
   const renderStarReviewDiv = () => {
     return (
@@ -101,5 +89,5 @@ function UploadDocument({ readingId }) {
 };
 
 
-export default UploadDocument;
+export default UploadPdfDocument;
 

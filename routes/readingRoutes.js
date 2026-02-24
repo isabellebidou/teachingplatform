@@ -15,6 +15,7 @@ const logError = require("../services/utils");
 
 module.exports = (app) => {
   const Reading = mongoose.model('readings');
+  const Document = mongoose.model('documents');
 
   const sendTestEmail = () => {
     return new Promise((resolve, reject) => {
@@ -112,6 +113,26 @@ module.exports = (app) => {
     }
 
   })
+  
+  app.post("/api/pdf_document_upload", requireLogin, upload.single("document"), async (req, res) => {
+    console.log(req.file.originalname+" from api/pdf_document_upload")
+
+    const pdfPath = 'pdf/' + req.user.id + '/' + req.file.originalname;
+    await uploadFile(req.file.buffer, pdfPath, req.file.mimetype)
+
+        const document = await new Document({
+          _user: req.user.id,
+          dateSent: Date.now(),
+          path: pdfPath,
+          title: req.file.originalname,
+        }).save();
+        try {
+              res.send(document);
+        } catch (error) {
+            res.status(422).send(error);
+        }
+
+  });
   app.post("/api/document_upload", requireLogin, upload.single("document"), async (req, res) => {
     console.log(req.file)
 

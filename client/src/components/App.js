@@ -16,6 +16,8 @@ import UserDataFormEdit from "./userData/UserDataFormEdit";
 import UserDataFormNew from "./userData/UserDataFormNew";
 import UserDashboard from "./UserDashboard";
 import UserBoard from "./UserBoard";
+import UserDocuments from "./UserDocuments";
+import UserExercice from "./UserExercice";
 import ProtectedRoute from "./ProtectedRoute";
 //import RestrictedRoute from "./RestrictedRoute";
 import AdminDashboard  from "./AdminDashboard";
@@ -55,6 +57,8 @@ class App extends Component {
             <Route exact path="/completion" component={Completion } />
             <ProtectedRoute exact path="/dashboard" component={UserDashboard} />
             <ProtectedRoute exact path="/board" component={UserBoard} />
+            <ProtectedRoute exact path="/exercice" component={UserExercice} />
+            <ProtectedRoute exact path="/documents" component={UserDocuments} />
             <ProtectedRoute exact path="/readings/new" component={ReadingNew} />
             <ProtectedRoute exact path="/userdata/new" component={UserDataFormNew} />
             <ProtectedRoute exact path="/userdata" component={UserData} />
