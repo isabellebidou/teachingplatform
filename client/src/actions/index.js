@@ -11,7 +11,8 @@ import {
   FETCH_COOKIE_VALUE,
   FETCH_USER_AUDIOS,
   UPDATE_COOKIE_ACCEPTANCE,
-  FETCH_SCRIPTS
+  FETCH_SCRIPTS,
+  FETCH_USER_GRAMMAR_TOPICS
 
 } from "./types";
 
@@ -99,6 +100,14 @@ export const fetchScripts = () => async (dispatch) => {
 
   console.log("ACTION: scripts received", res.data);
   dispatch({ type: FETCH_SCRIPTS, payload: res.data });
+
+};
+export const fetchGrammarTopics = () => async (dispatch) => {
+  console.log("fetchGrammarTopics called from actions index.js")
+  const res = await axios.get("/api/grammarTopics");
+
+  console.log("ACTION: GrammarTopics received", res.data);
+  dispatch({ type: FETCH_USER_GRAMMAR_TOPICS, payload: res.data });
 
 };
 

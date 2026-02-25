@@ -16,6 +16,7 @@ require('./models/Offer');
 require('./models/StarReview');
 require('./models/Audio');
 require('./models/Script');
+require('./models/GrammarTopic');
 require('./services/passport');
 require('./services/elevenLabsTranscription');
 mongoose.set('strictQuery', false);
@@ -77,6 +78,7 @@ db().then(() => {
     require('./routes/starReviewRoutes')(app);
     require("./routes/audioRoutes")(app);
     require("./routes/scriptRoutes")(app);
+    require("./routes/grammarTopicsRoutes")(app);
   
 
     if (process.env.NODE_ENV == 'production') {
