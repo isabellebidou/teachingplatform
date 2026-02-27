@@ -1,45 +1,23 @@
-// seeds/levels.seed.js
 import mongoose from "mongoose";
 import keys from "../config/keys.js";
-import Level from "../models/Level.js";
+import Theme from "../models/Theme.js";
+
+import {
+  themesA1,
+  themesA2,
+  themesB1
+} from "./data/themes.data.js";
 
 await mongoose.connect(keys.mongoURI);
 
-const levels = [
-  {
-    cefr: "A1",
-    frenchLabels: ["6e", "5e"],
-    description: "Beginner user: basic sentences, everyday vocabulary"
-  },
-  {
-    cefr: "A2",
-    frenchLabels: ["4e"],
-    description: "Elementary user: simple narratives, familiar topics"
-  },
-  {
-    cefr: "B1",
-    frenchLabels: ["3e", "Seconde"],
-    description: "Independent user: opinions, past events, projects"
-  },
-  {
-    cefr: "B2",
-    frenchLabels: ["Première", "Terminale"],
-    description: "Upper-intermediate: abstract topics, argumentation"
-  },
-  {
-    cefr: "C1",
-    frenchLabels: ["Prépa", "Ecricome"],
-    description: "Advanced: complex texts, nuance, precision"
-  },
-  {
-    cefr: "C2",
-    frenchLabels: ["Prépa avancée"],
-    description: "Mastery: near-native comprehension and expression"
-  }
+const themes = [
+  ...themesA1.map(name => ({ name, level: "A1" })),
+  ...themesA2.map(name => ({ name, level: "A2" })),
+  ...themesB1.map(name => ({ name, level: "B1" }))
 ];
 
-await Level.deleteMany({});
-await Level.insertMany(levels);
+await Theme.deleteMany({});
+await Theme.insertMany(themes);
 
-console.log("✅ Levels seeded");
+console.log("✅ Themes seeded");
 process.exit();

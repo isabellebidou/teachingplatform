@@ -1,0 +1,172 @@
+{
+    "questions": [
+        {
+            "sentence": "I enjoy ____ books in my free time.",
+            "options": [
+                {
+                    "text": "read",
+                    "isCorrect": true
+                },
+                {
+                    "text": "reading",
+                    "isCorrect": false
+                },
+                {
+                    "text": "reads",
+                    "isCorrect": false
+                },
+                {
+                    "text": "to read",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "sentence": "She _____ to music every evening.",
+            "options": [
+                {
+                    "text": "listens",
+                    "isCorrect": true
+                },
+                {
+                    "text": "listening",
+                    "isCorrect": false
+                },
+                {
+                    "text": "to listen",
+                    "isCorrect": false
+                },
+                {
+                    "text": "listened",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "sentence": "We _____ football on weekends.",
+            "options": [
+                {
+                    "text": "play",
+                    "isCorrect": true
+                },
+                {
+                    "text": "playing",
+                    "isCorrect": false
+                },
+                {
+                    "text": "plays",
+                    "isCorrect": false
+                },
+                {
+                    "text": "to play",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "sentence": "He likes _____ movies in the cinema.",
+            "options": [
+                {
+                    "text": "watching",
+                    "isCorrect": true
+                },
+                {
+                    "text": "watch",
+                    "isCorrect": false
+                },
+                {
+                    "text": "watches",
+                    "isCorrect": false
+                },
+                {
+                    "text": "to watch",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "sentence": "They _____ video games on their computer.",
+            "options": [
+                {
+                    "text": "play",
+                    "isCorrect": true
+                },
+                {
+                    "text": "playing",
+                    "isCorrect": false
+                },
+                {
+                    "text": "to play",
+                    "isCorrect": false
+                },
+                {
+                    "text": "plays",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "sentence": "She wants ____ to Italy next summer.",
+            "options": [
+                {
+                    "text": "to go",
+                    "isCorrect": true
+                },
+                {
+                    "text": "goes",
+                    "isCorrect": false
+                },
+                {
+                    "text": "going",
+                    "isCorrect": false
+                },
+                {
+                    "text": "go",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "sentence": "They _____ chess every Sunday.",
+            "options": [
+                {
+                    "text": "play",
+                    "isCorrect": true
+                },
+                {
+                    "text": "playing",
+                    "isCorrect": false
+                },
+                {
+                    "text": "plays",
+                    "isCorrect": false
+                },
+                {
+                    "text": "to play",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "sentence": "She enjoys _____ in the park with her dog.",
+            "options": [
+                {
+                    "text": "walking",
+                    "isCorrect": true
+                },
+                {
+                    "text": "walks",
+                    "isCorrect": false
+                },
+                {
+                    "text": "walk",
+                    "isCorrect": false
+                },
+                {
+                    "text": "to walk",
+                    "isCorrect": false
+                }
+            ]
+        }
+    ]
+}

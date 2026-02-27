@@ -1,54 +1,41 @@
-export const grammarA1 = [
-  "Present simple (affirmative, negative, interrogative)",
-  "Short answers",
-  "Question tags",
-  "Modal verb: can",
-  "Present continuous",
-  "Definite and indefinite articles",
-  "Present simple vs present continuous",
-  "Adverbs of frequency",
-  "Modal verb: must",
-  "Comparative adjectives",
-  "Superlative adjectives",
-  "Countable and uncountable nouns",
-  "Quantifiers",
-  "Past simple (regular verbs)",
-  "Past simple (irregular verbs)",
-  "Wh- questions",
-  "Future forms (basic)"
+export const themesA1 = [
+  "Daily routines",
+  "Hobbies and free time",
+  "Describing people",
+  "Pets",
+  "Clothes",
+  "School life",
+  "Food and restaurants",
+  "British legends and heroes",
+  "American immigration history",
+  "Discovering London",
+  "Holidays and travel"
 ];
 
-export const grammarA2 = [
-  "Present simple revision",
-  "Present continuous revision",
-  "Modal verbs: can / be able to",
-  "Adverbs of frequency",
-  "Past simple",
-  "Past continuous",
-  "Used to",
-  "Possessive adjectives and pronouns",
-  "Wh- questions",
-  "The passive voice",
-  "Present perfect vs past simple",
-  "Time markers: ago / since / during",
-  "Relative pronouns",
-  "Future forms",
-  "Modal verbs (future and obligation)"
+export const themesA2 = [
+  "Tastes and preferences",
+  "Habits and lifestyles",
+  "Arts: music, dance, cinema",
+  "A day at the beach",
+  "Irish history",
+  "British history",
+  "Famous English-speaking people",
+  "Science and discoveries",
+  "Storytelling and adventures",
+  "Discovering Canada",
+  "Planning a journey"
 ];
 
-export const grammarB1 = [
-  "Present simple & continuous revision",
-  "Determiners",
-  "Comparative and superlative adjectives",
-  "Stative verbs",
-  "Past simple (regular & irregular)",
-  "Present perfect vs past simple",
-  "If clauses (type 1)",
-  "Modal verbs",
-  "Future forms",
-  "The passive voice",
-  "Reported speech",
-  "Linking words",
-  "Expressing expectation vs surprise",
-  "Essential sentence patterns"
+export const themesB1 = [
+  "Personal tastes and cultural preferences",
+  "Sports, music and hobbies",
+  "Learning a skill",
+  "Irish history: The Troubles",
+  "Famous people and cinema",
+  "The Commonwealth",
+  "Traditions and celebrations",
+  "Tourism and travel abroad",
+  "Studying abroad",
+  "Opinions and argumentation",
+  "Cultural diversity and inclusion"
 ];

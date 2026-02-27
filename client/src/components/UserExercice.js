@@ -3,13 +3,13 @@ import { fetchGrammarTopics } from "../actions";
 import SelectTopic from "./SelectTopic";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-
-
+import QuestionBundle from "./exercice/QuestionBundle";
+import axios from "axios";
 
 
 
 function UserExercice({ grammarTopics = [],fetchGrammarTopics}){
-    const [refreshKey, setRefreshKey] = useState(0);
+  
     const [selectedTopic, setSelectedTopic] = useState(null);
 
     useEffect(() => {
@@ -22,22 +22,36 @@ function UserExercice({ grammarTopics = [],fetchGrammarTopics}){
         }
       }, [grammarTopics]);
     
-      const triggerRefresh = () => {
-        setRefreshKey(prev => prev + 1);
-      };
+   const handleClick = async (e) => {
+    e.preventDefault();
+
+
+    try {
+      const res = await axios.post("/api/exercice", { selectedTopic });
+      
+    } catch (err) {
+      console.error("Error generating exercice:", err);
+      
+    } finally {
+  
+    }
+  };
     
     return (
 
         <div className="page" >
-                    <SelectTopic
+
+                  <SelectTopic
                     topics={grammarTopics}
                     selectedTopic={selectedTopic}
                     onChange={setSelectedTopic}
                   />
-                  <button>Generate Exercice</button>
+                  <button onClick={handleClick}
+                  >Generate Exercice</button>
+                  {/* once exercice is generated */}
                   <button>Start</button>
-
-
+                  {/* display quizz once start is pressed */}
+              
 
 
         </div>
