@@ -2,14 +2,16 @@ import React from "react";
 import Question from "./Question";
 import Answers from "./Answers";
 
-const QuestionBundle = ({ question, onAnswerCheck }) => {
+const QuestionBundle = ({ questionIndex, question,selectedAnswer,onSelectAnswer}) => {
+
   return (
-    <div>
-      <div className="content">
-        <Question question={question.question}/>
-        <Answers onAnswerCheck = {onAnswerCheck} answers={question.answers} />
+
+      <div className="quizz">
+        <Question qIndex = {questionIndex} question={question.sentence}/>
+        <Answers qIndex = {questionIndex} options={question.options} selectedAnswer={selectedAnswer}
+  onSelectAnswer={onSelectAnswer} />
       </div>
-    </div>
+  
   );
 };
 

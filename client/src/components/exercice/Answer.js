@@ -2,28 +2,18 @@
 import React from "react";
 
 
-const Answer = (props) => {
-  const handleCheck = (event) => {
-    props.onAnswerCheck();
-  };
-
+const Answer = ({ option, checked, onSelect }) => {
   return (
     <div className="answer-div">
-      <input 
-        className="answer-checkbox"
+      <input className="answer-radio"
         type="radio"
-        id={props.id}
-        data-testid = {props.id}
-        //https://stackoverflow.com/questions/44317663/uncheck-radio-buttons-in-react
-        name={"radio"}
-        value={props.result}
-        onClick={(event) => {
-          handleCheck(event);
-        }}
-
+        name="answers"
+        checked={checked}
+        onChange={onSelect}
       />
-      <label className = "answer-label" htmlFor={props.answer}>{props.answer}</label>
+      <label className="answer-label">{option.text}</label>
     </div>
   );
 };
+
 export default Answer;

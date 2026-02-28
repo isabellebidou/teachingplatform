@@ -1,0 +1,53 @@
+.exercise-div{
+padding-top: 4em;
+position: absolute;
+    top: 30%;
+    right: 10%;
+}
+.exercise-select{
+    line-height: 2em;
+     width: 100%;
+}
+.quizz{
+    
+  
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.answer-div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 0.6rem;
+  line-height: 2em;
+}
+
+
+.answer-label {
+  cursor: pointer;
+}
+.next-button{
+    position: fixed;
+    bottom: 50%;
+    right: 15%;
+    z-index: 100;
+
+}
+@media screen and (max-width: 800px) and (orientation: portrait) {
+    .next-button{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    z-index: 100;
+
+}
+
+}

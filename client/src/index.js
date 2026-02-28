@@ -4,6 +4,7 @@ import './scripts/stripe.css';
 import './scripts/starreview.css';
 import './scripts/mobile-landscape.css';
 import './scripts/mobile-portrait.css';
+import './scripts/exercice.css';
 
 import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';

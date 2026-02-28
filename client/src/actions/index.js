@@ -67,7 +67,6 @@ export const handleToken = (token) => async (dispatch) => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-
 export const submitLink = (values, history) => async (dispatch) => {
   const res = await axios.post("/api/links", values);
   history.push("/");
@@ -88,25 +87,25 @@ export const fetchReadings = () => async (dispatch) => {
   dispatch({ type: FETCH_READINGS, payload: res.data });
 };
 export const fetchUserAudios = () => async (dispatch) => {
-  console.log("fetchUserAudios called from actions index.js")
+  //console.log("fetchUserAudios called from actions index.js")
   const res = await axios.get("/api/user_audios");
 
-  console.log("ACTION: audios received", res.data);
+  //console.log("ACTION: audios received", res.data);
   dispatch({ type: FETCH_USER_AUDIOS, payload: res.data });
 };
 export const fetchScripts = () => async (dispatch) => {
-  console.log("fetchScripts called from actions index.js")
+  //console.log("fetchScripts called from actions index.js")
   const res = await axios.get("/api/scripts");
 
-  console.log("ACTION: scripts received", res.data);
+  //console.log("ACTION: scripts received", res.data);
   dispatch({ type: FETCH_SCRIPTS, payload: res.data });
 
 };
 export const fetchGrammarTopics = () => async (dispatch) => {
-  console.log("fetchGrammarTopics called from actions index.js")
+  //console.log("fetchGrammarTopics called from actions index.js")
   const res = await axios.get("/api/grammarTopics");
 
-  console.log("ACTION: GrammarTopics received", res.data);
+  //console.log("ACTION: GrammarTopics received", res.data);
   dispatch({ type: FETCH_USER_GRAMMAR_TOPICS, payload: res.data });
 
 };

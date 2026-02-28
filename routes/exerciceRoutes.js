@@ -10,6 +10,9 @@ module.exports = (app) => {
     openai = new OpenAI({ apiKey: keys.openaiKey })
   }
 
+
+  
+
   app.post("/api/exercice", async (req, res) => {
     const { selectedTopic } = req.body
     let theme
@@ -29,23 +32,12 @@ module.exports = (app) => {
 
     // Always-available fake fallback
     const fakeResponse = {
-      questions: [
-        {
-          id: 1,
-          question:
-            "Once I ____ one million dollars I will take my time and work on a strategy:",
-          answers: [
-            { id: "q1a1", answer: "receive", result: "correct" },
-            { id: "q1a2", answer: "recive", result: "wrong" },
-            { id: "q1a3", answer: "received", result: "wrong" },
-            { id: "q1a4", answer: "will receive", result: "wrong" },
-          ],
-        },
-      ],
+"questions":[{"sentence":"I enjoy ____ books in my free time.","options":[{"text":"reading","isCorrect":true},{"text":"to read","isCorrect":false},{"text":"read","isCorrect":false},{"text":"reads","isCorrect":false}]},{"sentence":"She ____ basketball every weekend.","options":[{"text":"plays","isCorrect":true},{"text":"play","isCorrect":false},{"text":"playing","isCorrect":false},{"text":"played","isCorrect":false}]},{"sentence":"My brother ____ swimming in the pool.","options":[{"text":"likes","isCorrect":true},{"text":"like","isCorrect":false},{"text":"liked","isCorrect":false},{"text":"liking","isCorrect":false}]},{"sentence":"They often ____ TV in the evening.","options":[{"text":"watch","isCorrect":true},{"text":"to watch","isCorrect":false},{"text":"watching","isCorrect":false},{"text":"watches","isCorrect":false}]},{"sentence":"____ is my favorite hobby.","options":[{"text":"Drawing","isCorrect":true},{"text":"Draws","isCorrect":false},{"text":"To draw","isCorrect":false},{"text":"Draw","isCorrect":false}]},{"sentence":"We ____ volleyball on Saturdays.","options":[{"text":"play","isCorrect":true},{"text":"plays","isCorrect":false},{"text":"playing","isCorrect":false},{"text":"played","isCorrect":false}]},{"sentence":"She ____ music in her room.","options":[{"text":"listens to","isCorrect":true},{"text":"listening to","isCorrect":false},{"text":"listened to","isCorrect":false},{"text":"listen to","isCorrect":false}]},{"sentence":"He ____ soccer with his friends on weekends.","options":[{"text":"plays","isCorrect":true},{"text":"play","isCorrect":false},{"text":"playing","isCorrect":false},{"text":"played","isCorrect":false}]}]
     }
     const exampleJSON = JSON.stringify(fakeResponse, null, 2)
     // No OpenAI key → return fake
-    if (!openai) return res.json(fakeResponse)
+   // if (!openai) return res.json(fakeResponse)
+   if (true) return res.json(fakeResponse);
 
 const systemMessage = `
 You are an English teacher AI.

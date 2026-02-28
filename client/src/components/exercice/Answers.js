@@ -1,22 +1,20 @@
-import Answer from "./Answer.js";
+import Answer from "./Answer.js"
 
-
-export default function Answers({ answers ,onAnswerCheck}) {
-  const answerElements = answers.map((answer) => {
-    return (
-      <Answer
-        answer={answer}
-        //https://stackoverflow.com/a/43892905/1731667 unique id
-        key = {answer.id}
-        onAnswerCheck = {onAnswerCheck}
-        {...answer}
-      />
-    );
-  });
+export default function Answers({ qIndex, options ,selectedAnswer, onSelectAnswer}) {
+    console.log("from Answers: ")
+    console.log(JSON.stringify(qIndex, null, 2));
+   
 
   return (
     <div className="answers-div">
-      {answerElements}
+      {options.map((option, index) => (
+        <Answer
+          option={option}
+          key={`q${qIndex}a${index}`}
+          checked={selectedAnswer === option}
+          onSelect={() => onSelectAnswer(option)}
+        />
+      ))}
     </div>
-  );
+  )
 }
