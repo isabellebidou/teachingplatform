@@ -41,6 +41,15 @@ position: absolute;
     z-index: 100;
 
 }
+.resultTable{
+    width: 80%;
+    border-radius: 8%;
+
+}
+.exercicResultDiv{
+    color: #7f5f87;
+
+}
 @media screen and (max-width: 800px) and (orientation: portrait) {
     .next-button{
     position: fixed;
