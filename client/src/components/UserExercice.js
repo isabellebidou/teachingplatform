@@ -6,14 +6,14 @@ import QuestionBundle from "./exercice/QuestionBundle"
 import axios from "axios"
 
 function UserExercice({ grammarTopics = [], fetchGrammarTopics }) {
-  const [selectedTopic, setSelectedTopic] = useState(null)
+  const [selectedTopic, setSelectedTopic] = useState(0)
   const [questions, setQuestions] = useState([])
+  const [instructions, setInstructions]= useState(null)
   const [answeredQuestion, setAnsweredQuestion] = useState(0) // index
   const [score, setScore] = useState(0)
   const [grade, setGrade] = useState(0)
   const [gameStarted, setStarted] = useState(false)
   const [finished, setFinished] = useState(false)
-  const [readyForNext, setreadyForNext] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [feedback, setFeedBack] = useState([])
 
@@ -35,6 +35,7 @@ function UserExercice({ grammarTopics = [], fetchGrammarTopics }) {
     try {
       const res = await axios.post("/api/exercice", { selectedTopic })
       setQuestions(res.data.questions)
+      setInstructions(res.data.instructions)
       setStarted(true)
     } catch (err) {
       console.error("Error generating exercice:", err)
@@ -74,7 +75,6 @@ function UserExercice({ grammarTopics = [], fetchGrammarTopics }) {
       ])
     }
     setSelectedAnswer(null)
-    setreadyForNext(false)
 
     if (answeredQuestion === questions.length - 1) {
       setGrade((score * 100) / questions.length)
@@ -86,9 +86,23 @@ function UserExercice({ grammarTopics = [], fetchGrammarTopics }) {
   }
   const handleSelectAnswer = (option) => {
     setSelectedAnswer(option)
-    setreadyForNext(true)
   }
+const above80 =()=>{
+  const congratulations = [
+  "Great job! 🎉",
+  "Well done! 😊",
+  "Awesome work! ⭐",
+  "You did it! 👏",
+  "Excellent! 🌟",
+  "Nice work! 👍",
+  "Super job! 🚀",
+  "Fantastic! 😄",
+  "Good going! 💪",
+  "You’re amazing! 🤩"
+];
+  return congratulations[(Math.floor(Math.random() * 10))];
 
+}
   return (
     <div className="page">
       <div className="exercice-div">
@@ -108,11 +122,11 @@ function UserExercice({ grammarTopics = [], fetchGrammarTopics }) {
           <h2>{selectedTopic.name}</h2>
           )}
 
-        {gameStarted &&  questions.instructions && questions.length > 0 && (
-          <p>{questions.instructions}</p>
+        {gameStarted &&  instructions && questions.length > 0 && (
+          <h3>{instructions}</h3>
           )}
 
-        {gameStarted && questions.length > 0 && (
+        {!finished && gameStarted && questions.length > 0 && (
           <QuestionBundle
             questionIndex={answeredQuestion}
             question={questions[answeredQuestion]}
@@ -131,9 +145,9 @@ function UserExercice({ grammarTopics = [], fetchGrammarTopics }) {
 
         {finished && (
           <div className="exercicResultDiv">
-            <div>{grade}/100</div>
             <table className="resultTable">
-              <tr>
+              
+                <thead>
                 <th>
                   <strong>Question:</strong>
                 </th>
@@ -146,13 +160,15 @@ function UserExercice({ grammarTopics = [], fetchGrammarTopics }) {
                 <th>
                   <strong></strong>
                 </th>
-              </tr>
+                </thead>
+              
               {feedback.map((f, index) => (
-                <tr key={index}>
+                <tbody>
+                <tr key={index} className={index % 2 === 0?"even": "odd"}>
                   <td>{f.question}</td>
                   <td>{f.wrongAnswer}</td>
                   <td>{f.correctAnswer}</td>
-                  <td>{f.correctAnswer}</td>
+     
                   <td>
                     {f.isCorrect ? (
                       <span style={{ color: "green" }}>✓</span>
@@ -161,10 +177,18 @@ function UserExercice({ grammarTopics = [], fetchGrammarTopics }) {
                     )}
                   </td>
                 </tr>
+                </tbody>
               ))}
             </table>
+            <div className="grade">{grade}</div>
+            {score > 6  && (
+            <div className="grade">{above80()}</div>
+            )}
+            
           </div>
+          
         )}
+
       </div>
     </div>
   )

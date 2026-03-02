@@ -32,7 +32,8 @@ module.exports = (app) => {
 
     // Always-available fake fallback
     const fakeResponse = {
-"questions":[{"sentence":"I enjoy ____ books in my free time.","options":[{"text":"reading","isCorrect":true},{"text":"to read","isCorrect":false},{"text":"read","isCorrect":false},{"text":"reads","isCorrect":false}]},{"sentence":"She ____ basketball every weekend.","options":[{"text":"plays","isCorrect":true},{"text":"play","isCorrect":false},{"text":"playing","isCorrect":false},{"text":"played","isCorrect":false}]},{"sentence":"My brother ____ swimming in the pool.","options":[{"text":"likes","isCorrect":true},{"text":"like","isCorrect":false},{"text":"liked","isCorrect":false},{"text":"liking","isCorrect":false}]},{"sentence":"They often ____ TV in the evening.","options":[{"text":"watch","isCorrect":true},{"text":"to watch","isCorrect":false},{"text":"watching","isCorrect":false},{"text":"watches","isCorrect":false}]},{"sentence":"____ is my favorite hobby.","options":[{"text":"Drawing","isCorrect":true},{"text":"Draws","isCorrect":false},{"text":"To draw","isCorrect":false},{"text":"Draw","isCorrect":false}]},{"sentence":"We ____ volleyball on Saturdays.","options":[{"text":"play","isCorrect":true},{"text":"plays","isCorrect":false},{"text":"playing","isCorrect":false},{"text":"played","isCorrect":false}]},{"sentence":"She ____ music in her room.","options":[{"text":"listens to","isCorrect":true},{"text":"listening to","isCorrect":false},{"text":"listened to","isCorrect":false},{"text":"listen to","isCorrect":false}]},{"sentence":"He ____ soccer with his friends on weekends.","options":[{"text":"plays","isCorrect":true},{"text":"play","isCorrect":false},{"text":"playing","isCorrect":false},{"text":"played","isCorrect":false}]}]
+"questions":[{"sentence":"I enjoy ____ books in my free time.","options":[{"text":"reading","isCorrect":true},{"text":"to read","isCorrect":false},{"text":"read","isCorrect":false},{"text":"reads","isCorrect":false}]},{"sentence":"She ____ basketball every weekend.","options":[{"text":"plays","isCorrect":true},{"text":"play","isCorrect":false},{"text":"playing","isCorrect":false},{"text":"played","isCorrect":false}]},{"sentence":"My brother ____ swimming in the pool.","options":[{"text":"likes","isCorrect":true},{"text":"like","isCorrect":false},{"text":"liked","isCorrect":false},{"text":"liking","isCorrect":false}]},{"sentence":"They often ____ TV in the evening.","options":[{"text":"watch","isCorrect":true},{"text":"to watch","isCorrect":false},{"text":"watching","isCorrect":false},{"text":"watches","isCorrect":false}]},{"sentence":"____ is my favorite hobby.","options":[{"text":"Drawing","isCorrect":true},{"text":"Draws","isCorrect":false},{"text":"To draw","isCorrect":false},{"text":"Draw","isCorrect":false}]},{"sentence":"We ____ volleyball on Saturdays.","options":[{"text":"play","isCorrect":true},{"text":"plays","isCorrect":false},{"text":"playing","isCorrect":false},{"text":"played","isCorrect":false}]},{"sentence":"She ____ music in her room.","options":[{"text":"listens to","isCorrect":true},{"text":"listening to","isCorrect":false},{"text":"listened to","isCorrect":false},{"text":"listen to","isCorrect":false}]},{"sentence":"He ____ soccer with his friends on weekends.","options":[{"text":"plays","isCorrect":true},{"text":"play","isCorrect":false},{"text":"playing","isCorrect":false},{"text":"played","isCorrect":false}]}],
+  "instructions": "fill in the gap with the correct form of the present simple"
     }
     const exampleJSON = JSON.stringify(fakeResponse, null, 2)
     // No OpenAI key → return fake
@@ -56,7 +57,7 @@ Rules:
 - Each question contains ONE sentence with a single gap marked as ____
 - Use vocabulary and structures appropriate to the CEFR level
 - Each question has exactly 4 answer options
-- Exactly one option is correct
+- Exactly one option is correct and the correct option needs to be at randomly different indexes in the options array.
 - No explanations or comments
 - Return JSON only
 
@@ -72,7 +73,8 @@ Required JSON format:
         { "text": "option 4", "isCorrect": false }
       ]
     }
-  ]
+  ],
+  "instructions": "fill in the gap with the correct form of the present simple"
 }
 `;
 

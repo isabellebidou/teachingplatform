@@ -9,8 +9,6 @@ position: absolute;
      width: 100%;
 }
 .quizz{
-    
-  
     background: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -49,6 +47,17 @@ position: absolute;
 .exercicResultDiv{
     color: #7f5f87;
 
+}
+.grade{
+    font-size: 2em;
+    padding: auto;
+    margin: 1em;
+}
+.even{
+    background-color: rgba(214, 210, 210, 0.2);
+}
+.odd, th{
+    background-color: rgb(183, 187, 184, 0.3);
 }
 @media screen and (max-width: 800px) and (orientation: portrait) {
     .next-button{

@@ -11,7 +11,7 @@ const Answer = ({ option, checked, onSelect }) => {
         checked={checked}
         onChange={onSelect}
       />
-      <label className="answer-label">{option.text}</label>
+      <label className="answer-label">{option.text.toLowerCase()}</label>
     </div>
   );
 };
