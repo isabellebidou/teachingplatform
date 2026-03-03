@@ -5,20 +5,24 @@ import { connect } from "react-redux"
 import QuestionBundle from "./exercice/QuestionBundle"
 import axios from "axios"
 
-function UserExercice({ grammarTopics = [], fetchGrammarTopics }) {
+function UserExercice({ grammarTopics = [],
+  auth,
+  fetchGrammarTopics,
+ }) {
   const [selectedTopic, setSelectedTopic] = useState(0)
   const [questions, setQuestions] = useState([])
   const [instructions, setInstructions]= useState(null)
   const [answeredQuestion, setAnsweredQuestion] = useState(0) // index
   const [score, setScore] = useState(0)
-  const [grade, setGrade] = useState(0)
   const [gameStarted, setStarted] = useState(false)
   const [finished, setFinished] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [feedback, setFeedBack] = useState([])
+  const grade = Math.round((score * 100) / questions.length)
 
   useEffect(() => {
     fetchGrammarTopics()
+    console.log('auth:', auth.level)
   }, [fetchGrammarTopics])
 
   useEffect(() => {
@@ -77,8 +81,7 @@ function UserExercice({ grammarTopics = [], fetchGrammarTopics }) {
     setSelectedAnswer(null)
 
     if (answeredQuestion === questions.length - 1) {
-      setGrade((score * 100) / questions.length)
-      setFinished((prev) => !prev)
+      setFinished(true)
       console.log(feedback, null, 2)
     } else {
       setAnsweredQuestion((prev) => prev + 1)
@@ -88,8 +91,20 @@ function UserExercice({ grammarTopics = [], fetchGrammarTopics }) {
     setSelectedAnswer(option)
   }
 const above80 =()=>{
-  const congratulations = [
-  "Great job! 🎉",
+
+  const congratulations = auth.level.startsWith("C") ?[
+  "Excellent work! You really know your stuff.",
+  "Great job! Your hard work is paying off.",
+  "Well done! You scored above 80% — keep it up!",
+  "Fantastic result! You should be proud of yourself.",
+  "Impressive performance! You’ve mastered this quiz.",
+  "Bravo! Your score shows strong understanding.",
+  "Congratulations! You passed in flying colours!",
+  "Outstanding! You clearly prepared well.",
+  "Nice work! You\’re doing great!",
+  "Super job! Keep learning and pushing forward."
+]:[
+ "Great job! 🎉",
   "Well done! 😊",
   "Awesome work! ⭐",
   "You did it! 👏",
@@ -98,10 +113,10 @@ const above80 =()=>{
   "Super job! 🚀",
   "Fantastic! 😄",
   "Good going! 💪",
-  "You’re amazing! 🤩"
-];
+  "You\’re amazing! 🤩"
+]
+;
   return congratulations[(Math.floor(Math.random() * 10))];
-
 }
   return (
     <div className="page">
@@ -163,13 +178,13 @@ const above80 =()=>{
                 </thead>
               
               {feedback.map((f, index) => (
-                <tbody>
-                <tr key={index} className={index % 2 === 0?"even": "odd"}>
-                  <td>{f.question}</td>
-                  <td>{f.wrongAnswer}</td>
-                  <td>{f.correctAnswer}</td>
+                <tbody key={index+"tb"}>
+                <tr key={index+"tr"} className={index % 2 === 0?"even": "odd"}>
+                  <td key={index+"td1"}>{f.question}</td>
+                  <td key={index+"td2"}>{f.wrongAnswer}</td>
+                  <td key={index+"td3"}>{f.correctAnswer}</td>
      
-                  <td>
+                  <td key={index+"td4"}>
                     {f.isCorrect ? (
                       <span style={{ color: "green" }}>✓</span>
                     ) : (
@@ -180,20 +195,21 @@ const above80 =()=>{
                 </tbody>
               ))}
             </table>
-            <div className="grade">{grade}</div>
-            {score > 6  && (
-            <div className="grade">{above80()}</div>
+            {grade > 80 ? (
+            <div className="grade">{grade}/100   {above80()}</div>
+            ):(
+              <div className="grade">{grade}/100</div>
             )}
-            
           </div>
-          
         )}
-
       </div>
     </div>
   )
 }
 function mapStateToProps(state) {
-  return { grammarTopics: state.grammarTopics }
+  return { grammarTopics: state.grammarTopics, auth: state.auth }
 }
-export default connect(mapStateToProps, { fetchGrammarTopics })(UserExercice)
+export default connect(
+  mapStateToProps,
+ {fetchGrammarTopics}
+)(UserExercice)
