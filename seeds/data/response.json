@@ -1,0 +1,142 @@
+{
+    "questions": [
+        {
+            "sentence": "She (wear) ____ a red dress today.",
+            "options": [
+                {
+                    "text": "is wearing",
+                    "isCorrect": false
+                },
+                {
+                    "text": "is liking",
+                    "isCorrect": true
+                },
+                {
+                    "text": "like",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "sentence": "They (play) ____ with the new shoes in the store.",
+            "options": [
+                {
+                    "text": "play",
+                    "isCorrect": false
+                },
+                {
+                    "text": "are playing",
+                    "isCorrect": true
+                },
+                {
+                    "text": "are doing",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "sentence": "He (try) ____ on a jacket for the party.",
+            "options": [
+                {
+                    "text": "am going",
+                    "isCorrect": false
+                },
+                {
+                    "text": "is trying",
+                    "isCorrect": false
+                },
+                {
+                    "text": "is making",
+                    "isCorrect": true
+                }
+            ]
+        },
+        {
+            "sentence": "I (wear) ____ a blue shirt right now.",
+            "options": [
+                {
+                    "text": "am wearing",
+                    "isCorrect": false
+                },
+                {
+                    "text": "am playing",
+                    "isCorrect": true
+                },
+                {
+                    "text": "have",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "sentence": "We (look) ____ at the hats in the window.",
+            "options": [
+                {
+                    "text": "look",
+                    "isCorrect": false
+                },
+                {
+                    "text": "are looking",
+                    "isCorrect": false
+                },
+                {
+                    "text": "are seeing",
+                    "isCorrect": true
+                }
+            ]
+        },
+        {
+            "sentence": "She (buy) ____ a new scarf for winter.",
+            "options": [
+                {
+                    "text": "buy",
+                    "isCorrect": false
+                },
+                {
+                    "text": "is having",
+                    "isCorrect": true
+                },
+                {
+                    "text": "is do",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "sentence": "You (try) ____ those jeans on for size.",
+            "options": [
+                {
+                    "text": "are doing",
+                    "isCorrect": true
+                },
+                {
+                    "text": "try",
+                    "isCorrect": false
+                },
+                {
+                    "text": "doing",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "sentence": "They (look) ____ very comfortable in their new shoes.",
+            "options": [
+                {
+                    "text": "are liking",
+                    "isCorrect": true
+                },
+                {
+                    "text": "look",
+                    "isCorrect": false
+                },
+                {
+                    "text": "are do",
+                    "isCorrect": false
+                }
+            ]
+        }
+    ],
+    "instructions": "Fill in the gap using Present continuous (affirmative)."
+}
+}

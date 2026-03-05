@@ -10,11 +10,9 @@ module.exports = (app) => {
     openai = new OpenAI({ apiKey: keys.openaiKey })
   }
 
-
-  
-
   app.post("/api/exercice", async (req, res) => {
     const { selectedTopic } = req.body
+    console.log("/api/exercice selectedTopic", selectedTopic)
     let theme
 
     try {
@@ -24,6 +22,7 @@ module.exports = (app) => {
       ])
 
       theme = themes[0]
+      console.log("/api/exercice theme", theme)
     } catch (error) {
       return res.status(500).send("Theme not found: " + error)
     }
@@ -32,62 +31,232 @@ module.exports = (app) => {
 
     // Always-available fake fallback
     const fakeResponse = {
-"questions":[{"sentence":"I enjoy ____ books in my free time.","options":[{"text":"reading","isCorrect":true},{"text":"to read","isCorrect":false},{"text":"read","isCorrect":false},{"text":"reads","isCorrect":false}]},{"sentence":"She ____ basketball every weekend.","options":[{"text":"plays","isCorrect":true},{"text":"play","isCorrect":false},{"text":"playing","isCorrect":false},{"text":"played","isCorrect":false}]},{"sentence":"My brother ____ swimming in the pool.","options":[{"text":"likes","isCorrect":true},{"text":"like","isCorrect":false},{"text":"liked","isCorrect":false},{"text":"liking","isCorrect":false}]},{"sentence":"They often ____ TV in the evening.","options":[{"text":"watch","isCorrect":true},{"text":"to watch","isCorrect":false},{"text":"watching","isCorrect":false},{"text":"watches","isCorrect":false}]},{"sentence":"____ is my favorite hobby.","options":[{"text":"Drawing","isCorrect":true},{"text":"Draws","isCorrect":false},{"text":"To draw","isCorrect":false},{"text":"Draw","isCorrect":false}]},{"sentence":"We ____ volleyball on Saturdays.","options":[{"text":"play","isCorrect":true},{"text":"plays","isCorrect":false},{"text":"playing","isCorrect":false},{"text":"played","isCorrect":false}]},{"sentence":"She ____ music in her room.","options":[{"text":"listens to","isCorrect":true},{"text":"listening to","isCorrect":false},{"text":"listened to","isCorrect":false},{"text":"listen to","isCorrect":false}]},{"sentence":"He ____ soccer with his friends on weekends.","options":[{"text":"plays","isCorrect":true},{"text":"play","isCorrect":false},{"text":"playing","isCorrect":false},{"text":"played","isCorrect":false}]}],
-  "instructions": "fill in the gap with the correct form of the present simple"
+      questions: [
+        {
+          sentence: "I enjoy ____ books in my free time.",
+          options: [
+            { text: "reading", isCorrect: true },
+            { text: "to read", isCorrect: false },
+            { text: "read", isCorrect: false },
+            { text: "reads", isCorrect: false },
+          ],
+        },
+        {
+          sentence: "She ____ basketball every weekend.",
+          options: [
+            { text: "plays", isCorrect: true },
+            { text: "play", isCorrect: false },
+            { text: "playing", isCorrect: false },
+            { text: "played", isCorrect: false },
+          ],
+        },
+        {
+          sentence: "My brother ____ swimming in the pool.",
+          options: [
+            { text: "likes", isCorrect: true },
+            { text: "like", isCorrect: false },
+            { text: "liked", isCorrect: false },
+            { text: "liking", isCorrect: false },
+          ],
+        },
+        {
+          sentence: "They often ____ TV in the evening.",
+          options: [
+            { text: "watch", isCorrect: true },
+            { text: "to watch", isCorrect: false },
+            { text: "watching", isCorrect: false },
+            { text: "watches", isCorrect: false },
+          ],
+        },
+        {
+          sentence: "____ is my favorite hobby.",
+          options: [
+            { text: "Drawing", isCorrect: true },
+            { text: "Draws", isCorrect: false },
+            { text: "To draw", isCorrect: false },
+            { text: "Draw", isCorrect: false },
+          ],
+        },
+        {
+          sentence: "We ____ volleyball on Saturdays.",
+          options: [
+            { text: "play", isCorrect: true },
+            { text: "plays", isCorrect: false },
+            { text: "playing", isCorrect: false },
+            { text: "played", isCorrect: false },
+          ],
+        },
+        {
+          sentence: "She ____ music in her room.",
+          options: [
+            { text: "listens to", isCorrect: true },
+            { text: "listening to", isCorrect: false },
+            { text: "listened to", isCorrect: false },
+            { text: "listen to", isCorrect: false },
+          ],
+        },
+        {
+          sentence: "He ____ soccer with his friends on weekends.",
+          options: [
+            { text: "plays", isCorrect: true },
+            { text: "play", isCorrect: false },
+            { text: "playing", isCorrect: false },
+            { text: "played", isCorrect: false },
+          ],
+        },
+      ],
+      instructions:
+        "Fill in the gap with the correct form of the present simple",
     }
-    const exampleJSON = JSON.stringify(fakeResponse, null, 2)
-    // No OpenAI key → return fake
-   // if (!openai) return res.json(fakeResponse)
-   if (true) return res.json(fakeResponse);
+    // const exampleJSON = JSON.stringify(fakeResponse, null, 2)
+    // No OpenAI key → return fake // toggle fake vs real
+    if (!openai) return res.json(fakeResponse) // real
+    // if (true) return res.json(fakeResponse);// fake
 
 const systemMessage = `
-You are an English teacher AI.
-You create grammar gap-fill exercises.
-You always return valid JSON only.
+You are an English teacher AI used inside an automated system.
+
+STRICT RULES:
+- You MUST output ONLY valid JSON.
+- Do NOT include explanations, comments, markdown, or extra text.
+- Do NOT include trailing commas.
+- Do NOT include line comments.
+- Every string MUST be enclosed in double quotes.
+- The output MUST be directly parseable by JSON.parse().
+
+You create grammar gap-fill exercises following the rules provided.
 `;
 
-const userMessage = `
-Create exactly 8 gap-fill questions.
+    const userMessage = `
+TASK:
+Create EXACTLY 8 gap-fill questions.
 
-CEFR level: ${req.user.level}
-Grammar focus: ${selectedTopic}
-Theme: ${theme.name}
+LEVEL:
+${req.user.level}
 
-Rules:
-- Each question contains ONE sentence with a single gap marked as ____
-- Use vocabulary and structures appropriate to the CEFR level
-- Each question has exactly 4 answer options
-- Exactly one option is correct and the correct option needs to be at randomly different indexes in the options array.
-- No explanations or comments
-- Return JSON only
+GRAMMAR TOPIC:
+${selectedTopic.name}
 
-Required JSON format:
+GRAMMAR RULE (MANDATORY):
+${selectedTopic.rule}
+
+${
+  selectedTopic.allowedAnswers.length > 0
+    ? `
+ALLOWED CORRECT ANSWERS (CLOSED SET):
+${selectedTopic.allowedAnswers.join(", ")}
+
+CRITICAL CONSTRAINTS:
+- The gap "____" MUST be fillable with ONE AND ONLY ONE allowed correct answer.
+- The correct option MUST EXACTLY MATCH one allowed answer.
+- No other structure may be tested.
+- If a sentence does not clearly test this grammar rule, it is INVALID.
+`
+    : `
+GRAMMAR CONSTRAINTS:
+- Every sentence MUST clearly test the grammar rule above.
+- Do NOT test unrelated grammar points.
+`
+}
+
+${
+  selectedTopic.allowedIncorrectAnswers.length > 0
+    ? `
+ALLOWED INCORRECT ANSWERS (CLOSED SET):
+${selectedTopic.allowedIncorrectAnswers.join(", ")}
+
+DISTRACTOR RULES:
+- Use ONLY these incorrect answers as distractors.
+- Use them at random positions.
+`
+    : `
+DISTRACTOR RULES:
+- Invent plausible but grammatically incorrect distractors.
+`
+}
+
+${
+  selectedTopic.suggestions.length > 0
+    ? `
+SUGGESTIONS (CLOSED SET):
+${selectedTopic.suggestions.join(", ")}
+
+SUGGESTION RULES:
+- Randomly select ONE suggestion per question.
+- Place the suggestion in parentheses immediately before the gap.
+- Example format: "(to work) ____"
+- The correct answer MUST correspond exactly to the suggestion.
+
+`
+    : ``
+}
+
+THEME:
+${theme.name}
+
+QUESTION RULES:
+- Each question contains ONE sentence.
+- Each sentence contains EXACTLY ONE gap written as "____".
+- Vocabulary must match the level and theme.
+- Do NOT include dialogue or multiple sentences.
+
+
+OPTIONS RULES:
+- Each question has EXACTLY ${
+  selectedTopic.numberOfOptions > 0 ? selectedTopic.numberOfOptions : 4
+} options.
+- EXACTLY ONE option is correct.
+- Options MUST be randomly ordered.
+- ONLY the correct option may be grammatically valid.
+- The correct answer must make semantic sense.
+_ Mark one option as correct ("isCorrect: true") and the other two as incorrect ("isCorrect: false")
+
+${
+  selectedTopic.examples > 0 
+  ?`
+ EXAMPLE OF OPTION => EXPECTED 
+${selectedTopic.examples[0]}
+`:``}
+INVALID OUTPUT (DO NOT PRODUCE):
+- Sentences testing grammar other than the target rule.
+- Gaps solvable by more than one correct answer.
+- Any text outside JSON.
+- Any missing or extra fields.
+
+RETURN FORMAT (STRICT JSON ONLY):
+
 {
   "questions": [
     {
-      "sentence": "Sentence with ____ gap.",
+      "sentence": "A single sentence with (optional suggestion) ____ gap."
       "options": [
-        { "text": "option 1", "isCorrect": true },
-        { "text": "option 2", "isCorrect": false },
-        { "text": "option 3", "isCorrect": false },
-        { "text": "option 4", "isCorrect": false }
+        { "text": "option text", "isCorrect": boolean }
       ]
     }
   ],
-  "instructions": "fill in the gap with the correct form of the present simple"
+  "instructions": "Fill in the gap using ${selectedTopic.name}."
 }
+
+IMPORTANT:
+- Output ONLY the JSON object.
+- Do NOT add explanations or comments.
 `;
-
     try {
-      const completion = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
-        messages: [
-          { role: "system", content: systemMessage },
-          { role: "user", content: userMessage }
-        ],
-        max_tokens: 800,
-      })
-
+ const completion = await openai.chat.completions.create({
+  model: "gpt-4.1-mini",
+  response_format: { type: "json_object" },
+  messages: [
+    {
+      role: "system",
+      content: "You are an API. You must return ONLY valid JSON. No text, no explanations."
+    },
+    {
+      role: "user",
+      content: systemMessage + "\n\n" + userMessage
+    }
+  ],
+  max_tokens: 800,
+})
       let gptData
       try {
         gptData = JSON.parse(completion.choices[0].message.content)
@@ -99,7 +268,7 @@ Required JSON format:
           suggestion: completion.choices[0].message.content,
         }
       }
-
+      //const fixedQuestions = ensureCorrectAnswers(gptData.questions);
       res.json({ ...fakeResponse, ...gptData })
     } catch (err) {
       console.error("OpenAI error (fallback to fake):", err.name, err.message)
@@ -107,4 +276,32 @@ Required JSON format:
       res.json(fakeResponse)
     }
   })
+  /**
+ * Ensure every question has at least one correct answer.
+ * If missing, it picks the first option and marks it correct.
+ * Logs a warning for debugging.
+ */
+function ensureCorrectAnswers(questions) {
+  return questions.map((q, idx) => {
+    const hasCorrect = q.options.some(opt => opt.isCorrect);
+
+    if (!hasCorrect) {
+      console.warn(
+        `⚠️ Question ${idx + 1} has no correct answer. Marking first option as correct:`,
+        q.sentence
+      );
+
+      // mark first option as correct
+      q.options[0].isCorrect = true;
+    }
+
+    return q;
+  });
+}
+
+
+
+
+// Now you can safely pass fixedQuestions to your front-end
+console.log("✅ All questions now have at least one correct answer.");
 }

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const GrammarTopicSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -7,8 +8,28 @@ const GrammarTopicSchema = new mongoose.Schema({
   },
   level: {
     type: String,
-    enum: ["A1", "A2", "B1", "B2", "C1", "C2"],
+    enum: ["A1", "A2", "B", "C"],
     required: true
+  },
+  rule:{
+    type: String,
+    required: true
+  },
+  allowedAnswers: {
+    type: [String],
+    default: []
+  },
+  allowedIncorrectAnswers: {
+    type: [String],
+    default: []
+  },
+  suggestions:{
+    type: [String],
+    default: []
+  },
+  numberOfOptions:{
+    type: Number,
+    default:null
   },
   examples: {
     type: [String], // optional teacher examples

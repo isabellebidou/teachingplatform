@@ -4,12 +4,13 @@ import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import QuestionBundle from "./exercice/QuestionBundle"
 import axios from "axios"
+import { map } from "jquery"
 
 function UserExercice({ grammarTopics = [],
   auth,
   fetchGrammarTopics,
  }) {
-  const [selectedTopic, setSelectedTopic] = useState(0)
+  const [selectedTopic, setSelectedTopic] = useState(null)
   const [questions, setQuestions] = useState([])
   const [instructions, setInstructions]= useState(null)
   const [answeredQuestion, setAnsweredQuestion] = useState(0) // index
@@ -25,17 +26,18 @@ function UserExercice({ grammarTopics = [],
     console.log('auth:', auth.level)
   }, [fetchGrammarTopics])
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (grammarTopics.length > 0) {
       setSelectedTopic(grammarTopics[0])
     }
-  }, [grammarTopics])
+  }, [grammarTopics])*/
   useEffect(() => {
     console.log("questions state changed:", questions)
   }, [questions])
 
   const handleClick = async (e) => {
     e.preventDefault()
+    console.log('selectedTopic',selectedTopic)
     try {
       const res = await axios.post("/api/exercice", { selectedTopic })
       setQuestions(res.data.questions)
@@ -101,7 +103,7 @@ const above80 =()=>{
   "Bravo! Your score shows strong understanding.",
   "Congratulations! You passed in flying colours!",
   "Outstanding! You clearly prepared well.",
-  "Nice work! You\’re doing great!",
+  "Nice work! You’re doing great!",
   "Super job! Keep learning and pushing forward."
 ]:[
  "Great job! 🎉",
@@ -113,7 +115,7 @@ const above80 =()=>{
   "Super job! 🚀",
   "Fantastic! 😄",
   "Good going! 💪",
-  "You\’re amazing! 🤩"
+  "You’re amazing! 🤩"
 ]
 ;
   return congratulations[(Math.floor(Math.random() * 10))];
@@ -139,6 +141,15 @@ const above80 =()=>{
 
         {gameStarted &&  instructions && questions.length > 0 && (
           <h3>{instructions}</h3>
+          )}
+        {gameStarted &&  selectedTopic.examples &&  selectedTopic.examples.length>0 && questions.length > 0 && (
+         
+          selectedTopic.examples.map((e)=> (
+            <ul>
+              <li>{e}</li>
+            </ul>
+
+          ))
           )}
 
         {!finished && gameStarted && questions.length > 0 && (
