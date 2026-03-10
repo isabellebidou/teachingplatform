@@ -75,6 +75,9 @@ const pastSimpleByLevel = generatePastSimpleByLevel(verbsByLevel);
 const allowedBeAuxA1 = beAuxiliariesByLevel.A1.affirmative.flatMap(aux =>//["am walking", "am eating", "is walking", ...]
   verbsIngByLevel.A1_A2.map(v => `${aux} ${v}`)
 );
+const allowedBeAuxA1Not = beAuxiliariesByLevel.A1.negative.flatMap(aux =>//["am not walking", "am not eating", "isn't walking", ...]
+  verbsIngByLevel.A1_A2.map(v => `${aux} ${v}`)
+);
 
 const allowedBeAuxA2 = [
   ...beAuxiliariesByLevel.A2.questions,
@@ -99,13 +102,19 @@ const allowedDoAuxA2 = [
   verbsIngByLevel.A1_A2.map(v => `${aux} ${v}`)
 );
 
+const allowedDoAuxA1Not = [
+  ...doAuxiliariesByLevel.A2.contractionsNegative.flatMap(aux =>
+    verbsByLevel.A1_A2.map(v=> `${aux} ${v}`))
+]
 // -----------------------
 // 6 Build pronoun + base verbs => you, to walk
 // -----------------------
 const allowedBaseVerbSuggestionsWithLeadingPronouns = subjectPronouns.flatMap(pronoun =>
   verbsByLevel.A1_A2.map(v => `${pronoun}, to ${v}`)
 );
-
+const allowedIncorrectAnswerAuxBase = beAuxiliariesByLevel.A1.affirmative.flatMap(aux =>
+  verbsByLevel.A1_A2.map(v => `${aux} ${v}`)
+);
 // -----------------------
 // 6 Build pronoun + base verbs => you, to not walk
 // -----------------------
@@ -141,6 +150,11 @@ const allowedPastSimpleAnswersWithLeadingPronounsNot = subjectPronouns.flatMap(p
     .filter(v => v !== "be")
     .map(v => `${pronoun} didn't ${v}`)
 );
+const pastSimpleAnswersNot = verbsByLevel.A1_A2.filter(v => v !== "be").map(v =>
+  
+    (`didn't ${v}`)
+);
+
 
 
 
@@ -148,7 +162,7 @@ export const grammarRules = {
   // ----- A1 -----
   "Present simple (affirmative, negative, interrogative)": {
     rule: "Use the present simple for habits, routines, and permanent situations in affirmative or negative sentences or questions. Use do/does for negatives and questions. Use the 's'in thr 3rd person in affirmative sentences",
-    allowedAnswers: [...presentSimpleByLevel.A1_A2.base.concat(presentSimpleByLevel.A1_A2.thirdPerson)],
+    allowedAnswers: [...presentSimpleByLevel.A1_A2.base,...presentSimpleByLevel.A1_A2.thirdPerson, ...allowedDoAuxA1Not],
     allowedIncorrectAnswers:verbsIngByLevel.A1_A2,
     suggestions:verbsByLevel.A1_A2,
     numberOfOptions: 4,
@@ -165,8 +179,8 @@ export const grammarRules = {
   },
   "Short answers in the Present simple": {
     rule: "Complete the short answers with do/does for present simple questions. Positive questions take negative short answers and vice versa.",
-    allowedAnswers: doAuxiliariesByLevel.A1.negative,
-    allowedIncorrectAnswers: beAuxiliariesByLevel.A1.affirmative,
+    allowedAnswers: [...doAuxiliariesByLevel.A1.negative, ...beAuxiliariesByLevel.A1.questions],
+    allowedIncorrectAnswers: doAuxiliariesByLevel.A1.negative.concat(doAuxiliariesByLevel.A1.questions),
     numberOfOptions: 4,
     examples: [
       "Do you like pizza? — Yes, ___________. => Do you like pizza? — Yes, I do.",
@@ -209,7 +223,7 @@ export const grammarRules = {
   "Present continuous (affirmative)": {
     rule: "Use present continuous for actions happening now or temporary situations. Use am/is/are + verb+ing.",
     allowedAnswers: allowedBeAuxA1,
-    allowedIncorrectAnswers:verbsByLevel.A1_A2,
+    allowedIncorrectAnswers:allowedBeAuxA1.concat(verbsByLevel.A1_A2),
     suggestions:verbsByLevel.A1_A2,
     numberOfOptions: 3,
     examples: [
@@ -232,8 +246,11 @@ export const grammarRules = {
     commonErrors: [
       "Using do/does instead of am/is/are",
       "Repeating the main verb"
-    ]
-  },
+    ],
+  
+  detail:'The words "Yes," or "No," MUST appear before the gap. Example:Are you working now? — Yes, ____.',
+},
+
   "Question tags in the present continuous tense": {
     rule: "Form question tags by repeating am/is/are from the main sentence.",
     allowedAnswers: ["isn't she?","aren't they?", "aren't you?", "isn't he"],
@@ -264,16 +281,18 @@ export const grammarRules = {
   },
   "Present simple vs present continuous": { 
     rule: "Use present simple for habits, routines, and permanent situations. Use present continuous for actions happening now or temporary situations.",
-    allowedAnswers: [...allowedBeAuxA1 ,...allowedDoAuxA1],
+    allowedAnswers: [...allowedBeAuxA1 ,...allowedBeAuxA1Not, ...presentSimpleByLevel.A1_A2.base,...presentSimpleByLevel.A1_A2.thirdPerson],
+    allowedIncorrectAnswers:[...allowedBeAuxA1 ,...allowedBeAuxA1Not, ...presentSimpleByLevel.A1_A2.base,...presentSimpleByLevel.A1_A2.thirdPerson],
     numberOfOptions: 2,
     examples: [
-      "I usually ___________ to school but I am walking to school now. => I usually walk to school but I am walking to school now.",
+      "I usually ___________ to school but I am walking to school now. => I usually walk to school but I am riding the bus today.",
       "She is __________ in London today, but she usually works from home.=> She is working in London today, but she usually works from home."
     ],
     commonErrors: [
       "Using present continuous for permanent situations",
       "Using present simple for actions happening now"
-    ]
+    ],
+    detail:'exactly one option needs to be in the Present simple and exactly one option needs to be in the present continuous'
   },
   "Comparative adjectives: short vs long adjectives, regular vs irreglar forms": {
     rule: "Short adjectives take -er, long adjectives use 'more'. Irregular forms must be memorized.",
@@ -286,7 +305,8 @@ export const grammarRules = {
     commonErrors: [
       "Using -er with long adjectives",
       "Incorrect irregular forms"
-    ]
+    ],
+    detail:'at least one option needs to feature a short adjective and at least one option needs to feature a long adjective'
   },
   "Superlative adjectives: short vs long adjectives, regular vs irreglar forms": {
     rule: "Short adjectives take 'the ....-est ', long adjectives use ' the .....most'. Irregular forms must be memorized.",
@@ -299,12 +319,13 @@ export const grammarRules = {
     commonErrors: [
       "Using -est with long adjectives",
       "Incorrect irregular forms"
-    ]
+    ],
+    detail:'at least one option needs to feature a short adjective and at least one option needs to feature a long adjective'
   },
   "Countable vs uncountable nouns and when to use some and any": {
-    rule: "Use some with uncoutable nouns and with countable nouns in the plural. Use a ou an for countable nouns in the singular. Use some in affirmative sentences . Use any in negative sentences. Use any in questions when you ask if there is something. Use some in questions when you offer something.",
+    rule: "Use some with uncoutable nouns and with countable nouns in the plural. Use a ou an for countable nouns in the singular ( a before nouns starting in a consonant sound  - an for nouns starting with a vowel sound). Use some in affirmative sentences . Use any in negative sentences. Use any in questions when you ask if there is something. Use some in questions when you offer something.",
     allowedAnswers: ["some","any","a","an"],
-    numberOfOptions: 2,
+    numberOfOptions: 3,
     examples: [
       "I have _________ apples.=> I have some apples.",
       "Do you have ________ bread? => Do you have any bread?",
@@ -315,10 +336,12 @@ export const grammarRules = {
       "Using some in negative sentences",
       "Pluralising uncountables"
     ]
+    ,
+    detail:'at least one option needs to feature some, at least one option needs to feature any, the 3rd option can feature either a or an. A before a noun starting with a consonant, a silent h like in hour or  a u like in uniform. An before a noun starting in a vowel'
   },
-  "Quantifiers: some vs any, a lot of vs many, little vs few": {
-    rule: "Use quantifiers to express quantity.  affirmative sentences . Use any in negative sentences. Use any in questions when you ask if there is something. Use some in questions when you offer something. Many for countable nouns, a lot of for both, few for countable, little for uncountable.",
-    allowedAnswers: ["some","any","a lot of","many","few","little"],
+  "Quantifiers: a lot of vs many, little vs few": {
+    rule: "Use quantifiers to express quantity. Many for countable nouns and much for uncoutable nouns, few for countable nouns, little for uncountable nouns.",
+    allowedAnswers: ["many","few","little", "much"],
     numberOfOptions: 2,
     examples: [
       "I have _______ friends. => I have many friends.",
@@ -327,15 +350,17 @@ export const grammarRules = {
     ],
     commonErrors: [
       "Using many with uncountables",
-      "Using little with countables",
-      "Confusing some/any usage"
+      "Using little with countables" 
     ]
+    ,
+    detail:'One option needs to feature one of the following: few, many for countable nouns, another option needs to feature : much, little for uncountable nouns'
+  
   },
   "Past simple (regular verbs)": {
     rule: "Use past simple for completed actions. Regular verbs add -ed. Use did/didn't for questions and negatives.",
-    allowedAnswers: [...allowedPastSimpleAnswersWithLeadingPronouns.concat(allowedPastSimpleAnswersWithLeadingPronounsNot)],
-    allowedIncorrectAnswers: allowedIncorrectPastSimpleAnswersWithLeadingPronouns,
-    suggestions:[...allowedBaseVerbSuggestionsWithLeadingPronouns.concat(allowedBaseVerbSuggestionsWithLeadingPronounsNot)],
+    allowedAnswers: [...correctPast, ...pastSimpleAnswersNot],
+    allowedIncorrectAnswers: incorrectPast,
+    suggestions:[...allowedBaseVerbSuggestionsWithLeadingPronouns, ...allowedBaseVerbSuggestionsWithLeadingPronounsNot],
     numberOfOptions: 3,
     examples: [
       "(I, to visit)________ my grandparents.=> I visited my grandparents.",
@@ -347,6 +372,8 @@ export const grammarRules = {
       "Using past form after did/didn't",
       "Confusing past simple and present perfect"
     ]
+    ,
+    detail: "the suggestion with its specific pronoun and presence or absence of not must align with the correct answer "
   },
   "Past simple - regular and irregular verbs": {
     rule: "Use past simple for completed actions. Regular verbs add -ed. Irregular verbs use specific past forms: was/were, had, went, saw, ate, drank. Use did/didn't for questions/negatives.",
@@ -355,7 +382,7 @@ export const grammarRules = {
     suggestions: [...verbsByLevel.A1_A2 ,...irregularVerbsInfinitiveByLevel.A1_A2],
     numberOfOptions: 3,
     examples: [
-      "I (go) ________to school yesterday. => I went to school yesterday.=> .",
+      "I (go) ________to school yesterday. => I went to school yesterday.",
       "She (cook) ______ cooked lunch.=> She cooked lunch.",
 
     ],
@@ -364,14 +391,15 @@ export const grammarRules = {
       "Confusing was/were"
     ]
   },
-    "Wh- questions: what, who, when, where in the present simple": {
-    rule: "Read the answers and use the correct wh- words at the beginning of questions.",
+    "Wh- words: what, who, when, where in the present simple": {
+    rule: "Read the answers and complete the questions with the correct wh- word.",
     allowedAnswers: ["what", "who", "when", "where"],
     numberOfOptions: 3,
     examples: [
-     "__________is the dog? - The dog is in the garden.=> Where is the dog? - The dog is in the garden.",
-     "__________ is eating an ice-cream? -  My sister is eating an ice-cream => Who is eating an ice-cream? -  My sister is eating an ice-cream."
-    ]
+     "answer: in the garden - question:  __________is the dog?  => Where is the dog?",
+     "answer: an ice-cream - question: __________ is your sister eating?  => what is your sister eating?"
+    ],
+    detail: 'the sentence must have the following structure:   "sentence": "answer: in the garden - question:  __________is the dog?",'
   }
   // ----- A2 -----
 

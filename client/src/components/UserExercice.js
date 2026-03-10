@@ -10,8 +10,9 @@ function UserExercice({ grammarTopics = [],
   auth,
   fetchGrammarTopics,
  }) {
-  const [selectedTopic, setSelectedTopic] = useState(null)
+
   const [questions, setQuestions] = useState([])
+  const [selectedTopic, setSelectedTopic] = useState(null)
   const [instructions, setInstructions]= useState(null)
   const [answeredQuestion, setAnsweredQuestion] = useState(0) // index
   const [score, setScore] = useState(0)
@@ -26,11 +27,11 @@ function UserExercice({ grammarTopics = [],
     console.log('auth:', auth.level)
   }, [fetchGrammarTopics])
 
-  /*useEffect(() => {
+  useEffect(() => {
     if (grammarTopics.length > 0) {
       setSelectedTopic(grammarTopics[0])
     }
-  }, [grammarTopics])*/
+  }, [grammarTopics])
   useEffect(() => {
     console.log("questions state changed:", questions)
   }, [questions])
@@ -141,6 +142,10 @@ const above80 =()=>{
 
         {gameStarted &&  instructions && questions.length > 0 && (
           <h3>{instructions}</h3>
+          )}
+        {gameStarted &&  selectedTopic.rule && questions.length > 0 && (
+         
+          <p>{selectedTopic.rule}</p>
           )}
         {gameStarted &&  selectedTopic.examples &&  selectedTopic.examples.length>0 && questions.length > 0 && (
          

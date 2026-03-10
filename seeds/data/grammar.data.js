@@ -11,10 +11,10 @@ export const grammarA1 = [
   "Comparative adjectives: short vs long adjectives, regular vs irreglar forms",
   "Superlative adjectives: short vs long adjectives, regular vs irreglar forms",
   "Countable vs uncountable nouns and when to use some and any",
-  "Quantifiers: some vs any, a lot of vs many, little vs few",
+  "Quantifiers: a lot of vs many, little vs few",
   "Past simple (regular verbs)",
   "Past simple - regular and irregular verbs",
-  "Wh- questions: what, who, when, where in the present simple",
+  "Wh- words: what, who, when, where in the present simple",
 ];
 /*
 export const grammarA2 = [

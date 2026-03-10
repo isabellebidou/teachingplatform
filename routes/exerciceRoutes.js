@@ -186,6 +186,7 @@ SUGGESTION RULES:
 - Place the suggestion in parentheses immediately before the gap.
 - Example format: "(to work) ____"
 - The correct answer MUST correspond exactly to the suggestion.
+_ The suggestion MUST align semantically with the question.
 
 `
     : ``
@@ -199,17 +200,20 @@ QUESTION RULES:
 - Each sentence contains EXACTLY ONE gap written as "____".
 - Vocabulary must match the level and theme.
 - Do NOT include dialogue or multiple sentences.
+- Each question must be grammatically correct AND logically meaningful.
 
 
 OPTIONS RULES:
 - Each question has EXACTLY ${
   selectedTopic.numberOfOptions > 0 ? selectedTopic.numberOfOptions : 4
 } options.
-- EXACTLY ONE option is correct.
-- Options MUST be randomly ordered.
+- EXACTLY ONE option has to be correct.
 - ONLY the correct option may be grammatically valid.
-- The correct answer must make semantic sense.
-_ Mark one option as correct ("isCorrect: true") and the other two as incorrect ("isCorrect: false")
+- The correct option must produce a grammatically correct AND logically meaningful sentence.
+- Avoid sentences where the correct answer creates an illogical meaning.
+- each option has to have a different text.
+_ Mark the correct option as correct ("isCorrect: true") and the remaining ones as incorrect ("isCorrect: false")
+_ The correct option MUST display at a different index everytime.
 
 ${
   selectedTopic.examples > 0 
@@ -222,6 +226,20 @@ INVALID OUTPUT (DO NOT PRODUCE):
 - Gaps solvable by more than one correct answer.
 - Any text outside JSON.
 - Any missing or extra fields.
+
+
+
+IMPORTANT:
+${
+  selectedTopic.detail !== null 
+  ?`
+ _ 
+${selectedTopic.detail}
+`:``}
+
+- Output ONLY the JSON object . Do NOT add explanations or comments.
+_ Before returning the JSON, verify that the correct answer is grammatically valid in the sentence.
+If it is not valid, regenerate the sentence.
 
 RETURN FORMAT (STRICT JSON ONLY):
 
@@ -237,9 +255,6 @@ RETURN FORMAT (STRICT JSON ONLY):
   "instructions": "Fill in the gap using ${selectedTopic.name}."
 }
 
-IMPORTANT:
-- Output ONLY the JSON object.
-- Do NOT add explanations or comments.
 `;
     try {
  const completion = await openai.chat.completions.create({

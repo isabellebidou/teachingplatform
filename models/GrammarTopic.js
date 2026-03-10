@@ -39,6 +39,10 @@ const GrammarTopicSchema = new mongoose.Schema({
     type: [String],
     default: []
   },
+  detail:{
+    type: String,
+    default:null
+  },
   active: {
     type: Boolean,
     default: true

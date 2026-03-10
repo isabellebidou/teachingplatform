@@ -72,6 +72,7 @@ const normalizeTopic = (topicName, level) => {
     suggestions:ruleConfig.suggestions ||[],
     numberOfOptions: ruleConfig.numberOfOptions ||null,
     examples: ruleConfig.examples || [],
+    detail: ruleConfig.detail || null,
     commonErrors: ruleConfig.commonErrors || []
   };
 };
