@@ -1,11 +1,12 @@
-export function normalize(text) {
+function normalize(text) {
   return text
     .toLowerCase()
     .replace(/[^\w\s]/g, "")
     .replace(/\s+/g, " ")
     .trim();
 }
-export function compareWords(expected, spoken) {
+
+function compareWords(expected, spoken) {
   const expectedSet = new Set(expected);
   const spokenSet = new Set(spoken);
   const missing = expected.filter(w => !spokenSet.has(w));
@@ -15,7 +16,8 @@ export function compareWords(expected, spoken) {
 
   return { missing, extra, coverage };
 }
-export function generateFeedback( {missing, extra, coverage}, text) {
+
+function generateFeedback({ missing, extra, coverage }, text) {
   const feedback = [];
   if (missing.length === 0) {
     feedback.push("✅ You said all the expected words.");
@@ -23,76 +25,46 @@ export function generateFeedback( {missing, extra, coverage}, text) {
     feedback.push(
       `⚠️ You missed or mispronounced ${missing.length} word(s): ${missing.join(", ")}.`
     );
-    // TODO: check if missing words end in 's'  
-//a missing word ends in "s" AND the base form exists as a verb AND the previous word is a 3rd person subject (he, she, it, name) 
-//👉 Then you can say:“You may have forgotten to pronounce the -s of the verb (3rd person singular).” 
-// TODO: check if missing words start with 'h' 
 
-//If:missing word starts with h AND is not in silent-H list AND transcript shows vowel start / missing word 
-
-// 👉 Feedback: “Be careful: the H is pronounced in this word.” 
     const missingWordsWithHArray = checkMissingWithH(missing);
-    if (missingWordsWithHArray.length > 0){
-      feedback.push( `Be careful: the "H" is pronounced in : ${missingWordsWithHArray.join(", ")}.`)
+    if (missingWordsWithHArray.length > 0) {
+      feedback.push(
+        `Be careful: the "H" is pronounced in: ${missingWordsWithHArray.join(", ")}.`
+      );
     }
+
     const missingWithS = checkMissingWithS(missing, text);
-
-if (missingWithS.length > 0) {
-  feedback.push(
-    `Be careful: You may have missed the -s ending. The final "S" is pronounced in the present simple with he, she, and it: ${missingWithS.join(", ")}.`
-  );
-}
-
-
+    if (missingWithS.length > 0) {
+      feedback.push(
+        `Be careful: You may have missed the -s ending. The final "S" is pronounced in the present simple with he, she, and it: ${missingWithS.join(", ")}.`
+      );
+    }
   }
 
   if (extra.length > 0) {
-    feedback.push(
-      `Extra word(s)found: ${extra.join(", ")}. That’s okay if it was intentional.`
-    );
+    feedback.push(`Extra word(s) found: ${extra.join(", ")}. That’s okay if it was intentional.`);
 
-    switch (coverage) {
-        case coverage > 90: 
-        feedback.push(`${coverage} % - Very clear`);
-            break;
-        case coverage <= 90 && coverage > 70:
-            feedback.push(`${coverage}  % coverage - Mostly clear`);
-        case coverage <= 70 && coverage > 30:
-            feedback.push(`${coverage} % coverage - Please try again`)
-        default:
-            feedback.push(`${coverage} % coverage - Unclear - Please try again`)
-
-            break;
+    if (coverage > 0.9) {
+      feedback.push(`${coverage * 100}% - Very clear`);
+    } else if (coverage > 0.7) {
+      feedback.push(`${coverage * 100}% coverage - Mostly clear`);
+    } else if (coverage > 0.3) {
+      feedback.push(`${coverage * 100}% coverage - Please try again`);
+    } else {
+      feedback.push(`${coverage * 100}% coverage - Unclear - Please try again`);
     }
   }
-  const feedbackArray = Array.isArray(feedback) ? feedback : [feedback];
-  return feedbackArray;
+
+  return Array.isArray(feedback) ? feedback : [feedback];
 }
 
-function missingWordsStartWithChar(missing, char){
-  const list =[];
-  const result = false;
-  for (let index = 0; index < array.length; index++) {
-    const element = missing[index];
-    if (typeof element == String && element[0] === char ){
-      result = true;
-    }
-  }
-  return (result, list);
-}
-function checkMissingWithH(missing){
-  const silentHWordsSet= new Set(["hour", "honor", "honour", "honest"]);
-  const wordsStartingInH = [];
-  missing.forEach(element => {
-  if (element.startsWith("h") && !silentHWordsSet.has(element))
-    wordsStartingInH.push (element);
-});
-return wordsStartingInH;
+function checkMissingWithH(missing) {
+  const silentHWordsSet = new Set(["hour", "honor", "honour", "honest"]);
+  return missing.filter(word => word.startsWith("h") && !silentHWordsSet.has(word));
 }
 
 function checkMissingWithS(missing, text) {
   const verbsEndingInS = [];
-
   const verbFormsEndingInS = new Set([
     "plays", "lives", "gives", "does", "goes", "makes",
     "sings", "eats", "drinks", "likes", "loves", "reads"
@@ -105,17 +77,16 @@ function checkMissingWithS(missing, text) {
   missing.forEach(word => {
     if (
       word.endsWith("s") &&
-      (
-        verbFormsEndingInS.has(word) ||
-        (
-          thirdPerson.length > 0 &&
-          textArray.indexOf(thirdPerson[0]) < textArray.indexOf(word)
-        )
-      )
+      (verbFormsEndingInS.has(word) ||
+        (thirdPerson.length > 0 &&
+          textArray.indexOf(thirdPerson[0]) < textArray.indexOf(word)))
     ) {
       verbsEndingInS.push(word);
     }
   });
 
-  return verbsEndingInS; 
+  return verbsEndingInS;
 }
+
+// ✅ CommonJS export
+module.exports = { normalize, compareWords, generateFeedback };

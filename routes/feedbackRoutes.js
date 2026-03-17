@@ -3,6 +3,7 @@ const keys = require("../config/keys");
 const OpenAI = require("openai");
 const error = require("../services/utils").logError;
 
+
 module.exports = (app) => {
   let openai;
   if (keys.openaiKey) {

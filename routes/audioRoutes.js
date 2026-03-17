@@ -6,9 +6,9 @@ const upload = require("../config/audioUpload");
 const { uploadFile, deleteSeveralAudios, getObjectSignedUrl } = require("../services/s3");
 const Audio = mongoose.model("audios");
 const Script = mongoose.model("Script");
-const helpers = require("./helpers");  
 const error = require("../services/utils").logError;
 const log =  require("../services/utils").log;
+const { normalize, compareWords, generateFeedback } = require('./helpers');
 
 module.exports = (app) => {
 
@@ -41,10 +41,10 @@ module.exports = (app) => {
       
       // ==========> PROCESS TEXT  
       /// find missing , added or matching words
-      const feedback = helpers.generateFeedback (
-        helpers.compareWords(
-          helpers.normalize(script.sentence).split(" "),
-          helpers.normalize(transcriptText).split(" ")
+      const feedback = generateFeedback (
+        compareWords(
+          normalize(script.sentence).split(" "),
+          normalize(transcriptText).split(" ")
         ) , transcriptText
       );
       /*const feedback = helpers.generateFeedback(
