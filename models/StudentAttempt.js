@@ -1,6 +1,12 @@
-import mongoose from "mongoose";
 
-const AnswerSchema = new mongoose.Schema({
+
+
+const mongoose = require('mongoose')
+const {Schema} = mongoose; // =const Schema = mongoose.Schema;  destructuring
+
+
+
+const AnswerSchema = new Schema ({
   questionIndex: Number,
   selectedAnswer: String, // "A"
   correct: Boolean
@@ -24,5 +30,4 @@ const StudentAttemptSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 StudentAttemptSchema.index({ studentId: 1 });
-
-export default mongoose.model("StudentAttempt", StudentAttemptSchema);
+mongoose.model('StudentAttempt',StudentAttemptSchema);

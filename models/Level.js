@@ -1,6 +1,9 @@
-import mongoose from "mongoose";
 
-const LevelSchema = new mongoose.Schema({
+const mongoose = require('mongoose')
+const {Schema} = mongoose; // =const Schema = mongoose.Schema;  destructuring
+
+
+const LevelSchema = new Schema ({
   cefr: {
     type: String,
     enum: ["A1", "A2", "B1", "B2", "C1", "C2"],
@@ -13,5 +16,4 @@ const LevelSchema = new mongoose.Schema({
   },
   description: String
 }, { timestamps: true });
-
-export default mongoose.model("Level", LevelSchema);
+mongoose.model('Level',LevelSchema);

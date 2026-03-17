@@ -1,7 +1,9 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose')
+const {Schema} = mongoose; // =const Schema = mongoose.Schema;  destructuring
 
 
-const GrammarTopicSchema = new mongoose.Schema({
+
+const GrammarTopicSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -50,5 +52,4 @@ const GrammarTopicSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 GrammarTopicSchema.index({ level: 1 });
-
-export default mongoose.model("GrammarTopic", GrammarTopicSchema);
+mongoose.model('GrammarTopic',GrammarTopicSchema);
