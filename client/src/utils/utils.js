@@ -1,21 +1,18 @@
-function log(text) {
-    if (process.env.NODE_ENV !== "production") {
-      console.log(text);
-    } 
+const logs = false;
+export function log(text) {
+  if (process.env.NODE_ENV !== "production" && logs) {
+    console.log(text);
   }
+}
 
-function  logError(text)  {
-    if (process.env.NODE_ENV !== "production") {
-      console.error(text);
-    }
+export function logError(text) {
+  if (process.env.NODE_ENV !== "production" && logs) {
+    console.error(text);
   }
+}
 
-
-
-
-  module.exports = {
- 
-    log,
-    logError
-    
-  };
+export function warn(text) {
+  if (process.env.NODE_ENV !== "production" && logs) {
+    console.warn(text);
+  }
+}

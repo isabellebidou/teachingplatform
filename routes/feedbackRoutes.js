@@ -1,6 +1,7 @@
 // routes/feedbackRoutes.js
 const keys = require("../config/keys");
 const OpenAI = require("openai");
+const error = require("../services/utils").logError;
 
 module.exports = (app) => {
   let openai;
@@ -47,14 +48,14 @@ Return ONLY JSON, no explanations outside the JSON.
       try {
         gptData = JSON.parse(completion.choices[0].message.content);
       } catch (err) {
-        console.error("JSON parse error, using GPT text as suggestion:", err);
+        error("JSON parse error, using GPT text as suggestion:", err);
         gptData = { ...fakeResponse, suggestion: completion.choices[0].message.content };
       }
 
       res.json({ ...fakeResponse, ...gptData });
 
     } catch (err) {
-      console.error("OpenAI error (fallback to fake):", err.name, err.message);
+      error("OpenAI error (fallback to fake):", err.name, err.message);
       // **Return fake feedback if any OpenAI error occurs (rate limit, network, etc.)**
       res.json(fakeResponse);
     }

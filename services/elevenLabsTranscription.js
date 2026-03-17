@@ -1,18 +1,21 @@
 
 
 const keys = require("../config/keys");
+const log =  require("../services/utils").log;
+
 
 async function transcribeAudio(buffer, mimetype, filename) {
-  console.log("MIME:", mimetype);
-  console.log("Filename:", filename);
-  console.log("Buffer size:", buffer.length);
+  log("MIME:", mimetype);
+  log("Filename:", filename);
+  log("Buffer size:", buffer.length);
   const formData = new FormData();
 
   const blob = new Blob([buffer], { type: mimetype });
 
   formData.append("file", blob, filename); 
   formData.append("model_id", "scribe_v1");
-  console.log(formData.body);
+   log(formData.body);
+
 
   const response = await fetch(
     "https://api.elevenlabs.io/v1/speech-to-text",

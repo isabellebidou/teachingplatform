@@ -6,7 +6,9 @@ const upload = require("../config/audioUpload");
 const { uploadFile, deleteSeveralAudios, getObjectSignedUrl } = require("../services/s3");
 const Audio = mongoose.model("audios");
 const Script = mongoose.model("Script");
-const helpers = require("./helpers");    
+const helpers = require("./helpers");  
+const error = require("../services/utils").logError;
+const log =  require("../services/utils").log;
 
 module.exports = (app) => {
 
@@ -35,7 +37,7 @@ module.exports = (app) => {
       );
 
       const transcriptText = transcriptionResult.text; 
-      console.log("Transcription:", transcriptText);
+      log("Transcription:", transcriptText);
       
       // ==========> PROCESS TEXT  
       /// find missing , added or matching words
@@ -48,9 +50,9 @@ module.exports = (app) => {
       /*const feedback = helpers.generateFeedback(
         helpers.compareWords(script.sentence,transcriptText),transcriptText
       )*/
-      console.log(`script: ${scriptId}from audioRoutes POST audio`);
-      console.log(`feedback: ${feedback}from audioRoutes POST audio`);
-      console.log("feedback:", feedback, Array.isArray(feedback));
+      log(`script: ${scriptId}from audioRoutes POST audio`);
+      log(`feedback: ${feedback}from audioRoutes POST audio`);
+      log("feedback:", feedback, Array.isArray(feedback));
       const s3Key = `audios/${req.user.id}/${Date.now()}-${originalname}`;
         // ==============> we store the audio file on AWS s3 : done
       await uploadFile(buffer, s3Key, mimetype);
@@ -65,7 +67,7 @@ module.exports = (app) => {
         }).save();
         res.send(audio);
       } catch (err) {
-        console.error("Audio upload error:", err);
+        error("Audio upload error:", err);
         res.status(500).send("Audio upload failed");
       }
     }
@@ -93,7 +95,7 @@ module.exports = (app) => {
       const result = await Audio.deleteMany({ _id: { $in: idsToDelete } });
       res.send(result);
     } catch (err) {
-      console.log(err);
+      log(err);
       res.send("Failed to delete audios");
     }
   });
@@ -104,7 +106,7 @@ module.exports = (app) => {
    */
   app.get("/api/user_audios", requireLogin, async (req, res) => {
     try {
-      console.log("app.get   /api/user_audios from audioroutes")
+      log("app.get   /api/user_audios from audioroutes")
       const audios = await Audio
         .find({ _user: req.user.id })
           .populate({
@@ -114,7 +116,7 @@ module.exports = (app) => {
 
       for (let index = 0; index < audios.length; index++) {
         const element = audios[index];
-        console.log(element._id);
+        log(element._id);
       }
 
       let audiosWithUrls = [];
@@ -128,10 +130,10 @@ module.exports = (app) => {
         })
       );
 
-      console.log(audiosWithUrls.length+ "   from end of app.get")
+      log(audiosWithUrls.length+ "   from end of app.get")
       res.send(audiosWithUrls);
     } catch (err) {
-      console.error(err);
+      error(err);
       res.status(500).send("Failed to fetch audios");
     }
   });

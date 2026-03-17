@@ -3,6 +3,9 @@ const mongoose = require("mongoose")
 const keys = require("../config/keys")
 const OpenAI = require("openai")
 const Theme = mongoose.model("Theme")
+const error = require("../services/utils").logError;
+const log =  require("../services/utils").log;
+const warn =  require("../services/utils").warn;
 
 module.exports = (app) => {
   let openai
@@ -12,7 +15,7 @@ module.exports = (app) => {
 
   app.post("/api/exercice", async (req, res) => {
     const { selectedTopic } = req.body
-    console.log("/api/exercice selectedTopic", selectedTopic)
+    log("/api/exercice selectedTopic", selectedTopic)
     let theme
 
     try {
@@ -22,7 +25,7 @@ module.exports = (app) => {
       ])
 
       theme = themes[0]
-      console.log("/api/exercice theme", theme)
+      log("/api/exercice theme", theme)
     } catch (error) {
       return res.status(500).send("Theme not found: " + error)
     }
@@ -285,7 +288,7 @@ RETURN FORMAT (STRICT JSON ONLY):
 
       res.json({ ...fakeResponse, ...gptData })
     } catch (err) {
-      console.error("OpenAI error (fallback to fake):", err.name, err.message)
+      error("OpenAI error (fallback to fake):", err.name, err.message)
       // **Return fake feedback if any OpenAI error occurs (rate limit, network, etc.)**
       res.json(fakeResponse)
     }
@@ -304,17 +307,17 @@ RETURN FORMAT (STRICT JSON ONLY):
     while (attempt < maxRetries) {
       attempt++
 
-      console.log(`🔁 Attempt ${attempt}...`)
+       log(`🔁 Attempt ${attempt}...`)
 
       const gptData = await generateFn()
 
       if (hasExactlyOneCorrectAnswer(gptData.questions)) {
-        console.log("✅ Valid questions received")
+         log("✅ Valid questions received")
         return gptData
       } else {
-        console.log("❌ Bad GPT response:", JSON.stringify(gptData, null, 2))
+         log("❌ Bad GPT response:", JSON.stringify(gptData, null, 2))
       }
-      console.warn("⚠️ Invalid response (no correct answers). Retrying...")
+       warn("⚠️ Invalid response (no correct answers). Retrying...")
     }
     throw new Error("❌ Failed to generate valid questions after retries")
   }

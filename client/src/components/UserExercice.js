@@ -4,16 +4,15 @@ import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import QuestionBundle from "./exercice/QuestionBundle"
 import axios from "axios"
-import { map } from "jquery"
+//import { map } from "jquery"
 
-function UserExercice({ grammarTopics = [],
-  auth,
-  fetchGrammarTopics,
- }) {
+import { logError as error } from "../utils/utils.js"
+import { log } from "../utils/utils.js";
 
+function UserExercice({ grammarTopics = [], auth, fetchGrammarTopics }) {
   const [questions, setQuestions] = useState([])
   const [selectedTopic, setSelectedTopic] = useState(null)
-  const [instructions, setInstructions]= useState(null)
+  const [instructions, setInstructions] = useState(null)
   const [answeredQuestion, setAnsweredQuestion] = useState(0) // index
   const [score, setScore] = useState(0)
   const [gameStarted, setStarted] = useState(false)
@@ -23,10 +22,9 @@ function UserExercice({ grammarTopics = [],
   const [feedback, setFeedBack] = useState([])
   const grade = Math.round((score * 100) / questions.length)
 
-
   useEffect(() => {
     fetchGrammarTopics()
-    console.log('auth:', auth.level)
+     log("auth:", auth.level)
   }, [fetchGrammarTopics])
 
   useEffect(() => {
@@ -35,20 +33,32 @@ function UserExercice({ grammarTopics = [],
     }
   }, [grammarTopics])
   useEffect(() => {
-    console.log("questions state changed:", questions)
+     log("questions state changed:", questions)
   }, [questions])
+  const resetGame = () => {
+  setQuestions([])
+  setSelectedTopic(null)
+  setStarted(false)
+  setIsLoading(false)
+  setInstructions(null) // if you have it
+  setAnsweredQuestion(0)
+  setScore(0)
+  setFinished(false)
+  setSelectedAnswer(null)
+  setFeedBack([])
+}
 
   const handleClick = async (e) => {
     e.preventDefault()
     setIsLoading(true)
-    console.log('selectedTopic',selectedTopic)
+     log("selectedTopic", selectedTopic)
     try {
       const res = await axios.post("/api/exercice", { selectedTopic })
       setQuestions(res.data.questions)
       setInstructions(res.data.instructions)
       setStarted(true)
     } catch (err) {
-      console.error("Error generating exercice:", err)
+       error("Error generating exercice:", err)
     } finally {
     }
   }
@@ -88,7 +98,7 @@ function UserExercice({ grammarTopics = [],
 
     if (answeredQuestion === questions.length - 1) {
       setFinished(true)
-      console.log(feedback, null, 2)
+       log(feedback, null, 2)
     } else {
       setAnsweredQuestion((prev) => prev + 1)
     }
@@ -96,34 +106,34 @@ function UserExercice({ grammarTopics = [],
   const handleSelectAnswer = (option) => {
     setSelectedAnswer(option)
   }
-const above80 =()=>{
-
-  const congratulations = auth.level.startsWith("C") ?[
-  "Excellent work! You really know your stuff.",
-  "Great job! Your hard work is paying off.",
-  "Well done! You scored above 80% — keep it up!",
-  "Fantastic result! You should be proud of yourself.",
-  "Impressive performance! You’ve mastered this quiz.",
-  "Bravo! Your score shows strong understanding.",
-  "Congratulations! You passed in flying colours!",
-  "Outstanding! You clearly prepared well.",
-  "Nice work! You’re doing great!",
-  "Super job! Keep learning and pushing forward."
-]:[
- "Great job! 🎉",
-  "Well done! 😊",
-  "Awesome work! ⭐",
-  "You did it! 👏",
-  "Excellent! 🌟",
-  "Nice work! 👍",
-  "Super job! 🚀",
-  "Fantastic! 😄",
-  "Good going! 💪",
-  "You’re amazing! 🤩"
-]
-;
-  return congratulations[(Math.floor(Math.random() * 10))];
-}
+  const above80 = () => {
+    const congratulations = auth.level.startsWith("C")
+      ? [
+          "Excellent work! You really know your stuff.",
+          "Great job! Your hard work is paying off.",
+          "Well done! You scored above 80% — keep it up!",
+          "Fantastic result! You should be proud of yourself.",
+          "Impressive performance! You’ve mastered this quiz.",
+          "Bravo! Your score shows strong understanding.",
+          "Congratulations! You passed in flying colours!",
+          "Outstanding! You clearly prepared well.",
+          "Nice work! You’re doing great!",
+          "Super job! Keep learning and pushing forward.",
+        ]
+      : [
+          "Great job! 🎉",
+          "Well done! 😊",
+          "Awesome work! ⭐",
+          "You did it! 👏",
+          "Excellent! 🌟",
+          "Nice work! 👍",
+          "Super job! 🚀",
+          "Fantastic! 😄",
+          "Good going! 💪",
+          "You’re amazing! 🤩",
+        ]
+    return congratulations[Math.floor(Math.random() * 10)]
+  }
   return (
     <div className="page">
       <div className="exercice-div">
@@ -136,32 +146,37 @@ const above80 =()=>{
           />
         )}
         {!gameStarted && selectedTopic && (
-          <button onClick={handleClick} disabled={isLoading}>{isLoading ?  <>
-      <span className="loader"></span> Generating...
-    </>: "Generate Exercise"}</button>
+          <button onClick={handleClick} disabled={isLoading}>
+            {isLoading ? (
+              <>
+                <span className="loader"></span> Generating...
+              </>
+            ) : (
+              "Generate Exercise"
+            )}
+          </button>
         )}
 
         {/* once exercice is generated and started */}
-        {gameStarted &&  selectedTopic && questions.length > 0 && (
+        {gameStarted && selectedTopic && questions.length > 0 && (
           <h2>{selectedTopic.name}</h2>
-          )}
+        )}
 
-        {gameStarted &&  instructions && questions.length > 0 && (
+        {gameStarted && instructions && questions.length > 0 && (
           <h3>{instructions}</h3>
-          )}
-        {gameStarted &&  selectedTopic.rule && questions.length > 0 && (
-         
+        )}
+        {gameStarted && selectedTopic.rule && questions.length > 0 && (
           <p>{selectedTopic.rule}</p>
-          )}
-        {gameStarted &&  selectedTopic.examples &&  selectedTopic.examples.length>0 && questions.length > 0 && (
-         
-          selectedTopic.examples.map((e)=> (
+        )}
+        {gameStarted &&
+          selectedTopic.examples &&
+          selectedTopic.examples.length > 0 &&
+          questions.length > 0 &&
+          selectedTopic.examples.map((e) => (
             <ul>
               <li>{e}</li>
             </ul>
-
-          ))
-          )}
+          ))}
 
         {!finished && gameStarted && questions.length > 0 && (
           <QuestionBundle
@@ -183,8 +198,7 @@ const above80 =()=>{
         {finished && (
           <div className="exercicResultDiv">
             <table className="resultTable">
-              
-                <thead>
+              <thead>
                 <th>
                   <strong>Question:</strong>
                 </th>
@@ -197,31 +211,37 @@ const above80 =()=>{
                 <th>
                   <strong></strong>
                 </th>
-                </thead>
-              
+              </thead>
+
               {feedback.map((f, index) => (
-                <tbody key={index+"tb"}>
-                <tr key={index+"tr"} className={index % 2 === 0?"even": "odd"}>
-                  <td key={index+"td1"}>{f.question}</td>
-                  <td key={index+"td2"}>{f.wrongAnswer}</td>
-                  <td key={index+"td3"}>{f.correctAnswer}</td>
-     
-                  <td key={index+"td4"}>
-                    {f.isCorrect ? (
-                      <span style={{ color: "green" }}>✓</span>
-                    ) : (
-                      <span style={{ color: "red" }}>✘</span>
-                    )}
-                  </td>
-                </tr>
+                <tbody key={index + "tb"}>
+                  <tr
+                    key={index + "tr"}
+                    className={index % 2 === 0 ? "even" : "odd"}
+                  >
+                    <td key={index + "td1"}>{f.question}</td>
+                    <td key={index + "td2"}>{f.wrongAnswer}</td>
+                    <td key={index + "td3"}>{f.correctAnswer}</td>
+
+                    <td key={index + "td4"}>
+                      {f.isCorrect ? (
+                        <span style={{ color: "green" }}>✓</span>
+                      ) : (
+                        <span style={{ color: "red" }}>✘</span>
+                      )}
+                    </td>
+                  </tr>
                 </tbody>
               ))}
             </table>
             {grade > 80 ? (
-            <div className="grade">{grade}/100   {above80()}</div>
-            ):(
+              <div className="grade">
+                {grade}/100 {above80()}
+              </div>
+            ) : (
               <div className="grade">{grade}/100</div>
             )}
+            <button onClick={resetGame}>Start New Exercise</button>
           </div>
         )}
       </div>
@@ -231,7 +251,4 @@ const above80 =()=>{
 function mapStateToProps(state) {
   return { grammarTopics: state.grammarTopics, auth: state.auth }
 }
-export default connect(
-  mapStateToProps,
- {fetchGrammarTopics}
-)(UserExercice)
+export default connect(mapStateToProps, { fetchGrammarTopics })(UserExercice)

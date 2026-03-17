@@ -37,7 +37,7 @@ module.exports = (app) => {
         });
 
         request.on('error', error => {
-            console.error(error);
+            error(error);
         });
 
         request.end();

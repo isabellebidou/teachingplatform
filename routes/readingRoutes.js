@@ -8,10 +8,13 @@ const keys = require('../config/keys');
 const requireLogin = require('../middlewares/requireLogin');
 const { uploadFile, deleteFile, deleteSeveral, getObjectSignedUrl } = require('../services/s3.js');
 const upload = require("../config/audioUpload.js");
+const error = require("../services/utils").logError;
+const log =  require("../services/utils").log;
+
 
 
 const { response } = require('express');
-const logError = require("../services/utils");
+
 
 module.exports = (app) => {
   const Reading = mongoose.model('readings');
@@ -115,7 +118,7 @@ module.exports = (app) => {
   })
   
   app.post("/api/pdf_document_upload", requireLogin, upload.single("document"), async (req, res) => {
-    console.log(req.file.originalname+" from api/pdf_document_upload")
+    log(req.file.originalname+" from api/pdf_document_upload")
 
     const pdfPath = 'pdf/' + req.user.id + '/' + req.file.originalname;
     await uploadFile(req.file.buffer, pdfPath, req.file.mimetype)
@@ -134,7 +137,7 @@ module.exports = (app) => {
 
   });
   app.post("/api/document_upload", requireLogin, upload.single("document"), async (req, res) => {
-    console.log(req.file)
+    log(req.file)
 
     const reading = await Reading.findById(req.body.readingId);
     const pdfName = 'pdf/' + req.user.id + '/' + req.body.readingId;
@@ -154,10 +157,10 @@ module.exports = (app) => {
     try {
 
       const url = await getObjectSignedUrl(req.params.path);
-      console.log(url)
+      log(url)
       res.send(url)
     } catch (error) {
-      console.error(error);
+      error(error);
       res.status(500).send("An error occurred while downloading the PDF.");
     }
   });

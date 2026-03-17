@@ -168,8 +168,7 @@ export const grammarRules = {
     numberOfOptions: 4,
     examples: [
       "I (to work)_________in London. => I work in London",
-      "She doesn't (to like)__________ coffee.=> She doesn't like coffee.",
-      "Do you (to play)_____________ tennis? => Do you play tennis?"
+      "She (not to like)__________ coffee.=> She doesn't like coffee."
     ],
     commonErrors: [
       "Forgetting the -s in the third person singular",
@@ -218,7 +217,8 @@ export const grammarRules = {
     commonErrors: [
       "Using 'can' for obligation",
       "Forgetting negative forms"
-    ]
+    ],
+    detail:"Only generate sentences in the present tense. Only use can, can't, must, or mustn't. Do NOT use could, should, may, or any other modal verb. Reject any sentence that requires another modal verb. ",
   },
   "Present continuous (affirmative)": {
     rule: "Use present continuous for actions happening now or temporary situations. Use am/is/are + verb+ing.",

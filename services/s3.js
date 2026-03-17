@@ -6,6 +6,7 @@ const accessKeyId = keys.accessKeyId
 const region = keys.awsRegion
 const secretAccessKey = keys.awsSecretAccessKey
 const bucketName = keys.bucketName
+const log =  require("../services/utils").log;
 
 const s3Client = new S3Client({
     region,
@@ -39,7 +40,7 @@ function deleteSeveralAudios(array) {
     if (Array.isArray(array)) {
         array.forEach(element => {
            // const fn1 = element.s3Key;
-            console.log("deleteSeveralAudios  from s3 service "+element.s3Key)
+            log("deleteSeveralAudios  from s3 service "+element.s3Key)
             deleteFile(element.s3Key)
         });
     }
@@ -55,7 +56,7 @@ async function _deleteSeveralAudios(audioRefs) {
   // 2️⃣ Delete from S3
   for (const audio of audios) {
     if (!audio.s3Key) {
-      console.log("⚠️ Missing s3Key for:", audio._id);
+      log("⚠️ Missing s3Key for:", audio._id);
       continue;
     }
 
