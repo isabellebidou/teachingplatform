@@ -227,8 +227,6 @@ INVALID OUTPUT (DO NOT PRODUCE):
 - Any text outside JSON.
 - Any missing or extra fields.
 
-
-
 IMPORTANT:
 ${
   selectedTopic.detail !== null 

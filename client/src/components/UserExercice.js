@@ -136,7 +136,9 @@ const above80 =()=>{
           />
         )}
         {!gameStarted && selectedTopic && (
-          <button onClick={handleClick} disabled={isLoading}>{isLoading ?  "Generating..." : "Generate Exercise"}</button>
+          <button onClick={handleClick} disabled={isLoading}>{isLoading ?  <>
+      <span className="loader"></span> Generating...
+    </>: "Generate Exercise"}</button>
         )}
 
         {/* once exercice is generated and started */}

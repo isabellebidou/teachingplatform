@@ -61,6 +61,26 @@ position: absolute;
 .odd, th{
     background-color: rgb(183, 187, 184, 0.3);
 }
+.loader {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ccc;
+  border-top: 2px solid #333;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -70,6 +90,13 @@ button:hover:not(:disabled) {
   background-color: #007bff;
   color: white;
 }
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+button {
+  transition: all 0.2s ease;
+}
+
 @media screen and (max-width: 800px) and (orientation: portrait) {
     .next-button{
     position: fixed;
