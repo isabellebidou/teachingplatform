@@ -1,18 +1,18 @@
-const logs = false;
-export function log(text) {
-  if (process.env.NODE_ENV !== "production" && logs) {
-    console.log(text);
-  }
-}
+const logs = false
 
-export function logError(text) {
+function log(text) {
   if (process.env.NODE_ENV !== "production" && logs) {
-    console.error(text);
+    console.log(text)
   }
 }
-
-export function warn(text) {
+function logError(text) {
   if (process.env.NODE_ENV !== "production" && logs) {
-    console.warn(text);
+    console.error(text)
   }
 }
+function warn(text) {
+  if (process.env.NODE_ENV !== "production" && logs) {
+    console.warn(text)
+  }
+}
+module.exports = { log, logError, warn };
