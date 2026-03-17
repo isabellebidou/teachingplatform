@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose')
+const {Schema} = mongoose; // =const Schema = mongoose.Schema;  destructuring
 
-const OptionSchema = new mongoose.Schema({
+const OptionSchema = new Schema ({
   key: String,  // "A", "B", "C"
   text: String
 }, { _id: false });
@@ -39,5 +40,4 @@ const ExerciseSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 ExerciseSchema.index({ level: 1, theme: 1, grammarTopic: 1 });
-
-export default mongoose.model("Exercise", ExerciseSchema);
+mongoose.model('Exercise',ExerciseSchema);

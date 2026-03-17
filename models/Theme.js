@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose')
+const {Schema} = mongoose; // =const Schema = mongoose.Schema;  destructuring
 
-const ThemeSchema = new mongoose.Schema({
+const ThemeSchema = new Schema ({
   name: {
     type: String,
     required: true
@@ -21,5 +22,4 @@ const ThemeSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 ThemeSchema.index({ level: 1 });
-
-export default mongoose.model("Theme", ThemeSchema);
+mongoose.model('Theme',ThemeSchema);
