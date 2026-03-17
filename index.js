@@ -5,6 +5,7 @@ const passport = require('passport');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const enforce = require('express-sslify');
+const log = require('./services/utils').log;
 
 require('./models/User');
 require('./models/UserData');
@@ -23,51 +24,20 @@ require('./services/elevenLabsTranscription');
 mongoose.set('strictQuery', false);
 
 
-mongoose.connect(keys.mongoURI);
+//mongoose.connect(keys.mongoURI);
 const app = express();
-// body parsing
+app.set("trust proxy", 1);
 app.use(express.json());
-
-
-app.get("/health", (req, res) => {
-  res.json({ status: "ok", mode: "no-db" });
-});
-require("./routes/feedbackRoutes")(app);
-
-if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
-  app.use(enforce.HTTPS({ trustProtoHeader: true }));
-}
-
-const db = async () => {
-
-  try {
-    const conn = await mongoose.connect(keys.mongoURI);
-    //console.log(`MongoDB Connected: ${conn.connection.readyState}`);
-    console.log('MongoDB Connected to DB:', mongoose.connection.name);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-}
-
-const PORT = process.env.PORT || 8000;
-//app.listen(PORT);
-/*app.listen(PORT, () => {
-  console.log("🚀 Server running WITHOUT DB (dev mode)");
-});*/
-db().then(() => {
-  app.listen(PORT, () => {
-    console.log("listening for requests");
     app.use(
       cookieSession({
         maxAge: 30 * 24 * 60 * 60 * 1000,
         keys: [keys.cookieKey],
       })
     );
-
-    app.use(bodyParser.json());
     app.use(passport.initialize());
     app.use(passport.session());
+
+    require("./routes/feedbackRoutes")(app);
     require('./routes/authRoutes')(app);
     require('./routes/billingRoutes')(app);
     require('./routes/readingRoutes')(app);
@@ -79,11 +49,46 @@ db().then(() => {
     require('./routes/starReviewRoutes')(app);
     require("./routes/audioRoutes")(app);
     require("./routes/scriptRoutes")(app);
-     require("./routes/grammarTopicsRoutes")(app);
+    require("./routes/grammarTopicsRoutes")(app);
     require("./routes/exerciceRoutes")(app);
 
-  
-  
+app.get("/health", (req, res) => {
+  res.json({ status: "ok", mode: "no-db" });
+});
+
+
+if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
+  app.enable("trust proxy");
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+  const path = require('path');
+
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
+
+const db = async () => {
+
+  try {
+    const conn = mongoose.connect(keys.mongoURI);
+    log('MongoDB Connected to DB:', mongoose.connection.name);
+  } catch (error) {
+    log(error);
+    process.exit(1);
+  }
+}
+
+const PORT = process.env.PORT || 8000;
+
+db().then(() => {
+  app.listen(PORT, () => {
+    log("listening for requests");
+
+
+    app.use(bodyParser.json());
 
     if (process.env.NODE_ENV == 'production') {
       // express will serve up production assets

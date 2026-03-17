@@ -138,6 +138,10 @@ function UserExercice({ grammarTopics = [], auth, fetchGrammarTopics }) {
     <div className="page">
       <div className="exercice-div">
         {!gameStarted && (
+          <h2>Select a grammar topic from the options below: </h2>
+        )}
+
+        {!gameStarted && (
           <SelectTopic
             className="exercice-select"
             topics={grammarTopics}

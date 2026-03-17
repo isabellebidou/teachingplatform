@@ -57,7 +57,7 @@ class Header extends Component {
           </a>
         )}
 
-       {(this.props.auth && isOnDocuments === false && isGuest === false) &&
+       {(this.props.auth && isOnDocuments === false && isAdmin === true) &&
           <Link key={4+"docs"}
             to={'/documents'}
             className="button"
