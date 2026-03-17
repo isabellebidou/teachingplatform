@@ -113,7 +113,7 @@ module.exports = (app) => {
     if (!openai) return res.json(fakeResponse) // real
     // if (true) return res.json(fakeResponse);// fake
 
-const systemMessage = `
+    const systemMessage = `
 You are an English teacher AI used inside an automated system.
 
 STRICT RULES:
@@ -125,7 +125,7 @@ STRICT RULES:
 - The output MUST be directly parseable by JSON.parse().
 
 You create grammar gap-fill exercises following the rules provided.
-`;
+`
 
     const userMessage = `
 TASK:
@@ -205,22 +205,25 @@ QUESTION RULES:
 
 OPTIONS RULES:
 - Each question has EXACTLY ${
-  selectedTopic.numberOfOptions > 0 ? selectedTopic.numberOfOptions : 4
-} options.
+      selectedTopic.numberOfOptions > 0 ? selectedTopic.numberOfOptions : 4
+    } options.
 - EXACTLY ONE option has to be correct.
 - ONLY the correct option may be grammatically valid.
 - The correct option must produce a grammatically correct AND logically meaningful sentence.
 - Avoid sentences where the correct answer creates an illogical meaning.
 - each option has to have a different text.
 _ Mark the correct option as correct ("isCorrect: true") and the remaining ones as incorrect ("isCorrect: false")
+- Never return a question with zero correct answers.
 _ The correct option MUST display at a different index everytime.
 
 ${
-  selectedTopic.examples > 0 
-  ?`
+  selectedTopic.examples > 0
+    ? `
  EXAMPLE OF OPTION => EXPECTED 
 ${selectedTopic.examples[0]}
-`:``}
+`
+    : ``
+}
 INVALID OUTPUT (DO NOT PRODUCE):
 - Sentences testing grammar other than the target rule.
 - Gaps solvable by more than one correct answer.
@@ -229,11 +232,13 @@ INVALID OUTPUT (DO NOT PRODUCE):
 
 IMPORTANT:
 ${
-  selectedTopic.detail !== null 
-  ?`
+  selectedTopic.detail !== null
+    ? `
  _ 
 ${selectedTopic.detail}
-`:``}
+`
+    : ``
+}
 
 - Output ONLY the JSON object . Do NOT add explanations or comments.
 _ Before returning the JSON, verify that the correct answer is grammatically valid in the sentence.
@@ -253,35 +258,31 @@ RETURN FORMAT (STRICT JSON ONLY):
   "instructions": "Fill in the gap using ${selectedTopic.name}."
 }
 
-`;
+`
     try {
- const completion = await openai.chat.completions.create({
-  model: "gpt-4.1-mini",
-  response_format: { type: "json_object" },
-  messages: [
-    {
-      role: "system",
-      content: "You are an API. You must return ONLY valid JSON. No text, no explanations."
-    },
-    {
-      role: "user",
-      content: systemMessage + "\n\n" + userMessage
-    }
-  ],
-  max_tokens: 800,
-})
+      const completion = await openai.chat.completions.create({
+        model: "gpt-4.1-mini",
+        response_format: { type: "json_object" },
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are an API. You must return ONLY valid JSON. No text, no explanations.",
+          },
+          {
+            role: "user",
+            content: systemMessage + "\n\n" + userMessage,
+          },
+        ],
+        max_tokens: 800,
+      })
       let gptData
       try {
-        gptData = JSON.parse(completion.choices[0].message.content)
-        console.log("gptData from exerciceRoutes: " + JSON.stringify(gptData))
-      } catch (err) {
-        console.error("JSON parse error, using GPT text as suggestion:", err)
-        gptData = {
-          ...fakeResponse,
-          suggestion: completion.choices[0].message.content,
-        }
-      }
-      //const fixedQuestions = ensureCorrectAnswers(gptData.questions);
+        gptData = await generateWithRetry(async () => {
+          return await JSON.parse(completion.choices[0].message.content)
+        })
+      } catch (error) {}
+
       res.json({ ...fakeResponse, ...gptData })
     } catch (err) {
       console.error("OpenAI error (fallback to fake):", err.name, err.message)
@@ -289,32 +290,32 @@ RETURN FORMAT (STRICT JSON ONLY):
       res.json(fakeResponse)
     }
   })
-  /**
- * Ensure every question has at least one correct answer.
- * If missing, it picks the first option and marks it correct.
- * Logs a warning for debugging.
- */
-function ensureCorrectAnswers(questions) {
-  return questions.map((q, idx) => {
-    const hasCorrect = q.options.some(opt => opt.isCorrect);
+  /*
+   * Ensure every question has at least one correct answer.
+   */
+  function hasExactlyOneCorrectAnswer(questions) {
+    return questions.every(
+      (q) => q.options.filter((opt) => opt.isCorrect === true).length === 1,
+    )
+  }
+  async function generateWithRetry(generateFn, maxRetries = 3) {
+    let attempt = 0
 
-    if (!hasCorrect) {
-      console.warn(
-        `⚠️ Question ${idx + 1} has no correct answer. Marking first option as correct:`,
-        q.sentence
-      );
+    while (attempt < maxRetries) {
+      attempt++
 
-      // mark first option as correct
-      q.options[0].isCorrect = true;
+      console.log(`🔁 Attempt ${attempt}...`)
+
+      const gptData = await generateFn()
+
+      if (hasExactlyOneCorrectAnswer(gptData.questions)) {
+        console.log("✅ Valid questions received")
+        return gptData
+      } else {
+        console.log("❌ Bad GPT response:", JSON.stringify(gptData, null, 2))
+      }
+      console.warn("⚠️ Invalid response (no correct answers). Retrying...")
     }
-
-    return q;
-  });
-}
-
-
-
-
-// Now you can safely pass fixedQuestions to your front-end
-console.log("✅ All questions now have at least one correct answer.");
+    throw new Error("❌ Failed to generate valid questions after retries")
+  }
 }
