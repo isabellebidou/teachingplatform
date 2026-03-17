@@ -61,6 +61,15 @@ position: absolute;
 .odd, th{
     background-color: rgb(183, 187, 184, 0.3);
 }
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #ccc;
+}
+button:hover:not(:disabled) {
+  background-color: #007bff;
+  color: white;
+}
 @media screen and (max-width: 800px) and (orientation: portrait) {
     .next-button{
     position: fixed;

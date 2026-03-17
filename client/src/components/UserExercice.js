@@ -17,10 +17,12 @@ function UserExercice({ grammarTopics = [],
   const [answeredQuestion, setAnsweredQuestion] = useState(0) // index
   const [score, setScore] = useState(0)
   const [gameStarted, setStarted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [finished, setFinished] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [feedback, setFeedBack] = useState([])
   const grade = Math.round((score * 100) / questions.length)
+
 
   useEffect(() => {
     fetchGrammarTopics()
@@ -38,6 +40,7 @@ function UserExercice({ grammarTopics = [],
 
   const handleClick = async (e) => {
     e.preventDefault()
+    setIsLoading(true)
     console.log('selectedTopic',selectedTopic)
     try {
       const res = await axios.post("/api/exercice", { selectedTopic })
@@ -133,8 +136,9 @@ const above80 =()=>{
           />
         )}
         {!gameStarted && selectedTopic && (
-          <button onClick={handleClick}>Generate Exercice</button>
+          <button onClick={handleClick} disabled={isLoading}>{isLoading ?  "Generating..." : "Generate Exercise"}</button>
         )}
+
         {/* once exercice is generated and started */}
         {gameStarted &&  selectedTopic && questions.length > 0 && (
           <h2>{selectedTopic.name}</h2>
