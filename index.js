@@ -46,8 +46,7 @@ app.use(cookieSession(sessionConfig));
 
 app.use(passport.initialize());
 app.use(passport.session());
-require('./routes/healthRoutes')(app);
-
+    require('./routes/healthRoutes')(app);
     require("./routes/feedbackRoutes")(app);
     require('./routes/authRoutes')(app);
     require('./routes/billingRoutes')(app);
@@ -63,13 +62,8 @@ require('./routes/healthRoutes')(app);
     require("./routes/grammarTopicsRoutes")(app);
     require("./routes/exerciceRoutes")(app);
     
-
-
-
 log('process.env.NODE_ENV',process.env.NODE_ENV)
 if (isProduction) {
-  //app.enable("trust proxy");
-  //app.use(enforce.HTTPS({ trustProtoHeader: true }));
   const path = require('path');
 
   app.use(express.static('client/build'));
@@ -80,15 +74,6 @@ if (isProduction) {
 }
 
 
-/*const db = async () => {
-
-  try {
-    const conn = mongoose.connect(keys.mongoURI);
-  } catch (error) {
-    log(error);
-    process.exit(1);
-  }
-}*/
 const db = async () => {
   try {
     await mongoose.connect(keys.mongoURI, {
@@ -99,7 +84,7 @@ const db = async () => {
   } catch (error) {
     error("❌ MongoDB connection error:", error.message);
     // Don't exit immediately in dev; just log
-    if (process.env.NODE_ENV === "production") process.exit(1);
+    if (isProduction) process.exit(1);
   }
 };
 
@@ -110,23 +95,6 @@ db().then(() => {
   });
 });
 
-/*db().then(() => {
-  app.listen(PORT, () => {
-    log("listening for requests");
 
-    app.use(bodyParser.json());
-
-    if (isProduction) {
-      // express will serve up production assets
-      app.use(express.static('client/build'));
-
-      // express will serve up the index.html file if it doesn't recognize the routes
-      const path = require('path');
-      app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-      });
-    }
-  })
-})*/
 
 
