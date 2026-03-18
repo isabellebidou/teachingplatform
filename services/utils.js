@@ -1,8 +1,11 @@
 const logs = false
 
-function log(text) {
+function log(...args) {
   if (process.env.NODE_ENV !== "production" && logs) {
-    console.log(text)
+    for (let index = 0; index < args.length; index++) {
+      console.log(args[index]);
+      
+    }
   }
 }
 function logError(text) {

@@ -31,9 +31,15 @@ app.use(express.json());
     app.use(
       cookieSession({
         maxAge: 30 * 24 * 60 * 60 * 1000,
-        keys: [keys.cookieKey],
+        keys: [keys.cookieKey]
       })
     );
+const isProduction = process.env.NODE_ENV === "production";
+if (isProduction) {
+  sessionConfig.secure = true;
+  sessionConfig.sameSite = "none";
+}
+
     app.use(passport.initialize());
     app.use(passport.session());
 
@@ -56,8 +62,8 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok", mode: "no-db" });
 });
 
-
-if (process.env.NODE_ENV && process.env.NODE_ENV === "production") {
+log('process.env.NODE_ENV',process.env.NODE_ENV)
+if (process.env.NODE_ENV && isProduction) {
   app.enable("trust proxy");
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
   const path = require('path');
@@ -74,7 +80,6 @@ const db = async () => {
 
   try {
     const conn = mongoose.connect(keys.mongoURI);
-    log('MongoDB Connected to DB:', mongoose.connection.name);
   } catch (error) {
     log(error);
     process.exit(1);
@@ -90,7 +95,7 @@ db().then(() => {
 
     app.use(bodyParser.json());
 
-    if (process.env.NODE_ENV == 'production') {
+    if (isProduction) {
       // express will serve up production assets
       app.use(express.static('client/build'));
 
