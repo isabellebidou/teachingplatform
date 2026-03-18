@@ -26,7 +26,7 @@ mongoose.set('strictQuery', false);
 
 //mongoose.connect(keys.mongoURI);
 const app = express();
-app.set("trust proxy", 1);
+
 app.use(express.json());
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -34,17 +34,18 @@ const sessionConfig = {
   maxAge: 30 * 24 * 60 * 60 * 1000,
   keys: [keys.cookieKey],
 };
-
+console.log(sessionConfig)
 if (isProduction) {
   sessionConfig.secure = true;
   sessionConfig.sameSite = "none";
 } else {
   sessionConfig.sameSite = "lax";
 }
+app.set("trust proxy", 1);
 app.use(cookieSession(sessionConfig));
 
-    app.use(passport.initialize());
-    app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
     require("./routes/feedbackRoutes")(app);
     require('./routes/authRoutes')(app);
