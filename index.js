@@ -29,7 +29,7 @@ const app = express();
 
 app.use(express.json());
 const isProduction = process.env.NODE_ENV === "production";
-
+/*
 const sessionConfig = {
   maxAge: 30 * 24 * 60 * 60 * 1000,
   keys: [keys.cookieKey],
@@ -42,7 +42,16 @@ if (isProduction) {
   sessionConfig.sameSite = "lax";
 }
 app.set("trust proxy", 1);
-app.use(cookieSession(sessionConfig));
+app.use(cookieSession(sessionConfig));*/
+app.set("trust proxy", 1); // very important on Railway
+
+app.use(cookieSession({
+  name: "session",
+  maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+  keys: [keys.cookieKey],
+  secure: isProduction,             // send only over HTTPS
+  sameSite: isProduction ? "none" : "lax", // cross-site cookies
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
