@@ -46,6 +46,7 @@ app.use(cookieSession(sessionConfig));
 
 app.use(passport.initialize());
 app.use(passport.session());
+require('./routes/healthRoutes')(app);
 
     require("./routes/feedbackRoutes")(app);
     require('./routes/authRoutes')(app);
@@ -61,15 +62,14 @@ app.use(passport.session());
     require("./routes/scriptRoutes")(app);
     require("./routes/grammarTopicsRoutes")(app);
     require("./routes/exerciceRoutes")(app);
+    
 
-app.get("/health", (req, res) => {
-  res.json({ status: "ok", mode: "no-db" });
-});
+
 
 log('process.env.NODE_ENV',process.env.NODE_ENV)
-if (process.env.NODE_ENV && isProduction) {
-  app.enable("trust proxy");
-  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+if (isProduction) {
+  //app.enable("trust proxy");
+  //app.use(enforce.HTTPS({ trustProtoHeader: true }));
   const path = require('path');
 
   app.use(express.static('client/build'));
@@ -80,7 +80,7 @@ if (process.env.NODE_ENV && isProduction) {
 }
 
 
-const db = async () => {
+/*const db = async () => {
 
   try {
     const conn = mongoose.connect(keys.mongoURI);
@@ -88,14 +88,31 @@ const db = async () => {
     log(error);
     process.exit(1);
   }
-}
+}*/
+const db = async () => {
+  try {
+    await mongoose.connect(keys.mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    log("✅ MongoDB connected:", mongoose.connection.name);
+  } catch (error) {
+    error("❌ MongoDB connection error:", error.message);
+    // Don't exit immediately in dev; just log
+    if (process.env.NODE_ENV === "production") process.exit(1);
+  }
+};
 
 const PORT = process.env.PORT || 8000;
-
 db().then(() => {
   app.listen(PORT, () => {
-    log("listening for requests");
+    console.log("listening for requests");
+  });
+});
 
+/*db().then(() => {
+  app.listen(PORT, () => {
+    log("listening for requests");
 
     app.use(bodyParser.json());
 
@@ -110,6 +127,6 @@ db().then(() => {
       });
     }
   })
-})
+})*/
 
 
