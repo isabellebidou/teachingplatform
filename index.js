@@ -28,17 +28,20 @@ mongoose.set('strictQuery', false);
 const app = express();
 app.set("trust proxy", 1);
 app.use(express.json());
-    app.use(
-      cookieSession({
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-        keys: [keys.cookieKey]
-      })
-    );
 const isProduction = process.env.NODE_ENV === "production";
+
+const sessionConfig = {
+  maxAge: 30 * 24 * 60 * 60 * 1000,
+  keys: [keys.cookieKey],
+};
+
 if (isProduction) {
   sessionConfig.secure = true;
   sessionConfig.sameSite = "none";
+} else {
+  sessionConfig.sameSite = "lax";
 }
+app.use(cookieSession(sessionConfig));
 
     app.use(passport.initialize());
     app.use(passport.session());
