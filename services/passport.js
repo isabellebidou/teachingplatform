@@ -26,6 +26,9 @@ passport.use(
 
       const existingUser = await User.findOne({ googleId: profile.id })
 
+      console.log("👉 CALLBACK USED:", keys.callBack + "/auth/google/callback");
+console.log("👉 CLIENT ID USED:", keys.googleClientID);
+
       if (existingUser) {
         const email = profile.emails?.[0]?.value;
 
