@@ -5,7 +5,6 @@ const passport = require('passport');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const enforce = require('express-sslify');
-const cors = require("cors");
 const log = require('./services/utils').log;
 
 require('./models/User');
@@ -30,28 +29,6 @@ const app = express();
 
 app.use(express.json());
 const isProduction = process.env.NODE_ENV === "production";
-app.use(cors({
-  origin: isProduction
-    ? "teachingplatform-production-0545.up.railway.app" // replace with deployed React frontend
-    : true, // allow all origins in dev
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
-/*
-const sessionConfig = {
-  maxAge: 30 * 24 * 60 * 60 * 1000,
-  keys: [keys.cookieKey],
-};
-console.log(sessionConfig)
-if (isProduction) {
-  sessionConfig.secure = true;
-  sessionConfig.sameSite = "none";
-} else {
-  sessionConfig.sameSite = "lax";
-}
-app.set("trust proxy", 1);
-app.use(cookieSession(sessionConfig));*/
 
 if (isProduction) {
   app.enable("trust proxy"); // very important behind Railway HTTPS
@@ -63,8 +40,7 @@ app.use(cookieSession({
   name: "session",
   maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
   keys: [keys.cookieKey],
-  secure: isProduction,             // send only over HTTPS
-  sameSite: isProduction ? "none" : "lax", // cross-site cookies
+  secure: isProduction             // send only over HTTPS
 }));
 
 app.use(passport.initialize());
