@@ -1,59 +1,94 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { fetchUserAudios } from "../actions";
-import { fetchScripts } from "../actions";
-import AudioRecorder from "./audios/AudioRecorder";
-import AudioList from "./audios/AudioList";
-import SelectSentence from "./SelectSentence";
+import React, { useEffect, useState } from "react"
+import { connect } from "react-redux"
+import { fetchUserAudios } from "../actions"
+import { fetchScripts } from "../actions"
+import { fetchUserAudioUrl } from "../actions"
+import AudioRecorder from "./audios/AudioRecorder"
+import AudioList from "./audios/AudioList"
+import SelectSentence from "./SelectSentence"
+import AudioPlayer from "./audios/AudioPlayer"
 
-function UserDashboard({ audios = [],  scripts = [],fetchUserAudios ,fetchScripts}) {
-  const [refreshKey, setRefreshKey] = useState(0);
-  const [selectedScript, setSelectedScript] = useState(null);
+function UserDashboard({
+  audios = [],
+  scripts = [],
+  fetchUserAudios,
+  fetchScripts,
+  fetchUserAudioUrl,
+}) {
+  const [refreshKey, setRefreshKey] = useState(0)
+  const [selectedScript, setSelectedScript] = useState(null)
+  const [audio, setAudio] = useState(null)
+  const [audioUrl, setAudioUrl] = useState(null)
 
   // 🔄 Fetch audios on mount AND when refreshKey changes
   useEffect(() => {
-    fetchUserAudios();
-  }, [fetchUserAudios, refreshKey]);
+    fetchUserAudios()
+  }, [fetchUserAudios, refreshKey])
 
   useEffect(() => {
-    fetchScripts();
-  }, [fetchScripts]);
+    fetchScripts()
+  }, [fetchScripts])
 
   useEffect(() => {
     if (scripts.length > 0) {
-      setSelectedScript(scripts[0]);
+      setSelectedScript(scripts[0])
     }
-  }, [scripts]);
+  }, [scripts])
 
   const triggerRefresh = () => {
-    setRefreshKey(prev => prev + 1);
-  };
+    setRefreshKey((prev) => prev + 1)
+  }
+  const handleSelectAudio = async (audioItem) => {
+    console.log("click", audioItem._id)
+    try {
+      const { payload } = await fetchUserAudioUrl(audioItem._id)
+      const url = payload.url
+      setAudioUrl(url)
+      console.log("handleSelectAudio Url", url)
+      console.log("audioUrl", audioUrl)
+      setAudio({
+        ...audioItem,
+      })
 
+    } catch (err) {
+      console.error("Error fetching audio URL", err)
+    }
+  }
   return (
     <>
       <div className="page">
         <SelectSentence
-        scripts={scripts}
-        selectedScript={selectedScript}
-        onChange={setSelectedScript}
-      />
-
-        <AudioRecorder 
-          script={selectedScript} 
-          onUploadSuccess={triggerRefresh} />
+          scripts={scripts}
+          selectedScript={selectedScript}
+          onChange={setSelectedScript}
+        />
+        <AudioRecorder
+          script={selectedScript}
+          onUploadSuccess={triggerRefresh}
+        />
+        {audio && audioUrl && (
+        <audio controls className="audioCtrls" src={audioUrl} />
+         )}
+ 
         <AudioList
           audios={audios}
           onDeleteSuccess={triggerRefresh}
+          onSelectAudio={handleSelectAudio}
+          selectedAudioId = {audio._id}
         />
       </div>
     </>
-  );
+  )
 }
 
 function mapStateToProps(state) {
-    console.log("mapStateToProps scripts:", state.scripts);
-  
-  return { audios: state.audios , scripts: state.scripts};
+  console.log("mapStateToProps scripts:", state.scripts)
+
+  return { audios: state.audios, scripts: state.scripts }
 }
 
-export default connect(mapStateToProps, { fetchUserAudios,fetchScripts })(UserDashboard);
+export default connect(mapStateToProps, {
+  fetchUserAudios,
+  fetchScripts,
+  fetchUserAudioUrl,
+})(UserDashboard)

@@ -119,7 +119,7 @@ module.exports = (app) => {
         log(element._id);
       }
 
-      let audiosWithUrls = [];
+     let audiosWithUrls = [];
        audiosWithUrls = await Promise.all(
         audios.map(async (audio) => {
           const url = await getObjectSignedUrl(audio.s3Key);
@@ -132,9 +132,31 @@ module.exports = (app) => {
 
       log(audiosWithUrls.length+ "   from end of app.get")
       res.send(audiosWithUrls);
+    //  res.send(audios)
     } catch (err) {
       error(err);
       res.status(500).send("Failed to fetch audios");
     }
   });
+
+
+app.get("/api/audio-url/:id", requireLogin, async (req, res) => {
+  try {
+    console.log("/api/audio-url/:id", req.params.id)
+    const audio = await Audio.findById(req.params.id);
+    if (!audio) return res.status(404).json({ error: "Audio not found" });
+
+    // verify user owns the audio
+    if (audio._user.toString() !== req.user.id) {
+      return res.status(403).json({ error: "Unauthorized" });
+    }
+
+    const url = await getObjectSignedUrl(audio.s3Key);
+    console.log("/api/audio-url/:id url", url)
+    res.json({ url });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to generate URL" });
+  }
+});
 };

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
-import AudioPlayer from "../AudioPlayer";
+import colour from "sharp/lib/colour";
 
-function AudioList({ audios = [], onDeleteSuccess }) {
+
+
+function AudioList({ audios = [], onDeleteSuccess, onSelectAudio, selectedAudioId }) {
   const [selectedAudios, setSelectedAudios] = useState([]);
   const [editMode, setEditMode] = useState(false);
+  
+
 
   const toggleEditMode = () => {
     setEditMode(prev => !prev);
@@ -32,12 +36,16 @@ function AudioList({ audios = [], onDeleteSuccess }) {
     <section>
       <h2>Audios</h2>
       <div className="grid-container" >
+   
 
         {audios.length === 0 && <p>You may record yourself</p>}
 
         {audios.map((audio, i) => (
-          <div key={audio._id} className="photothumbnail">
-            <AudioPlayer src={audio.url} />
+          
+          <div key={audio._id}
+  className={`audiothumbnail ${audio._id === selectedAudioId ? 'selected' : ''}`}
+  onClick={() => onSelectAudio(audio)}
+>
 
             {editMode && (
               <input

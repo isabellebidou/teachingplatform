@@ -5,6 +5,7 @@ export const FETCH_LINKS = 'fetch_links';
 export const FETCH_FAQS = 'fetch_faqs';
 export const FETCH_USER_DATA = 'fetch_user_data';
 export const FETCH_USER_AUDIOS = 'fetch_user_audios';
+export const FETCH_USER_AUDIO_URL = 'FETCH_USER_AUDIO_URL';
 export const FETCH_COOKIE_VALUE = 'FETCH_COOKIE_VALUE';
 export const UPDATE_USER_DATA = 'update_user_data';
 export const SELECT_USER = 'select_user';

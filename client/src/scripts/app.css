@@ -9,10 +9,7 @@
 
 }
 
-.flag{
-  color: var(--strongpink);
-  font-size: larger;
-}
+
 body,#root
 {
 overflow:hidden;
@@ -130,16 +127,9 @@ li.div {
   list-style-type: none;
 }
 
-/* label {
-  float: left;
-  clear: both;
-}
-input {
-  float: right;
-  clear: both;
-} */
 
-.photothumbnail {
+
+.audiothumbnail {
   margin: 0.5em;
   position: relative;
   display: inline-block;
@@ -155,11 +145,6 @@ input {
 }
 .bkground{
   background-color:var(--background);
-}
-
-.productimg{
-
-
 }
 
 
@@ -197,7 +182,6 @@ input {
   visibility: visible;
 } */
 fieldset {
-
 
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
@@ -250,12 +234,7 @@ legend {
   height: 2em;
 }
 
-.detailimage {
-  position: fixed;
-  left: 5%;
-  top: 15%;
-  vertical-align: top;
-}
+
 
 .editUserForm {
   position: absolute;
@@ -545,19 +524,9 @@ h3 {
   font-style: italic;
   text-align: center;
   text-decoration: none;
-  
-
 }
 
-.lymphaticpic{
-  float:right;
-  max-width: 40%;
-}
-.adrenalspic{
-  float: left;
-  max-width: 40%;
-  padding: 1.5em;
-}
+
 .me{
   float:right;
   max-width: 15%;
@@ -566,18 +535,7 @@ h3 {
   padding: 2em;
 
 }
-.amazonproductpic {
-  margin: 1em;
-  opacity: 0.7;
-  display: block;
-  margin: auto auto;
-  width: auto;
-  max-height: 250px;
-  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
-  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
 
-}
 
 .imgright,
 .imgleft {
@@ -604,8 +562,6 @@ h3 {
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
 
 }
-
-
 
 
 .userrole {
@@ -672,17 +628,7 @@ p {
   overflow-y: auto;
 
 }
-.shop-grid-container {
-  margin: auto;
-  color: rgb(90, 149, 79);
-  display: grid;
-  align-content: center;
-  grid-template-columns: auto auto auto;
-  grid-gap: 5px;
-  /* background-color: #2196F3;  Comment this out later to remove the background color when not needed */
-  padding: 1em;
-  overflow-y: auto;
-}
+
 .sets-grid-container {
   margin: auto;
   color: rgba(248, 245, 245, 0.89);
@@ -700,31 +646,7 @@ label {
   /*background-color: rgba(255, 255, 255, 0.4);*/
   border-radius: 1%;
 }
-.affiliatelogo{
-  width: 20%;
-  padding: 2em;
-  display: block;
-  margin: 0 auto;
 
-  
-
-}
-.affiliatelogocontainer{
-  width: 80%;
-  opacity: 0.7;
-  background-color: rgba(var(--background), 0.9);
-
-}
-.affiliateflagcontainer{
-  width: 100%;
-  opacity: 0.7;
-  border-radius: 50%;
-  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
-  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
-  
-
-}
 .left{float:left}
 .right{float:right}
 .button,
@@ -743,7 +665,6 @@ button {
   border-radius: 4%;
   padding-left: 0.5em;
   padding-right: 0.5em;
-
 
   cursor: pointer;
 }
@@ -795,7 +716,6 @@ a.button:active {
   -webkit-box-shadow: 1px 3px 5px 0px rgba(0, 0, 0, 0.44);
   -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
   box-shadow: 1px 3px 5px 0px rgba(0, 0, 0, 0.44);
-
   padding-left: 1em;
   padding-right: 1em;
   padding-top: 0.3em;
@@ -908,7 +828,6 @@ select,
 .submit {
   width: 30%;
   right: 15%;
-
 }
 
 .submit:hover {
@@ -965,7 +884,6 @@ select,
 
 }
 
-
 .itemtitle {
   display: block;
   color: #7f5f87;
@@ -990,6 +908,7 @@ dl,
 
   border-radius: 2%;
 
+
 }
 
 .descriptionp {
@@ -1004,6 +923,15 @@ dl,
 
 
 
+}
+.audiothumbnail {
+  border: 2px solid transparent;
+  transition: border 0.2s;
+}
+
+.audiothumbnail.selected {
+  border-color: #ff6600; /* or any color */
+  transform: scale(1.05); /* optional effect */
 }
 
 .disclaimerp {
@@ -1074,4 +1002,7 @@ dd {
   color: var(--green);
   background-color: var(--background)
 
+}
+.audioCtrls{
+  padding: 1em;
 }
