@@ -118,8 +118,7 @@ module.exports = (app) => {
         const element = audios[index];
         log(element._id);
       }
-
-     let audiosWithUrls = [];
+     /*let audiosWithUrls = [];
        audiosWithUrls = await Promise.all(
         audios.map(async (audio) => {
           const url = await getObjectSignedUrl(audio.s3Key);
@@ -128,11 +127,11 @@ module.exports = (app) => {
             url
           };
         })
-      );
+      );*/
 
-      log(audiosWithUrls.length+ "   from end of app.get")
-      res.send(audiosWithUrls);
-    //  res.send(audios)
+     // log(audiosWithUrls.length+ "   from end of app.get")
+     // res.send(audiosWithUrls);
+     res.send(audios)
     } catch (err) {
       error(err);
       res.status(500).send("Failed to fetch audios");
