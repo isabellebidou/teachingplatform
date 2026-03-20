@@ -91,7 +91,6 @@ export const fetchUserAudios = () => async (dispatch) => {
 };
 export const fetchUserAudioUrl = (audioId) => async (dispatch) => {
   const res = await axios.get(`/api/audio-url/${audioId}`);
-  console.log(fetchUserAudioUrl,`/api/audio-url/${audioId}`);
   dispatch({
     type: FETCH_USER_AUDIO_URL,
     payload: { url: res.data.url }

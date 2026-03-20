@@ -142,7 +142,6 @@ module.exports = (app) => {
 
 app.get("/api/audio-url/:id", requireLogin, async (req, res) => {
   try {
-    console.log("/api/audio-url/:id", req.params.id)
     const audio = await Audio.findById(req.params.id);
     if (!audio) return res.status(404).json({ error: "Audio not found" });
 
@@ -152,10 +151,9 @@ app.get("/api/audio-url/:id", requireLogin, async (req, res) => {
     }
 
     const url = await getObjectSignedUrl(audio.s3Key);
-    console.log("/api/audio-url/:id url", url)
     res.json({ url });
   } catch (err) {
-    console.error(err);
+    error(err);
     res.status(500).json({ error: "Failed to generate URL" });
   }
 });
