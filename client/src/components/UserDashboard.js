@@ -6,7 +6,7 @@ import { fetchUserAudioUrl } from "../actions"
 import AudioRecorder from "./audios/AudioRecorder"
 import AudioList from "./audios/AudioList"
 import SelectSentence from "./SelectSentence"
-import AudioPlayer from "./audios/AudioPlayer"
+
 
 function UserDashboard({
   audios = [],
@@ -66,15 +66,14 @@ function UserDashboard({
           script={selectedScript}
           onUploadSuccess={triggerRefresh}
         />
-        {audio && audioUrl && (
-        <audio controls className="audioCtrls" src={audioUrl} />
-         )}
  
         <AudioList
           audios={audios}
           onDeleteSuccess={triggerRefresh}
           onSelectAudio={handleSelectAudio}
-          selectedAudioId = {audio._id}
+          selectedAudioId={audio?._id}  
+          selectedAudioUrl = {audioUrl}  
+
         />
       </div>
     </>

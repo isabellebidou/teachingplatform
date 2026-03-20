@@ -1,52 +1,49 @@
-import React, { useState } from "react";
-import axios from "axios";
-import colour from "sharp/lib/colour";
+import React, { useState } from "react"
+import axios from "axios"
+import colour from "sharp/lib/colour"
 
-
-
-function AudioList({ audios = [], onDeleteSuccess, onSelectAudio, selectedAudioId }) {
-  const [selectedAudios, setSelectedAudios] = useState([]);
-  const [editMode, setEditMode] = useState(false);
-  
-
+function AudioList({
+  audios = [],
+  onDeleteSuccess,
+  onSelectAudio,
+  selectedAudioId,
+  selectedAudioUrl,
+}) {
+  const [selectedAudios, setSelectedAudios] = useState([])
+  const [editMode, setEditMode] = useState(false)
 
   const toggleEditMode = () => {
-    setEditMode(prev => !prev);
-    setSelectedAudios([]);
-  };
+    setEditMode((prev) => !prev)
+    setSelectedAudios([])
+  }
 
   const deleteAudios = async () => {
     await axios.delete("/api/user_audios/delete", {
-      data: { idsToDelete: selectedAudios }
-    });
+      data: { idsToDelete: selectedAudios },
+    })
 
-    setSelectedAudios([]);
-    onDeleteSuccess(); // 🔔 notify parent
-  };
+    setSelectedAudios([])
+    onDeleteSuccess() // 🔔 notify parent
+  }
 
   const handleSelected = (id) => {
-    setSelectedAudios(prev =>
-      prev.includes(id)
-        ? prev.filter(x => x !== id)
-        : [...prev, id]
-    );
-  };
+    setSelectedAudios((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
+    )
+  }
 
   return (
     <section>
       <h2>Audios</h2>
-      <div className="grid-container" >
-   
-
+      <div className="grid-container">
         {audios.length === 0 && <p>You may record yourself</p>}
 
         {audios.map((audio, i) => (
-          
-          <div key={audio._id}
-  className={`audiothumbnail ${audio._id === selectedAudioId ? 'selected' : ''}`}
-  onClick={() => onSelectAudio(audio)}
->
-
+          <div
+            key={audio._id}
+            className={`audiothumbnail ${audio._id === selectedAudioId ? "selected" : ""}`}
+            onClick={() => onSelectAudio(audio)}
+          >
             {editMode && (
               <input
                 type="checkbox"
@@ -55,40 +52,44 @@ function AudioList({ audios = [], onDeleteSuccess, onSelectAudio, selectedAudioI
               />
             )}
 
-            <p>audio #{i + 1 }: "{audio._script?.sentence}" recorded on {new Date(audio.createdAt).toLocaleDateString()}</p>
-            {audio.transcript && (
-             <p>transcript:  "{audio.transcript}"</p>
-             )}
+            <p>
+              audio #{i + 1}: "{audio._script?.sentence}" recorded on{" "}
+              {new Date(audio.createdAt).toLocaleDateString()}
+            </p>
+            {audio.transcript && <p>transcript: "{audio.transcript}"</p>}
             {audio.feedback && audio.feedback.length > 0 && (
               <div>
-                <p><strong>Feedback:</strong></p>
+                <p>
+                  <strong>Feedback:</strong>
+                </p>
                 <ul>
                   {audio.feedback.map((line, index) => (
                     <li key={index}>{line}</li>
                   ))}
                 </ul>
+                 {audio._id === selectedAudioId && selectedAudioUrl && (
+                  <audio
+                    controls
+                    className="audioCtrls"
+                    src={selectedAudioUrl}
+                  />
+                )}
               </div>
             )}
-            
           </div>
         ))}
-        </div>
-        {audios.length > 0 && (
-          <>
-            <button onClick={toggleEditMode}>
-              {editMode ? "Disable edit" : "Enable edit"}
-            </button>
+      </div>
+      {audios.length > 0 && (
+        <>
+          <button onClick={toggleEditMode}>
+            {editMode ? "Disable edit" : "Enable edit"}
+          </button>
 
-            {editMode && (
-              <button onClick={deleteAudios}>
-                Delete selected
-              </button>
-            )}
-          </>
-        )}
-      
+          {editMode && <button onClick={deleteAudios}>Delete selected</button>}
+        </>
+      )}
     </section>
-  );
+  )
 }
 
-export default AudioList;
+export default AudioList
