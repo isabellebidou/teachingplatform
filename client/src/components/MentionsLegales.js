@@ -10,17 +10,17 @@ const MentionsLegales = () => {
 </p>
             <h2>Edition du site </h2>
             <p className='itemp'>
-            Le présent site, accessible à l’URL <a href=""></a>(le « Site »), est édité par :<br />
+            Le présent site, accessible à l’URL <a href="https://teachingplatform-production-0545.up.railway.app/">https://teachingplatform-production-0545.up.railway.app/</a>(le « Site »), est édité par :<br />
 
-Isabelle Bidou, résidant Lorem Ipsum, Lorem Ipsum, France de nationalité xxxxxxxxxxx (xxxxx), né(e) le Lorem Ipsum,  inscrite au R.C.S. de PARIS sous le numéro Paris xxxxxxx,
+Isabelle Bidou, résidant Lorem Ipsum, Lorem Ipsum, France de nationalité française , née le 28/10/1971,  inscrite au R.C.S. de PARIS sous le numéro Paris does not apply,
 
-Le numéro individuel TVA de l’éditeur est : .
+Le numéro individuel TVA de l’éditeur est : does not apply.
 
             </p>
             <h2>Hébergement
 </h2>
             <p className='itemp'>
-            Le Site est hébergé par la société Lorem Ipsum, (contact téléphonique ou email : +Lorem Ipsum).
+            Le Site est hébergé par la société Railway, (contact téléphonique ou email : Phone: (415) 707-7675; Address: 548 Market St PMB 68956, San Francisco, California 94104).
 </p>
             <h2>Directeur de publication 
 </h2>
@@ -28,7 +28,7 @@ Le numéro individuel TVA de l’éditeur est : .
 
             </p>
             <h2>Nous contacter </h2>
-            <p className='itemp'>Par téléphone : +Lorem Ipsum<br />
+            <p className='itemp'>Par téléphone :+33 (0)753672587  <br />
 Par email : isa.bidou@gmail.com<br />
 Par courrier : 52 avenue de Choisy, 75013 Paris, France<br />
 
@@ -39,17 +39,17 @@ Par courrier : 52 avenue de Choisy, 75013 Paris, France<br />
 </p>
             <h2>Conditions Generales de vente
 </h2>
-            <p className='itemp'>LLorem Ipsum.
+            <p className='itemp'>Does not apply.
 </p>
             <h2>Delais de livraison
             </h2>
-            <p className='itemp'>Deux semaines après paiement.
+            <p className='itemp'>Does not apply.
 
             </p>
             <h2>Modalités de paiement et remboursement
 
             </h2>
-            <p className='itemp'>Lorem Ipsum.
+            <p className='itemp'>Does not apply.
 </p>
 
         </div>

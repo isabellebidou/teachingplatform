@@ -6,6 +6,8 @@ import { fetchUserAudioUrl } from "../actions"
 import AudioRecorder from "./audios/AudioRecorder"
 import AudioList from "./audios/AudioList"
 import SelectSentence from "./SelectSentence"
+import StarReview from "./StarReview";
+
 
 
 function UserDashboard({
@@ -55,6 +57,7 @@ function UserDashboard({
   return (
     <>
       <div className="page">
+
         <SelectSentence
           scripts={scripts}
           selectedScript={selectedScript}
@@ -73,6 +76,7 @@ function UserDashboard({
           selectedAudioUrl = {audioUrl}  
 
         />
+        <StarReview />
       </div>
     </>
   )

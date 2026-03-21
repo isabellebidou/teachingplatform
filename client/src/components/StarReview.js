@@ -10,23 +10,18 @@ function StarReview({ auth }) {
   const [number, setNumber] = useState(0);
   const [hoverStar, setHoverStar] = useState(undefined);
   const [visibility, setVisibility] = useState("hidden");
-  const [hasCompletedReadings, setCompletedReadings] = useState(false);
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
  
   useEffect(() => {
-    fetchItems();
+ 
 
     if (auth) {
       const toggleReviewDiv = document.getElementById('toggleReviewDiv');
-      if (!auth.hasReviews && hasCompletedReadings) {
+      if (!auth.hasReviews) {
         setVisibility('visible')
         if (toggleReviewDiv) {
           toggleReviewDiv.style.visibility = 'hidden';
-        }
-      } else if (hasCompletedReadings){
-        if (toggleReviewDiv) {
-          toggleReviewDiv.style.visibility = 'visible';
         }
       } else {
         if (toggleReviewDiv) {
@@ -36,15 +31,7 @@ function StarReview({ auth }) {
       }
     }
 
-  }, [auth, hasCompletedReadings]);
-
-  const fetchItems = async () => {
-    const userData = await fetch(`/api/readings/completed`);
-    const items = await userData.json();
-    const hasCompletedReadings = items && items.length > 0 ? true : false
-    setCompletedReadings(hasCompletedReadings);
-
-  };
+  }, [auth]);
 
 
   const handleClick = async () => {

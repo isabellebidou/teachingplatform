@@ -35,18 +35,20 @@ class Header extends Component {
     const isOnExercice = this.props.location.pathname === '/exercice';
 
 
+
+
     return (
 
       <div className="authentication">
         
-        <Link key={4 + '/shop'}
+       {/* <Link key={4 + '/shop'}
           to={'/shop'}
           className="button"
 
         >
           link
         </Link>
-
+      */}
         {isAdmin && (
           <a key={9} className="button" href="/users"><FaUsers
             style={{ color: "#7f5f87" }}

@@ -52,9 +52,9 @@ class App extends Component {
             <Header />
             
             <Route exact path="/" component={Landing} />
-            <Route path="/api/feedback" component={Feedback } />
+            <Route path="/api/feedback" component={Feedback} />
             <Route path="/payment" component={Payment } />
-            <Route exact path="/completion" component={Completion } />
+            <Route exact path="/completion" component={Completion} />
             <ProtectedRoute exact path="/dashboard" component={UserDashboard} />
             <ProtectedRoute exact path="/board" component={UserBoard} />
             <ProtectedRoute exact path="/exercice" component={UserExercice} />

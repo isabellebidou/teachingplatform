@@ -12,22 +12,22 @@ const LegalNotice = () => {
             </p>
             <h2>Editing the site</h2>
             <p className='itemp'>
-                This site, accessible at the URL <a href="Lorem Ipsum">Lorem Ipsum </a> (the “Site”), is published by:<br />
+                This site, accessible at the URL <a href="https://teachingplatform-production-0545.up.railway.app/">https://teachingplatform-production-0545.up.railway.app/ </a> (the “Site”), is published by:<br />
 
-                Isabelle Bidou, residing at xxxxxxxx France of xxxxxxx nationality (France), born on xxxxxxxxx, registered with the RCS of PARIS under number Paris 919846113,
+                Isabelle Bidou, residing at 52 avenue de Choisy France of French nationality (France), born on 28/10/1971, 
 
-                The publisher's individual VAT number is: xxxxxxxxxxxxxxx.
+                The publisher's individual VAT number is: does not apply.
             </p>
             <h2>Accommodation</h2>
             <p className='itemp'>
-                The Site is hosted by xxxxxxxxxxxxxxxxxxxxxxx, (telephone or email contact: +Lorem Ipsum).
+                The Site is hosted by Railway, (telephone or email contact: Phone: (415) 707-7675; Address: 548 Market St PMB 68956, San Francisco, California 94104).
 
             </p>
             <h2>Publication director</h2>
             <p className='itemp'>The Publication Director of the Site is Isabelle Bidou.
             </p>
             <h2>Contact us</h2>
-            <p className='itemp'>By phone: Lorem Ipsum<br />
+            <p className='itemp'>By phone: +33 (0)753672587<br />
                 By email : isa.bidou@gmail.com<br />
                 By mail: 52 avenue de Choisy, 75013 Paris, France<br />
             </p>
@@ -37,13 +37,13 @@ const LegalNotice = () => {
             <h2>Terms of Sales</h2>
             <p className='itemp'>The company provides services including the teaching of languages.
             </p>
-            <h2>Delivery delay
+            <h2>Delivery delay: does not apply
             </h2>
             <p className='itemp'>Lorem Ipsum.
             </p>
             <h2>Terms of payment and reimbursement
             </h2>
-            <p className='itemp'>Payments are Lorem Ipsum.
+            <p className='itemp'>does not apply.
             </p>
 
         </div>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Feedback from "./FeedbackForm";
+//import Feedback from "./FeedbackForm";
 import FaqList from "./faqs/FaqList";
 import FaqForm from "./faqs/FaqForm";
 import StarReviewList from "./starreviews/StarReviewList";
@@ -15,15 +15,11 @@ import { fetchCookieValue } from '../actions';
 
 
 
-
-
 class Landing extends Component {
     componentDidMount() {
         this.props.fetchCookieValue();
        // $(".logo").removeClass("logo").addClass("logo_mounted");
-
     }
-
 
     handleClose(e) {
 
@@ -33,20 +29,14 @@ class Landing extends Component {
     renderFaqForm() {
         if (this.props.auth && this.props.auth.type === "admin") {
             return (
-
                 <FaqForm />
-
             );
-
         }
-
     }
     renderLinkForm() {
         if (this.props.auth && this.props.auth.type === "admin") {
             return 
-
         }
-
     }
     handleAccept = () => {
         updateCookieAcceptance(true);
@@ -64,12 +54,11 @@ class Landing extends Component {
         if (this.props.auth) {
             return (
 
-                <Link to="/readings" className="">
+                <Link to="/dashboard" className="">
                     <button className="actionbook" >test your pronunciation skills</button>
                 </Link>
 
             );
-
 
         } else {
             return (
@@ -79,9 +68,7 @@ class Landing extends Component {
                     <a href="/auth/google" ><img alt="google sign in" loading="eager" title="sign in with google" src="/btn_google_signin_dark_normal_web.png" /></a>
                 </span>
             );
-
         }
-
     }
     render() {
         const { cookie } = this.props;
@@ -93,7 +80,7 @@ class Landing extends Component {
     const countryCode = browserLocale.split('-')[1];
         return (
             <div className="page" >
-
+{/* TBD
                 <div className="navigation-container">
                     <a className="nav-link" href="#can">Learning</a>
                     <a className="nav-link" href="#reviews">Reviews</a>
@@ -102,13 +89,14 @@ class Landing extends Component {
                     <a className="nav-link" href="#links">Resources & links</a>
                     <a className="nav-link" href="#contact">Contact</a>
                 </div>
-
-                <h1>
-                    Learning English
-                </h1>
                 <p className="disclaimerp">
                 Disclaimer: The content provided on this page is for informational and recreational purposes only.
                 </p>
+*/}
+                <h1>
+                    Learning English
+                </h1>
+
                 <div className="col">
 
                 </div>
@@ -119,12 +107,11 @@ class Landing extends Component {
                     <span id="reviews" >
 
                     </span>
-                    <StarReviewList />
-                    {(this.props.auth && this.props.auth.numberOfReadings > 0) &&
-                        <Link to="/readings" className="">
-                            <button className="actionupload" >leave a review on your profile</button>
-                        </Link>}
 
+                    {this.props.auth &&
+                        <Link to="/dashboard" className="">
+                            <button className="actionupload" >leave a review</button>
+                        </Link>}
 
                 </fieldset>
                 <fieldset>
@@ -138,29 +125,24 @@ class Landing extends Component {
 
 
                 </fieldset>
-
-
-
-
+{/* 
                 <fieldset>
                     <legend><h2> Links </h2></legend>
 
                     <span id="links" >
 
                     </span>
-
-
                     {this.renderLinkForm()}
 
 
                 </fieldset>
-
+*/}
                 <fieldset>
                     <legend><h2> Contact </h2></legend>
 
                     <div id="contact" >
                     <img className ="me"  src="/me.png" alt="isabelle bidou" loading="lazy" title="Isabelle Bidou"></img>
-                        <p className="itemp">My name is Isabelle Bidou. If you have questions don't want to do it online... feel free to contact me. <a href="mailto:isa.bidou@gmail.com?subject=iridology information">isa.bidou@gmail.com</a></p>
+                        <p className="itemp">My name is Isabelle Bidou. If you have questions and you don't want to do it online... feel free to contact me. <a href="mailto:isa.bidou@gmail.com?subject=iridology information">isa.bidou@gmail.com</a></p>
 
                     </div>
 
@@ -206,19 +188,14 @@ class Landing extends Component {
                                 Mentions legales
                             </Link>
                         </span>}
-
                     {" "}
-
                 </CookieConsent>
             </div>
         );
     }
-
 }
 function mapStateToProps({ auth, cookie }) {
-
     return { auth, cookie }
-
 };
 
 export default connect(mapStateToProps, { fetchCookieValue })(Landing);
