@@ -34,6 +34,7 @@ import MentionsLegales from "./MentionsLegales";
 
 
 
+
 class App extends Component {
   componentDidMount(){
     this.props.fetchUser();

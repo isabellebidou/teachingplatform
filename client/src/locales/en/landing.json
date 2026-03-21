@@ -1,0 +1,17 @@
+{
+  "btnActionbook": "test your pronunciation skills",
+  "btnActionsign": "Sign in and start learning today!",
+  "h1Title": "Learning English",
+  "h2Features":"Features",
+  "h2AudioFeedback": "🎤 Audio Feedback",
+  "pAudioFeedback":"Users can record a short spoken statement. The system analyzes pronunciation. Users receive feedback to help improve their speaking skills.",
+  "h2SpellingFeedback":"✍️ Spelling Feedback",
+  "pSpellingFeedback":"Users can write and submit a short text. The system checks for spelling mistakes. Feedback is provided to help users correct errors.",
+  "h2GrammarPractice":"📘 Grammar Practice",
+  "pGrammarPractice": "Users can select a grammar topic. The system generates an A1-level gap-fill quiz. Users receive feedback on their answers to support learning.",
+  "h2Reviews": "Reviews",
+  "btnLeaveReview":"leave a review",
+  "h2faq": "Frequently Asked Questions",
+  "pContact":"My name is Isabelle Bidou. If you have questions, feel free to contact me",
+  "pCookie":"This website uses cookies for authentication with google OAuth, to enhance the user experience. If you consent tousing cookies. In order to try the features you must authenticate with your google credentials."
+}

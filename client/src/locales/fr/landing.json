@@ -1,0 +1,25 @@
+{
+  "btnActionbook": "Testez votre prononciation",
+  "btnActionsign": "Connectez-vous et commencez à apprendre dès aujourd’hui !",
+  "h1Title": "Apprendre l’anglais",
+
+  "h2Features": "Fonctionnalités",
+
+  "h2AudioFeedback": "🎤 Retour sur la prononciation",
+  "pAudioFeedback": "Les utilisateurs peuvent enregistrer une courte phrase orale. Le système analyse la prononciation et fournit un retour pour aider à améliorer l’expression orale.",
+
+  "h2SpellingFeedback": "✍️ Retour sur l’orthographe",
+  "pSpellingFeedback": "Les utilisateurs peuvent rédiger et soumettre un court texte. Le système vérifie les fautes d’orthographe et fournit un retour pour aider à les corriger.",
+
+  "h2GrammarPractice": "📘 Pratique de la grammaire",
+  "pGrammarPractice": "Les utilisateurs peuvent choisir un point de grammaire. Le système génère un exercice à trous de niveau A1. Un retour est fourni pour aider à progresser.",
+
+  "h2Reviews": "Avis",
+  "btnLeaveReview": "Laisser un avis",
+
+  "h2faq": "Questions fréquentes",
+
+  "pContact": "Je m’appelle Isabelle Bidou. Si vous avez des questions, n’hésitez pas à me contacter.",
+
+  "pCookie": "Ce site utilise des cookies pour l’authentification avec Google OAuth et pour améliorer l’expérience utilisateur. En acceptant l’utilisation des cookies, vous pourrez tester les fonctionnalités après vous être connecté avec votre compte Google."
+}

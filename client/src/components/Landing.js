@@ -10,6 +10,9 @@ import $ from "jquery"
 import CookieConsent from "react-cookie-consent"
 import { updateCookieAcceptance } from "../actions"
 import { fetchCookieValue } from "../actions"
+import { withTranslation } from "react-i18next"
+import enLanding from "../locales/en/landing.json"
+import frLanding from "../locales/fr/landing.json"
 
 class Landing extends Component {
   componentDidMount() {
@@ -71,6 +74,7 @@ class Landing extends Component {
   }
   render() {
     const { cookie } = this.props
+    const { t } = this.props;
     // Get the browser locale
 
     const browserLocale = navigator.language || navigator.userLanguage
@@ -92,38 +96,27 @@ class Landing extends Component {
                 Disclaimer: The content provided on this page is for informational and recreational purposes only.
                 </p>
         */}
-        <h1>Learning English</h1>
+        <h1>{t("h1Title")}</h1>
 
         <div className="col"></div>
 
         <fieldset>
           <legend>
-            <h2> Features </h2>
+            <h2>{t("h2Features")}</h2>
           </legend>
-          <h2>🎤 Audio Feedback</h2>
-          <p>
-            Users can record a short spoken statement. The system analyzes
-            pronunciation. Users receive feedback to help improve their speaking
-            skills.
-          </p>
+          <h2>{t("h2AudioFeedback")}</h2>
+          <p>{t("pAudioFeedback")}</p>
 
-          <h2>✍️ Spelling Feedback</h2>
-          <p>
-            Users can write and submit a short text. The system checks for
-            spelling mistakes. Feedback is provided to help users correct
-            errors.
-          </p>
-          <h2>📘 Grammar Practice</h2>
-          <p>
-            Users can select a grammar topic. The system generates an A1-level
-            gap-fill quiz. Users receive feedback on their answers to support
-            learning.
-          </p>
+          <h2>{t("h2SpellingFeedback")}</h2>
+          <p>{t("pSpellingFeedback")}</p>
+
+          <h2>{t("h2GrammarPractice")}</h2>
+          <p>{t("pGrammarPractice")}</p>
         </fieldset>
 
         <fieldset>
           <legend>
-            <h2> Reviews </h2>
+            <h2>{t("h2Reviews")}</h2>
           </legend>
 
           <span id="reviews">
@@ -132,13 +125,13 @@ class Landing extends Component {
 
           {this.props.auth && (
             <Link to="/dashboard" className="">
-              <button className="actionupload">leave a review</button>
+              <button className="actionupload">{t("btnLeaveReview")}</button>
             </Link>
           )}
         </fieldset>
         <fieldset>
           <legend>
-            <h2> Frequently Asked Questions </h2>
+            <h2>{t("h2faq")}</h2>
           </legend>
 
           <span id="faq"></span>
@@ -171,8 +164,8 @@ class Landing extends Component {
               title="Isabelle Bidou"
             ></img>
             <p className="itemp">
-              My name is Isabelle Bidou. If you have questions, feel free to contact me.{" "}
-              <a href="mailto:isa.bidou@gmail.com?subject=iridology information">
+              {t("pContact")}{" "}
+              <a href="mailto:isa.bidou@gmail.com?subject=Teaching Platform Enquiry">
                 isa.bidou@gmail.com
               </a>
             </p>
@@ -185,7 +178,7 @@ class Landing extends Component {
         <CookieConsent
           location="bottom"
           buttonText="ok"
-          cookieName="iridologyCookieConsent"
+          cookieName="TeachingPlatformCookieConsent"
           style={{ background: "#2B373B" }}
           buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
           expires={150}
@@ -198,11 +191,7 @@ class Landing extends Component {
           }}
           overlay
         >
-          This website uses cookies for authentication with google OAuth and
-          payment with Stripe, to enhance the user experience. If you consent to
-          using cookies you can authentify with your google credentials and
-          order a reading online. Alternatively you can send me an email or book
-          a reading via fiverr.
+          {t("pCookie")}
           <br />
           {(countryCode !== "FR" || countryCode !== "fr") && (
             <span className="item">
@@ -227,4 +216,6 @@ function mapStateToProps({ auth, cookie }) {
   return { auth, cookie }
 }
 
-export default connect(mapStateToProps, { fetchCookieValue })(Landing)
+export default connect(mapStateToProps, { fetchCookieValue })(
+  withTranslation("landing")(Landing),
+)
