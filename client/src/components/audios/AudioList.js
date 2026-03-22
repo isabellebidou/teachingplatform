@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import axios from "axios"
 import colour from "sharp/lib/colour"
+import { useTranslation } from "react-i18next";
 
 function AudioList({
   audios = [],
@@ -11,6 +12,7 @@ function AudioList({
 }) {
   const [selectedAudios, setSelectedAudios] = useState([])
   const [editMode, setEditMode] = useState(false)
+  const { t } = useTranslation("audio")
 
   const toggleEditMode = () => {
     setEditMode((prev) => !prev)
@@ -34,9 +36,9 @@ function AudioList({
 
   return (
     <section>
-      <h2>Audios</h2>
+      <h2>{t("h2Audios")}</h2>
       <div className="grid-container">
-        {audios.length === 0 && <p>You may record yourself</p>}
+        {audios.length === 0 && <p>{t("pRecordedYourself")}</p>}
 
         {audios.map((audio, i) => (
           <div
@@ -53,10 +55,10 @@ function AudioList({
             )}
 
             <p>
-              audio #{i + 1}: "{audio._script?.sentence}" recorded on{" "}
+              audio #{i + 1}: "{audio._script?.sentence}" {t("pRecordedOn")}{" "}
               {new Date(audio.createdAt).toLocaleDateString()}
             </p>
-            {audio.transcript && <p>transcript: "{audio.transcript}"</p>}
+            {audio.transcript && <p>{t("pTranscript")}"{audio.transcript}"</p>}
             {audio.feedback && audio.feedback.length > 0 && (
               <div>
                 <p>
@@ -82,10 +84,10 @@ function AudioList({
       {audios.length > 0 && (
         <>
           <button onClick={toggleEditMode}>
-            {editMode ? "Disable edit" : "Enable edit"}
+            {editMode ? t("btnDisableEdit") : t("btnEnableEdit")}
           </button>
 
-          {editMode && <button onClick={deleteAudios}>Delete selected</button>}
+          {editMode && <button onClick={deleteAudios}>{t("btnDelete")}</button>}
         </>
       )}
     </section>

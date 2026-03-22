@@ -1,0 +1,14 @@
+
+
+{
+"h2Audios": "Audios",
+"pRecordYourself": "Enregistrer",
+"pRecordedOn":"enregistré le",
+"pTranscript":"Text:",
+"pFeedback":"Remarques:",
+"btnDisableEdit":"activer modifier",
+"btnEnableEdit":"désactiver modifier",
+"btnDelete":"Effacer la selection",
+"btnRecord": "🎙 Enregistrer",
+"btnStopRecord": "⏹ Arrêt"
+}

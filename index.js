@@ -60,6 +60,7 @@ app.use(passport.session());
     require("./routes/scriptRoutes")(app);
     require("./routes/grammarTopicsRoutes")(app);
     require("./routes/exerciceRoutes")(app);
+    require("./routes/settingsRoutes")(app);
     
 log('process.env.NODE_ENV',process.env.NODE_ENV)
 if (isProduction) {

@@ -1,0 +1,14 @@
+
+
+{
+"h2Audios": "Audios",
+"pRecordYourself": "You may record yourself",
+"pRecordedOn":"recorded on",
+"pTranscript":"Transcript:",
+"pFeedback":"Feedback:",
+"btnDisableEdit":"Disable edit",
+"btnEnableEdit":"Enable edit",
+"btnDelete":"Delete selected",
+"btnRecord": "🎙 Start recording",
+"btnStopRecord": "⏹ Stop recording"
+}

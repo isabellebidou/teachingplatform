@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import axios from "axios";
 import { logError as error } from "../../utils/utils.js"
 import { log } from "../../utils/utils.js";
-
+import { useTranslation } from "react-i18next";
 
 
 export default function AudioRecorder({ onUploadSuccess, script }) {
@@ -13,6 +13,7 @@ export default function AudioRecorder({ onUploadSuccess, script }) {
   const [audioURL, setAudioURL] = useState(null);
   const [audioBlob, setAudioBlob] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const { t } = useTranslation("audio")
 
   const startRecording = async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -76,11 +77,11 @@ export default function AudioRecorder({ onUploadSuccess, script }) {
     <div>
 
       {!isRecording && (
-        <button onClick={startRecording}>🎙 Start recording</button>
+        <button onClick={startRecording}>{t("btnRecord")}</button>
       )}
 
       {isRecording && (
-        <button onClick={stopRecording}>⏹ Stop recording</button>
+        <button onClick={stopRecording}>{t("btnStopRecord")}</button>
       )}
 
       {audioURL && (

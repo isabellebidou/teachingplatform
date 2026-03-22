@@ -1,146 +1,127 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-//import Payments from "./Payments";
-import { withRouter } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
 import MenuButton from "./MenuButton";
 import { fetchCookieValue } from "../actions";
-import { AiOutlineLogout } from "react-icons/ai";
-import { AiOutlineUser } from "react-icons/ai";
-import { BsPencil } from "react-icons/bs";// <BsPencil />
-import { AiOutlineAudio } from "react-icons/ai";//<AiOutlineAudio />
-import { IoDocumentsOutline } from "react-icons/io5";//<IoDocumentsOutline />
-import { MdOutlineSchool } from "react-icons/md";//<MdOutlineSchool />
+
+import { AiOutlineLogout, AiOutlineUser, AiOutlineAudio, AiOutlineHome } from "react-icons/ai";
+import { BsPencil } from "react-icons/bs";
+import { IoDocumentsOutline } from "react-icons/io5";
+import { MdOutlineSchool } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
-import { AiOutlineHome } from "react-icons/ai";
+
 import Logo from "./Logo";
+import Settings from "./Settings";
 
-// <a href="/"><img className="logo" src="/seagul.png" alt="logo" loading="eager" title="iridology by isabelle logo"></img></a>
-class Header extends Component {
+function Header({ auth, cookie, fetchCookieValue }) {
+  const location = useLocation();
+  
 
-  componentDidMount() {
-    this.props.fetchCookieValue();
+  const [showSettings, setShowSettings] = useState(false);
 
-  }
+  useEffect(() => {
+    fetchCookieValue();
+  }, [fetchCookieValue]);
 
+  const isAdmin = auth && auth.type === "admin";
+  const isGuest = auth && auth.type === "guest";
 
-  renderContent() {
+  const isOnDashboard = location.pathname === "/dashboard";
+  const isOnDocuments = location.pathname === "/documents";
+  const isHome = location.pathname === "/";
+  const isOnBoard = location.pathname === "/board";
+  const isOnExercice = location.pathname === "/exercice";
 
-    const isAdmin = this.props.auth && this.props.auth.type === 'admin';
-    const isGuest = this.props.auth && this.props.auth.type === 'guest';
-    const isOnDashboard = this.props.location.pathname === '/dashboard';
-    const isOnDocuments = this.props.location.pathname === '/documents';
-    const isHome = this.props.location.pathname === '/';
-    const isOnBoard = this.props.location.pathname === '/board';
-    const isOnExercice = this.props.location.pathname === '/exercice';
+  const language = auth?.language || "en";
 
+  const renderContent = () => (
+    <div className="authentication">
+      <Settings
+  visible={showSettings}
+  onClose={() => setShowSettings(false)}
+  auth={auth}
+/>
 
+      {/* 🌐 Language button */}
+      <button
+        className="button"
+        onClick={() => setShowSettings(true)}
+      >
+        🌐 {language.toLowerCase()}
+      </button>
 
+      {isAdmin && (
+        <a className="button" href="/users">
+          <FaUsers style={{ color: "#7f5f87" }} />
+        </a>
+      )}
 
-    return (
-
-      <div className="authentication">
-        
-       {/* <Link key={4 + '/shop'}
-          to={'/shop'}
-          className="button"
-
-        >
-          link
+      {auth && !isOnDocuments && isAdmin && (
+        <Link to="/documents" className="button">
+          <IoDocumentsOutline style={{ color: "#7f5f87" }} />
         </Link>
-      */}
-        {isAdmin && (
-          <a key={9} className="button" href="/users"><FaUsers
-            style={{ color: "#7f5f87" }}
-            key={'FaUsers'}
+      )}
 
+      {auth && !isOnDashboard && !isGuest && (
+        <Link to="/dashboard" className="button">
+          <AiOutlineAudio style={{ color: "#7f5f87" }} />
+        </Link>
+      )}
+
+      {auth && !isOnBoard && !isGuest && (
+        <Link to="/board" className="button">
+          <BsPencil style={{ color: "#7f5f87" }} />
+        </Link>
+      )}
+
+      {auth && !isOnExercice && !isGuest && (
+        <Link to="/exercice" className="button">
+          <MdOutlineSchool style={{ color: "#7f5f87" }} />
+        </Link>
+      )}
+
+      {!isHome && (
+        <Link to="/" className="button">
+          <AiOutlineHome style={{ color: "#7f5f87" }} />
+        </Link>
+      )}
+
+      {auth && (
+        <a className="button" href="/api/logout">
+          <AiOutlineLogout style={{ color: "#7f5f87" }} />
+        </a>
+      )}
+
+      {!auth && isHome && (
+        <a href="/auth/google">
+          <img
+            src="/btn_google_signin_dark_normal_web.png"
+            loading="lazy"
+            alt="sign in with google"
           />
+        </a>
+      )}
+    </div>
+  );
 
-          </a>
-        )}
+  return (
+    <div className="header">
+      <Logo />
 
-       {(this.props.auth && isOnDocuments === false && isAdmin === true) &&
-          <Link key={4+"docs"}
-            to={'/documents'}
-            className="button"
-          >
-            <IoDocumentsOutline 
-              style={{ color: "#7f5f87" }}
-              key={'IoDocumentsOutline'}
-            />
-          </Link>}
+      {cookie && <span>{renderContent()}</span>}
+      {cookie && <span><MenuButton /></span>}
 
-        {(this.props.auth && isOnDashboard === false && isGuest === false) &&
-          <Link key={3+"dashboard"}
-            to={'/dashboard'}
-            className="button"
-          >
-            <AiOutlineAudio
-              style={{ color: "#7f5f87" }}
-              key={'AiOutlineAudio'}
-            />
-          </Link>}
-        {(this.props.auth && isOnBoard === false && isGuest === false) &&
-          <Link key={3+ 'board'}
-            to={'/board'}
-            className="button"
-          >
-            <BsPencil
-              style={{ color: "#7f5f87" }}
-              key={'BsPencilkey'}
-            />
-            </Link>}
-          {(this.props.auth && isOnExercice === false && isGuest === false) &&
-          <Link key={5+ 'exercice'}
-            to={'/exercice'}
-            className="button"
-          >
-            <MdOutlineSchool
-              style={{ color: "#7f5f87" }}
-              key={'MdOutlineSchool'}
-            />
-          </Link>}
-        {isHome === false &&
-          <Link key={3 + 'nothome'}
-            to={'/'}
-            className="button"
-          >
-            <AiOutlineHome
-              style={{ color: "#7f5f87" }}
-              key={'AiOutlineHome'}
-            />
-          </Link>}
-        {(this.props.auth ) &&
-          <a key={4+ "logout"} className="button" href="/api/logout"><AiOutlineLogout
-            style={{ color: "#7f5f87" }}
-            key={'AiOutlineLogoutkey'}
-          /></a>}
-        {(!this.props.auth && isHome) &&
-          <a href="/auth/google"><img src="/btn_google_signin_dark_normal_web.png" loading="lazy" title="sign in with google" alt="sign in with google" /></a>
-        }
-      </div>
-
-    );
-
-
-  }
-  render() {
-    const { cookie } = this.props;
-
-    return (
-      <div className="header">
-        
-       <Logo />
-
-        {cookie === true && <span>{this.renderContent()}</span>}
-        {cookie === true && <span><MenuButton /></span>}
-      </div>
-
-    );
-  }
+      {/* ✅ Settings popup */}
+      {showSettings && (
+        <Settings onClose={() => setShowSettings(false)} />
+      )}
+    </div>
+  );
 }
+
 function mapStateToProps({ auth, cookie }) {
-  return { auth, cookie }
-};
-export default withRouter(connect(mapStateToProps, { fetchCookieValue })(Header));
+  return { auth, cookie };
+}
+
+export default connect(mapStateToProps, { fetchCookieValue })(Header);
 
