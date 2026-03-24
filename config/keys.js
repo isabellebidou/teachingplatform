@@ -1,8 +1,13 @@
 //keys.js figure out what set of credentials to return
-
-
-import dev from './dev.js';
 import prod from './prod.js';
 
-const keys = process.env.NODE_ENV === 'production' ? prod : dev;
+let keys;
+
+if (process.env.NODE_ENV === 'production') {
+  keys = prod;
+} else {
+  const dev = await import('./dev.js'); // dynamic ESM import
+  keys = dev.default;
+}
+
 export default keys;
