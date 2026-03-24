@@ -6,8 +6,8 @@
 "pRecordedOn":"enregistré le",
 "pTranscript":"Text:",
 "pFeedback":"Remarques:",
-"btnDisableEdit":"activer modifier",
-"btnEnableEdit":"désactiver modifier",
+"btnDisableEdit":"désactiver modifier",
+"btnEnableEdit":"activer modifier",
 "btnDelete":"Effacer la selection",
 "btnRecord": "🎙 Enregistrer",
 "btnStopRecord": "⏹ Arrêt"

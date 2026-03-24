@@ -24,14 +24,13 @@ export function generateFeedback(lang ,{ missing, extra, coverage }, text) {
   if (missing.length === 0) {
     feedback.push(`${t("feedback:allWords")}`);
   } else {
-    feedback.push(//i18n.t("errors.spelling");
-    `${t("feedback:missed")} ${missing.length} ${t("feedback:numMissed")} ${missing.join(", ")}.`
+    feedback.push(`${t("feedback:missed", { lng: lang })} ${missing.length} ${t("feedback:numMissed", { lng: lang })} ${missing.join(", ")}.`
     );
 
     const missingWordsWithHArray = checkMissingWithH(missing);
     if (missingWordsWithHArray.length > 0) {
       feedback.push(
-        `${t("feedback:h")} ${missingWordsWithHArray.join(", ")}.`
+        `${t("feedback:h", { lng: lang })} ${missingWordsWithHArray.join(", ")}.`
       );
     }
 
@@ -44,16 +43,16 @@ export function generateFeedback(lang ,{ missing, extra, coverage }, text) {
   }
 
   if (extra.length > 0) {
-    feedback.push(`${t("feedback:xWords")}${extra.join(", ")}${t("feedback:intentional")}`);
+    feedback.push(`${t("feedback:xWords", { lng: lang })}${extra.join(", ")}${t("feedback:intentional", { lng: lang })}`);
 
     if (coverage > 0.9) {
-      feedback.push(`${coverage * 100}${t("feedback:vClear")}`);
+      feedback.push(`${coverage * 100}${t("feedback:vClear", { lng: lang })}`);
     } else if (coverage > 0.7) {
-      feedback.push(`${coverage * 100}${t("feedback:mClear")}`);
+      feedback.push(`${coverage * 100}${t("feedback:mClear", { lng: lang })}`);
     } else if (coverage > 0.3) {
-      feedback.push(`${coverage * 100}${t("feedback:tryAgain")}`);
+      feedback.push(`${coverage * 100}${t("feedback:tryAgain", { lng: lang })}`);
     } else {
-      feedback.push(`${coverage * 100}${t("feedback:unclear")}`);
+      feedback.push(`${coverage * 100}${t("feedback:unclear", { lng: lang })}`);
     }
   }
 
@@ -89,6 +88,3 @@ export function checkMissingWithS(missing, text) {
 
   return verbsEndingInS;
 }
-
-// ✅ CommonJS export
-//module.exports = { normalize, compareWords, generateFeedback };

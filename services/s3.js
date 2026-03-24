@@ -1,12 +1,13 @@
-const { S3Client, PutObjectCommand, DeleteObjectCommand, GetObjectCommand } = require("@aws-sdk/client-s3");
-const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
-const keys = require('../config/keys');
-
-const accessKeyId = keys.accessKeyId
-const region = keys.awsRegion
-const secretAccessKey = keys.awsSecretAccessKey
-const bucketName = keys.bucketName
-const log =  require("../services/utils").log;
+import { S3Client, PutObjectCommand, DeleteObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import keys from'../config/keys.js';
+import {log} from "../services/utils.js";
+const {
+  accessKeyId,
+  awsRegion: region,
+  awsSecretAccessKey: secretAccessKey,
+  bucketName
+} = keys;
 
 const s3Client = new S3Client({
     region,
@@ -17,7 +18,7 @@ const s3Client = new S3Client({
 })
 
 
-function uploadFile(fileBuffer, fileName, mimetype) {
+export function uploadFile(fileBuffer, fileName, mimetype) {
     const uploadParams = {
         Bucket: bucketName,
         Body: fileBuffer,
@@ -26,7 +27,7 @@ function uploadFile(fileBuffer, fileName, mimetype) {
     }
     return s3Client.send(new PutObjectCommand(uploadParams));
 }
-function deleteSeveral(array) {
+export function deleteSeveral(array) {
     if (Array.isArray(array)) {
         array.forEach(element => {
             const fn1 = "eyepics/" +element.picPath + '_resized'
@@ -36,7 +37,7 @@ function deleteSeveral(array) {
         });
     }
 }
-function deleteSeveralAudios(array) {
+export function deleteSeveralAudios(array) {
     if (Array.isArray(array)) {
         array.forEach(element => {
            // const fn1 = element.s3Key;
@@ -45,7 +46,7 @@ function deleteSeveralAudios(array) {
         });
     }
 }
-async function _deleteSeveralAudios(audioRefs) {
+export async function _deleteSeveralAudios(audioRefs) {
   if (!Array.isArray(audioRefs)) return;
 
   const ids = audioRefs.map(a => a._id);
@@ -69,7 +70,7 @@ async function _deleteSeveralAudios(audioRefs) {
 
 
 
-function deleteFile(fileName) {
+export function deleteFile(fileName) {
     const deleteParams = {
         Bucket: bucketName,
         Key: fileName,
@@ -78,7 +79,7 @@ function deleteFile(fileName) {
     return s3Client.send(new DeleteObjectCommand(deleteParams));
 }
 
-async function getObjectSignedUrl(key) {
+export async function getObjectSignedUrl(key) {
     const params = {
         Bucket: bucketName,
         Key: key
@@ -90,11 +91,3 @@ async function getObjectSignedUrl(key) {
     const url = await getSignedUrl(s3Client, command, { expiresIn: seconds });
     return url
 }
-
-module.exports = {
-    uploadFile,
-    deleteSeveral,
-    deleteSeveralAudios,
-    getObjectSignedUrl
-
-};
