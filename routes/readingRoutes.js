@@ -1,22 +1,15 @@
-const _ = require('lodash')
+import mongoose from'mongoose';
+import nodemailer from'nodemailer';
+import keys from '../config/keys.js';
+import requireLogin from'../middlewares/requireLogin.js';
+import { uploadFile, getObjectSignedUrl } from '../services/s3.js';
+import upload from "../config/audioUpload.js";
+import {log} from "../services/utils.js";
 
 
 
-const mongoose = require('mongoose');
-const nodemailer = require('nodemailer');
-const keys = require('../config/keys');
-const requireLogin = require('../middlewares/requireLogin');
-const { uploadFile, deleteFile, deleteSeveral, getObjectSignedUrl } = require('../services/s3.js');
-const upload = require("../config/audioUpload.js");
-const error = require("../services/utils").logError;
-const log =  require("../services/utils").log;
 
-
-
-const { response } = require('express');
-
-
-module.exports = (app) => {
+export default (app) => {
   const Reading = mongoose.model('readings');
   const Document = mongoose.model('documents');
 
@@ -56,7 +49,7 @@ module.exports = (app) => {
 
   }
 
-  /*const sendNewReadingEmail = (offer, user, order) => {
+  const sendNewReadingEmail = (offer, user, order) => {
     return new Promise((resolve, reject) => {
       var transporter = nodemailer.createTransport({
         service:'gmail',
@@ -83,7 +76,7 @@ module.exports = (app) => {
   
     })
   
-  }*/
+  }
   app.get("/api/testemail", (req, res) => {
 
     sendTestEmail()
@@ -92,30 +85,7 @@ module.exports = (app) => {
 
   })
 
-  app.get("/api/readings", requireLogin, async (req, res) => {
-
-    const readings = await Reading.find(({ _user: req.user.id }))
-    const readingPromises = readings.map(async (reading) => {
-      if (reading.pdfPath) { reading.pdfUrl = await getObjectSignedUrl(reading.pdfPath); }
-
-      return reading;
-    });
-    const readingsWithUrls = await Promise.all(readingPromises);
-    res.send(readingsWithUrls);
-
-
-  })
-
-  app.get("/api/readings/completed", requireLogin, async (req, res) => {
-    try {
-      const readings = await Reading.find({ dateCompleted: { $ne: null }, _user: req.user.id });
-      res.send(readings);
-    } catch (err) {
-      //logError(err);
-      res.status(500).send('Server error');
-    }
-
-  })
+ 
   
   app.post("/api/pdf_document_upload", requireLogin, upload.single("document"), async (req, res) => {
     log(req.file.originalname+" from api/pdf_document_upload")

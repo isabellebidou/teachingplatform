@@ -13,8 +13,8 @@ export default function AudioRecorder({ onUploadSuccess, script }) {
   const [audioURL, setAudioURL] = useState(null);
   const [audioBlob, setAudioBlob] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const { t } = useTranslation("audio")
-
+  const { t,i18n } = useTranslation("audio")
+  const lang = i18n.language.startsWith("fr") ? "fr" : "en";
   const startRecording = async () => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
@@ -55,6 +55,7 @@ export default function AudioRecorder({ onUploadSuccess, script }) {
     log(script._id)
     formData.append("audio", audioBlob,"recording.webm");
     formData.append("scriptId", script._id);
+    formData.append("lang", lang);
 
     try {
       setUploading(true);

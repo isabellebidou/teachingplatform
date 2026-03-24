@@ -1,0 +1,7 @@
+{
+"h2SelectTopic": "Select a grammar topic from the options below: ",
+"btnLoading": "Generating...",
+"btnGenerate":"Generate Exercise",
+"btnNext":"Next",
+"btnStartNew":"Start New Exercise"
+}

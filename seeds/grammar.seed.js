@@ -19,61 +19,27 @@ const normalizeTopic = (topicName, level) => {
   if (!ruleConfig) {
     throw new Error(`❌ Missing grammar rule for: "${topicName}"`);
   }
-  /*
-  name: {
-    type: String,
-    required: true
-  },
-  level: {
-    type: String,
-    enum: ["A1", "A2", "B", "C"],
-    required: true
-  },
-  rule:{
-    type: String,
-    required: true
-  },
-  allowedAnswers: {
-    type: [String],
-    default: []
-  },
-  allowedIncorrectAnswers: {
-    type: [String],
-    default: []
-  },
-  suggestions:{
-    type: [String],
-    default: []
-  },
-  numberOfOptions:{
-    type: Number,
-    default:null
-  },
-  examples: {
-    type: [String], // optional teacher examples
-    default: []
-  },
-  commonErrors: {
-    type: [String],
-    default: []
-  },
-  active: {
-    type: Boolean,
-    default: true
-  }
-  */
 
   return {
-    name: topicName,
+    name: {
+      en: topicName,
+      fr: ruleConfig.nameFr || topicName
+    },
+
     level,
-    rule: ruleConfig.rule,
-    allowedAnswers: ruleConfig.allowedAnswers || [],
-    allowedIncorrectAnswers: ruleConfig.allowedIncorrectAnswers ||[],
-    suggestions:ruleConfig.suggestions ||[],
-    numberOfOptions: ruleConfig.numberOfOptions ||null,
-    examples: ruleConfig.examples || [],
-    detail: ruleConfig.detail || null,
-    commonErrors: ruleConfig.commonErrors || []
+
+    rule: {
+      en: ruleConfig.rule,
+      fr: ruleConfig.ruleFr || ruleConfig.rule
+    },
+
+    allowedAnswers: ruleConfig.allowedAnswers ?? [],
+    allowedIncorrectAnswers: ruleConfig.allowedIncorrectAnswers ?? [],
+    suggestions: ruleConfig.suggestions ?? [],
+    numberOfOptions: ruleConfig.numberOfOptions ?? null,
+    examples: ruleConfig.examples ?? [],
+    detail: ruleConfig.detail ?? null,
+    commonErrors: ruleConfig.commonErrors ?? []
   };
 };
 
@@ -94,8 +60,8 @@ const normalizeTopic = (topicName, level) => {
 }
 
 
-)();
-*/
+)();*/
+
 // seeding
 
 (async () => {

@@ -1,8 +1,13 @@
+import { useTranslation } from "react-i18next";
+
 export default function SelectTopic({
   topics,
   selectedTopic,
   onChange
 }) {
+const {i18n } = useTranslation();
+const lang = i18n.language.startsWith("fr") ? "fr" : "en";
+
   return (
     <select
       value={selectedTopic?._id || ""}
@@ -13,7 +18,7 @@ export default function SelectTopic({
     >
       {topics.map(topic => (
         <option key={topic._id} value={topic._id}>
-          {topic.name}
+          <option>{topic.name[lang]}</option>
         </option>
       ))}
     </select>

@@ -1,4 +1,5 @@
-function normalize(text) {
+import i18n from "../i18n.js";
+export function normalize(text) {
   return text
     .toLowerCase()
     .replace(/[^\w\s]/g, "")
@@ -6,7 +7,7 @@ function normalize(text) {
     .trim();
 }
 
-function compareWords(expected, spoken) {
+export function compareWords(expected, spoken) {
   const expectedSet = new Set(expected);
   const spokenSet = new Set(spoken);
   const missing = expected.filter(w => !spokenSet.has(w));
@@ -17,53 +18,54 @@ function compareWords(expected, spoken) {
   return { missing, extra, coverage };
 }
 
-function generateFeedback({ missing, extra, coverage }, text) {
+export function generateFeedback(lang ,{ missing, extra, coverage }, text) {
   const feedback = [];
+  const t = i18n.getFixedT(lang);
   if (missing.length === 0) {
-    feedback.push("✅ You said all the expected words.");
+    feedback.push(`${t("feedback:allWords")}`);
   } else {
-    feedback.push(
-      `⚠️ You missed or mispronounced ${missing.length} word(s): ${missing.join(", ")}.`
+    feedback.push(//i18n.t("errors.spelling");
+    `${t("feedback:missed")} ${missing.length} ${t("feedback:numMissed")} ${missing.join(", ")}.`
     );
 
     const missingWordsWithHArray = checkMissingWithH(missing);
     if (missingWordsWithHArray.length > 0) {
       feedback.push(
-        `Be careful: the "H" is pronounced in: ${missingWordsWithHArray.join(", ")}.`
+        `${t("feedback:h")} ${missingWordsWithHArray.join(", ")}.`
       );
     }
 
     const missingWithS = checkMissingWithS(missing, text);
     if (missingWithS.length > 0) {
       feedback.push(
-        `Be careful: You may have missed the -s ending. The final "S" is pronounced in the present simple with he, she, and it: ${missingWithS.join(", ")}.`
+        `${t("feedback:s")} ${missingWithS.join(", ")}.`
       );
     }
   }
 
   if (extra.length > 0) {
-    feedback.push(`Extra word(s) found: ${extra.join(", ")}. That’s okay if it was intentional.`);
+    feedback.push(`${t("feedback:xWords")}${extra.join(", ")}${t("feedback:intentional")}`);
 
     if (coverage > 0.9) {
-      feedback.push(`${coverage * 100}% - Very clear`);
+      feedback.push(`${coverage * 100}${t("feedback:vClear")}`);
     } else if (coverage > 0.7) {
-      feedback.push(`${coverage * 100}% coverage - Mostly clear`);
+      feedback.push(`${coverage * 100}${t("feedback:mClear")}`);
     } else if (coverage > 0.3) {
-      feedback.push(`${coverage * 100}% coverage - Please try again`);
+      feedback.push(`${coverage * 100}${t("feedback:tryAgain")}`);
     } else {
-      feedback.push(`${coverage * 100}% coverage - Unclear - Please try again`);
+      feedback.push(`${coverage * 100}${t("feedback:unclear")}`);
     }
   }
 
   return Array.isArray(feedback) ? feedback : [feedback];
 }
 
-function checkMissingWithH(missing) {
+export function checkMissingWithH(missing) {
   const silentHWordsSet = new Set(["hour", "honor", "honour", "honest"]);
   return missing.filter(word => word.startsWith("h") && !silentHWordsSet.has(word));
 }
 
-function checkMissingWithS(missing, text) {
+export function checkMissingWithS(missing, text) {
   const verbsEndingInS = [];
   const verbFormsEndingInS = new Set([
     "plays", "lives", "gives", "does", "goes", "makes",
@@ -89,4 +91,4 @@ function checkMissingWithS(missing, text) {
 }
 
 // ✅ CommonJS export
-module.exports = { normalize, compareWords, generateFeedback };
+//module.exports = { normalize, compareWords, generateFeedback };

@@ -1,11 +1,10 @@
-const mongoose = require("mongoose");
-const requireLogin = require("../middlewares/requireLogin");
+import mongoose from "mongoose";
+import requireLogin from "../middlewares/requireLogin.js";
 
-module.exports = (app) => {
+export default (app) => {
   const User = mongoose.model("users");
 
   app.post("/api/settings", requireLogin, async (req, res) => {
-    console.log("/api/settings",req.body)
     try {
       const { language } = req.body;
 
@@ -16,8 +15,8 @@ module.exports = (app) => {
       );
 
       res.send(updatedUser);
-    } catch (error) {
-      res.status(422).send(error);
-    }
+} catch (err) {
+  res.status(422).send(err);
+}
   });
 };

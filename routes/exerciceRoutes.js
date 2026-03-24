@@ -1,36 +1,43 @@
-// routes/feedbackRoutes.js
-const mongoose = require("mongoose")
-const keys = require("../config/keys")
-const OpenAI = require("openai")
-const Theme = mongoose.model("Theme")
-const error = require("../services/utils").logError;
-const log =  require("../services/utils").log;
-const warn =  require("../services/utils").warn;
+// routes/exerciceRoutes.js
+// routes/exerciceRoutes.js
+import { logError as error, log, warn } from "../services/utils.js"
+import keys from "../config/keys.js"
+import OpenAI from "openai"
+import mongoose from "mongoose"
+import i18n from "../i18n.js";
 
-module.exports = (app) => {
+
+export default (app) => {
   let openai
   if (keys.openaiKey) {
     openai = new OpenAI({ apiKey: keys.openaiKey })
   }
+;
 
   app.post("/api/exercice", async (req, res) => {
     const { selectedTopic } = req.body
-    log("/api/exercice selectedTopic", selectedTopic)
-    let theme
+    const Theme = mongoose.model("Theme")
+    const lang = req.user.language || "en"
+    const t = i18n.getFixedT(lang)
+    if (!selectedTopic)
+      return res.status(400).json({ error: "No topic provided" })
+    const topicName = selectedTopic.name?.[lang] || selectedTopic.name?.en
+    const topicRule = selectedTopic.rule?.[lang] || selectedTopic.rule?.en
 
+    log("/api/exercice selectedTopic", selectedTopic)
+
+    // Pick random theme
+    let theme
     try {
       const themes = await Theme.aggregate([
         { $match: { level: req.user.level } },
         { $sample: { size: 1 } },
       ])
-
       theme = themes[0]
       log("/api/exercice theme", theme)
-    } catch (error) {
-      return res.status(500).send("Theme not found: " + error)
+    } catch (err) {
+      return res.status(500).send("Theme not found: " + err.message)
     }
-    if (!selectedTopic)
-      return res.status(400).json({ error: "No topic provided" })
 
     // Always-available fake fallback
     const fakeResponse = {
@@ -44,78 +51,18 @@ module.exports = (app) => {
             { text: "reads", isCorrect: false },
           ],
         },
-        {
-          sentence: "She ____ basketball every weekend.",
-          options: [
-            { text: "plays", isCorrect: true },
-            { text: "play", isCorrect: false },
-            { text: "playing", isCorrect: false },
-            { text: "played", isCorrect: false },
-          ],
-        },
-        {
-          sentence: "My brother ____ swimming in the pool.",
-          options: [
-            { text: "likes", isCorrect: true },
-            { text: "like", isCorrect: false },
-            { text: "liked", isCorrect: false },
-            { text: "liking", isCorrect: false },
-          ],
-        },
-        {
-          sentence: "They often ____ TV in the evening.",
-          options: [
-            { text: "watch", isCorrect: true },
-            { text: "to watch", isCorrect: false },
-            { text: "watching", isCorrect: false },
-            { text: "watches", isCorrect: false },
-          ],
-        },
-        {
-          sentence: "____ is my favorite hobby.",
-          options: [
-            { text: "Drawing", isCorrect: true },
-            { text: "Draws", isCorrect: false },
-            { text: "To draw", isCorrect: false },
-            { text: "Draw", isCorrect: false },
-          ],
-        },
-        {
-          sentence: "We ____ volleyball on Saturdays.",
-          options: [
-            { text: "play", isCorrect: true },
-            { text: "plays", isCorrect: false },
-            { text: "playing", isCorrect: false },
-            { text: "played", isCorrect: false },
-          ],
-        },
-        {
-          sentence: "She ____ music in her room.",
-          options: [
-            { text: "listens to", isCorrect: true },
-            { text: "listening to", isCorrect: false },
-            { text: "listened to", isCorrect: false },
-            { text: "listen to", isCorrect: false },
-          ],
-        },
-        {
-          sentence: "He ____ soccer with his friends on weekends.",
-          options: [
-            { text: "plays", isCorrect: true },
-            { text: "play", isCorrect: false },
-            { text: "playing", isCorrect: false },
-            { text: "played", isCorrect: false },
-          ],
-        },
       ],
       instructions:
         "Fill in the gap with the correct form of the present simple",
     }
-    // const exampleJSON = JSON.stringify(fakeResponse, null, 2)
-    // No OpenAI key → return fake // toggle fake vs real
-    if (!openai) return res.json(fakeResponse) // real
-    // if (true) return res.json(fakeResponse);// fake
 
+    // No OpenAI key → return fake
+    if (!openai) return res.json(fakeResponse)
+
+    log("topicName", topicName)
+    log("topicRule", topicRule)
+    log("lang", lang)
+    // Build prompt for strict JSON output
     const systemMessage = `
 You are an English teacher AI used inside an automated system.
 
@@ -258,67 +205,76 @@ RETURN FORMAT (STRICT JSON ONLY):
       ]
     }
   ],
-  "instructions": "Fill in the gap using ${selectedTopic.name}."
+  "instructions": "${t("exercise:instructions")} ${topicName}."
 }
 
 `
+
     try {
-      const completion = await openai.chat.completions.create({
+      const completion = await openai.responses.create({
         model: "gpt-4.1-mini",
-        response_format: { type: "json_object" },
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are an API. You must return ONLY valid JSON. No text, no explanations.",
-          },
-          {
-            role: "user",
-            content: systemMessage + "\n\n" + userMessage,
-          },
+        input: [
+          { role: "system", content: systemMessage },
+          { role: "user", content: userMessage },
         ],
-        max_tokens: 800,
+        max_output_tokens: 800,
       })
+
+      // Extract the raw text
+
+      const rawText = completion.output?.[0]?.content?.[0]?.text
+      log("rawText: ", rawText)
+      if (!rawText) throw new Error("No text returned from OpenAI")
+
+      log("RAW TEXT TYPE:", typeof rawText)
+      log("RAW TEXT LENGTH:", rawText?.length)
+      log("RAW TEXT FIRST CHARS:", rawText?.slice(0, 50))
+
+      // Parse JSON with retry
       let gptData
+
       try {
-        gptData = await generateWithRetry(async () => {
-          return await JSON.parse(completion.choices[0].message.content)
-        })
-      } catch (error) {}
+        const cleaned = rawText
+          .trim()
+          .replace(/^```json/, "")
+          .replace(/^```/, "")
+          .replace(/```$/, "")
+          .trim()
+
+        log("CLEANED TEXT:", cleaned)
+
+        gptData = JSON.parse(cleaned)
+      } catch (err) {
+        logError("JSON parse error:", err)
+      }
 
       res.json({ ...fakeResponse, ...gptData })
     } catch (err) {
-      error("OpenAI error (fallback to fake):", err.name, err.message)
-      // **Return fake feedback if any OpenAI error occurs (rate limit, network, etc.)**
+      logError("OpenAI error (fallback to fake):", err)
       res.json(fakeResponse)
     }
-  })
-  /*
-   * Ensure every question has at least one correct answer.
-   */
-  function hasExactlyOneCorrectAnswer(questions) {
-    return questions.every(
-      (q) => q.options.filter((opt) => opt.isCorrect === true).length === 1,
-    )
-  }
-  async function generateWithRetry(generateFn, maxRetries = 3) {
-    let attempt = 0
 
-    while (attempt < maxRetries) {
-      attempt++
-
-       log(`🔁 Attempt ${attempt}...`)
-
-      const gptData = await generateFn()
-
-      if (hasExactlyOneCorrectAnswer(gptData.questions)) {
-         log("✅ Valid questions received")
-        return gptData
-      } else {
-         log("❌ Bad GPT response:", JSON.stringify(gptData, null, 2))
-      }
-       warn("⚠️ Invalid response (no correct answers). Retrying...")
+    // Helper: validate that each question has exactly one correct option
+    function hasExactlyOneCorrectAnswer(questions) {
+      return questions.every(
+        (q) => q.options.filter((opt) => opt.isCorrect === true).length === 1,
+      )
     }
-    throw new Error("❌ Failed to generate valid questions after retries")
-  }
+
+    async function generateWithRetry(generateFn, maxRetries = 3) {
+      let attempt = 0
+      while (attempt < maxRetries) {
+        attempt++
+        log(`🔁 Attempt ${attempt} to parse JSON...`)
+        const gptData = await generateFn()
+        if (hasExactlyOneCorrectAnswer(gptData.questions || [])) {
+          log("✅ Valid questions received")
+          return gptData
+        } else {
+          warn("⚠️ Invalid JSON: no correct answers. Retrying...")
+        }
+      }
+      throw new Error("❌ Failed to generate valid questions after retries")
+    }
+  })
 }

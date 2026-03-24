@@ -1,78 +1,112 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cookieSession = require('cookie-session');
-const passport = require('passport');
-const keys = require('./config/keys');
-const bodyParser = require('body-parser');
-const enforce = require('express-sslify');
-const log = require('./services/utils').log;
+// index.js
+import express from "express";
+import mongoose from "mongoose";
+import cookieSession from "cookie-session";
+import passport from "passport";
+import keys from "./config/keys.js";
+import bodyParser from "body-parser";
+import enforce from "express-sslify";
+import { log, logError as error } from "./services/utils.js";
 
-require('./models/User');
-require('./models/UserData');
-require('./models/Reading');
-require('./models/Document');
-require('./models/Faq');
-require('./models/Link');
-require('./models/Offer');
-require('./models/StarReview');
-require('./models/Audio');
-require('./models/Script');
-require('./models/GrammarTopic');
-require('./models/Theme');
-require('./services/passport');
-require('./services/elevenLabsTranscription');
-mongoose.set('strictQuery', false);
+import path from "path";
+import { fileURLToPath } from "url";
 
+// ------------------- ESM __dirname fix -------------------
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-//mongoose.connect(keys.mongoURI);
+// ------------------- Import models -------------------
+import "./models/User.js";
+import "./models/UserData.js";
+import "./models/Reading.js";
+import "./models/Document.js";
+import "./models/Faq.js";
+import "./models/Link.js";
+import "./models/Offer.js";
+import "./models/StarReview.js";
+import "./models/Audio.js";
+import "./models/Script.js";
+import "./models/GrammarTopic.js";
+import "./models/Theme.js";
+
+// ------------------- Import services -------------------
+import "./services/passport.js";
+import "./services/elevenLabsTranscription.js";
+
+// ------------------- Import routes -------------------
+import healthRoutes from "./routes/healthRoutes.js";
+import feedbackRoutes from "./routes/feedbackRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import billingRoutes from "./routes/billingRoutes.js";
+import readingRoutes from "./routes/readingRoutes.js";
+import userDataRoutes from "./routes/userDataRoutes.js";
+import usersRoutes from "./routes/usersRoutes.js";
+import faqRoutes from "./routes/faqRoutes.js";
+import linkRoutes from "./routes/linkRoutes.js";
+import offerRoutes from "./routes/offerRoutes.js";
+import starReviewRoutes from "./routes/starReviewRoutes.js";
+import audioRoutes from "./routes/audioRoutes.js";
+import scriptRoutes from "./routes/scriptRoutes.js";
+import grammarTopicsRoutes from "./routes/grammarTopicsRoutes.js";
+import exerciceRoutes from "./routes/exerciceRoutes.js";
+import settingsRoutes from "./routes/settingsRoutes.js";
+
+// ------------------- Express app -------------------
 const app = express();
-
-app.use(express.json());
 const isProduction = process.env.NODE_ENV === "production";
 
+app.use(express.json());
+app.use(bodyParser.json());
+app.set("trust proxy", 1); // needed for cookie session behind proxy
+
+// ------------------- HTTPS enforcement -------------------
 if (isProduction) {
-  app.enable("trust proxy"); // very important behind Railway HTTPS
+  app.enable("trust proxy");
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
 }
-app.use(bodyParser.json());
-app.set("trust proxy", 1); // very important on Railway
-app.use(cookieSession({
-  name: "session",
-  maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-  keys: [keys.cookieKey],
-  secure: isProduction             // send only over HTTPS
-}));
 
+// ------------------- Cookie session -------------------
+app.use(
+  cookieSession({
+    name: "session",
+    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    keys: [keys.cookieKey],
+    secure: isProduction,
+  })
+);
+
+// ------------------- Passport -------------------
 app.use(passport.initialize());
 app.use(passport.session());
-    require('./routes/healthRoutes')(app);
-    require("./routes/feedbackRoutes")(app);
-    require('./routes/authRoutes')(app);
-    require('./routes/billingRoutes')(app);
-    require('./routes/readingRoutes')(app);
-    require('./routes/userDataRoutes')(app);
-    require('./routes/usersRoutes')(app);
-    require('./routes/faqRoutes')(app);
-    require('./routes/linkRoutes')(app);
-    require('./routes/offerRoutes')(app);
-    require('./routes/starReviewRoutes')(app);
-    require("./routes/audioRoutes")(app);
-    require("./routes/scriptRoutes")(app);
-    require("./routes/grammarTopicsRoutes")(app);
-    require("./routes/exerciceRoutes")(app);
-    require("./routes/settingsRoutes")(app);
-    
-log('process.env.NODE_ENV',process.env.NODE_ENV)
+
+// ------------------- Mount routes -------------------
+healthRoutes(app);
+feedbackRoutes(app);
+authRoutes(app);
+billingRoutes(app);
+readingRoutes(app);
+userDataRoutes(app);
+usersRoutes(app);
+faqRoutes(app);
+linkRoutes(app);
+offerRoutes(app);
+starReviewRoutes(app);
+audioRoutes(app);
+scriptRoutes(app);
+grammarTopicsRoutes(app);
+exerciceRoutes(app);
+settingsRoutes(app);
+
+// ------------------- Static React build -------------------
 if (isProduction) {
-  const path = require('path');
-
-  app.use(express.static('client/build'));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  app.use(express.static(path.resolve(__dirname, "client", "build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 
+// ------------------- MongoDB connection -------------------
+mongoose.set("strictQuery", false);
 
 const db = async () => {
   try {
@@ -81,20 +115,18 @@ const db = async () => {
       useUnifiedTopology: true,
     });
     log("✅ MongoDB connected:", mongoose.connection.name);
-  } catch (error) {
-    error("❌ MongoDB connection error:", error.message);
-    // Don't exit immediately in dev; just log
+  } catch (err) {
+    error("❌ MongoDB connection error:", err.message);
     if (isProduction) process.exit(1);
   }
 };
 
+// ------------------- Start server -------------------
 const PORT = process.env.PORT || 8000;
 db().then(() => {
   app.listen(PORT, () => {
-    console.log("listening for requests");
+    log(`Server listening on port ${PORT}`);
   });
 });
 
-
-
-
+export default app; // optional for testing

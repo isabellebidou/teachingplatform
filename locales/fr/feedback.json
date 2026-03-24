@@ -1,0 +1,14 @@
+{
+  "allWords": "✅ 100 % des mots prononcés.",
+  "missed": "⚠️ Tu as raté ou mal prononcé",
+  "numMissed": "word(s):",
+  "h": "Attention: le \"H\" se prononce dans :",
+  "s": "Fais attention : Tu as peut-être raté la terminaison -s. Le  \"S \" final se prononce au présent simple avec lui, elle et it :",
+  "vowels": "Extra mot(s) trouvé(s) : ",
+  "intentional": "Ce n’est pas grave si c’était intentionnel.",
+  "xWords": "Mots en plus:",
+  "vClear": "% - Très clair",
+  "mClear": "% de couverture - Principalement clair",
+  "tryAgain": "% de couverture - Veuillez réessayer",
+  "unclear": "% coverage - Peu clair - Veuillez réessayer"
+}

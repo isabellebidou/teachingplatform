@@ -1,15 +1,14 @@
-const mongoose = require("mongoose");
-const requireLogin = require("../middlewares/requireLogin");
+import mongoose from "mongoose";
 
-const script = mongoose.model("Script");
+const Script = mongoose.model("Script");
 
-module.exports = (app) => {
-
-    app.get("/api/scripts", async (req, res) => {
-
-        const scripts = await script.find()
-        res.send(scripts);
-
-    })
-
+export default (app) => {
+  app.get("/api/scripts", async (req, res) => {
+    try {
+      const scripts = await Script.find();
+      res.send(scripts);
+    } catch (err) {
+      res.status(500).send("Failed to fetch scripts");
+    }
+  });
 };

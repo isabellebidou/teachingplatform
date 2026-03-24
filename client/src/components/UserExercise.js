@@ -1,15 +1,18 @@
-import { fetchGrammarTopics } from "../actions"
-import SelectTopic from "./SelectTopic"
+import { fetchGrammarTopics } from "../actions/index.js"
+import SelectTopic from "./SelectTopic.js"
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
-import QuestionBundle from "./exercice/QuestionBundle"
+import QuestionBundle from "./exercice/QuestionBundle.js"
 import axios from "axios"
+import { useTranslation } from "react-i18next";
 //import { map } from "jquery"
 
 import { logError as error } from "../utils/utils.js"
 import { log } from "../utils/utils.js";
 
-function UserExercice({ grammarTopics = [], auth, fetchGrammarTopics }) {
+function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
+  const { t, i18n } = useTranslation("exercise");
+  const lang = i18n.language.startsWith("fr") ? "fr" : "en";
   const [questions, setQuestions] = useState([])
   const [selectedTopic, setSelectedTopic] = useState(null)
   const [instructions, setInstructions] = useState(null)
@@ -21,6 +24,7 @@ function UserExercice({ grammarTopics = [], auth, fetchGrammarTopics }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [feedback, setFeedBack] = useState([])
   const grade = Math.round((score * 100) / questions.length)
+
 
   useEffect(() => {
     fetchGrammarTopics()
@@ -68,6 +72,7 @@ function UserExercice({ grammarTopics = [], auth, fetchGrammarTopics }) {
       if (option.isCorrect) return option
     }
   }
+
 
   const displayNext = () => {
     if (!selectedAnswer) return
@@ -138,7 +143,7 @@ function UserExercice({ grammarTopics = [], auth, fetchGrammarTopics }) {
     <div className="page">
       <div className="exercice-div">
         {!gameStarted && (
-          <h2>Select a grammar topic from the options below: </h2>
+          <h2>{t("h2SelectTopic")}</h2>
         )}
 
         {!gameStarted && (
@@ -153,24 +158,27 @@ function UserExercice({ grammarTopics = [], auth, fetchGrammarTopics }) {
           <button onClick={handleClick} disabled={isLoading}>
             {isLoading ? (
               <>
-                <span className="loader"></span> Generating...
+                <span className="loader"></span> {t( "btnLoading")}
               </>
             ) : (
-              "Generate Exercise"
+              <>
+              {t( "btnGenerate")}
+              </>
+              
             )}
           </button>
         )}
 
         {/* once exercice is generated and started */}
         {gameStarted && selectedTopic && questions.length > 0 && (
-          <h2>{selectedTopic.name}</h2>
+          <h2>{selectedTopic.name?.[lang]}</h2>
         )}
 
         {gameStarted && instructions && questions.length > 0 && (
           <h3>{instructions}</h3>
         )}
         {gameStarted && selectedTopic.rule && questions.length > 0 && (
-          <p>{selectedTopic.rule}</p>
+          <p>{selectedTopic.rule?.[lang]}</p>
         )}
         {gameStarted &&
           selectedTopic.examples &&
@@ -193,7 +201,7 @@ function UserExercice({ grammarTopics = [], auth, fetchGrammarTopics }) {
         {/* once one option is selected */}
         {gameStarted && selectedAnswer && (
           <button className="next-button" onClick={displayNext}>
-            Next
+            {t("btnNext")}
           </button>
         )}
 
@@ -245,7 +253,7 @@ function UserExercice({ grammarTopics = [], auth, fetchGrammarTopics }) {
             ) : (
               <div className="grade">{grade}/100</div>
             )}
-            <button onClick={resetGame}>Start New Exercise</button>
+            <button onClick={resetGame}>{t("btnStartNew")}</button>
           </div>
         )}
       </div>
@@ -255,4 +263,4 @@ function UserExercice({ grammarTopics = [], auth, fetchGrammarTopics }) {
 function mapStateToProps(state) {
   return { grammarTopics: state.grammarTopics, auth: state.auth }
 }
-export default connect(mapStateToProps, { fetchGrammarTopics })(UserExercice)
+export default connect(mapStateToProps, { fetchGrammarTopics })(UserExercise)

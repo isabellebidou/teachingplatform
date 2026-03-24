@@ -16,7 +16,7 @@ import Completion from "./Completion";
 import UserDashboard from "./UserDashboard";
 import UserBoard from "./UserBoard";
 import UserDocuments from "./UserDocuments";
-import UserExercice from "./UserExercice";
+import UserExercice from "./UserExercise";
 import ReadingNew from "./readings/ReadingNew";
 import UserData from "./UserData";
 import UserDataFormEdit from "./userData/UserDataFormEdit";

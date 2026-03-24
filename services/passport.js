@@ -1,13 +1,12 @@
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const mongoose = require('mongoose');
-const keys = require('../config/keys');
-const User = mongoose.model('users');
-const log =  require("../services/utils").log;
+import passport from'passport';
+import {Strategy as GoogleStrategy} from'passport-google-oauth20';
+import mongoose from'mongoose';
+import keys from'../config/keys.js';
+import {log } from "../services/utils.js";
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
-
+const User = mongoose.model('users');
 passport.deserializeUser((id, done) => {
   User.findById(id).then((user) => {
     done(null, user);

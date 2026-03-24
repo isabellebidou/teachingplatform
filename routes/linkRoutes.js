@@ -1,39 +1,46 @@
-const _ = require('lodash')
-const mongoose = require('mongoose');
-const requireLogin = require('../middlewares/requireLogin');
-const requireAdminAccess = require("../middlewares/requireAdminAccess");
-const logError = require("../services/utils");
+import requireLogin from "../middlewares/requireLogin.js";
+import requireAdminAccess from "../middlewares/requireAdminAccess.js";
+import mongoose from "mongoose";
+import { logError } from "../services/utils.js";
 
+export default (app) => {
+  const Link = mongoose.model("links");
 
+  // GET all links
+  app.get("/api/links", async (req, res) => {
+    try {
+      const links = await Link.find().sort({ name: 1 });
+      res.send(links);
+    } catch (err) {
+      logError(err);
+      res.status(500).send("Failed to fetch links");
+    }
+  });
 
-module.exports = (app) => {
-    const Link = mongoose.model('links');
-
-    app.get("/api/links", async (req, res) => {
-
-        const links = await Link.find().sort({name:1})
-        res.send(links);
-
-    })
-
-    app.post("/api/link", requireLogin, requireAdminAccess, async (req, res) => {
+  // CREATE link
+  app.post(
+    "/api/link",
+    requireLogin,
+    requireAdminAccess,
+    async (req, res) => {
+      try {
         const { name, url, type, comment } = req.body;
+
         const link = new Link({
-            name,
-            url,
-            type,
-            comment
+          name,
+          url,
+          type,
+          comment,
         });
-        link.save().then((res) => {
 
-        }).catch((err) => { //logError(err) 
-        });
-        try {
-            res.send(link);
-        } catch (error) {
-            res.status(422).send(error);
-        }
+        await link.save();
 
-    });
+        res.send(link);
 
+      } catch (err) {
+        logError(err);
+        res.status(422).send(err);
+      }
+    }
+  );
 };

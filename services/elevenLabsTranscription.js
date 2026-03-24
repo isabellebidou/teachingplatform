@@ -1,10 +1,10 @@
 
 
-const keys = require("../config/keys");
-const log =  require("../services/utils").log;
+import keys from "../config/keys.js";
+import {log} from"../services/utils.js";
 
 
-async function transcribeAudio(buffer, mimetype, filename) {
+export async function transcribeAudio(buffer, mimetype, filename) {
   log("MIME:", mimetype);
   log("Filename:", filename);
   log("Buffer size:", buffer.length);
@@ -36,4 +36,3 @@ async function transcribeAudio(buffer, mimetype, filename) {
   return response.json(); // contains transcription text
 }
 
-module.exports = { transcribeAudio };
