@@ -178,11 +178,11 @@ export const grammarRules = {
   },
 
   "Short answers in the Present simple": {
-    nameFr: "Réponses courtes au présent simple",
+    nameFr: "Short answers au présent simple",
     rule: "Complete the short answers with do/does for present simple questions. Positive questions take negative short answers and vice versa.",
-    ruleFr: "Complétez les réponses courtes avec do/does pour les questions au présent simple. Les questions affirmatives prennent des réponses courtes négatives et inversement.",
-    allowedAnswers: [...doAuxiliariesByLevel.A1.negative, ...beAuxiliariesByLevel.A1.questions],
-    allowedIncorrectAnswers: doAuxiliariesByLevel.A1.negative.concat(doAuxiliariesByLevel.A1.questions),
+    ruleFr: "Complétez les réponses courtes avec do/does pour les questions au présent simple.",
+    allowedAnswers: ["I do"," I don't"," you do"," you don't"," he does"," he doesn't"," she does"," she doesn't"," we do"," we don't"," they do"," they don't"],
+    allowedIncorrectAnswers: ["I does"," we does"," you does"," they doesn't"," she don't"],
     numberOfOptions: 4,
     examples: [
       "Do you like pizza? — Yes, ___________. => Do you like pizza? — Yes, I do.",
@@ -191,7 +191,8 @@ export const grammarRules = {
     commonErrors: [
       "Using the wrong auxiliary",
       "Using do in the 3rd person"
-    ]
+    ],
+    detail: "Short answers are used for closed , Yes/No questions. The question should feature a simple closed question. Each option should start with Yes, or No, followed by a space. If the subject of the question is 'you', the correct answer should feature either 'we' or 'i' "
   },
 
   "Question tags in the Present simple": {
@@ -199,7 +200,7 @@ export const grammarRules = {
     rule: "Use question tags by repeating the auxiliary from the main sentence. Positive sentences take negative tags, negative take positive.",
     ruleFr: "Utilisez les question tags en répétant l'auxiliaire de la phrase principale. Les phrases affirmatives prennent des tags négatifs, les phrases négatives des tags positifs.",
     allowedAnswers: ["don't you?","doesn't he?","doesn't she?, don't we? don't they?"],
-    allowedIncorrectAnswers: ["aren't you?","isn't he?","isn't she?, aren't we? aren't they?"],
+    allowedIncorrectAnswers: ["aren't you?","isn't he?","isn't she?", "aren't we?", "aren't they? ","isn't you?", "aren't she?"],
     numberOfOptions: 3,
     examples: [
       "You like coffee, don't you?",
@@ -247,7 +248,7 @@ export const grammarRules = {
   },
 
   "Short answers in the present continuous tense": {
-    nameFr: "Réponses courtes au présent continu",
+    nameFr: "Short answers au présent continu",
     rule: "Use short answers with am/is/are for present continuous questions.",
     ruleFr: "Répondez avec am/is/are pour les questions au présent continu.",
     allowedAnswers: ["I am", "you are", "she is", "he is", "it is", "we are", "they are", "I'm not", "you aren't", "she isn't", "it isn't", "we aren't", "they aren't"],
@@ -261,11 +262,11 @@ export const grammarRules = {
       "Using do/does instead of am/is/are",
       "Repeating the main verb"
     ],
-    detail: 'The words "Yes," or "No," MUST appear before the gap.'
+    detail: "Short answers are used for closed, Yes/No questions. The question should feature a simple closed question. Each option should start with Yes, or No, followed by a space. If the subject of the question is 'you', the correct answer should feature either 'we' or 'i'"
   },
 
   "Question tags in the present continuous tense": {
-    nameFr: "Les question tags au présent continu",
+    nameFr: "Les 'Question Tags' au présent continu",
     rule: "Form question tags by repeating am/is/are from the main sentence.",
     ruleFr: "Formez les question tags en répétant am/is/are de la phrase principale.",
     allowedAnswers: ["isn't she?","aren't they?", "aren't you?", "isn't he?"],
@@ -282,7 +283,7 @@ export const grammarRules = {
   },
 
   "Definite vs indefinite articles and the Ø article": {
-    nameFr: "Articles définis vs indéfinis et zéro article",
+    nameFr: "Articles définis vs indéfinis et article zéro Ø",
     rule: "Use 'a/an' for singular countable nouns. 'an' when the next word starts with a vowel except for silent 'h' or u. Use 'the' for specific or previously identified nouns. Use the zero article (Ø) for plural/general nouns.",
     ruleFr: "Utilisez 'a/an' pour les noms comptables singuliers ('an' si le mot commence par une voyelle, sauf h muet ou u). Utilisez 'the' pour les noms spécifiques ou déjà identifiés. Utilisez Ø pour les noms pluriels ou généraux.",
     allowedAnswers: ["a","an","the","Ø"],
@@ -347,13 +348,13 @@ export const grammarRules = {
       "Using -est with long adjectives",
       "Incorrect irregular forms"
     ],
-    detail: 'At least one option needs a short adjective and one a long adjective.'
+    detail: 'At least one option should feature a short adjective and at least another option should feature a long adjective.'
   },
 
   "Countable vs uncountable nouns and when to use some and any": {
-    nameFr: "Noms comptables vs non comptables et usage de some/any",
+    nameFr: "Noms dénombrables vs noms indénombrables et usage de some/any",
     rule: "Use some with uncountable nouns and with countable nouns in the plural. Use a/an for singular countable nouns. Use some in affirmative sentences, any in negative and questions.",
-    ruleFr: "Utilisez some avec les noms non comptables et les noms comptables pluriels. Utilisez a/an pour les noms comptables singuliers. Utilisez some dans les phrases affirmatives et any dans les phrases négatives et questions.",
+    ruleFr: "Utilisez some avec les noms indénombrables et les noms dénombrables pluriels. Utilisez a/an pour les dénombrables au singulier. Utilisez some dans les phrases affirmatives et any dans les phrases négatives et les questions.",
     allowedAnswers: ["some","any","a","an"],
     numberOfOptions: 3,
     examples: [
@@ -390,7 +391,7 @@ export const grammarRules = {
   "Past simple (regular verbs)": {
     nameFr: "Prétérit simple (verbes réguliers)",
     rule: "Use past simple for completed actions. Regular verbs add -ed. Use did/didn't for questions and negatives.",
-    ruleFr: "Utilisez le prétérit simple pour des actions terminées. Les verbes réguliers prennent -ed. Utilisez did/didn't pour questions et négations.",
+    ruleFr: "Utilisez le prétérit simple pour des actions terminées. Les verbes réguliers prennent -ed. Utilisez did/didn't pour les questions et les négations.",
     allowedAnswers: [...correctPast, ...pastSimpleAnswersNot],
     allowedIncorrectAnswers: incorrectPast,
     suggestions: [...allowedBaseVerbSuggestionsWithLeadingPronouns, ...allowedBaseVerbSuggestionsWithLeadingPronounsNot],

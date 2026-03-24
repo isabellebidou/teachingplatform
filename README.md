@@ -6,8 +6,8 @@ to start both server and client : npm run dev
 # Language Feedback Tool
 
 ## Version
-This is **version 1.0.0**, the first stable and functional release of the project.
-
+ **version 1.0.0**, the first stable and functional release of the project.
+ **version 1.0.1**, localized to french.
 ## Description
 This project provides a basic feedback service to help users improve their language skills through interactive exercises.
 

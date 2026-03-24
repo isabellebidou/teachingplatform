@@ -30,7 +30,7 @@ function Settings({ visible, onClose, auth ,fetchUser}) {
 
   return (
     <div className="settings-overlay">
-      <div className="settings-modal">
+      <div className="content">
 
         <span className="close-btn" onClick={onClose}>×</span>
 
@@ -44,7 +44,7 @@ function Settings({ visible, onClose, auth ,fetchUser}) {
           <option value="fr">🇫🇷 Français</option>
         </select>
 
-        <button onClick={handleSubmit}>
+        <button id= "settingsSubmitButton" onClick={handleSubmit}>
           Save
         </button>
 

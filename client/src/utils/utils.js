@@ -1,6 +1,6 @@
-const logs = true
+const logs = false
 
-function log(...args) {
+export function log(...args) {
   if (process.env.NODE_ENV !== "production" && logs) {
     for (let index = 0; index < args.length; index++) {
       console.log(args[index]);
@@ -8,7 +8,7 @@ function log(...args) {
     }
   }
 }
-function logError(...args) {
+export function logError(...args) {
   if (process.env.NODE_ENV !== "production" && logs) {
     for (let index = 0; index < args.length; index++) {
       console.log(args[index]);
@@ -16,7 +16,7 @@ function logError(...args) {
     }
   }
 }
-function warn(...args) {
+export function warn(...args) {
   if (process.env.NODE_ENV !== "production" && logs) {
     for (let index = 0; index < args.length; index++) {
       console.log(args[index]);
@@ -24,4 +24,4 @@ function warn(...args) {
     }
   }
 }
-module.exports = { log, logError, warn };
+//module.exports = { log, logError, warn };

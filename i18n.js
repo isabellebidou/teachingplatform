@@ -1,10 +1,10 @@
 import i18n from "i18next";
 
 
-import enFeedback from "./locales/en/feedback.json" assert { type: "json" };
-import frFeedback from "./locales/fr/feedback.json" assert { type: "json" };
-import enExercise from "./locales/en/exercise.json" assert { type: "json" };
-import frExercise from "./locales/fr/exercise.json" assert { type: "json" };
+import enFeedback from "./locales/en/feedback.json" with { type: "json" };
+import frFeedback from "./locales/fr/feedback.json" with { type: "json" };
+import enExercise from "./locales/en/exercise.json" with { type: "json" };
+import frExercise from "./locales/fr/exercise.json" with { type: "json" };
 
 
 i18n

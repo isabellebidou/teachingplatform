@@ -1049,3 +1049,14 @@ dd {
   cursor: pointer;
   font-size: 20px;
 }
+#settingsSubmitButton {
+    background: green;
+    color: #fff;
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 6px;
+    padding: 10px 0;
+    border: none;
+    font-weight: bolder;
+    cursor: pointer;
+  }

@@ -174,6 +174,14 @@ ${selectedTopic.examples[0]}
 `
     : ``
 }
+${
+  selectedTopic.examples > 1
+    ? `
+ EXAMPLE OF OPTION => EXPECTED 
+${selectedTopic.examples[1]}
+`
+    : ``
+}
 INVALID OUTPUT (DO NOT PRODUCE):
 - Sentences testing grammar other than the target rule.
 - Gaps solvable by more than one correct answer.
