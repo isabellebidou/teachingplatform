@@ -1,14 +1,13 @@
-const mongoose = require('mongoose')
-const {Schema} = mongoose; // =const Schema = mongoose.Schema;  destructuring
+import mongoose from "mongoose";
 
+const { Schema } = mongoose;
 
+const linkSchema = new Schema({
+  name: String,
+  url: String,
+  type: { type: String, default: "text" },
+  comment: String
+});
 
-const linkSchema = new Schema ({
-    name: String,
-    url:String,
-    type:{type: String, default:'text'},
-    comment: String
-    
-})
-
-mongoose.model('links', linkSchema);
+// Export safely to avoid OverwriteModelError
+export default mongoose.models.links || mongoose.model("links", linkSchema);

@@ -1,33 +1,40 @@
+import mongoose from "mongoose";
 
+const { Schema } = mongoose;
 
-
-const mongoose = require('mongoose')
-const {Schema} = mongoose; // =const Schema = mongoose.Schema;  destructuring
-
-
-
-const AnswerSchema = new Schema ({
-  questionIndex: Number,
-  selectedAnswer: String, // "A"
-  correct: Boolean
-}, { _id: false });
-
-const StudentAttemptSchema = new mongoose.Schema({
-  studentId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true
+// Sub-schema for answers
+const AnswerSchema = new Schema(
+  {
+    questionIndex: Number,
+    selectedAnswer: String, // "A"
+    correct: Boolean
   },
-  exerciseId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Exercise",
-    required: true
-  },
-  answers: [AnswerSchema],
-  score: Number,
-  total: Number,
-  completedAt: Date
-}, { timestamps: true });
+  { _id: false }
+);
 
+// Main schema
+const StudentAttemptSchema = new Schema(
+  {
+    studentId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true
+    },
+    exerciseId: {
+      type: Schema.Types.ObjectId,
+      ref: "Exercise",
+      required: true
+    },
+    answers: [AnswerSchema],
+    score: Number,
+    total: Number,
+    completedAt: Date
+  },
+  { timestamps: true }
+);
+
+// Index for fast queries
 StudentAttemptSchema.index({ studentId: 1 });
-mongoose.model('StudentAttempt',StudentAttemptSchema);
+
+// Export safely to avoid OverwriteModelError
+export default mongoose.models.StudentAttempt || mongoose.model("StudentAttempt", StudentAttemptSchema);

@@ -1,13 +1,12 @@
-const mongoose = require('mongoose')
-const {Schema} = mongoose; // =const Schema = mongoose.Schema;  destructuring
+import mongoose from "mongoose";
 
+const { Schema } = mongoose;
 
+const offerSchema = new Schema({
+  name: String,
+  description: String,
+  price: Number
+});
 
-const offerSchema = new Schema ({
-    name: String,
-    description:String,
-    price: Number
-    
-})
-
-mongoose.model('offers',offerSchema);
+// Export safely to avoid OverwriteModelError
+export default mongoose.models.offers || mongoose.model("offers", offerSchema);
