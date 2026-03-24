@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "1.0.1",
+  "type": "module",
   "description": "Teaching website",
   "main": "index.js",
   "engines": {

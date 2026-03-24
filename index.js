@@ -1,12 +1,10 @@
-// index.js
 import express from "express";
 import mongoose from "mongoose";
 import cookieSession from "cookie-session";
 import passport from "passport";
-import keys from "./config/keys.js";
+import keys from "./config/keys.js"; // must use export default
 import bodyParser from "body-parser";
 import enforce from "express-sslify";
-import { log, logError as error } from "./services/utils.js";
 
 import path from "path";
 import { fileURLToPath } from "url";
@@ -28,6 +26,8 @@ import "./models/Audio.js";
 import "./models/Script.js";
 import "./models/GrammarTopic.js";
 import "./models/Theme.js";
+import "./models/Level.js";
+import "./models/Exercise.js";
 
 // ------------------- Import services -------------------
 import "./services/passport.js";
@@ -57,7 +57,7 @@ const isProduction = process.env.NODE_ENV === "production";
 
 app.use(express.json());
 app.use(bodyParser.json());
-app.set("trust proxy", 1); // needed for cookie session behind proxy
+app.set("trust proxy", 1);
 
 // ------------------- HTTPS enforcement -------------------
 if (isProduction) {
@@ -69,7 +69,7 @@ if (isProduction) {
 app.use(
   cookieSession({
     name: "session",
-    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    maxAge: 30 * 24 * 60 * 60 * 1000,
     keys: [keys.cookieKey],
     secure: isProduction,
   })
@@ -80,53 +80,53 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // ------------------- Mount routes -------------------
-healthRoutes(app);
-feedbackRoutes(app);
-authRoutes(app);
-billingRoutes(app);
-readingRoutes(app);
-userDataRoutes(app);
-usersRoutes(app);
-faqRoutes(app);
-linkRoutes(app);
-offerRoutes(app);
-starReviewRoutes(app);
-audioRoutes(app);
-scriptRoutes(app);
-grammarTopicsRoutes(app);
-exerciceRoutes(app);
-settingsRoutes(app);
+[
+  healthRoutes,
+  feedbackRoutes,
+  authRoutes,
+  billingRoutes,
+  readingRoutes,
+  userDataRoutes,
+  usersRoutes,
+  faqRoutes,
+  linkRoutes,
+  offerRoutes,
+  starReviewRoutes,
+  audioRoutes,
+  scriptRoutes,
+  grammarTopicsRoutes,
+  exerciceRoutes,
+  settingsRoutes,
+].forEach((route) => route(app));
 
-// ------------------- Static React build -------------------
+// ------------------- Serve static React build -------------------
 if (isProduction) {
   app.use(express.static(path.resolve(__dirname, "client", "build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  );
 }
 
 // ------------------- MongoDB connection -------------------
 mongoose.set("strictQuery", false);
 
-const db = async () => {
+const startDBAndServer = async () => {
   try {
     await mongoose.connect(keys.mongoURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    log("✅ MongoDB connected:", mongoose.connection.name);
+    console.log("✅ MongoDB connected:", mongoose.connection.name);
+
+    const PORT = process.env.PORT || 8000;
+    app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
   } catch (err) {
-    error("❌ MongoDB connection error:", err.message);
+    console.error("❌ MongoDB connection error:", err);
     if (isProduction) process.exit(1);
   }
 };
 
 // ------------------- Start server -------------------
-const PORT = process.env.PORT || 8000;
-db().then(() => {
-  app.listen(PORT, () => {
-    log(`Server listening on port ${PORT}`);
-  });
-});
+startDBAndServer();
 
 export default app; // optional for testing
