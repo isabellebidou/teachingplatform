@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+
 import { connect } from "react-redux";
 
 
@@ -9,7 +8,6 @@ function Approval({onClose}) {
   const countryCode = browserLocale.split("-")[1];
 
 
-//if (!visible) return null;
   return (
     <div className="settings-overlay">
       <div className="content">
