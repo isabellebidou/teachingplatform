@@ -1,4 +1,4 @@
-const logs = false
+const logs = true
 
 export function log(...args) {
   if (process.env.NODE_ENV !== "production" && logs) {
