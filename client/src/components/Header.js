@@ -114,11 +114,11 @@ function Header({ auth, cookie, fetchCookieValue }) {
       <Logo />
 
       {<span>{renderContent()}</span>}
-      {cookie && (
+      
         <span>
           <MenuButton />
         </span>
-      )}
+      
       {/* ✅ pending approval popup */}
 
       {showApproval && <Approval onClose={() => setShowApproval(false)} />}
