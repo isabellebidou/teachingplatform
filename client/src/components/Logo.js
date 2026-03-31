@@ -23,7 +23,7 @@ class Logo extends Component {
 
     return (
       <a href="/">
-        <img className={logoClassName} src='/seagul.png'salt="logo" loading="eager" title="iridology by isabelle logo" />
+        <img className={logoClassName} src='/seagul.png'salt="logo" loading="eager" title="seagule and flower logo" />
       </a>
     );
   }
