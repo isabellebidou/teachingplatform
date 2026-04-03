@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import { connect } from "react-redux"
+import  { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import { Link, useLocation } from "react-router-dom"
 import MenuButton from "./MenuButton"
 import { fetchCookieValue } from "../actions"
@@ -14,10 +14,12 @@ import Logo from "./Logo"
 import Settings from "./Settings"
 import Approval from "./Approval"
 
-function Header({ auth, cookie, fetchCookieValue }) {
+function Header() {
   const location = useLocation()
   const [showSettings, setShowSettings] = useState(false)
   const [showApproval, setShowApproval] = useState(false)
+  const auth = useSelector((state) => state.auth)
+  //const cookie = useSelector((state) => state.cookie)
 
   useEffect(() => {
     fetchCookieValue()
@@ -129,11 +131,4 @@ function Header({ auth, cookie, fetchCookieValue }) {
   )
 }
 
-function mapStateToProps({ auth, cookie }) {
-  console.log("auth", auth)
-  console.log("cookie", cookie)
-  console.log("fetchCookieValue", fetchCookieValue)
-  return { auth, cookie }
-}
-
-export default connect(mapStateToProps, { fetchCookieValue })(Header)
+export default Header
