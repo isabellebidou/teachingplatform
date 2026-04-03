@@ -1,23 +1,19 @@
 
-import React from "react";
-import { Component } from "react";
+
 import { AiOutlineMenu } from "react-icons/ai";
 import $ from 'jquery';
 
 
+function MenuButton(){
 
 
-
-class MenuButton extends Component {
-
-
-    menuClick() {
+    const menuClick=()=>{
         $("#mobilemenu").slideToggle();
     }
-    renderButton() {
+    const renderButton =()=>{
 
         return (
-            <button id="menubutton" onClick={this.menuClick}><AiOutlineMenu
+            <button id="menubutton" onClick={menuClick}><AiOutlineMenu
             style={{ color: "#7f5f87" }}
             key={'AiOutlineMenu'}
         /></button>
@@ -25,20 +21,11 @@ class MenuButton extends Component {
 
     }
 
-
-
-    render() {
         return (
             <div>
-                {this.renderButton()}
+                {renderButton()}
             </div>
         );
-    }
-
-
-
-
-
 
 
 }

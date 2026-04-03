@@ -1,14 +1,12 @@
-import React, { Component } from "react";
+
 import { Link } from "react-router-dom";
 
 
 
 
-class Footer extends Component {
+function Footer(){
 
 
-
-  render() {
     // Get the browser locale
     const browserLocale = navigator.language || navigator.userLanguage;
 
@@ -39,7 +37,7 @@ class Footer extends Component {
 
 
     );
-  }
+  
 }
 
 export default Footer;
