@@ -1,7 +1,7 @@
 {
-  "btnActionbook": "Testez votre prononciation",
+  "btnActionbook": "Réservez votre consultation gratuite dès maintenant",
   "btnActionsign": "Connectez-vous et commencez à apprendre dès aujourd’hui !",
-  "h1Title": "Apprendre l’anglais",
+  "h1Title": "Izzy Speak English",
 
   "h2Features": "Fonctionnalités",
 
@@ -19,7 +19,7 @@
 
   "h2faq": "Questions fréquentes",
   "h2Contact":"Contact",
-  "pContact": "Je m’appelle Isabelle Bidou. Si vous avez des questions, n’hésitez pas à me contacter.",
+  "pContact": "Je m’appelle Isabelle Bidou. Je suis développeur Fullstack et professeur d'anglais. Je propose un service de coaching de professionnels qui ont besoin de s'exprimer en anglais avec des contraintes spécifiques à leurs activités.  Je prépare également les étudiants aux Khôlles de prépa. Si vous avez des questions, n’hésitez pas à me contacter.",
 
   "pCookie": "Ce site utilise des cookies pour l’authentification avec Google OAuth et pour améliorer l’expérience utilisateur. En acceptant l’utilisation des cookies, vous pourrez tester les fonctionnalités après vous être connecté avec votre compte Google."
 }

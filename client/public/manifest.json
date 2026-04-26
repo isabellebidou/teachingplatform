@@ -1,21 +1,11 @@
 {
-  "short_name": "Teaching App",
-  "name": "Teaching",
+  "short_name": "Izzy SE",
+  "name": "Izzy Speak English",
   "icons": [
     {
       "src": "favico.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
-    },
-    {
-      "src": "iridologylogo.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "iridologylogo.png",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
   "start_url": ".",

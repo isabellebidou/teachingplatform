@@ -1,47 +1,58 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import FaqList from "./faqs/FaqList";
-import FaqForm from "./faqs/FaqForm";
-import StarReviewList from "./starreviews/StarReviewList";
-import CookieConsent from "react-cookie-consent";
-import { fetchCookieValue, updateCookieAcceptance } from "../actions";
-import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
+import FaqList from "./faqs/FaqList"
+import FaqForm from "./faqs/FaqForm"
+import StarReviewList from "./starreviews/StarReviewList"
+import CookieConsent from "react-cookie-consent"
+import { fetchCookieValue, updateCookieAcceptance } from "../actions"
+import { useTranslation } from "react-i18next"
 
 const Landing = () => {
-  const dispatch = useDispatch();
-  const { t } = useTranslation("landing");
+  const dispatch = useDispatch()
+  const { t } = useTranslation("landing")
 
-  const auth = useSelector((state) => state.auth);
-  const cookie = useSelector((state) => state.cookie);
+  const auth = useSelector((state) => state.auth)
+  const cookie = useSelector((state) => state.cookie)
 
-  const [showSign, setShowSign] = useState(false);
+  const [showSign, setShowSign] = useState(false)
 
   useEffect(() => {
-    dispatch(fetchCookieValue());
-  }, [dispatch]);
+    dispatch(fetchCookieValue())
+  }, [dispatch])
 
-  const toggleSign = () => setShowSign((prev) => !prev);
+  const toggleSign = () => setShowSign((prev) => !prev)
 
   const handleAccept = () => {
-    dispatch(updateCookieAcceptance(true));
-    dispatch(fetchCookieValue());
-  };
+    dispatch(updateCookieAcceptance(true))
+    dispatch(fetchCookieValue())
+  }
 
   const handleDecline = () => {
-    dispatch(updateCookieAcceptance(false));
-    setShowSign(false);
-  };
+    dispatch(updateCookieAcceptance(false))
+    setShowSign(false)
+  }
 
-  const renderButton = () => {
-    if (auth) {
-      return (
-        <Link to="/dashboard">
+  const renderFaqForm = () => {
+    if (auth && auth.type === "admin") return <FaqForm />
+    return null
+  }
+
+  // Browser locale for Legal Notice
+  const browserLocale = navigator.language || navigator.userLanguage
+  const countryCode = browserLocale.split("-")[1]
+
+  return (
+    <div className="page">
+      <h1>{t("h1Title")}</h1>
+
+      <div className="col"></div>
+      {auth && (
+        <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
           <button className="actionbook">{t("btnActionbook")}</button>
-        </Link>
-      );
-    } else {
-      return (
+        </a>
+      )}
+      {!auth && (
         <span className="actionsign button">
           {t("btnActionsign")}
           <br />
@@ -57,24 +68,7 @@ const Landing = () => {
             />
           </a>
         </span>
-      );
-    }
-  };
-
-  const renderFaqForm = () => {
-    if (auth && auth.type === "admin") return <FaqForm />;
-    return null;
-  };
-
-  // Browser locale for Legal Notice
-  const browserLocale = navigator.language || navigator.userLanguage;
-  const countryCode = browserLocale.split("-")[1];
-
-  return (
-    <div className="page">
-      <h1>{t("h1Title")}</h1>
-
-      <div className="col"></div>
+      )}
 
       <fieldset>
         <legend>
@@ -124,21 +118,21 @@ const Landing = () => {
         <div id="contact">
           <img
             className="me"
-            src="/me.png"
+            src="/isabellebidou.png"
             alt="isabelle bidou"
             loading="lazy"
             title="Isabelle Bidou"
           />
           <p className="itemp">
             {t("pContact")}{" "}
-            <a href="mailto:isa.bidou@gmail.com?subject=Teaching Platform Enquiry">
+            <a href="mailto:isa.bidou@gmail.com?subject= Izzy Speak English Teaching Platform Enquiry">
               isa.bidou@gmail.com
             </a>
           </p>
         </div>
       </fieldset>
 
-      {(cookie === true || cookie === "" || cookie === null) && renderButton()}
+      {cookie === true || cookie === "" || cookie === null}
 
       <CookieConsent
         location="bottom"
@@ -154,7 +148,7 @@ const Landing = () => {
       >
         {t("pCookie")}
         <br />
-        {(countryCode !== "FR" && countryCode !== "fr") && (
+        {countryCode !== "FR" && countryCode !== "fr" && (
           <span className="item">
             <Link to={"/legalnotice"}>Legal Notice</Link>
           </span>
@@ -166,7 +160,7 @@ const Landing = () => {
         )}
       </CookieConsent>
     </div>
-  );
-};
+  )
+}
 
-export default Landing;
+export default Landing

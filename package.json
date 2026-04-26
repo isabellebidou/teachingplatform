@@ -1,8 +1,8 @@
 {
   "name": "server",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
-  "description": "Teaching website",
+  "description": "English Language Teaching website",
   "main": "index.js",
   "engines": {
     "node": ">=18.12.1",

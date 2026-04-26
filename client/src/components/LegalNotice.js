@@ -8,15 +8,15 @@ const LegalNotice = () => {
         <div className='page'>
             <h1>Legal Notice</h1>
             <p className='itemp'>
-                In accordance with the provisions of Law No. 2004-575 of June 21, 2004 on confidence in the digital economy, users of the iridology site are informed of the identity of the various parties involved in its implementation and monitoring.
+                In accordance with the provisions of Law No. 2004-575 of June 21, 2004 on confidence in the digital economy, users of the Izzy Speak English site are informed of the identity of the various parties involved in its implementation and monitoring.
             </p>
             <h2>Editing the site</h2>
             <p className='itemp'>
                 This site, accessible at the URL <a href="https://teachingplatform-production-0545.up.railway.app/">https://teachingplatform-production-0545.up.railway.app/ </a> (the “Site”), is published by:<br />
 
-                Isabelle Bidou, residing at 52 avenue de Choisy France of French nationality (France), born on 28/10/1971, 
+                Isabelle Bidou, residing at 52 avenue de Choisy, 75013 Paris,  France -  of French nationality (France), born on 28/10/1971, 
 
-                The publisher's individual VAT number is: does not apply.
+                The publisher's individual Siren number is: 103664934.
             </p>
             <h2>Accommodation</h2>
             <p className='itemp'>
