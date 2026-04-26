@@ -16,9 +16,7 @@ overflow:hidden;
 width:100%;
 }
 
-p {
-  text-align: justify;
-}
+
 
 .userdatadl dt{
   font-size: medium;
@@ -545,7 +543,7 @@ h3 {
   float:right;
   max-width: 15%;
   border-radius: 50%;
-  border-color: var(--darkpurple);;
+  border-color: var(--darkpurple);
   padding: 2em;
 
 }
@@ -614,14 +612,19 @@ h3 {
   border-width: thin;
 }
 
-.usersTable th,
-.usersTable td {
-  padding-top: 0.7em;
+.usersTable th,th,
+.usersTable td,td{
+ 
   border-radius: 6%;
   border: 1px dotted #45a049;
+  
+}
+table{  
+  text-align: center;
+  color: var(--darkpurple);
 }
 
-p {
+p, fieldset, table {
   padding-top: 0.5em;
   padding-right: 2em;
   padding-bottom: 0.5em;

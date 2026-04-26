@@ -3,8 +3,8 @@
   "btnActionsign": "Connectez-vous et commencez à apprendre dès aujourd’hui !",
   "h1Title": "Izzy Speak English",
 
-  "h2Features": "Fonctionnalités",
-
+  "h2Features": "Fonctionnalités de l'application",
+  "pFeatures":"Dans le cadre de votre coaching, vous bénéficierez d’un accès gratuit à une application complémentaire. Elle vous permet de sélectionner des règles de grammaire, de générer des exercices ciblés et d’enregistrer de courts extraits audio pour obtenir un retour sur votre prononciation. Veuillez noter que l’application est actuellement en cours de développement et de test, et que seules certaines fonctionnalités sont disponibles pour le moment.",
   "h2AudioFeedback": "🎤 Retour sur la prononciation",
   "pAudioFeedback": "Les utilisateurs peuvent enregistrer une courte phrase orale. Le système analyse la prononciation et fournit un retour pour aider à améliorer l’expression orale.",
 
@@ -21,5 +21,18 @@
   "h2Contact":"Contact",
   "pContact": "Je m’appelle Isabelle Bidou. Je suis développeur Fullstack et professeur d'anglais. Je propose un service de coaching de professionnels qui ont besoin de s'exprimer en anglais avec des contraintes spécifiques à leurs activités.  Je prépare également les étudiants aux Khôlles de prépa. Si vous avez des questions, n’hésitez pas à me contacter.",
 
-  "pCookie": "Ce site utilise des cookies pour l’authentification avec Google OAuth et pour améliorer l’expérience utilisateur. En acceptant l’utilisation des cookies, vous pourrez tester les fonctionnalités après vous être connecté avec votre compte Google."
+  "pCookie": "Ce site utilise des cookies pour l’authentification avec Google OAuth et pour améliorer l’expérience utilisateur. En acceptant l’utilisation des cookies, vous pourrez tester les fonctionnalités après vous être connecté avec votre compte Google.",
+  "h2OffersLegend": "Offres de Coaching individuel pour adultes",
+  "pOffers":"Je propose un coaching individuel en anglais entièrement personnalisé, adapté à vos besoins professionnels spécifiques. Forte d’une solide expérience en entreprise, en développement informatique et en relation client, je vous aide à gagner en aisance et en fluidité dans des situations concrètes comme les réunions Scrum, les échanges professionnels et les interactions avec des clients. Chaque séance est conçue sur mesure pour des progrès utiles et immédiatement applicables dans votre travail.",
+  
+  "thOfferOnline5": "(en ligne) – forfait 5 séances",
+  "thOfferOnline10": "(en ligne) – forfait 10 séances",
+  "thOffer5": "(en présentiel) – forfait 5 séances",
+  "thOffer10": "(en présentiel) – forfait 10 séances",
+
+  "tdOfferOnline5": "300 €",
+  "tdOfferOnline10": "550 €",
+  "tdOffer5": "350 €",
+  "tdOffer10": "700 €",
+  "pOfferBook": "Vous pouvez réserver une consultation gratuite de 10 minutes afin de discuter de vos besoins et objectifs spécifiques. C’est l’occasion idéale de voir comment je peux vous accompagner et adapter les séances à votre contexte professionnel. Il vous suffit de suivre ce lien pour choisir un créneau qui vous convient :"
 }

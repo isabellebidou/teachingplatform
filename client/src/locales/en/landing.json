@@ -2,7 +2,8 @@
   "btnActionbook": "Book your free Consultation now",
   "btnActionsign": "Sign in and start learning today!",
   "h1Title": "Izzy Speak English",
-  "h2Features":"Features",
+  "h2Features":"App Features",
+  "pFeatures":"As part of your coaching, you’ll get free access to a complementary learning app. It allows you to select grammar rules, generate targeted exercises, and record short audio samples to receive pronunciation feedback. Please note: the app is currently under development and testing, and only selected features are available at this stage.",
   "h2AudioFeedback": "🎤 Audio Feedback",
   "pAudioFeedback":"Users can record a short spoken statement. The system analyzes pronunciation. Users receive feedback to help improve their speaking skills.",
   "h2SpellingFeedback":"✍️ Spelling Feedback",
@@ -14,5 +15,17 @@
   "h2faq": "Frequently Asked Questions",
   "h2Contact":"Contact",
   "pContact":"My name is Isabelle Bidou. I am a Fullstack developer and an English teacher. I offer a coaching service for professionals who need to speak English with specific constraints related to their activities.  I also prepare students for the  engineering schools oral entrance test exams. If you have questions, feel free to contact me",
-  "pCookie":"This website uses cookies for authentication with google OAuth, to enhance the user experience. If you consent tousing cookies. In order to try the features you must authenticate with your google credentials."
+  "pCookie":"This website uses cookies for authentication with google OAuth, to enhance the user experience. If you consent tousing cookies. In order to try the features you must authenticate with your google credentials.",
+  "h2OffersLegend": "1:1 Coaching Offers for adults",
+  "pOffers":"I offer personalised 1:1 English coaching designed to meet your specific professional needs. With a strong background in corporate environments, software development, and customer service, I help you gain confidence and fluency in real-world situations such as Scrum meetings, business presentations, and client interactions. Each session is tailored to your goals, ensuring practical, relevant progress that you can immediately apply at work.",
+  "thOfferOnline5": "(Online) – 5-session pack",
+  "thOfferOnline10": "(Online) – 10-session pack",
+  "thOffer5": "(In person) – 5-session pack",
+  "thOffer10": "(In person) – 10-session pack",
+
+  "tdOfferOnline5": "€300",
+  "tdOfferOnline10": "€550",
+  "tdOffer5": "€350",
+  "tdOffer10": "€700",
+  "pOfferBook": "You can book a free 10-minute consultation to discuss your specific needs and goals. This is a great opportunity to see how I can support your progress and tailor sessions to your professional context. Simply follow this link to choose a time that suits you:"
 }

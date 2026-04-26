@@ -72,16 +72,50 @@ const Landing = () => {
 
       <fieldset>
         <legend>
+          <h2>{t("h2OffersLegend")}</h2>
+        </legend>
+        <p>{t("pOffers")}</p>
+
+        <table>
+          <tr>
+            <th>{t("thOfferOnline5")}</th>
+            <th>{t("thOfferOnline10")}</th>
+            <th>{t("thOffer5")}</th>
+            <th>{t("thOffer10")}</th>
+          </tr>
+          <tr>
+            <td>{t("tdOfferOnline5")}</td>
+            <td>{t("tdOfferOnline10")}</td>
+            <td>{t("tdOffer5")}</td>
+            <td>{t("tdOffer10")}</td>
+          </tr>
+        </table>
+        
+ <p>{t("pOfferBook")}</p>
+ 
+   <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
+          <button className="actionupload">{t("btnActionbook")}</button>
+        </a>
+ 
+        
+      </fieldset>
+
+      <fieldset>
+        <legend>
           <h2>{t("h2Features")}</h2>
         </legend>
+        <p>{t("pFeatures")}</p>
         <h2>{t("h2AudioFeedback")}</h2>
         <p>{t("pAudioFeedback")}</p>
 
-        <h2>{t("h2SpellingFeedback")}</h2>
-        <p>{t("pSpellingFeedback")}</p>
 
         <h2>{t("h2GrammarPractice")}</h2>
         <p>{t("pGrammarPractice")}</p>
+        {false && ( 
+        <>
+        <h2>{t("h2SpellingFeedback")}</h2>
+        <p>{t("pSpellingFeedback")}</p>
+        </>)}
       </fieldset>
 
       <fieldset>
