@@ -1,0 +1,54 @@
+{
+  "h1Title": "Syllable Stress in English",
+
+  "h2GeneralRules": "General Rules",
+  "pGeneralRules": "Most 2-syllable verbs are stressed on the second syllable, while most 2-syllable nouns and adjectives are stressed on the first syllable.",
+
+  "h2TwoSyllableVerbs": "2-Syllable Verbs",
+  "h3CommonPattern": "Common Pattern",
+  "h3Origin": "By Origin",
+  "h4FrenchLatin": "French / Latin Origin → Stress on 2nd syllable",
+  "h4Germanic": "Germanic Origin → Stress on 1st syllable",
+
+  "h3Practice": "Practice",
+  "pPractice1": "I would like to argue that this solution is better.",
+  "pPractice2": "We should focus on the main problem.",
+  "pPractice3": "This often happens in society.",
+  "pPractice4": "The policy does not offer enough support.",
+  "pPractice5": "I will present three main ideas.",
+
+  "h2TwoSyllableWords": "2-Syllable Nouns & Adjectives",
+  "pRuleFirstStress": "Most are stressed on the first syllable.",
+  "pWarningSecondStress": "BUT adjectives of French origin or starting with 'a-' are often stressed on the second syllable.",
+
+  "h3FirstSyllable": "First Syllable Stress",
+  "h3SecondSyllable": "Second Syllable Stress",
+  "h3Exceptions": "Exceptions",
+
+  "h2StressChange": "Stress Change (Noun vs Verb)",
+  "h4Noun": "Noun (1st syllable)",
+  "h4Verb": "Verb (2nd syllable)",
+  "pCommentNote": "COMMENT has the same stress in noun and verb.",
+
+  "h2ThreeSyllable": "3-Syllable Words",
+  "h3Endings": "Common Endings",
+  "pEndingsRule": "Words ending in -tion / -sion, -ic and -ity are stressed on the syllable before.",
+
+  "h3ImportantNotes": "Important Notes",
+
+  "h2WordFamilies": "Word Families",
+
+  "h2VowelReduction": "Vowel Reduction",
+  "pSchwa": "Unstressed syllables often reduce to /ə/ (schwa).",
+
+  "h2BritishVsAmerican": "British vs American English",
+  "h4British": "British English",
+  "h4American": "American English",
+  "pBritishDesc": "Stronger vowel reduction",
+  "pAmericanDesc": "Less vowel reduction",
+
+  "h2StressTable": "Stress Patterns by Syllable",
+  "thFirst": "1st Syllable Stress",
+  "thSecond": "2nd Syllable Stress",
+  "thThird": "3rd Syllable Stress"
+}

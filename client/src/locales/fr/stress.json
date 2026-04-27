@@ -1,0 +1,54 @@
+{
+  "h1Title": "L'accent tonique en anglais",
+
+  "h2GeneralRules": "Règles générales",
+  "pGeneralRules": "La plupart des verbes à 2 syllabes sont accentués sur la deuxième syllabe, tandis que les noms et adjectifs à 2 syllabes sont généralement accentués sur la première.",
+
+  "h2TwoSyllableVerbs": "Verbes à 2 syllabes",
+  "h3CommonPattern": "Schéma courant",
+  "h3Origin": "Selon l'origine",
+  "h4FrenchLatin": "Origine française / latine → accent sur la 2e syllabe",
+  "h4Germanic": "Origine germanique → accent sur la 1re syllabe",
+
+  "h3Practice": "Entraînement",
+  "pPractice1": "Je voudrais affirmer que cette solution est meilleure.",
+  "pPractice2": "Nous devrions nous concentrer sur le problème principal.",
+  "pPractice3": "Cela arrive souvent dans la société.",
+  "pPractice4": "La politique n'offre pas assez de soutien.",
+  "pPractice5": "Je vais présenter trois idées principales.",
+
+  "h2TwoSyllableWords": "Noms et adjectifs à 2 syllabes",
+  "pRuleFirstStress": "La plupart sont accentués sur la première syllabe.",
+  "pWarningSecondStress": "MAIS les adjectifs d'origine française ou commençant par 'a-' sont souvent accentués sur la deuxième syllabe.",
+
+  "h3FirstSyllable": "Accent sur la 1re syllabe",
+  "h3SecondSyllable": "Accent sur la 2e syllabe",
+  "h3Exceptions": "Exceptions",
+
+  "h2StressChange": "Changement d'accent (nom vs verbe)",
+  "h4Noun": "Nom (1re syllabe)",
+  "h4Verb": "Verbe (2e syllabe)",
+  "pCommentNote": "COMMENT a le même accent en tant que nom et verbe.",
+
+  "h2ThreeSyllable": "Mots à 3 syllabes",
+  "h3Endings": "Terminaisons fréquentes",
+  "pEndingsRule": "Les mots se terminant par -tion / -sion, -ic et -ity sont accentués sur la syllabe précédente.",
+
+  "h3ImportantNotes": "Points importants",
+
+  "h2WordFamilies": "Familles de mots",
+
+  "h2VowelReduction": "Réduction vocalique",
+  "pSchwa": "Les syllabes non accentuées deviennent souvent /ə/ (schwa).",
+
+  "h2BritishVsAmerican": "Anglais britannique vs américain",
+  "h4British": "Anglais britannique",
+  "h4American": "Anglais américain",
+  "pBritishDesc": "Réduction des voyelles plus forte",
+  "pAmericanDesc": "Réduction des voyelles moins marquée",
+
+  "h2StressTable": "Schémas d'accentuation par syllabe",
+  "thFirst": "Accent sur la 1re syllabe",
+  "thSecond": "Accent sur la 2e syllabe",
+  "thThird": "Accent sur la 3e syllabe"
+}

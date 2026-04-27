@@ -7,6 +7,7 @@ import { fetchCookieValue } from "../actions"
 
 import { AiOutlineLogout, AiOutlineAudio, AiOutlineHome } from "react-icons/ai"
 import { BsPencil } from "react-icons/bs"
+import { MdHeadphones } from "react-icons/md";
 import { IoDocumentsOutline } from "react-icons/io5"
 import { MdOutlineSchool } from "react-icons/md"
 import { FaUsers } from "react-icons/fa"
@@ -29,7 +30,7 @@ function Header() {
 
   const isAdmin = auth && auth.type === "admin"
   const isGuest = auth && auth.type === "guest"
-
+  const isOnStress = location.pathname === "/stress"
   const isOnDashboard = location.pathname === "/dashboard"
   const isOnDocuments = location.pathname === "/documents"
   const isHome = location.pathname === "/"
@@ -93,6 +94,11 @@ function Header() {
         <Link to="/" className="button">
           <AiOutlineHome style={{ color: "#7f5f87" }} />
         </Link>
+      )}
+      {!isOnStress && (
+        <a className="button" href="/stress">
+          <MdHeadphones style={{ color: "#7f5f87" }} />
+        </a>
       )}
       {!isOnTopics && (
         <a className="button" href="/topics">

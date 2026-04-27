@@ -7,6 +7,7 @@ import { fetchCookieValue } from "../actions"
 import { AiOutlineLogout } from "react-icons/ai"
 //import { AiOutlineUser } from "react-icons/ai";
 import { BsPencil } from "react-icons/bs" // <BsPencil />
+import { MdHeadphones } from "react-icons/md";
 import { AiOutlineAudio } from "react-icons/ai" //<AiOutlineAudio />
 import { IoDocumentsOutline } from "react-icons/io5" //<IoDocumentsOutline />
 import { MdOutlineSchool } from "react-icons/md" //<MdOutlineSchool />
@@ -27,6 +28,7 @@ function MobileMenu() {
     const isGuest = auth && auth.type === "guest"
     const isOnDashboard = location.pathname === "/dashboard"
     const isOnDocuments = location.pathname === "/documents"
+    const isOnStress = location.pathname === "/stress"
     const isHome = location.pathname === "/"
     const isOnBoard = location.pathname === "/board"
     const isOnExercice = location.pathname === "/exercice"
@@ -108,6 +110,13 @@ function MobileMenu() {
                 style={{ color: "#7f5f87" }}
                 key={"AiOutlineAudio"}
               />
+            </Link>
+          </li>
+        )}
+        {!isOnStress && (
+          <li>
+            <Link key={`6stress`} to="/stress" className="mobilemenuli button">
+              <MdHeadphones style={{ color: "#7f5f87" }} key={"MdHeadphones"} />
             </Link>
           </li>
         )}
