@@ -56,10 +56,11 @@ position: absolute;
     margin: 1em;
 }
 .even{
-    background-color: rgba(214, 210, 210, 0.2);
+
+     background-color: var(--evenBackground);
 }
 .odd, th{
-    background-color: rgb(183, 187, 184, 0.3);
+    background-color:var(--oddBackground);
 }
 .loader {
   width: 16px;

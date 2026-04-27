@@ -9,14 +9,16 @@ import enAudio from "./locales/en/audio.json";
 import frAudio from "./locales/fr/audio.json";
 import enExercise from "./locales/en/exercise.json";
 import frExercise from "./locales/fr/exercise.json";
+import enTopic from "./locales/en/topic.json";
+import frTopic from "./locales/fr/topic.json";
 
 
 i18n
   .use(initReactI18next)
   .init({
   resources: {
-    en: { landing: enLanding, audio: enAudio, exercise: enExercise },
-    fr: { landing: frLanding, audio: frAudio, exercise: frExercise },
+    en: { landing: enLanding, audio: enAudio, exercise: enExercise, topic: enTopic },
+    fr: { landing: frLanding, audio: frAudio, exercise: frExercise, topic: frTopic },
   },
 
     lng: "en", // default language

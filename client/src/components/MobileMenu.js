@@ -12,6 +12,7 @@ import { IoDocumentsOutline } from "react-icons/io5" //<IoDocumentsOutline />
 import { MdOutlineSchool } from "react-icons/md" //<MdOutlineSchool />
 import { FaUsers } from "react-icons/fa"
 import { AiOutlineHome } from "react-icons/ai"
+import { FaBookOpen } from "react-icons/fa6"
 import { useLocation } from "react-router-dom"
 import $ from "jquery"
 
@@ -29,6 +30,7 @@ function MobileMenu() {
     const isHome = location.pathname === "/"
     const isOnBoard = location.pathname === "/board"
     const isOnExercice = location.pathname === "/exercice"
+    const isOnTopics = location.pathname === "/topics"
 
     return (
       <ul id="mobilemenuul">
@@ -106,6 +108,13 @@ function MobileMenu() {
                 style={{ color: "#7f5f87" }}
                 key={"AiOutlineAudio"}
               />
+            </Link>
+          </li>
+        )}
+        {!isOnTopics && (
+          <li>
+            <Link key={`3topics`} to="/topics" className="mobilemenuli button">
+              <FaBookOpen style={{ color: "#7f5f87" }} key={"FaBookOpen"} />
             </Link>
           </li>
         )}

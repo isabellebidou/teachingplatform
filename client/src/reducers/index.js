@@ -9,6 +9,7 @@ import cookieReducer from "./cookieReducer";
 import audioReducer from './audioReducer';
 import scriptReducer from "./scriptReducer";
 import grammarTopicReducer from "./grammarTopicReducer";
+import topicsReducer from "./topicsReducer";
 export default combineReducers({
     auth : authReducer,
    // form : reduxForm,
@@ -20,5 +21,6 @@ export default combineReducers({
     audios: audioReducer,
     scripts: scriptReducer,
     grammarTopics: grammarTopicReducer,
+    topics: topicsReducer
 
 });

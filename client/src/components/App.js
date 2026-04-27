@@ -28,6 +28,7 @@ import FaqForm from "./faqs/FaqForm";
 import LegalNotice from "./LegalNotice";
 import MentionsLegales from "./MentionsLegales";
 import ProtectedRoute from "./ProtectedRoute";
+import TopicsDashboard from "./topics/TopicsDashboard";
 
 function App({ fetchUser, fetchCookieValue }) {
   const auth = useSelector((state) => state.auth);
@@ -65,7 +66,7 @@ function App({ fetchUser, fetchCookieValue }) {
         <ProtectedRoute exact path="/userdata/edit" component={UserDataFormEdit} />
 
         <ProtectedRoute exact path="/users/dashboard" component={SelectedUserDashboard} />
-
+        <Route exact path="/topics" component={TopicsDashboard} />
         <Route exact path="/users" component={AdminDashboard} />
         <Route exact path="/faq/list" component={FaqList} />
         <Route exact path="/faq/add" component={FaqForm} />

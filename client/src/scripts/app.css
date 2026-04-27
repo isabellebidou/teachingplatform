@@ -2,10 +2,11 @@
 :root {
   --green: #49a049;
   --greenhover: #96ccba;
-  --background: #F3ECEC;
   --strongpink: #cd2ca0;
   --darkpurple: #7f5f87;
   --background:   rgba(243, 236, 236, 0.9);
+  --evenBackground:rgba(214, 210, 210, 0.2);
+  --oddBackground: rgb(183, 187, 184, 0.3);
 
 }
 
@@ -50,7 +51,9 @@ width:100%;
 hr {
   width: 20%;
 }
-
+li{
+  border-radius: 20%;
+}
 .maincontentk div:first-child :not(.frame) :not(.mobilemenuul) :not(.mobilemenuli) :not(.btn) {
   /* https://css-tricks.com/almanac/selectors/n/not/ */
   
@@ -978,23 +981,31 @@ dd {
 }
 
 .leftp {
-  position: fixed;
-  width: 30%;
-  height: 100%;
-  padding: 5%;
-  left: 0;
-  bottom: 4%;
+  position: absolute;
+  width: 40%;
+  height: 75%;
+  padding: 1em;
+  left: 5%;
+  bottom: 7%;
+  overflow-y: auto;
 
 
 }
 
 .rightp {
   position: absolute;
-  width: 60%;
-  padding: 5%;
-  right: 0;
-  height: 120%;
+  width: 45%;
+  padding: 1em;
+  right: 5%;
+  height: 70%;
+  bottom: 12%;
   overflow-y: auto;
+  border-radius: 3%;
+  border: solid, 1px, #45a049;
+  padding: 1em;
+  background-color: rgba(183, 187, 184, 0.1);
+  border-inline-start-color: #45a049;
+  border-inline-end-color: #7f5f87;
 
 }
 

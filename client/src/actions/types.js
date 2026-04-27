@@ -11,6 +11,7 @@ export const UPDATE_USER_DATA = 'update_user_data';
 export const SELECT_USER = 'select_user';
 export const UPDATE_COOKIE_ACCEPTANCE = 'UPDATE_COOKIE_ACCEPTANCE';
 export const FETCH_SCRIPTS='fetch_scripts';
-export const FETCH_USER_GRAMMAR_TOPICS = 'fetch_user_grammar_topics'
+export const FETCH_USER_GRAMMAR_TOPICS = 'fetch_user_grammar_topics';
+export const FETCH_GRAMMAR_TOPICS = 'fetch_grammar_topics'
 
 

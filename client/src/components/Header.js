@@ -1,7 +1,8 @@
-import  { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { Link, useLocation } from "react-router-dom"
 import MenuButton from "./MenuButton"
+//https://react-icons.github.io/react-icons/search/
 import { fetchCookieValue } from "../actions"
 
 import { AiOutlineLogout, AiOutlineAudio, AiOutlineHome } from "react-icons/ai"
@@ -9,6 +10,7 @@ import { BsPencil } from "react-icons/bs"
 import { IoDocumentsOutline } from "react-icons/io5"
 import { MdOutlineSchool } from "react-icons/md"
 import { FaUsers } from "react-icons/fa"
+import { FaBookOpen } from "react-icons/fa6"
 
 import Logo from "./Logo"
 import Settings from "./Settings"
@@ -33,15 +35,15 @@ function Header() {
   const isHome = location.pathname === "/"
   const isOnBoard = location.pathname === "/board"
   const isOnExercice = location.pathname === "/exercice"
+  const isOnTopics = location.pathname === "/topics"
 
   const language = auth?.language || "en"
 
-    useEffect(() => {
-  if (isGuest) {
-    setShowApproval(true);
-  }
-}, [isGuest]);
-
+  useEffect(() => {
+    if (isGuest) {
+      setShowApproval(true)
+    }
+  }, [isGuest])
 
   const renderContent = () => (
     <div className="authentication">
@@ -51,16 +53,6 @@ function Header() {
         auth={auth}
       />
 
-
-      {!auth && (
-        <a href="/auth/google">
-          <img
-            src="/btn_google_signin_dark_normal_web.png"
-            loading="lazy"
-            alt="sign in with google"
-          />
-        </a>
-      )}
       {/* 🌐 Language button */}
       {auth && (
         <button className="button" onClick={() => setShowSettings(true)}>
@@ -102,10 +94,23 @@ function Header() {
           <AiOutlineHome style={{ color: "#7f5f87" }} />
         </Link>
       )}
-
+      {!isOnTopics && (
+        <a className="button" href="/topics">
+          <FaBookOpen style={{ color: "#7f5f87" }} />
+        </a>
+      )}
       {auth && (
         <a className="button" href="/api/logout">
           <AiOutlineLogout style={{ color: "#7f5f87" }} />
+        </a>
+      )}
+      {!auth && (
+        <a href="/auth/google">
+          <img
+            src="/btn_google_signin_dark_normal_web.png"
+            loading="lazy"
+            alt="sign in with google"
+          />
         </a>
       )}
     </div>
@@ -116,11 +121,11 @@ function Header() {
       <Logo />
 
       {<span>{renderContent()}</span>}
-      
-        <span>
-          <MenuButton />
-        </span>
-      
+
+      <span>
+        <MenuButton />
+      </span>
+
       {/* ✅ pending approval popup */}
 
       {showApproval && <Approval onClose={() => setShowApproval(false)} />}

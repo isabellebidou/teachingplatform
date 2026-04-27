@@ -400,6 +400,27 @@
   .item{
     max-width: 100%;
   }
+.leftp {
+  
+  left: 0%;
+  padding:3%;
+  width: 95%;
+  height: 35%;
+  top: 9%;
+
+}
+
+.rightp {
+  
+  right: 0%;
+  padding:1%;
+  margin:3%;
+  width: 90%;
+  height: 40%;
+  bottom: 2%;
+
+
+}
 
   
 
