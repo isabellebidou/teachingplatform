@@ -14,14 +14,13 @@ const Landing = () => {
 
   const auth = useSelector((state) => state.auth)
   const cookie = useSelector((state) => state.cookie)
+  const [visibility, setVisibility] = useState("visible");
 
-  const [showSign, setShowSign] = useState(false)
 
   useEffect(() => {
     dispatch(fetchCookieValue())
   }, [dispatch])
 
-  const toggleSign = () => setShowSign((prev) => !prev)
 
   const handleAccept = () => {
     dispatch(updateCookieAcceptance(true))
@@ -30,9 +29,14 @@ const Landing = () => {
 
   const handleDecline = () => {
     dispatch(updateCookieAcceptance(false))
-    setShowSign(false)
   }
-
+  const toggleVisibility = () => {
+    setVisibility(visibility === 'visible' ? 'hidden' : 'visible');
+    const signin = document.getElementById('signin');
+    if (signin) {
+      signin.style.visibility = signin.style.visibility === 'visible' ? 'hidden' : 'visible';
+    }
+  }
   const renderFaqForm = () => {
     if (auth && auth.type === "admin") return <FaqForm />
     return null
@@ -52,11 +56,11 @@ const Landing = () => {
           <button className="actionbook">{t("btnActionbook")}</button>
         </a>
       )}
-      {!auth && (
-        <span className="actionsign button">
+      {!auth && visibility === "visible" && (
+        <span className="actionsign button" id= "signin">
           {t("btnActionsign")}
           <br />
-          <span className="closeWindow" onClick={toggleSign}>
+          <span className="closeWindow" onClick={toggleVisibility}>
             x
           </span>
           <a href="/auth/google">
