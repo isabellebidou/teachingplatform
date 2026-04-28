@@ -21,8 +21,8 @@
   "pRuleFirstStress": "La plupart sont accentués sur la première syllabe.",
   "pWarningSecondStress": "MAIS les adjectifs d'origine française ou commençant par 'a-' sont souvent accentués sur la deuxième syllabe.",
 
-  "h3FirstSyllable": "Accent sur la 1re syllabe",
-  "h3SecondSyllable": "Accent sur la 2e syllabe",
+  "h4FirstSyllable": "Accent sur la 1re syllabe",
+  "h4SecondSyllable": "Accent sur la 2e syllabe",
   "h3Exceptions": "Exceptions",
 
   "h2StressChange": "Changement d'accent (nom vs verbe)",
@@ -31,8 +31,17 @@
   "pCommentNote": "COMMENT a le même accent en tant que nom et verbe.",
 
   "h2ThreeSyllable": "Mots à 3 syllabes",
+  "pThreeSyllables": "Les verbes ont tendance à accentuer la syllabe du milieu, et les noms accentuent souvent le premier. ",
+
+  "h4ThreeSyllableNoun":"Noms à trois syllables",
+  "h4ThreeSyllableVerb":"Verbes à trois syllables",
+
   "h3Endings": "Terminaisons fréquentes",
   "pEndingsRule": "Les mots se terminant par -tion / -sion, -ic et -ity sont accentués sur la syllabe précédente.",
+
+  "h4EndingsTion": "-tion",
+  "h4EndingsTic": "-ic",
+  "h4EndingsIty": "-ity",
 
   "h3ImportantNotes": "Points importants",
 

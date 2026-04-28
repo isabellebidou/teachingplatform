@@ -984,16 +984,25 @@ dd {
 
 .leftp {
   position: absolute;
+  padding-top: 0%;
   width: 40%;
-  height: 75%;
+  height: 100%;
   padding: 1em;
   left: 5%;
-  bottom: 7%;
+  bottom: 0%;
   overflow-y: auto;
+  scrollbar-width: none;
 
 
 }
 
+.placeholder{
+  height: 200px;
+}
+#selectSearch{
+  position: sticky;
+  top: 15%;
+}
 .rightp {
   position: absolute;
   width: 45%;
@@ -1005,6 +1014,7 @@ dd {
   border-radius: 3%;
   border: solid, 1px, #45a049;
   padding: 1em;
+  scrollbar-width: none;
   background-color: rgba(183, 187, 184, 0.1);
   border-inline-start-color: #45a049;
   border-inline-end-color: #7f5f87;

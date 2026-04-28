@@ -14,13 +14,11 @@ const Landing = () => {
 
   const auth = useSelector((state) => state.auth)
   const cookie = useSelector((state) => state.cookie)
-  const [visibility, setVisibility] = useState("visible");
-
+  const [visibility, setVisibility] = useState("visible")
 
   useEffect(() => {
     dispatch(fetchCookieValue())
   }, [dispatch])
-
 
   const handleAccept = () => {
     dispatch(updateCookieAcceptance(true))
@@ -31,10 +29,11 @@ const Landing = () => {
     dispatch(updateCookieAcceptance(false))
   }
   const toggleVisibility = () => {
-    setVisibility(visibility === 'visible' ? 'hidden' : 'visible');
-    const signin = document.getElementById('signin');
+    setVisibility(visibility === "visible" ? "hidden" : "visible")
+    const signin = document.getElementById("signin")
     if (signin) {
-      signin.style.visibility = signin.style.visibility === 'visible' ? 'hidden' : 'visible';
+      signin.style.visibility =
+        signin.style.visibility === "visible" ? "hidden" : "visible"
     }
   }
   const renderFaqForm = () => {
@@ -57,7 +56,7 @@ const Landing = () => {
         </a>
       )}
       {!auth && visibility === "visible" && (
-        <span className="actionsign button" id= "signin">
+        <span className="actionsign button" id="signin">
           {t("btnActionsign")}
           <br />
           <span className="closeWindow" onClick={toggleVisibility}>
@@ -94,14 +93,12 @@ const Landing = () => {
             <td>{t("tdOffer10")}</td>
           </tr>
         </table>
-        
- <p>{t("pOfferBook")}</p>
- 
-   <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
+
+        <p>{t("pOfferBook")}</p>
+
+        <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
           <button className="actionupload">{t("btnActionbook")}</button>
         </a>
- 
-        
       </fieldset>
 
       <fieldset>
@@ -112,14 +109,14 @@ const Landing = () => {
         <h2>{t("h2AudioFeedback")}</h2>
         <p>{t("pAudioFeedback")}</p>
 
-
         <h2>{t("h2GrammarPractice")}</h2>
         <p>{t("pGrammarPractice")}</p>
-        {false && ( 
-        <>
-        <h2>{t("h2SpellingFeedback")}</h2>
-        <p>{t("pSpellingFeedback")}</p>
-        </>)}
+        {false && (
+          <>
+            <h2>{t("h2SpellingFeedback")}</h2>
+            <p>{t("pSpellingFeedback")}</p>
+          </>
+        )}
       </fieldset>
 
       <fieldset>

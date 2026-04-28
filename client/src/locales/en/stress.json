@@ -21,8 +21,8 @@
   "pRuleFirstStress": "Most are stressed on the first syllable.",
   "pWarningSecondStress": "BUT adjectives of French origin or starting with 'a-' are often stressed on the second syllable.",
 
-  "h3FirstSyllable": "First Syllable Stress",
-  "h3SecondSyllable": "Second Syllable Stress",
+  "h4FirstSyllable": "First Syllable Stress",
+  "h4SecondSyllable": "Second Syllable Stress",
   "h3Exceptions": "Exceptions",
 
   "h2StressChange": "Stress Change (Noun vs Verb)",
@@ -31,8 +31,17 @@
   "pCommentNote": "COMMENT has the same stress in noun and verb.",
 
   "h2ThreeSyllable": "3-Syllable Words",
+  "pThreeSyllables": "Verbs tend to stress the middle syllable, and nouns often stress the first. ",
+
+  "h4ThreeSyllableNoun":"Three syllables nouns",
+  "h4ThreeSyllableVerb":"Three syllables verbs",
+
   "h3Endings": "Common Endings",
   "pEndingsRule": "Words ending in -tion / -sion, -ic and -ity are stressed on the syllable before.",
+
+  "h4EndingsTion": "-tion",
+  "h4EndingsTic": "-ic",
+  "h4EndingsIty": "-ity",
 
   "h3ImportantNotes": "Important Notes",
 

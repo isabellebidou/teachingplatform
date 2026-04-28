@@ -7,8 +7,8 @@ export default function SyllableStressPage() {
 
   return (
     <div className="page">
-      <div style={styles.container}>
-        <h1 style={styles.title}>{t("h1Title")}</h1>
+      <div className="stress_container">
+        <h1 className="stress_title">{t("h1Title")}</h1>
 
         {/* GENERAL RULES */}
         <section>
@@ -21,12 +21,13 @@ export default function SyllableStressPage() {
           <h2>{t("h2TwoSyllableVerbs")}</h2>
 
           <h3>{t("h3CommonPattern")}</h3>
+
           <ul>
             <li>reLAX, beGIN, aRRIVE, deCIDE</li>
           </ul>
 
           <h3>{t("h3Origin")}</h3>
-          <div style={styles.grid}>
+          <div className="stress_grid">
             <Card title={t("h4FrenchLatin")}>
               <ul>
                 <li>reTURN</li>
@@ -34,6 +35,10 @@ export default function SyllableStressPage() {
                 <li>exPLAIN</li>
                 <li>diSCUSS</li>
               </ul>
+              <audio controls>
+                <source src="/audio/verbs_second.mp3" type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
             </Card>
 
             <Card title={t("h4Germanic")}>
@@ -51,11 +56,15 @@ export default function SyllableStressPage() {
                 <li>ˈLI-mit</li>
                 <li>ˈTAR-get</li>
               </ul>
+              <audio controls>
+                <source src="/audio/verbs_first.mp3" type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
             </Card>
           </div>
 
           <h3>{t("h3Practice")}</h3>
-          <div style={styles.highlight}>
+          <div className="stress_highlight">
             <div class="example">
               <p>I would like to ARGue that this solution is better.</p>
               <p>We should FOcus on the main problem.</p>
@@ -63,6 +72,10 @@ export default function SyllableStressPage() {
               <p>The policy does not OFfer enough support.</p>
               <p>I will preSENT three main ideas.</p>
             </div>
+            <audio controls>
+              <source src="/audio/practice_sentences.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
           </div>
         </section>
 
@@ -70,22 +83,35 @@ export default function SyllableStressPage() {
         <section>
           <h2>{t("h2TwoSyllableWords")}</h2>
           <p>{t("pRuleFirstStress")}</p>
-          <p style={styles.warning}>{t("pWarningSecondStress")}</p>
+          <p className="stress_warning">{t("pWarningSecondStress")}</p>
 
-          <h3>{t("h3FirstSyllable")}</h3>
-          <ul>
-            <li>HAPpy, EAsy, CLEver, QUIet</li>
-            <li>BORing, MODern, BUSy</li>
-            <li>HONest, PERfect</li>
-          </ul>
+          <div className="stress_grid">
+            <Card title={t("h4FirstSyllable")}>
+              <ul>
+                <li>HAPpy, EAsy, CLEver, QUIet</li>
+                <li>BORing, MODern, BUSy</li>
+                <li>HONest, PERfect</li>
+              </ul>
+              <audio controls>
+                <source src="/audio/adj_first.mp3" type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+            </Card>
 
-          <h3>{t("h3SecondSyllable")}</h3>
-          <ul>
-            <li>aLONE, aLIVE, aFRAID, aWAKE</li>
-            <li>aSHAMED, aMAZING</li>
-            <li>diRECT, corRECT, comPLETE</li>
-            <li>preCISE, poLITE</li>
-          </ul>
+            <Card title={t("h4SecondSyllable")}>
+              <ul>
+                <li>aLONE, aLIVE, aFRAID, aWAKE</li>
+                <li>aSHAMED, aMAZING</li>
+                <li>diRECT, corRECT, comPLETE</li>
+                <li>preCISE, poLITE</li>
+              </ul>
+              <audio controls>
+                <source src="/audio/adj_second.mp3" type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+            </Card>
+          </div>
+
 
           <h3>{t("h3Exceptions")}</h3>
           <ul>
@@ -93,44 +119,113 @@ export default function SyllableStressPage() {
             <li>poLICE</li>
             <li>caFE</li>
           </ul>
+
+          <audio controls>
+            <source src="/audio/adj_exceptions.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
         </section>
 
         {/* STRESS CHANGE */}
         <section>
           <h2>{t("h2StressChange")}</h2>
 
-          <div style={styles.grid}>
+          <div className="stress_grid">
             <Card title={t("h4Noun")}>
               <p>REcord, PREsent, EXport, IMport, CONtract</p>
+              <audio controls>
+                <source
+                  src="/audio/stress_change_nouns.mp3"
+                  type="audio/mpeg"
+                />
+                Your browser does not support the audio element.
+              </audio>
             </Card>
 
             <Card title={t("h4Verb")}>
               <p>reCORD, preSENT, exPORT, imPORT, conTRACT</p>
+
+              <audio controls>
+                <source
+                  src="/audio/stress_change_verbs.mp3"
+                  type="audio/mpeg"
+                />
+                Your browser does not support the audio element.
+              </audio>
             </Card>
           </div>
 
           <p>
-            <strong>{t("pCommentNote")}</strong>
+            <strong>{t("pCommentNote")} ˈCOM-ment </strong>
           </p>
         </section>
 
         {/* 3 SYLLABLE */}
         <section>
           <h2>{t("h2ThreeSyllable")}</h2>
+          <p> {t("pThreeSyllables")}</p>
 
-          <ul>
-            <li>TAbletop, CItizen, ENergy, POLitics</li>
-            <li>reMEMber, deVELop, conSIDer, reTURNing</li>
-          </ul>
+          <div className="stress_grid">
+            <Card title={t("h4ThreeSyllableNoun")}>
+              <p>TAbletop, CItizen, ENergy, POLitics</p>
+                            <audio controls>
+                <source
+                  src="/audio/three_syllables_nouns.mp3"
+                  type="audio/mpeg"
+                />
+                Your browser does not support the audio element.
+              </audio>
+            </Card>
+
+            <Card title={t("h4ThreeSyllableVerb")}>
+              <p>reMEMber, deVELop, conSIDer, reTURNing</p>
+              <audio controls>
+                <source
+                  src="/audio/three_syllables_verbs.mp3"
+                  type="audio/mpeg"
+                />
+                Your browser does not support the audio element.
+              </audio>
+            </Card>
+          </div>
 
           <h3>{t("h3Endings")}</h3>
           <p>{t("pEndingsRule")}</p>
 
-          <ul>
-            <li>eduCAtion, deCIsion, revoLUtion</li>
-            <li>ecoNOmic, geoGRAphic, draMAtic</li>
-            <li>aBIlity, possiBIlity, elecTRIcity</li>
-          </ul>
+          <div className="stress_grid">
+            <Card title={t("h4EndingsTion")}>
+              <p>eduCAtion, deCIsion, revoLUtion</p>
+              <audio controls>
+                <source
+                  src="/audio/ending_tion.mp3"
+                  type="audio/mpeg"
+                />
+                Your browser does not support the audio element.
+              </audio>
+            </Card>
+
+            <Card title={t("h4EndingsTic")}>
+              <p>ecoNOmic, geoGRAphic, draMAtic</p>
+              <audio controls>
+                <source
+                  src="/audio/ending_ic.mp3"
+                  type="audio/mpeg"
+                />
+                Your browser does not support the audio element.
+              </audio>
+            </Card>
+
+            <Card title={t("h4EndingsIty")}>
+              <p>aBIlity, possiBIlity, elecTRIcity</p>
+              <audio controls>
+                <source
+                  src="/audio/ending_ity.mp3"
+                  type="audio/mpeg"
+                />
+                Your browser does not support the audio element.
+              </audio>
+            </Card>
+          </div>
         </section>
 
         {/* VOWEL REDUCTION */}
@@ -150,7 +245,7 @@ export default function SyllableStressPage() {
         <section>
           <h2>{t("h2BritishVsAmerican")}</h2>
 
-          <div style={styles.grid}>
+          <div className="stress_grid">
             <Card title={t("h4British")}>
               <p>{t("pBritishDesc")}</p>
               <ul>
@@ -174,7 +269,11 @@ export default function SyllableStressPage() {
         </section>
 
         {/* TABLE */}
-        <StressTable t={t} />
+        <div className="stress_grid">
+          <Card title={t("h2StressTable")}>
+            <StressTable t={t} />
+          </Card>
+        </div>
       </div>
     </div>
   )
@@ -252,23 +351,21 @@ function StressTable({ t }) {
 
   return (
     <section>
-      <h2>{t("h2StressTable")}</h2>
-
-      <table style={styles.table}>
+      <table className="stress_table">
         <thead>
           <tr>
-            <th style={styles.th}>{t("thFirst")}</th>
-            <th style={styles.th}>{t("thSecond")}</th>
-            <th style={styles.th}>{t("thThird")}</th>
+            <th className="stress_th">{t("thFirst")}</th>
+            <th className="stress_th">{t("thSecond")}</th>
+            <th className="stress_th">{t("thThird")}</th>
           </tr>
         </thead>
 
         <tbody>
           {data.map((row, i) => (
-            <tr key={i}>
-              <td style={styles.td}>{row[0]}</td>
-              <td style={styles.td}>{row[1]}</td>
-              <td style={styles.td}>{row[2]}</td>
+            <tr key={i + "tr"} className={i % 2 === 0 ? "even" : "odd"}>
+              <td className="stress_td">{row[0]}</td>
+              <td className="stress_td">{row[1]}</td>
+              <td className="stress_td">{row[2]}</td>
             </tr>
           ))}
         </tbody>
@@ -281,19 +378,18 @@ function StressTable({ t }) {
 
 function Card({ title, children }) {
   return (
-    <div style={styles.card}>
+    <div className="stress_card">
       <h4>{title}</h4>
       {children}
     </div>
   )
 }
-
+/*
 const styles = {
   container: {
     maxWidth: "1100px",
     margin: "auto",
     padding: "20px",
-
   },
   title: {
     borderBottom: "2px solid #ddd",
@@ -330,11 +426,10 @@ const styles = {
     borderBottom: "2px solid #ddd",
     padding: "10px",
     textAlign: "left",
-    background: "#f4f6f7",
   },
   td: {
     padding: "8px",
     borderBottom: "1px solid #eee",
     verticalAlign: "top",
   },
-}
+}*/

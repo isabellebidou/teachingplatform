@@ -405,8 +405,8 @@
   left: 0%;
   padding:3%;
   width: 95%;
-  height: 35%;
-  top: 9%;
+  height: 50%;
+  top: 2%;
 
 }
 
@@ -422,7 +422,13 @@
 
 }
 
-  
+.placeholder{
+  height: 70px;
+}
+#selectSearch{
+  position: sticky;
+  top: 7%;
+}
 
   
 }
