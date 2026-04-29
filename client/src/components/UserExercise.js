@@ -155,7 +155,7 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
           />
         )}
         {!gameStarted && selectedTopic && (
-          <button onClick={handleClick} disabled={isLoading}>
+          <button  className="largeBtn" onClick={handleClick} disabled={isLoading}>
             {isLoading ? (
               <>
                 <span className="loader"></span> {t( "btnLoading")}

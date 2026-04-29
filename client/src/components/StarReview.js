@@ -18,7 +18,7 @@ function StarReview({ auth }) {
 
     if (auth) {
       const toggleReviewDiv = document.getElementById('toggleReviewDiv');
-      if (!auth.hasReviews) {
+      if (!auth.hasReviews && auth.type === "student") {
         setVisibility('visible')
         if (toggleReviewDiv) {
           toggleReviewDiv.style.visibility = 'hidden';

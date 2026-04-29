@@ -2,10 +2,12 @@
 import './scripts/app.css';
 import './scripts/stripe.css';
 import './scripts/starreview.css';
+import './scripts/stress.css';
+import './scripts/exercice.css';
 import './scripts/mobile-landscape.css';
 import './scripts/mobile-portrait.css';
-import './scripts/exercice.css';
-import './scripts/stress.css';
+
+
 import "./i18n";
 
 import React from 'react';

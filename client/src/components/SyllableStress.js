@@ -269,11 +269,11 @@ export default function SyllableStressPage() {
         </section>
 
         {/* TABLE */}
-        <div className="stress_grid">
+
           <Card title={t("h2StressTable")}>
             <StressTable t={t} />
           </Card>
-        </div>
+
       </div>
     </div>
   )
@@ -384,52 +384,3 @@ function Card({ title, children }) {
     </div>
   )
 }
-/*
-const styles = {
-  container: {
-    maxWidth: "1100px",
-    margin: "auto",
-    padding: "20px",
-  },
-  title: {
-    borderBottom: "2px solid #ddd",
-    paddingBottom: "10px",
-  },
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-    gap: "15px",
-    margin: "15px 0",
-  },
-  card: {
-    background: "#fafafa",
-    padding: "12px",
-    border: "1px solid #ddd",
-    borderRadius: "8px",
-  },
-  highlight: {
-    background: "#f4f6f7",
-    padding: "10px",
-    borderLeft: "4px solid #3498db",
-    margin: "15px 0",
-  },
-  warning: {
-    color: "#c0392b",
-    fontWeight: "bold",
-  },
-  table: {
-    width: "100%",
-    borderCollapse: "collapse",
-    marginTop: "20px",
-  },
-  th: {
-    borderBottom: "2px solid #ddd",
-    padding: "10px",
-    textAlign: "left",
-  },
-  td: {
-    padding: "8px",
-    borderBottom: "1px solid #eee",
-    verticalAlign: "top",
-  },
-}*/

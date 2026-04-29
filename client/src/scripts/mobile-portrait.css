@@ -99,15 +99,16 @@
     height:auto 
   }
   fieldset {
-    padding-top: 0em;
+    padding: 0em;
+    max-width: fit-content;
   }
 
   .headertitle {
     position: absolute;
-    width: 40%;
+    width: 45%;
     font-style: oblique;
     left: 25%;
-    font-size: 1.5em;
+    font-size: 1.2em;
     top: 1%;
     font-family: "Brush Script MT", "Lucida Console", Monaco, monospace;
   }
@@ -185,7 +186,10 @@
     width: 50%;
   }
 
-  
+  .actionsign{
+      bottom: 5%;
+  right: 0em;
+  }
 
   .footer {
     width: 100%;
@@ -208,11 +212,15 @@
     margin: 0.4em;
     padding-left: 0.3em;
     padding-right: 0.3em;
+   
 
 
     cursor: pointer;
   }
-
+.largeBtn{
+  min-width: 100%;
+  height: 2em;
+}
   .rightbutton {
     display: block;
     margin: auto;
@@ -355,8 +363,9 @@
   
   }
   .page{
-    padding-top: 7%;
+    padding-top: 12%;
     padding-bottom: 6%;
+    max-width: max-content;
   }
   .content {
     position: absolute;
@@ -429,6 +438,26 @@
   position: sticky;
   top: 7%;
 }
+ .stress_container {
+  width: 100%;
+  margin: auto auto;
+  padding: 0px;
+}
+.stress_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit);
+  gap: 2px;
+  margin: 0px 0;
+}
+ .stress_table{
+  margin: 0em;
+  width: 100%;
+ } 
 
-  
+.stress_card {
+ width: 100%;
+  padding: 0em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
 }

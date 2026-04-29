@@ -47,8 +47,10 @@
 
 .stress_table {
   width: 100%;
+  padding: 0%;
   border-collapse: collapse;
   margin-top: 20px;
+  
 }
 
 .stress_th {

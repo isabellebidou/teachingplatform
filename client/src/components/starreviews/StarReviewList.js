@@ -22,7 +22,9 @@ function StarReviewList() {
     };
 
     return (
+        
         <section>
+    
             <div className="grid-container">
                 {
                     items.map(review => {
@@ -56,7 +58,9 @@ function StarReviewList() {
                     })
                 }
             </div>
+
         </section>
+        
     );
 }
 

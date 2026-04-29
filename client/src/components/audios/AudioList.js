@@ -38,7 +38,7 @@ function AudioList({
     <section>
       <h2>{t("h2Audios")}</h2>
       <div className="grid-container">
-        {audios.length === 0 && <p>{t("pRecordedYourself")}</p>}
+        {audios.length === 0 && <p>{t("pRecordYourself")}</p>}
 
         {audios.map((audio, i) => (
           <div
@@ -83,7 +83,7 @@ function AudioList({
       </div>
       {audios.length > 0 && (
         <>
-          <button onClick={toggleEditMode}>
+          <button  className="largeBtn" onClick={toggleEditMode}>
             {editMode ? t("btnDisableEdit") : t("btnEnableEdit")}
           </button>
 

@@ -1086,3 +1086,9 @@ dd {
     font-weight: bolder;
     cursor: pointer;
   }
+  .offersTable{
+    width: 100%;
+  }
+  .offersTable>td,th{
+    padding: 0.5em;
+  }

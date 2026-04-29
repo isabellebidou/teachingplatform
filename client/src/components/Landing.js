@@ -7,6 +7,7 @@ import StarReviewList from "./starreviews/StarReviewList"
 import CookieConsent from "react-cookie-consent"
 import { fetchCookieValue, updateCookieAcceptance } from "../actions"
 import { useTranslation } from "react-i18next"
+import StarReview from "./StarReview"
 
 const Landing = () => {
   const dispatch = useDispatch()
@@ -79,7 +80,7 @@ const Landing = () => {
         </legend>
         <p>{t("pOffers")}</p>
 
-        <table>
+        <table className="offersTable">
           <tr>
             <th>{t("thOfferOnline5")}</th>
             <th>{t("thOfferOnline10")}</th>
@@ -128,7 +129,7 @@ const Landing = () => {
           <StarReviewList />
         </span>
 
-        {auth && (
+        {false && (
           <Link to="/dashboard">
             <button className="actionupload">{t("btnLeaveReview")}</button>
           </Link>
@@ -193,7 +194,9 @@ const Landing = () => {
             <Link to={"/mentionslegales"}>Mentions legales</Link>
           </span>
         )}
+      
       </CookieConsent>
+      <StarReview />
     </div>
   )
 }
