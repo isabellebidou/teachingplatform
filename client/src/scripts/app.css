@@ -409,14 +409,14 @@ h3 {
 }
 
 .headertitle {
-  color: rgba(193, 217, 188);
+  color: var(--darkpurple);
   position: absolute;
-  width: 80%;
-  left: 5%;
-  font-size: 3em;
-  top: 1%;
-  z-index: 1;
-  font-family: "Dancing Script","Brush Script MT", "Lucida Console", Monaco, monospace;
+  max-width: 80%;
+  left: 13%;
+  font-size: 2em;
+  top: 25%;
+  z-index: 0;
+  font-family: "Dancing Script","Brush Script MT", "Lucida Console, Monaco, monospace";
 }
 
 

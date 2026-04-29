@@ -47,7 +47,7 @@ const Landing = () => {
 
   return (
     <div className="page">
-      <h1>{t("h1Title")}</h1>
+      
 
       <div className="col"></div>
       {auth && (

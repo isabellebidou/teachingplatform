@@ -47,6 +47,9 @@ function Header() {
   }, [isGuest])
 
   const renderContent = () => (
+    <>
+    <h2 className="headertitle"> Izzy Speak English</h2>
+
     <div className="authentication">
       <Settings
         visible={showSettings}
@@ -120,6 +123,7 @@ function Header() {
         </a>
       )}
     </div>
+        </>
   )
 
   return (
