@@ -100,7 +100,7 @@
   }
   fieldset {
     padding: 0em;
-    max-width: fit-content;
+    max-width: 100%;
   }
 
   .headertitle {
@@ -463,4 +463,11 @@
   border: 1px solid #ddd;
   border-radius: 4px;
 }
+ .offersTable{
+    width: 81%;
+  }
+  .offersTable>td,th{
+    padding: 0em;
+    margin: 0em;
+  }
 }
