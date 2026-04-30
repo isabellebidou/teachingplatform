@@ -28,31 +28,27 @@ function TopicsDashboard({ topics = [], fetchTopics }) {
 
   return (
     <div className="page">
-      
-        <div className="leftp">
-          <div className="placeholder"></div>
-          <div id= "selectSearch">
-            
-            <input 
-              type="text"
-              placeholder="Search..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          
-</div>
-          <TopicList
-            topics={!filteredTopics == "" ? filteredTopics : topics}
-            onSelect={setSelectedTopic}
-            selectedTopic={selectedTopic}
+      <div className="leftp">
+        <div className="placeholder"></div>
+        <div id="selectSearch">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
-          <div className="placeholder"></div>
         </div>
-        <div className="rightp">
-          <TopicDetails topic={selectedTopic} />
-          <div className="placeholder"></div>
-        </div>
-   
+        <TopicList
+          topics={!filteredTopics == "" ? filteredTopics : topics}
+          onSelect={setSelectedTopic}
+          selectedTopic={selectedTopic}
+        />
+        <div className="placeholder"></div>
+      </div>
+      <div className="rightp">
+        <TopicDetails topic={selectedTopic} />
+        <div className="placeholder"></div>
+      </div>
     </div>
   )
 }

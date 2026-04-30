@@ -104,7 +104,7 @@ function StarReview({ auth }) {
       case 4:
         return "What did you like in the method ?";
       case 5:
-        return "What did you acheive ?";
+        return "What did you achieve ?";
       default:
         return "How was the coaching helpful ? ...";
     }

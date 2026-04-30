@@ -12,7 +12,7 @@ const LegalNotice = () => {
             </p>
             <h2>Editing the site</h2>
             <p className='itemp'>
-                This site, accessible at the URL <a href="https://teachingplatform-production-0545.up.railway.app/">https://teachingplatform-production-0545.up.railway.app/ </a> (the “Site”), is published by:<br />
+                This site, accessible at the URL <a href="https://izzyspeakenglish.com/">https://izzyspeakenglish.com/</a> (the “Site”), is published by:<br />
 
                 Isabelle Bidou, residing at 52 avenue de Choisy, 75013 Paris,  France -  of French nationality (France), born on 28/10/1971, 
 
@@ -37,13 +37,12 @@ const LegalNotice = () => {
             <h2>Terms of Sales</h2>
             <p className='itemp'>The company provides services including the teaching of languages.
             </p>
-            <h2>Delivery delay: does not apply
+            <h2>Delivery delay: Once payment is completed we agree on Coaching sessions.
             </h2>
-            <p className='itemp'>Lorem Ipsum.
-            </p>
-            <h2>Terms of payment and reimbursement
+            
+            <h2>Terms of payment:
             </h2>
-            <p className='itemp'>does not apply.
+            <p className='itemp'>payment by bank transfer.
             </p>
 
         </div>
