@@ -430,7 +430,10 @@
 
 
 }
-
+.actionupload {
+  position: sticky;
+  bottom: 2%;
+}
 .placeholder{
   height: 70px;
 }

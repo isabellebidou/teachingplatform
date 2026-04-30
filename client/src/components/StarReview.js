@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import axios from "axios";
 import { logError } from "../utils/utils";
+import { useTranslation } from "react-i18next"
 //https://www.youtube.com/watch?v=McF22__Jz_I&t=372s&ab_channel=V%E1%BB%89%C4%90%E1%BA%B7ng
 //https://codesandbox.io/s/comment-product-yelj6?file=/package.json
 function StarReview({ auth }) {
@@ -12,13 +13,14 @@ function StarReview({ auth }) {
   const [visibility, setVisibility] = useState("hidden");
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
+  const { t } = useTranslation("landing")
  
   useEffect(() => {
  
 
     if (auth) {
       const toggleReviewDiv = document.getElementById('toggleReviewDiv');
-      if (!auth.hasReviews && auth.type === "student") {
+      if (!auth.hasReviews && auth.type !== "guest") {
         setVisibility('visible')
         if (toggleReviewDiv) {
           toggleReviewDiv.style.visibility = 'hidden';
@@ -63,6 +65,7 @@ function StarReview({ auth }) {
       toggleReviewDiv.style.visibility = toggleReviewDiv.style.visibility === 'visible' ? 'hidden' : 'visible';
     }
   }
+ 
   const handleClose = () => {
     setVisibility('hidden');
     const toggleReviewDiv = document.getElementById('toggleReviewDiv');
@@ -70,6 +73,8 @@ function StarReview({ auth }) {
       toggleReviewDiv.style.visibility = 'visible';
     }
   }
+
+
   const handleText = () => {
     switch (number || hoverStar) {
       case 0:
@@ -92,16 +97,16 @@ function StarReview({ auth }) {
   const handlePlaceHolder = () => {
     switch (number || hoverStar) {
       case 0:
-        return "Comment here...";
+        return "How can the service improve?...";
       case 1:
       case 2:
       case 3:
       case 4:
-        return "What is your problem?";
+        return "What did you like in the method ?";
       case 5:
-        return "Why do you like the product?";
+        return "What did you acheive ?";
       default:
-        return "Comment here...";
+        return "How was the coaching helpful ? ...";
     }
   };
 
@@ -139,7 +144,7 @@ function StarReview({ auth }) {
 
             </div>
             <textarea id="comment" placeholder={handlePlaceHolder()} onChange={(event) => setComment(event.target.value)}></textarea>
-            <textarea id="name" placeholder="your name: Jane D." onChange={(event) => setName(event.target.value)}></textarea>
+            <textarea id="name" placeholder="type your name: Jane D." onChange={(event) => setName(event.target.value)}></textarea>
             <button id="reviewbutton" className={` ${!number && "disabled"} `} onClick={handleClick}>Submit</button>
           </div>
         </div>
@@ -151,7 +156,7 @@ function StarReview({ auth }) {
   return (
     <>
       {renderStarReviewDiv()}
-      <button id="toggleReviewDiv" className="actionupload" onClick={toggleVisibility}>Leave a review</button>
+      <button id="toggleReviewDiv" className="actionupload" onClick={toggleVisibility}>{t("btnLeaveReview")}</button>
     </>
 
   );

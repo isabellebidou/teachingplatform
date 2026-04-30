@@ -4,8 +4,10 @@ import { logError } from "../../utils/utils";
 
 
 
+
 function StarReviewList() {
     const [items, setItems] = useState([]);
+
     useEffect(() => {
         fetchItems();
     }, []);

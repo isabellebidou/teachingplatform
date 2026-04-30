@@ -88,7 +88,7 @@ input,
   margin: auto;
 }
 
-#updatedb fieldset:first-child,
+#updatedb ,
 #upload fieldset:first-child {
   width: 60%;
   padding: 2%;
@@ -749,6 +749,7 @@ a.button:active {
 }
 
 .actionupload {
+
   right: 2em;
   background-color: #45a049;
   color: #fff;

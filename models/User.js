@@ -8,6 +8,8 @@ const userSchema = new Schema({
   type: { type: String, default: "guest" },
   email: String,
   hasReviews: { type: Boolean, default: false },
+  hasConsultation:{type: Boolean, default: false},
+  consultationDate:{type:Date, default: null},
   level: String,
   language: { type: String, default: "en" }
 });

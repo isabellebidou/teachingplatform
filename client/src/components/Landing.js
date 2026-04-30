@@ -48,10 +48,8 @@ const Landing = () => {
 
   return (
     <div className="page">
-      
-
       <div className="col"></div>
-      {auth && (
+      {auth && !auth.hasConsultation && (
         <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
           <button className="actionbook">{t("btnActionbook")}</button>
         </a>
@@ -94,12 +92,15 @@ const Landing = () => {
             <td>{t("tdOffer10")}</td>
           </tr>
         </table>
+        {auth && !auth.hasConsultation && (
+          <div>
+            <p>{t("pOfferBook")}</p>
 
-        <p>{t("pOfferBook")}</p>
-
-        <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
-          <button className="actionupload">{t("btnActionbook")}</button>
-        </a>
+            <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
+              <button className="actionupload">{t("btnActionbook")}</button>
+            </a>
+          </div>
+        )}
       </fieldset>
 
       <fieldset>
@@ -127,13 +128,10 @@ const Landing = () => {
 
         <span id="reviews">
           <StarReviewList />
+      
         </span>
 
-        {false && (
-          <Link to="/dashboard">
-            <button className="actionupload">{t("btnLeaveReview")}</button>
-          </Link>
-        )}
+  
       </fieldset>
 
       <fieldset>
@@ -194,9 +192,10 @@ const Landing = () => {
             <Link to={"/mentionslegales"}>Mentions legales</Link>
           </span>
         )}
-      
       </CookieConsent>
-      <StarReview />
+      
+
+    <StarReview />
     </div>
   )
 }
