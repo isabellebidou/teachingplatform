@@ -1,4 +1,6 @@
 import i18n from "../i18n.js";
+
+
 export function normalize(text) {
   return text
     .toLowerCase()
@@ -87,4 +89,44 @@ export function checkMissingWithS(missing, text) {
   });
 
   return verbsEndingInS;
+}
+export function generateStressFeedback(result, lang) {
+  const t = i18n.getFixedT(lang);
+
+  if (!result || !result.ok) {
+    return t("stressFeedback:noData", { lng: lang });
+  }
+
+  const words = result.words || [];
+  const summary = result.summary || {};
+
+  const mismatches = words.filter(w => w.status === "mismatch");
+
+  // ✅ CASE 1: no errors
+  if ((summary.mismatches ?? 0) === 0 && mismatches.length === 0) {
+    return t("stressFeedback:good", { lng: lang });
+  }
+
+  // ❌ CASE 2: errors exist
+  const feedback = [];
+
+  feedback.push(t("stressFeedback:intro", { lng: lang }));
+
+  for (const w of mismatches) {
+    const syllables = w.syllables || [];
+
+    const stressedWord = syllables
+      .map((s, i) => (i === w.expectedStress ? s.toUpperCase() : s.toLowerCase()))
+      .join("");
+
+    const rule =
+      w.rule || t("stressFeedback:noRule", { lng: lang });
+
+    feedback.push(
+      `${t("stressFeedback:word", { lng: lang })} ${w.word} → ${stressedWord}\n` +
+      `${t("stressFeedback:rule", { lng: lang })}: ${rule}`
+    );
+  }
+
+  return feedback.join("\n\n");
 }

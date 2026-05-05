@@ -1,0 +1,3 @@
+[submodule "stress_engine"]
+	path = stress_engine
+	url = https://github.com/isabellebidou/stress_engine.git

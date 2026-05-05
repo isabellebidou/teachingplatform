@@ -33,6 +33,28 @@ export async function transcribeAudio(buffer, mimetype, filename) {
     throw new Error(`ElevenLabs error: ${errText}`);
   }
 
-  return response.json(); // contains transcription text
+  const data = await response.json();
+
+  return normalizeTranscription(data);
+}
+function normalizeTranscription(data) {
+  const words = (data.words || [])
+    .filter(w => w.type === "word")
+    .map(w => ({
+      word: cleanWord(w.text),
+      startMs: Math.round(w.start * 1000),
+      endMs: Math.round(w.end * 1000),
+    }));
+
+  return {
+    text: data.text,
+    words,
+    raw: data,
+  };
+}
+function cleanWord(word) {
+  return word
+    .toLowerCase()
+    .replace(/[^\w']/g, ""); // removes punctuation like "voice!"
 }
 

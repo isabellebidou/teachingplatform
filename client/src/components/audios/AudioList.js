@@ -69,6 +69,11 @@ function AudioList({
                     <li key={index}>{line}</li>
                   ))}
                 </ul>
+                <ul>
+                  {audio.stressFeedback.map((line, index) => (
+                    <li key={index}>{line}</li>
+                  ))}
+                </ul>
                  {audio._id === selectedAudioId && selectedAudioUrl && (
                   <audio
                     controls

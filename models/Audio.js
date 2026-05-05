@@ -10,7 +10,8 @@ const audioSchema = new Schema({
   audioPath: String,
   mimeType: String,
   transcript: String,
-  feedback: [String]
+  feedback: [String],
+  stressFeedback: [String]
 });
 
 export default mongoose.model("audios", audioSchema);

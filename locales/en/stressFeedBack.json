@@ -1,0 +1,8 @@
+{
+  "good": "✅ Stress is good. All word stress patterns are correct.",
+  "noData": "No valid stress analysis available.",
+  "intro": "⚠️ Stress issues found:",
+  "word": "Word",
+  "rule": "Rule",
+  "noRule": "No rule provided"
+}
