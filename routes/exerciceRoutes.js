@@ -55,9 +55,24 @@ export default (app) => {
       instructions:
         "Fill in the gap with the correct form of the present simple",
     }
+        const fakeResponse2 = {
+      questions: [
+        {
+          sentence: "I enjoy ____ novels in the morning.",
+          options: [
+            { text: "reading", isCorrect: true },
+            { text: "to read", isCorrect: false },
+            { text: "read", isCorrect: false },
+            { text: "reads", isCorrect: false },
+          ],
+        },
+      ],
+      instructions:
+        "Fill in the gap with the correct form of the present simple",
+    }
 
     // No OpenAI key → return fake
-    if (!openai) return res.json(fakeResponse)
+    if (!openai) return res.json(fakeResponse2)
 
     log("topicName", topicName)
     log("topicRule", topicRule)
