@@ -1,8 +1,7 @@
 {
-  "good": "✅ Le placement de l’accent est correct. Tous les mots sont bien prononcés.",
-  "noData": "Aucune analyse de stress disponible.",
-  "intro": "⚠️ Problèmes d’accent détectés :",
-  "word": "Mot",
-  "rule": "Règle",
-  "noRule": "Aucune règle disponible"
+  "good": "L’accent tonique est bon.",
+  "intro": "Certains mots doivent être corrigés :",
+  "item": "{{word}} doit se prononcer comme {{stressed}}. Règle : {{rule}}",
+  "noRule": "Aucune règle disponible.",
+  "noData": "Aucun retour disponible."
 }

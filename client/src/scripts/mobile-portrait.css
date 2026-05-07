@@ -219,8 +219,12 @@
   }
 .largeBtn{
   min-width: 100%;
+    padding: 0px 0px;
   height: 2em;
+  position: sticky;
+  bottom:3%;
 }
+
   .rightbutton {
     display: block;
     margin: auto;
@@ -469,5 +473,23 @@
   .offersTable>td,th{
     padding: 0em;
     margin: 0em;
+  }
+    .readDiv{
+    
+    color: var(--darkpurple);
+    line-height: 2em;
+    font-size: large;
+    margin: 0em;
+    padding: 0em;
+   text-align: justify;
+   height: 50%;
+   overflow-x: scroll;
+    
+  }
+    .scriptSelect{
+    position: sticky;
+    top: 13%;
+    width: 80%;
+
   }
 }

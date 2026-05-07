@@ -1,4 +1,4 @@
-const logs = true;
+const logs = false;
 
 export function log(...args) {
   if (process.env.NODE_ENV !== "production" && logs) {
@@ -9,7 +9,7 @@ export function log(...args) {
   }
 }
 export function logError(...args) {
-  if (process.env.NODE_ENV !== "production" && logs) {
+  if (process.env.NODE_ENV !== "production") {
     for (let index = 0; index < args.length; index++) {
       console.log(args[index]);
       

@@ -157,6 +157,21 @@ li.div {
   -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
 
+
+}
+.audioDetails{
+  position: relative;
+  padding-top: 2.5em;
+  max-height: 350px;
+  overflow-y: scroll;
+
+
+
+}
+.stressVisual {
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 .bkground{
   background-color:var(--background);
@@ -412,9 +427,9 @@ h3 {
   color: var(--darkpurple);
   position: absolute;
   max-width: 80%;
-  left: 13%;
+  left: 14%;
   font-size: 2em;
-  top: 25%;
+  top: 22%;
   z-index: 0;
   font-family: "Dancing Script","Brush Script MT", "Lucida Console, Monaco, monospace";
 }
@@ -497,6 +512,8 @@ h3 {
   margin-left: 5%;
   margin-right: 5%;
   margin-bottom: 18%;
+  padding-bottom: 10%;
+  height: 250%;
 }
 
 #can,
@@ -1046,6 +1063,8 @@ dd {
 }
 .audioCtrls{
   padding: 1em;
+  position: fixed;
+  top: 0%;
 }
 .settings-overlay {
   position: fixed;
@@ -1092,4 +1111,48 @@ dd {
   }
   .offersTable>td,th{
     padding: 0.5em;
+  }
+  .scriptSelect{
+    position: sticky;
+    top: 13%;
+    width: 40%;
+
+  }
+#audioCtrls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+}
+.gridAudioCtrls {
+  position: relative;
+  top: 0%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+}
+.largeBtn {
+  border-radius: 12px;
+  padding: 14px 24px;
+  font-weight: bold;
+}
+.readDivContainer{
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+
+}
+  .readDiv{
+    max-width: 800px;
+    color: var(--darkpurple);
+    line-height: 2em;
+    font-size: larger;
+    margin: 2em;
+    padding: 2em;
+   text-align: justify;
+    
   }

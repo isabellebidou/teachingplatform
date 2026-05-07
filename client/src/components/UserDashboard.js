@@ -7,9 +7,6 @@ import AudioRecorder from "./audios/AudioRecorder"
 import AudioList from "./audios/AudioList"
 import SelectSentence from "./SelectSentence"
 
-
-
-
 function UserDashboard({
   audios = [],
   scripts = [],
@@ -49,36 +46,38 @@ function UserDashboard({
       setAudio({
         ...audioItem,
       })
-
     } catch (err) {
       console.error("Error fetching audio URL", err)
     }
   }
   return (
-    <>
+    <div>
       <div className="page">
-
-        <SelectSentence
+        <div className="readDivContainer">
+        <SelectSentence className="readDiv"
           scripts={scripts}
           selectedScript={selectedScript}
           onChange={setSelectedScript}
         />
+
+        {selectedScript && (
+          <fieldset className="readDiv">{selectedScript.sentence}</fieldset>
+        )}
+        </div>
         <AudioRecorder
           script={selectedScript}
           onUploadSuccess={triggerRefresh}
         />
- 
+
         <AudioList
           audios={audios}
           onDeleteSuccess={triggerRefresh}
           onSelectAudio={handleSelectAudio}
-          selectedAudioId={audio?._id}  
-          selectedAudioUrl = {audioUrl}  
-
+          selectedAudioId={audio?._id}
+          selectedAudioUrl={audioUrl}
         />
-        
       </div>
-    </>
+    </div>
   )
 }
 

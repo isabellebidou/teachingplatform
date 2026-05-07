@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import axios from "axios"
 import colour from "sharp/lib/colour"
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 function AudioList({
   audios = [],
@@ -54,41 +54,50 @@ function AudioList({
               />
             )}
 
-            <p>
-              audio #{i + 1}: "{audio._script?.sentence}" {t("pRecordedOn")}{" "}
-              {new Date(audio.createdAt).toLocaleDateString()}
-            </p>
-            {audio.transcript && <p>{t("pTranscript")}"{audio.transcript}"</p>}
-            {audio.feedback && audio.feedback.length > 0 && (
-              <div>
+            <div className="audioDetails">
+              <p>
+                audio #{i + 1}: "{audio._script?.sentence}" {t("pRecordedOn")}{" "}
+                {new Date(audio.createdAt).toLocaleDateString()}
+              </p>
+              {audio.transcript && (
                 <p>
-                  <strong>Feedback:</strong>
+                  {t("pTranscript")}"{audio.transcript}"
                 </p>
-                <ul>
-                  {audio.feedback.map((line, index) => (
-                    <li key={index}>{line}</li>
-                  ))}
-                </ul>
-                <ul>
-                  {audio.stressFeedback.map((line, index) => (
-                    <li key={index}>{line}</li>
-                  ))}
-                </ul>
-                 {audio._id === selectedAudioId && selectedAudioUrl && (
-                  <audio
-                    controls
-                    className="audioCtrls"
-                    src={selectedAudioUrl}
-                  />
-                )}
-              </div>
-            )}
+              )}
+              {audio._script?.visual && (
+                <p className="stressVisual">{audio._script?.visual}</p>
+              )}
+              {audio.feedback && audio.feedback.length > 0 && (
+                <div>
+                  <p>
+                    <strong>Feedback:</strong>
+                  </p>
+                  <ul>
+                    {audio.feedback.map((line, index) => (
+                      <li key={index}>{line}</li>
+                    ))}
+                  </ul>
+                  <ul>
+                    {audio.stressFeedback.map((line, index) => (
+                      <li key={index}>{line}</li>
+                    ))}
+                  </ul>
+                  {audio._id === selectedAudioId && selectedAudioUrl && (
+                    <audio
+                      controls
+                      className="audioCtrls"
+                      src={selectedAudioUrl}
+                    />
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         ))}
       </div>
       {audios.length > 0 && (
         <>
-          <button  className="largeBtn" onClick={toggleEditMode}>
+          <button className="largeBtn" onClick={toggleEditMode}>
             {editMode ? t("btnDisableEdit") : t("btnEnableEdit")}
           </button>
 

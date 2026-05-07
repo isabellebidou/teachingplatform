@@ -60,19 +60,20 @@ export default (app) => {
           elevenLabs: transcriptionResult.raw,
         })
 
-        /* old microservice
-        
-        const stressFeedback = await fetch(
+        // old microservice
+        /*
+        const stressResult = await fetch(
           "http://127.0.0.1:4317/analyze-audio-stress",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
           },
-        ).then((r) => r.json())*/
+        ).then((r) => r.json())
+        */
 
         const stressResult= await analyzeAudioStress(payload)
-       // console.log(stressFeedback)
+        console.log("stressResult",stressResult)
         const stressFeedback = generateStressFeedback(stressResult,lang);
 
         // ==========> PROCESS TEXT
@@ -145,10 +146,11 @@ export default (app) => {
     try {
       log("GET /api/user_audios")
 
-      const audios = await Audio.find({ _user: req.user.id }).populate({
-        path: "_script",
-        select: "sentence",
-      })
+      const audios = await Audio.find({ _user: req.user.id }).populate(
+        "_script"
+      //  path: "_script",
+      //  select: "sentence",
+      )
 
       res.send(audios)
     } catch (err) {

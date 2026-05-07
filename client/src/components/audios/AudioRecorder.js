@@ -75,14 +75,14 @@ export default function AudioRecorder({ onUploadSuccess, script }) {
   };
 
   return (
-    <div>
+    <div id="audioCtrls">
 
       {!isRecording && (
-        <button className="largeBtn" onClick={startRecording}>{t("btnRecord")}</button>
+        <button id="recordBtn" className="largeBtn" onClick={startRecording}>{t("btnRecord")}</button>
       )}
 
       {isRecording && (
-        <button className="largeBtn" onClick={stopRecording}>{t("btnStopRecord")}</button>
+        <button id="stopRecordBtn" className="largeBtn" onClick={stopRecording}>{t("btnStopRecord")}</button>
       )}
 
       {audioURL && (

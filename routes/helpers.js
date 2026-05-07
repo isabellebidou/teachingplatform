@@ -91,10 +91,10 @@ export function checkMissingWithS(missing, text) {
   return verbsEndingInS;
 }
 export function generateStressFeedback(result, lang) {
-  const t = i18n.getFixedT(lang);
+const t = i18n.getFixedT(lang, "stressFeedback");
 
   if (!result || !result.ok) {
-    return t("stressFeedback:noData", { lng: lang });
+    return t("noData", { lng: lang });
   }
 
   const words = result.words || [];
@@ -104,13 +104,13 @@ export function generateStressFeedback(result, lang) {
 
   // ✅ CASE 1: no errors
   if ((summary.mismatches ?? 0) === 0 && mismatches.length === 0) {
-    return t("stressFeedback:good", { lng: lang });
+    return t("good", { lng: lang });
   }
 
   // ❌ CASE 2: errors exist
   const feedback = [];
 
-  feedback.push(t("stressFeedback:intro", { lng: lang }));
+  feedback.push(t("intro", { lng: lang }));
 
   for (const w of mismatches) {
     const syllables = w.syllables || [];
@@ -120,11 +120,11 @@ export function generateStressFeedback(result, lang) {
       .join("");
 
     const rule =
-      w.rule || t("stressFeedback:noRule", { lng: lang });
+      w.rule || t("noRule", { lng: lang });
 
     feedback.push(
-      `${t("stressFeedback:word", { lng: lang })} ${w.word} → ${stressedWord}\n` +
-      `${t("stressFeedback:rule", { lng: lang })}: ${rule}`
+      `${t("word", { lng: lang })} ${w.word} → ${stressedWord}\n` +
+      `${t("rule", { lng: lang })}: ${rule}`
     );
   }
 
