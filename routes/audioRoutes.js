@@ -1,9 +1,9 @@
 import mongoose from "mongoose"
 import requireLogin from "../middlewares/requireLogin.js"
 import { transcribeAudio } from "../services/elevenLabsTranscription.js"
-import fs from "fs";
+import fs from "fs"
 import { convertWebmToWav } from "../services/convertWebmToWav.js"
-import {analyzeAudioStress} from "../stress_engine/index.js"
+import { analyzeAudioStress } from "../stress_engine/index.js"
 import { buildStressRequest } from "../services/buildStressRequest.js"
 import upload from "../config/audioUpload.js"
 import i18n from "../i18n.js"
@@ -13,7 +13,12 @@ import {
   getObjectSignedUrl,
 } from "../services/s3.js"
 import { logError as error, log } from "../services/utils.js"
-import { normalize, compareWords, generateFeedback, generateStressFeedback} from "./helpers.js"
+import {
+  normalize,
+  compareWords,
+  generateFeedback,
+  generateStressFeedback,
+} from "./helpers.js"
 
 const Audio = mongoose.model("audios")
 const Script = mongoose.model("Script")
@@ -51,7 +56,7 @@ export default (app) => {
         log("Transcription:", transcriptText)
         //===============> convert webm to wav
 
-        const wavBuffer = await convertWebmToWav(buffer);
+        const wavBuffer = await convertWebmToWav(buffer)
 
         //==============> process stress
         const payload = buildStressRequest({
@@ -72,9 +77,9 @@ export default (app) => {
         ).then((r) => r.json())
         */
 
-        const stressResult= await analyzeAudioStress(payload)
-        console.log("stressResult",stressResult)
-        const stressFeedback = generateStressFeedback(stressResult,lang);
+        const stressResult = await analyzeAudioStress(payload)
+
+        const stressFeedback = generateStressFeedback(stressResult, lang)
 
         // ==========> PROCESS TEXT
         const feedback = generateFeedback(
@@ -103,13 +108,12 @@ export default (app) => {
           mimeType: mimetype,
           transcript: transcriptText,
           feedback: feedback,
-          stressFeedback: stressFeedback
-
+          stressFeedback: stressFeedback,
         }).save()
 
         res.send(audio)
       } catch (err) {
-        error("Audio upload error:", err)
+        error("Audio error:", err)
         res.status(500).send("Audio upload failed")
       }
     },
@@ -147,9 +151,9 @@ export default (app) => {
       log("GET /api/user_audios")
 
       const audios = await Audio.find({ _user: req.user.id }).populate(
-        "_script"
-      //  path: "_script",
-      //  select: "sentence",
+        "_script",
+        //  path: "_script",
+        //  select: "sentence",
       )
 
       res.send(audios)
