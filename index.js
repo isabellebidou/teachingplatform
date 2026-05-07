@@ -106,7 +106,9 @@ if (isProduction) {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
   );
 }
-
+console.log("ENV CHECK:");
+console.log("OPENAI:", process.env.OPENAI_KEY ? "SET" : "MISSING");
+console.log("NODE_ENV:", process.env.NODE_ENV);
 // ------------------- MongoDB connection -------------------
 mongoose.set("strictQuery", false);
 

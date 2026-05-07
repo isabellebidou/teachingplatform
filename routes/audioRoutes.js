@@ -52,15 +52,15 @@ app.post(
       try {
         script = await Script.findById(scriptId);
         if (!script) {
-          console.error("❌ [audio] Script not found:", scriptId);
+         // console.error("❌ [audio] Script not found:", scriptId);
           return res.status(404).send("Script not found");
         }
       } catch (err) {
-        console.error("❌ [audio] Script DB error:", err);
+       // console.error("❌ [audio] Script DB error:", err);
         return res.status(500).send("Script lookup failed");
       }
 
-      console.log("📄 [audio] script loaded:", script._id);
+    //  console.log("📄 [audio] script loaded:", script._id);
 
       // ================= TRANSCRIPTION =================
       let transcriptionResult;
@@ -71,28 +71,28 @@ app.post(
           originalname,
         );
       } catch (err) {
-        console.error("❌ [audio] transcription failed:", err);
+     //   console.error("❌ [audio] transcription failed:", err);
         return res.status(500).send("Transcription failed");
       }
 
       const transcriptText = transcriptionResult.text;
       const wordsWithTimings = transcriptionResult.words;
 
-      console.log("📝 [audio] transcript:", transcriptText);
+     // console.log("📝 [audio] transcript:", transcriptText);
 
       // ================= WAV CONVERSION =================
       let wavBuffer;
       try {
         wavBuffer = await convertWebmToWav(buffer);
       } catch (err) {
-        console.error("❌ [audio] WAV conversion failed:", err);
+     //   console.error("❌ [audio] WAV conversion failed:", err);
         return res.status(500).send("Audio conversion failed");
       }
 
       console.log("🔄 [audio] WAV conversion OK");
 
       // ================= STRESS ENGINE =================
-      let stressResult;
+   /*   let stressResult;
       try {
         const payload = buildStressRequest({
           scriptText: script.sentence,
@@ -102,13 +102,13 @@ app.post(
 
         stressResult = await analyzeAudioStress(payload);
       } catch (err) {
-        console.error("❌ [audio] stress engine failed:", err);
+     //   console.error("❌ [audio] stress engine failed:", err);
         return res.status(500).send("Stress analysis failed");
-      }
+      }*/
 
-      console.log("🧠 [audio] stress analysis OK");
+    //  console.log("🧠 [audio] stress analysis OK");
 
-      const stressFeedback = generateStressFeedback(stressResult, lang);
+    //  const stressFeedback = generateStressFeedback(stressResult, lang);
 
       // ================= TEXT FEEDBACK =================
       const feedback = generateFeedback(
@@ -126,11 +126,11 @@ app.post(
       try {
         await uploadFile(buffer, s3Key, mimetype);
       } catch (err) {
-        console.error("❌ [audio] S3 upload failed:", err);
+     //   console.error("❌ [audio] S3 upload failed:", err);
         return res.status(500).send("Upload failed");
       }
 
-      console.log("☁️ [audio] uploaded to S3:", s3Key);
+    //  console.log("☁️ [audio] uploaded to S3:", s3Key);
 
       // ================= DB SAVE =================
       const audio = await new Audio({
@@ -140,14 +140,14 @@ app.post(
         mimeType: mimetype,
         transcript: transcriptText,
         feedback,
-         stressFeedback,
+       //  stressFeedback,
       }).save();
 
       console.log("💾 [audio] saved to DB:", audio._id);
 
       res.send(audio);
     } catch (err) {
-      console.error("🔥 [audio] UNHANDLED ERROR:", err);
+    //  console.error("🔥 [audio] UNHANDLED ERROR:", err);
       res.status(500).send("Audio upload failed");
     }
   },
