@@ -11,6 +11,8 @@ export default (app) => {
   let openai
   if (keys.openaiKey) {
     openai = new OpenAI({ apiKey: keys.openaiKey })
+  } else{
+    console.log("Calling OpenAI with key length:", process.env.OPENAI_KEY?.length);
   }
 ;
 
