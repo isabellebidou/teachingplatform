@@ -8,6 +8,16 @@ import enforce from "express-sslify";
 
 import path from "path";
 import { fileURLToPath } from "url";
+import { execSync } from "child_process";
+
+try {
+  console.log(
+    "FFMPEG PATH:",
+    execSync("which ffmpeg").toString()
+  );
+} catch {
+  console.log("FFMPEG NOT FOUND");
+}
 
 // ------------------- ESM __dirname fix -------------------
 const __filename = fileURLToPath(import.meta.url);
