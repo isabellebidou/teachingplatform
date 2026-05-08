@@ -57,7 +57,7 @@ export default (app) => {
       instructions:
         "Fill in the gap with the correct form of the present simple",
     }
-        const fakeResponse2 = {
+        const fakeResponse2 = {////  ======>   gets used
       questions: [
         {
           sentence: "I enjoy ____ novels in the morning.",
@@ -73,9 +73,14 @@ export default (app) => {
         "Fill in the gap with the correct form of the present simple",
     }
 
-    // No OpenAI key → return fake
+    // No OpenAI key → return OpenAI unavailable
 
-    if (!openai) return res.json(fakeResponse2)
+   if (!openai) {
+  console.error("❌ OpenAI client unavailable")
+  return res.status(500).json({
+    error: "OpenAI unavailable"
+  })
+}
 
     log("topicName", topicName)
     log("topicRule", topicRule)

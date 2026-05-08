@@ -81,6 +81,8 @@ app.post(
      // console.log("📝 [audio] transcript:", transcriptText);
 
       // ================= WAV CONVERSION =================
+      /*
+      
       let wavBuffer;
       try {
         wavBuffer = await convertWebmToWav(buffer);
@@ -90,6 +92,7 @@ app.post(
       }
 
       console.log("🔄 [audio] WAV conversion OK");
+      */
 
       // ================= STRESS ENGINE =================
    /*   let stressResult;
