@@ -180,15 +180,17 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
         {gameStarted && selectedTopic.rule && questions.length > 0 && (
           <p>{selectedTopic.rule?.[lang]}</p>
         )}
+        <ul key={"ul"}>
         {gameStarted &&
           selectedTopic.examples &&
           selectedTopic.examples.length > 0 &&
           questions.length > 0 &&
           selectedTopic.examples.map((e,i) => (
-            <ul>
+            
               <li key={i + "st"}>{e}</li>
-            </ul>
+            
           ))}
+          </ul>
 
         {!finished && gameStarted && questions.length > 0 && (
           <QuestionBundle

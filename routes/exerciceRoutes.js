@@ -9,12 +9,13 @@ import i18n from "../i18n.js";
 
 export default (app) => {
   let openai
-  if (keys.openaiKey) {
-    openai = new OpenAI({ apiKey: keys.openaiKey })
-  } else{
-    console.log("Calling OpenAI with key length:", process.env.OPENAI_KEY?.length);
-  }
-;
+  const openAiKey = keys.openaiKey || process.env.OPENAI_KEY;
+  if (openAiKey) {
+  openai = new OpenAI({ apiKey: openAiKey });
+} else {
+  console.error("❌ Missing OpenAI key (keys or env)");
+}
+
 
   app.post("/api/exercice", async (req, res) => {
     const { selectedTopic } = req.body
