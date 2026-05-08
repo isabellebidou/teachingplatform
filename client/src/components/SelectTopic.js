@@ -18,7 +18,7 @@ const lang = i18n.language.startsWith("fr") ? "fr" : "en";
     >
       {topics.map(topic => (
         <option key={topic._id} value={topic._id}>
-          <option>{topic.name[lang]}</option>
+          {topic.name[lang]}
         </option>
       ))}
     </select>

@@ -85,7 +85,7 @@ app.post(
       try {
         wavBuffer = await convertWebmToWav(buffer);
       } catch (err) {
-     //   console.error("❌ [audio] WAV conversion failed:", err);
+        console.error("❌ [audio] WAV conversion failed:", err);
         return res.status(500).send("Audio conversion failed");
       }
 

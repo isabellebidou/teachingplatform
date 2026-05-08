@@ -74,6 +74,7 @@ export default (app) => {
     }
 
     // No OpenAI key → return fake
+
     if (!openai) return res.json(fakeResponse2)
 
     log("topicName", topicName)

@@ -1,8 +1,7 @@
 import Answer from "./Answer.js"
 
 export default function Answers({ qIndex, options ,selectedAnswer, onSelectAnswer}) {
-    console.log("from Answers: ")
-    console.log(JSON.stringify(qIndex, null, 2));
+
    
 
   return (

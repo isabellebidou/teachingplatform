@@ -5,7 +5,7 @@
   "description": "English Language Teaching website",
   "main": "index.js",
   "engines": {
-    "node": ">=18.12.1",
+    "node": ">=22",
     "npm": ">=9.3.1"
   },
   "scripts": {

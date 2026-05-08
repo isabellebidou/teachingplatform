@@ -79,6 +79,7 @@ const Landing = () => {
         <p>{t("pOffers")}</p>
 
         <table className="offersTable">
+          <tbody>
           <tr>
             <th>{t("thOfferOnline5")}</th>
             <th>{t("thOfferOnline10")}</th>
@@ -91,6 +92,7 @@ const Landing = () => {
             <td>{t("tdOffer5")}</td>
             <td>{t("tdOffer10")}</td>
           </tr>
+          </tbody>
         </table>
         {auth && !auth.hasConsultation && (
           <div>

@@ -109,6 +109,8 @@ if (isProduction) {
 console.log("ENV CHECK:");
 console.log("OPENAI:", process.env.OPENAI_KEY ? "SET" : "MISSING");
 console.log("NODE_ENV:", process.env.NODE_ENV);
+process.on("uncaughtException", console.error);
+process.on("unhandledRejection", console.error);
 // ------------------- MongoDB connection -------------------
 mongoose.set("strictQuery", false);
 

@@ -184,9 +184,9 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
           selectedTopic.examples &&
           selectedTopic.examples.length > 0 &&
           questions.length > 0 &&
-          selectedTopic.examples.map((e) => (
+          selectedTopic.examples.map((e,i) => (
             <ul>
-              <li>{e}</li>
+              <li key={i + "st"}>{e}</li>
             </ul>
           ))}
 
