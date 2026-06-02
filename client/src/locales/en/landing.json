@@ -16,19 +16,21 @@
   "h2Contact": "Contact",
   "pContact": "My name is Isabelle Bidou. I am a Fullstack developer and an English teacher. I offer a coaching service for professionals who need to speak English with specific constraints related to their activities.  I also prepare students for the  engineering schools oral entrance test exams. If you have questions, feel free to contact me",
   "pCookie": "This website uses cookies for authentication with google OAuth, to enhance the user experience. If you consent tousing cookies. In order to try the features you must authenticate with your google credentials.",
+  "H2OffersIntro":"My English coaching services are designed to adapt to your needs, offering personalised 1:1 coaching (online or in-person) as well as corporate workshops delivered online or onsite in your workplace.",
+  
   "h2OffersLegend": "1:1 Coaching Offers for adults",
- "thIndividualPilot": "6-Week Pilot Program",
+  "thIndividualPilot": "6-Week Pilot Program",
   "thIndividualMonthly": "Monthly Coaching Program",
 
-  "tdIndividualPilot": "€360 total (6 weeks – 1 session/week – 90 min – fully personalised coaching)",
+  "tdIndividualPilot": "€405 total (6 weeks – 1 session/week – 90 min – fully personalised coaching)",
 
-  "tdIndividualMonthly": "€240 / month (4 sessions – 90 min each – ongoing personalised coaching)",
+  "tdIndividualMonthly": "€260 / month (4 sessions – 90 min each – ongoing personalised coaching)",
 
   "pIndividualOffers": "I offer personalised 1:1 English coaching designed to meet your specific professional needs. With a strong background in corporate environments, software development, and customer service, I help you gain confidence, fluency, and accuracy in real-world situations such as Scrum meetings, business presentations, interviews, and client interactions. Sessions are highly interactive and tailored to your goals, combining practical communication practice, roleplay scenarios, targeted grammar reinforcement, and personalised correction to help you express yourself clearly and naturally in professional contexts.",
 
-  "pIndividualTermsSummary": "Coaching is billed monthly. Sessions cancelled more than 48 hours in advance may be rescheduled. Sessions cancelled less than 48 hours in advance are charged in full.",
+  "pIndividualTermsSummary": "Single sessions and pilot programmes are payable in advance. Monthly programmes are invoiced at the beginning of each month and payable in advance. Sessions cancelled more than 48 hours in advance may be rescheduled. Sessions cancelled less than 48 hours in advance are charged in full.",
   "pIndividualOfferNote": "Coaching sessions are fully customized to professional communication needs (meetings, technical discussions, presentations, workplace interaction).",
-  
+
   "pOfferBook": "You can book a free 10-minute consultation to discuss your specific needs and goals. This is a great opportunity to see how I can support your progress and tailor sessions to your professional context. Simply follow this link to choose a time that suits you:",
   "h2CorporateOffersLegend": "Corporate English Communication Workshops",
   "pCorporateOffer": "I offer tailored English communication workshops designed for teams working in international and operational environments. With experience in corporate settings, technical fields, and professional communication coaching, I help employees develop confidence and clarity in real-world situations such as meetings, cross-team collaboration, technical discussions, and client interactions. Workshops combine practical communication, roleplay scenarios, targeted grammar reinforcement, and specialised professional vocabulary to ensure accurate, natural, and immediately applicable English in the workplace.",
@@ -39,5 +41,42 @@
 
   "tdCorporateMonthly": "€700 / month (4 weekly workshops – 90 min – onsite – 4–6 participants)",
 
-  "pCorporateOfferNote": "All workshops are fully customized to professional communication needs (meetings, technical discussions, presentations, workplace interaction)."
+  "pCorporateOfferNote": "All workshops are fully customized to professional communication needs (meetings, technical discussions, presentations, workplace interaction).",
+  "pCorporateTermsSummary": "Single sessions and pilot programmes are payable in advance. Monthly programmes are invoiced at the beginning of each month and payable in advance.",
+  "individualSinglePrice": "€75 (90mn)",
+  "individualSinglePriceOnline": "€45 (60 mn online)",
+  "individualPilotPrice": "€405 total (6 x 90 mn in person)",
+  "individualPilotPriceOnline": "€260 total (6 x 60 mn online)",
+
+  "individualMonthlyPrice": "€260 / month (4 x 90mn)",
+  "individualMonthlyPriceOnline": "€160 / month (4 x 60 mn online)",
+
+
+
+  "corporateSinglePrice": "€220 (90 mn)",
+  "corporatePilotPrice": "€1200 total (6 x 90 mn)",
+  "corporateMonthlyPrice": "€700 / month (4 x 90 mn)",
+
+  "corporateSinglePriceOnline": "€100 (60 mn online)",
+  "corporatePilotPriceOnline": "€570 total (6 x 60 mn online)",
+  "corporateMonthlyPriceOnline": "€360 / month (4 x 60 mn online)",
+  "lblInPerson":"In-Person Coaching",
+  "lblOnline":"Online Coaching",
+    "lblInPersonCorporate":"On-site Coaching",
+  "lblOnlineCorporate":"Online Coaching",
+  
+    "thIndividualSingle": "Single Coaching Session",
+  "individualSingleDesc": "A one-off coaching session focused on a specific professional communication need.",
+
+  "thCorporateSingle": "Single Workshop",
+
+  "corporateSingleDesc": "A standalone workshop designed to address a specific communication challenge or training objective.",
+
+  "individualPilotDesc": "An ideal way to assess your needs, define objectives, and experience the coaching approach before committing to a longer-term programme.",
+
+  "individualMonthlyDesc": "Ongoing coaching designed to build confidence, fluency, and accuracy through regular practice and personalised support.",
+
+  "corporatePilotDesc": "A practical introduction to workplace English workshops, allowing teams and managers to evaluate the programme's impact.",
+
+  "corporateMonthlyDesc": "A structured long-term training programme designed to improve communication skills, confidence, and professional English usage across the team."
 }
