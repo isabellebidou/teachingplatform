@@ -19,10 +19,10 @@ const Landing = () => {
   const [visibility, setVisibility] = useState("visible")
 
   const [mode, setMode] = useState("online") // default: online (important)
-  const [selectedOffer, setSelectedOffer] = useState("monthly")
+  const [selectedIndividualOffer, setIndividualSelectedOffer] = useState("individualMonthly")
+  const [selectedCorporateOffer, setCorporateSelectedOffer] = useState("corporateMonthly")
 
-  const [selectedCorporateOffer, setSelectedCorporateOffer] =
-    useState("corporateMonthly")
+
 
   useEffect(() => {
     dispatch(fetchCookieValue())
@@ -111,8 +111,8 @@ const Landing = () => {
                 : t("individualSinglePrice")
             }
             description={t("individualSingleDesc")}
-            selected={selectedOffer === "individualSingle"}
-            onClick={() => setSelectedOffer("individualSingle")}
+            selected={selectedIndividualOffer === "individualSingle"}
+            onClick={() => setIndividualSelectedOffer("individualSingle")}
           />
 
           <PricingCard
@@ -123,8 +123,8 @@ const Landing = () => {
                 : t("individualPilotPrice")
             }
             description={t("individualPilotDesc")}
-            selected={selectedOffer === "individualPilot"}
-            onClick={() => setSelectedOffer("individualPilot")}
+            selected={selectedIndividualOffer === "individualPilot"}
+            onClick={() => setIndividualSelectedOffer("individualPilot")}
           />
 
           <PricingCard
@@ -135,8 +135,8 @@ const Landing = () => {
                 : t("individualMonthlyPrice")
             }
             description={t("individualMonthlyDesc")}
-            selected={selectedOffer === "individualMonthly"}
-            onClick={() => setSelectedOffer("individualMonthly")}
+            selected={selectedIndividualOffer === "individualMonthly"}
+            onClick={() => setIndividualSelectedOffer("individualMonthly")}
           />
         </div>
 
@@ -188,7 +188,7 @@ const Landing = () => {
             }
             description={t("corporateSingleDesc")}
             selected={selectedCorporateOffer === "corporateSingle"}
-            onClick={() => setSelectedCorporateOffer("corporateSingle")}
+            onClick={() => setCorporateSelectedOffer("corporateSingle")}
           />
 
           <PricingCard
@@ -200,7 +200,7 @@ const Landing = () => {
             }
             description={t("corporatePilotDesc")}
             selected={selectedCorporateOffer === "corporatePilot"}
-            onClick={() => setSelectedCorporateOffer("corporatePilot")}
+            onClick={() => setCorporateSelectedOffer("corporatePilot")}
           />
 
           <PricingCard
@@ -212,7 +212,7 @@ const Landing = () => {
             }
             description={t("corporateMonthlyDesc")}
             selected={selectedCorporateOffer === "corporateMonthly"}
-            onClick={() => setSelectedCorporateOffer("corporateMonthly")}
+            onClick={() => setCorporateSelectedOffer("corporateMonthly")}
           />
         </div>
 

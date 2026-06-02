@@ -1171,7 +1171,7 @@ dd {
   background: white;
 }
 
-.pricingCard.featured {
+.pricingCard.selected {
   border: 2px solid #4f46e5;
   transform: scale(1.03);
 }

@@ -62,8 +62,8 @@
   "corporateMonthlyPriceOnline": "€360 / month (4 x 60 mn online)",
   "lblInPerson":"In-Person Coaching",
   "lblOnline":"Online Coaching",
-    "lblInPersonCorporate":"On-site Coaching",
-  "lblOnlineCorporate":"Online Coaching",
+    "lblInPersonCorporate":"On-site Workshop",
+  "lblOnlineCorporate":"Online Workshop",
   
     "thIndividualSingle": "Single Coaching Session",
   "individualSingleDesc": "A one-off coaching session focused on a specific professional communication need.",
