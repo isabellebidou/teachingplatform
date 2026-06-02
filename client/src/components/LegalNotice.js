@@ -42,9 +42,21 @@ const LegalNotice = () => {
             
             <h2>Terms of payment:
             </h2>
-            <p className='itemp'>payment by bank transfer.
-            </p>
+            <p className='itemp'>Payment Terms:
+All services (individual coaching and group workshops) are invoiced on a monthly basis according to the agreed training plan. Payment is due within 30 days of the invoice date and must be made by bank transfer.
 
+For ongoing coaching programs, the first invoice is issued at the start of the month or at the beginning of the program. Each subsequent month is billed in advance or at the end of the month depending on the agreed schedule.
+
+For short programs (such as pilot workshops), a fixed invoice may be issued in two instalments: 50% upon acceptance of the quotation and 50% at the end of the program.
+            </p>
+            <h2>Cancellation Policy:
+            </h2>
+            <p className='itemp'>AAll coaching sessions and workshops are scheduled on a recurring monthly basis. Sessions may be rescheduled when cancelled at least 48 hours in advance, subject to availability.
+
+Sessions cancelled less than 48 hours in advance are considered delivered and will be charged in full. Missed sessions without prior notice are non-refundable.
+
+In the case of monthly ongoing programs, notice of termination must be given at least one month in advance. Any sessions already scheduled within the notice period remain payable.
+    </p>
         </div>
     );
 };

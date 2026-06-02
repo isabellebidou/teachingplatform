@@ -4,7 +4,7 @@
   "h1Title": "Izzy Speak English",
 
   "h2Features": "Fonctionnalités de l'application",
-  "pFeatures":"Dans le cadre de votre coaching, vous bénéficierez d’un accès gratuit à une application complémentaire. Elle vous permet de sélectionner des règles de grammaire, de générer des exercices ciblés et d’enregistrer de courts extraits audio pour obtenir un retour sur votre prononciation. Veuillez noter que l’application est actuellement en cours de développement et de test, et que seules certaines fonctionnalités sont disponibles pour le moment.",
+  "pFeatures": "Dans le cadre de votre coaching, vous bénéficierez d’un accès gratuit à une application complémentaire. Elle vous permet de sélectionner des règles de grammaire, de générer des exercices ciblés et d’enregistrer de courts extraits audio pour obtenir un retour sur votre prononciation. Veuillez noter que l’application est actuellement en cours de développement et de test, et que seules certaines fonctionnalités sont disponibles pour le moment.",
   "h2AudioFeedback": "🎤 Retour sur la prononciation",
   "pAudioFeedback": "Les utilisateurs peuvent enregistrer une courte phrase orale. Le système analyse la prononciation et fournit un retour pour aider à améliorer l’expression orale.",
 
@@ -18,21 +18,71 @@
   "btnLeaveReview": "Laisser un avis",
 
   "h2faq": "Questions fréquentes",
-  "h2Contact":"Contact",
+  "h2Contact": "Contact",
   "pContact": "Je m’appelle Isabelle Bidou. Je suis développeur Fullstack et professeur d'anglais. Je propose un service de coaching de professionnels qui ont besoin de s'exprimer en anglais avec des contraintes spécifiques à leurs activités.  Je prépare également les étudiants aux Khôlles de prépa. Si vous avez des questions, n’hésitez pas à me contacter.",
 
   "pCookie": "Ce site utilise des cookies pour l’authentification avec Google OAuth et pour améliorer l’expérience utilisateur. En acceptant l’utilisation des cookies, vous pourrez tester les fonctionnalités après vous être connecté avec votre compte Google.",
+  "H2OffersIntro":"Mes services de coaching en anglais s’adaptent à vos besoins et proposent un accompagnement individuel personnalisé (en ligne ou en présentiel) ainsi que des ateliers en entreprise, réalisés en ligne ou directement sur site.",
   "h2OffersLegend": "Offres de Coaching individuel pour adultes",
-  "pOffers":"Je propose un coaching individuel en anglais entièrement personnalisé, adapté à vos besoins professionnels spécifiques. Forte d’une solide expérience en entreprise, en développement informatique et en relation client, je vous aide à gagner en aisance et en fluidité dans des situations concrètes comme les réunions Scrum, les échanges professionnels et les interactions avec des clients. Chaque séance est conçue sur mesure pour des progrès utiles et immédiatement applicables dans votre travail.",
-  
-  "thOfferOnline5": "(en ligne) – forfait 5 séances",
-  "thOfferOnline10": "(en ligne) – forfait 10 séances",
-  "thOffer5": "(en présentiel) – forfait 5 séances",
-  "thOffer10": "(en présentiel) – forfait 10 séances",
 
-  "tdOfferOnline5": "300 €",
-  "tdOfferOnline10": "550 €",
-  "tdOffer5": "350 €",
-  "tdOffer10": "700 €",
-  "pOfferBook": "Vous pouvez réserver une consultation gratuite de 10 minutes afin de discuter de vos besoins et objectifs spécifiques. C’est l’occasion idéale de voir comment je peux vous accompagner et adapter les séances à votre contexte professionnel. Il vous suffit de suivre ce lien pour choisir un créneau qui vous convient :"
+  "thIndividualPilot": "Programme Découverte 6 Semaines",
+  "thIndividualMonthly": "Coaching Mensuel",
+
+  "tdIndividualPilot": "405 € total (6 semaines – 1 séance/semaine – 90 min – coaching personnalisé)",
+
+  "tdIndividualMonthly": "260 € / mois (4 séances – 90 min chacune – coaching individuel continu)",
+
+  "pIndividualOffers": "Je propose un coaching d’anglais individuel entièrement personnalisé, conçu pour répondre à vos besoins professionnels spécifiques. Grâce à mon expérience en environnement corporate, en développement logiciel et en relation client, je vous aide à gagner en aisance, en fluidité et en précision dans des situations concrètes telles que les réunions Scrum, les présentations professionnelles, les entretiens ou les échanges avec des clients. Les séances sont très interactives et adaptées à vos objectifs, combinant pratique de la communication, mises en situation, renforcement ciblé de la grammaire et corrections personnalisées afin de vous permettre de vous exprimer de manière claire, naturelle et professionnelle.",
+
+  "pIndividualTermsSummary": "Les séances uniques et les programmes pilotes sont payables à l’avance. Les formules mensuelles sont facturées en début de mois et payables à l’avance. Les séances annulées plus de 48 heures à l’avance peuvent être reprogrammées. Les séances annulées moins de 48 heures à l’avance sont dues.",
+  "pIndividualOfferNote": "Les sessions de coaching sont entièrement personnalisées en fonction des besoins de communication professionnels (réunions, discussions techniques, présentations, interactions sur le lieu de travail).",
+  "pOfferBook": "Vous pouvez réserver une consultation gratuite de 10 minutes afin de discuter de vos besoins et objectifs spécifiques. C’est l’occasion idéale de voir comment je peux vous accompagner et adapter les séances à votre contexte professionnel. Il vous suffit de suivre ce lien pour choisir un créneau qui vous convient :",
+  "h2CorporateOffersLegend": "Ateliers d’Anglais Professionnel en Entreprise",
+  "pCorporateOffer": "Je propose des ateliers d’anglais professionnel sur mesure, conçus pour des équipes évoluant dans des environnements internationaux et opérationnels. Grâce à mon expérience en milieu corporate, dans des contextes techniques et de communication professionnelle, j’aide les collaborateurs à gagner en aisance et en clarté dans des situations concrètes telles que les réunions, la collaboration entre équipes, les échanges techniques ou les interactions avec des clients et partenaires. Les ateliers combinent communication pratique, mises en situation, renforcement ciblé de la grammaire et vocabulaire professionnel spécialisé afin de garantir un anglais précis, naturel et immédiatement applicable dans le cadre du travail.",
+  "thCorporatePilot": "Programme Découverte 6 Semaines",
+  "thCorporateMonthly": "Programme Mensuel Entreprise",
+
+  "tdCorporatePilot": "990 € HT total (6 semaines – 1 séance/semaine – 90 min – petit groupe en présentiel)",
+
+  "tdCorporateMonthly": "700 € HT / mois (4 ateliers hebdomadaires – 90 min – présentiel – 4 à 6 participants)",
+
+  "pCorporateOfferNote": "Tous les ateliers sont entièrement personnalisés selon les besoins professionnels (réunions, échanges techniques, présentations, communication en situation de travail).",
+"pCorporateTermsSummary": "Les séances uniques et les programmes pilotes sont payables à l’avance. Les formules mensuelles sont facturées en début de mois et payables à l’avance. Sessions cancelled more than 48 hours in advance may be rescheduled. Sessions cancelled less than 48 hours in advance are charged in full.",
+  "thIndividualSingle": "Séance de Coaching Individuelle",
+  "individualSingleDesc": "Une séance ponctuelle centrée sur un besoin précis en communication professionnelle.",
+
+  "thCorporateSingle": "Atelier Ponctuel",
+
+  "corporateSingleDesc": "Un atelier unique conçu pour répondre à un objectif de formation ou à un besoin de communication spécifique.",
+
+"individualSinglePrice": "75 € (90 mn)",
+  "individualSinglePriceOnline": "45 € (60 mn en ligne)",
+
+  "individualPilotPrice": "405 € total (6 x 90 mn en présentiel)",
+  "individualPilotPriceOnline": "260 € total (6 x 60 mn en ligne)",
+
+  "individualMonthlyPrice": "260 € / mois (4 x 90 mn)",
+  "individualMonthlyPriceOnline": "160 € / mois (4 x 60 mn en ligne)",
+
+  "corporateSinglePrice": "220 € HT (90 mn)",
+  "corporateSinglePriceOnline": "100 € HT (60 mn en ligne)",
+
+  "corporatePilotPrice": "1200 € HT total (6 x 90 mn)",
+  "corporatePilotPriceOnline": "570 € HT total (6 x 60 mn en ligne)",
+
+  "corporateMonthlyPrice": "700 € HT / mois (4 x 90 mn)",
+  "corporateMonthlyPriceOnline": "360 € HT / mois (4 x 60 mn en ligne)",
+   "lblInPerson":"Coaching en présentiel",
+  "lblOnline":"Coaching en ligne",
+
+    "lblInPersonCorporate":"Atelier en présentiel",
+  "lblOnlineCorporate":"Atelier en ligne",
+
+  "individualPilotDesc": "Une formule idéale pour identifier vos besoins, définir vos objectifs et découvrir l'approche pédagogique avant un engagement plus long.",
+
+  "individualMonthlyDesc": "Un accompagnement continu conçu pour développer votre aisance, votre fluidité et votre précision grâce à une pratique régulière et un suivi personnalisé.",
+
+  "corporatePilotDesc": "Une introduction concrète aux ateliers d'anglais professionnel permettant aux équipes et aux responsables d'évaluer l'impact du programme.",
+
+  "corporateMonthlyDesc": "Un programme de formation continu visant à développer la communication, la confiance et la maîtrise de l'anglais professionnel au sein des équipes."
 }

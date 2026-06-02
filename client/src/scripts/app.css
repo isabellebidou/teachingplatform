@@ -1156,3 +1156,59 @@ dd {
    text-align: justify;
     
   }
+  .pricingGrid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.pricingCard {
+  flex: 1;
+  min-width: 260px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  background: white;
+}
+
+.pricingCard.selected {
+  border: 2px solid #4f46e5;
+  transform: scale(1.03);
+}
+
+.pricingCardTitle {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.pricingCardPrice {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: var(--strongpink);
+}
+
+.pricingCardFeatures {
+  margin: 15px 0;
+  padding-left: 18px;
+}
+.modeToggle {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.modeToggle button {
+  padding: 8px 14px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modeToggle button.active {
+  background: #4f46e5;
+  color: white;
+  border-color: #4f46e5;
+}

@@ -8,6 +8,7 @@ import CookieConsent from "react-cookie-consent"
 import { fetchCookieValue, updateCookieAcceptance } from "../actions"
 import { useTranslation } from "react-i18next"
 import StarReview from "./StarReview"
+import PricingCard from "./PricingCard"
 
 const Landing = () => {
   const dispatch = useDispatch()
@@ -16,6 +17,12 @@ const Landing = () => {
   const auth = useSelector((state) => state.auth)
   const cookie = useSelector((state) => state.cookie)
   const [visibility, setVisibility] = useState("visible")
+
+  const [mode, setMode] = useState("online") // default: online (important)
+  const [selectedIndividualOffer, setIndividualSelectedOffer] =
+    useState("individualMonthly")
+  const [selectedCorporateOffer, setCorporateSelectedOffer] =
+    useState("corporateMonthly")
 
   useEffect(() => {
     dispatch(fetchCookieValue())
@@ -72,37 +79,149 @@ const Landing = () => {
         </span>
       )}
 
+      <h2>{t("H2OffersIntro")}</h2>
       <fieldset>
         <legend>
           <h2>{t("h2OffersLegend")}</h2>
         </legend>
-        <p>{t("pOffers")}</p>
+        <p className="offerParagraph">{t("pIndividualOffers")}</p>
+        <div className="modeToggle">
+          <button
+            className={mode === "online" ? "active" : ""}
+            onClick={() => setMode("online")}
+          >
+            {t("lblOnline")}
+          </button>
 
-        <table className="offersTable">
-          <tbody>
-          <tr>
-            <th>{t("thOfferOnline5")}</th>
-            <th>{t("thOfferOnline10")}</th>
-            <th>{t("thOffer5")}</th>
-            <th>{t("thOffer10")}</th>
-          </tr>
-          <tr>
-            <td>{t("tdOfferOnline5")}</td>
-            <td>{t("tdOfferOnline10")}</td>
-            <td>{t("tdOffer5")}</td>
-            <td>{t("tdOffer10")}</td>
-          </tr>
-          </tbody>
-        </table>
-        {auth && !auth.hasConsultation && (
-          <div>
-            <p>{t("pOfferBook")}</p>
+          <button
+            className={mode === "onsite" ? "active" : ""}
+            onClick={() => setMode("onsite")}
+          >
+            {t("lblInPerson")}
+          </button>
+        </div>
 
-            <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
-              <button className="actionupload">{t("btnActionbook")}</button>
-            </a>
-          </div>
-        )}
+        <div className="pricingGrid">
+          <PricingCard
+            title={t("thIndividualSingle")}
+            price={
+              mode === "online"
+                ? t("individualSinglePriceOnline")
+                : t("individualSinglePrice")
+            }
+            description={t("individualSingleDesc")}
+            selected={selectedIndividualOffer === "individualSingle"}
+            onClick={() => setIndividualSelectedOffer("individualSingle")}
+          />
+
+          <PricingCard
+            title={t("thIndividualPilot")}
+            price={
+              mode === "online"
+                ? t("individualPilotPriceOnline")
+                : t("individualPilotPrice")
+            }
+            description={t("individualPilotDesc")}
+            selected={selectedIndividualOffer === "individualPilot"}
+            onClick={() => setIndividualSelectedOffer("individualPilot")}
+          />
+
+          <PricingCard
+            title={t("thIndividualMonthly")}
+            price={
+              mode === "online"
+                ? t("individualMonthlyPriceOnline")
+                : t("individualMonthlyPrice")
+            }
+            description={t("individualMonthlyDesc")}
+            selected={selectedIndividualOffer === "individualMonthly"}
+            onClick={() => setIndividualSelectedOffer("individualMonthly")}
+          />
+        </div>
+
+        <p className="offerTerms">{t("pIndividualTermsSummary")}</p>
+
+        <p className="offerNote">{t("pIndividualOfferNote")}</p>
+
+        <div className="offerCTA">
+          <p>{t("pOfferBook")}</p>
+
+          <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
+            <button className="actionupload">{t("btnActionbook")}</button>
+          </a>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>
+          <h2>{t("h2CorporateOffersLegend")}</h2>
+        </legend>
+
+        <p className="offerParagraph">{t("pCorporateOffer")}</p>
+        <div className="modeToggle">
+          <button
+            className={mode === "online" ? "active" : ""}
+            onClick={() => setMode("online")}
+          >
+            {t("lblOnlineCorporate")}
+          </button>
+
+          <button
+            className={mode === "onsite" ? "active" : ""}
+            onClick={() => setMode("onsite")}
+          >
+            {t("lblInPersonCorporate")}
+          </button>
+        </div>
+
+        <div className="pricingGrid">
+          <PricingCard
+            title={t("thCorporateSingle")}
+            price={
+              mode === "online"
+                ? t("corporateSinglePriceOnline")
+                : t("corporateSinglePrice")
+            }
+            description={t("corporateSingleDesc")}
+            selected={selectedCorporateOffer === "corporateSingle"}
+            onClick={() => setCorporateSelectedOffer("corporateSingle")}
+          />
+
+          <PricingCard
+            title={t("thCorporatePilot")}
+            price={
+              mode === "online"
+                ? t("corporatePilotPriceOnline")
+                : t("corporatePilotPrice")
+            }
+            description={t("corporatePilotDesc")}
+            selected={selectedCorporateOffer === "corporatePilot"}
+            onClick={() => setCorporateSelectedOffer("corporatePilot")}
+          />
+
+          <PricingCard
+            title={t("thCorporateMonthly")}
+            price={
+              mode === "online"
+                ? t("corporateMonthlyPriceOnline")
+                : t("corporateMonthlyPrice")
+            }
+            description={t("corporateMonthlyDesc")}
+            selected={selectedCorporateOffer === "corporateMonthly"}
+            onClick={() => setCorporateSelectedOffer("corporateMonthly")}
+          />
+        </div>
+
+        <p className="offerNote">{t("pCorporateOfferNote")}</p>
+        <p>{t("pCorporateTermsSummary")}</p>
+
+        <div className="offerCTA">
+          <p>{t("pOfferBook")}</p>
+
+          <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
+            <button className="actionupload">{t("btnActionbook")}</button>
+          </a>
+        </div>
       </fieldset>
 
       <fieldset>
@@ -130,10 +249,7 @@ const Landing = () => {
 
         <span id="reviews">
           <StarReviewList />
-      
         </span>
-
-  
       </fieldset>
 
       <fieldset>
@@ -195,9 +311,8 @@ const Landing = () => {
           </span>
         )}
       </CookieConsent>
-      
 
-    <StarReview />
+      <StarReview />
     </div>
   )
 }

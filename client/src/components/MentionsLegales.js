@@ -53,7 +53,19 @@ const MentionsLegales = () => {
         Une fois le paiement effectué nous convenons des sessions de Coaching.
       </p>
       <h2>Modalités de paiement:</h2>
-      <p className="itemp">Paiement par transfer banquaire.</p>
+      <p className="itemp">L’ensemble des prestations (coaching individuel et ateliers collectifs) est facturé sur une base mensuelle selon le programme de formation convenu. Le paiement est dû à 30 jours à compter de la date de facturation et s’effectue par virement bancaire.
+
+Pour les programmes de coaching réguliers, la première facture est émise au début du mois ou au démarrage du programme. Les mois suivants sont facturés selon le planning convenu (à l’avance ou en fin de mois).
+
+Pour les programmes courts (type programme pilote), une facturation en deux échéances peut être appliquée : 50 % à l’acceptation du devis et 50 % à la fin du programme.</p>
+    <h2>Politique d’annulation</h2>
+      <p className="itemp">L’ensemble des séances de coaching et ateliers est organisé sur une base mensuelle récurrente. Les séances peuvent être reprogrammées si elles sont annulées au moins 48 heures à l’avance, sous réserve de disponibilité.
+
+Les séances annulées moins de 48 heures à l’avance sont considérées comme dues et facturées intégralement. Les séances non honorées sans préavis ne sont pas remboursables.
+
+Pour les programmes mensuels en cours, un préavis d’un mois est requis en cas de résiliation. Les séances prévues pendant la période de préavis restent dues.</p>
+    
+    
     </div>
   )
 }
