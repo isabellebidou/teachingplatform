@@ -76,22 +76,58 @@ const Landing = () => {
         <legend>
           <h2>{t("h2OffersLegend")}</h2>
         </legend>
-        <p>{t("pOffers")}</p>
+        <p className="offerParagraph">{t("pIndividualOffers")}</p>
 
-        <table className="offersTable">
-          <tr>
-            <th>{t("thOfferOnline5")}</th>
-            <th>{t("thOfferOnline10")}</th>
-            <th>{t("thOffer5")}</th>
-            <th>{t("thOffer10")}</th>
-          </tr>
-          <tr>
-            <td>{t("tdOfferOnline5")}</td>
-            <td>{t("tdOfferOnline10")}</td>
-            <td>{t("tdOffer5")}</td>
-            <td>{t("tdOffer10")}</td>
-          </tr>
-        </table>
+<table className="offersTable">
+  <tbody>
+    <tr>
+      <th>{t("thIndividualPilot")}</th>
+      <th>{t("thIndividualMonthly")}</th>
+    </tr>
+
+    <tr>
+      <td>{t("tdIndividualPilot")}</td>
+      <td>{t("tdIndividualMonthly")}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<p>{t("pIndividualTermsSummary")}</p>
+
+        <p className="offerNote">{t("pIndividualOfferNote")}</p>
+        {auth && !auth.hasConsultation && (
+          <div>
+            <p>{t("pOfferBook")}</p>
+
+            <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
+              <button className="actionupload">{t("btnActionbook")}</button>
+            </a>
+          </div>
+        )}
+      </fieldset>
+
+      <fieldset>
+        <legend>
+          <h2>{t("h2CorporateOffersLegend")}</h2>
+        </legend>
+        <p>{t("pCorporateOffer")}</p>
+
+<table className="offersTable">
+  <tbody>
+    <tr>
+      <th>{t("thCorporatePilot")}</th>
+      <th>{t("thCorporateMonthly")}</th>
+    </tr>
+
+    <tr>
+      <td>{t("tdCorporatePilot")}</td>
+      <td>{t("tdCorporateMonthly")}</td>
+    </tr>
+  </tbody>
+</table>
+
+        <p className="offerNote">{t("pCorporateOfferNote")}</p>
         {auth && !auth.hasConsultation && (
           <div>
             <p>{t("pOfferBook")}</p>
@@ -128,10 +164,7 @@ const Landing = () => {
 
         <span id="reviews">
           <StarReviewList />
-      
         </span>
-
-  
       </fieldset>
 
       <fieldset>
@@ -193,9 +226,8 @@ const Landing = () => {
           </span>
         )}
       </CookieConsent>
-      
 
-    <StarReview />
+      <StarReview />
     </div>
   )
 }
