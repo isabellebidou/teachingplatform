@@ -59,9 +59,22 @@
     margin-bottom: 5%;
   }
 
-  .authentication {
-    display: none;
-  }
+ .authentication > * {
+  display: none;
+}
+
+#languagebtn {
+  display: block;
+  height: 1.3em;
+  max-width: 1.3em;
+  position: fixed;
+   padding: 0.2em;
+    margin: 0.2em;
+    border-radius: 10%;
+  top: 2%;
+  right: 16%;
+  overflow: hidden;
+}
 
   p {
     padding-top: 1em;
@@ -434,10 +447,7 @@
 
 
 }
-.actionupload {
-  position: sticky;
-  bottom: 2%;
-}
+
 .placeholder{
   height: 70px;
 }
@@ -492,4 +502,26 @@
     width: 80%;
 
   }
+    .pricingGrid {
+
+  gap: 2px;
+
+}
+  .pricingCard {
+
+  width: 70%;
+  margin: 1px 0;
+  
+}
+
+
+.cardbtn{
+  font-size: 1.1em;
+  margin: 0.1em;
+}
+.modeToggle{
+   width: 90%;
+   font-size: 1em;
+   margin: 0em;
+}
 }

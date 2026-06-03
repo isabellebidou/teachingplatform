@@ -16,8 +16,8 @@
   "h2Contact": "Contact",
   "pContact": "My name is Isabelle Bidou. I am a Fullstack developer and an English teacher. I offer a coaching service for professionals who need to speak English with specific constraints related to their activities.  I also prepare students for the  engineering schools oral entrance test exams. If you have questions, feel free to contact me",
   "pCookie": "This website uses cookies for authentication with google OAuth, to enhance the user experience. If you consent tousing cookies. In order to try the features you must authenticate with your google credentials.",
-  "H2OffersIntro":"My English coaching services are designed to adapt to your needs, offering personalised 1:1 coaching (online or in-person) as well as corporate workshops delivered online or onsite in your workplace.",
-  
+  "H2OffersIntro": "My English coaching services are designed to adapt to your needs, offering personalised 1:1 coaching (online or in-person) as well as corporate workshops delivered online or onsite in your workplace.",
+
   "h2OffersLegend": "1:1 Coaching Offers for adults",
   "thIndividualPilot": "6-Week Pilot Program",
   "thIndividualMonthly": "Monthly Coaching Program",
@@ -51,7 +51,8 @@
   "individualMonthlyPrice": "€260 / month (4 x 90mn)",
   "individualMonthlyPriceOnline": "€160 / month (4 x 60 mn online)",
 
-
+  "coachinglink": "Coaching",
+  "workshoplink": "Corporate Workshops",
 
   "corporateSinglePrice": "€220 (90 mn)",
   "corporatePilotPrice": "€1200 total (6 x 90 mn)",
@@ -60,12 +61,12 @@
   "corporateSinglePriceOnline": "€100 (60 mn online)",
   "corporatePilotPriceOnline": "€570 total (6 x 60 mn online)",
   "corporateMonthlyPriceOnline": "€360 / month (4 x 60 mn online)",
-  "lblInPerson":"In-Person Coaching",
-  "lblOnline":"Online Coaching",
-    "lblInPersonCorporate":"On-site Workshop",
-  "lblOnlineCorporate":"Online Workshop",
-  
-    "thIndividualSingle": "Single Coaching Session",
+  "lblInPerson": "In-Person Coaching",
+  "lblOnline": "Online Coaching",
+  "lblInPersonCorporate": "On-site Workshop",
+  "lblOnlineCorporate": "Online Workshop",
+
+  "thIndividualSingle": "Single Coaching Session",
   "individualSingleDesc": "A one-off coaching session focused on a specific professional communication need.",
 
   "thCorporateSingle": "Single Workshop",

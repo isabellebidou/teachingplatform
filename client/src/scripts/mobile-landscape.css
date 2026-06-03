@@ -34,9 +34,19 @@
  .usersetinput, .usersetlabel {
   width: auto;
 }
-  .authentication {
-    display: none;
-  }
+ .authentication > * {
+  display: none;
+}
+
+.authentication > :first-child {
+  display: block;
+  height: 1em;
+  width: 2em;
+  position: fixed;
+  top: 3%;
+  right: 10%;
+  overflow: hidden;
+}
   p {
     padding-top: 1em;
     padding-right: 1em;
