@@ -22,7 +22,7 @@
   "pContact": "Je m’appelle Isabelle Bidou. Je suis développeur Fullstack et professeur d'anglais. Je propose un service de coaching de professionnels qui ont besoin de s'exprimer en anglais avec des contraintes spécifiques à leurs activités.  Je prépare également les étudiants aux Khôlles de prépa. Si vous avez des questions, n’hésitez pas à me contacter.",
 
   "pCookie": "Ce site utilise des cookies pour l’authentification avec Google OAuth et pour améliorer l’expérience utilisateur. En acceptant l’utilisation des cookies, vous pourrez tester les fonctionnalités après vous être connecté avec votre compte Google.",
-  "H2OffersIntro":"Mes services de coaching en anglais s’adaptent à vos besoins et proposent un accompagnement individuel personnalisé (en ligne ou en présentiel) ainsi que des ateliers en entreprise, réalisés en ligne ou directement sur site.",
+  "H2OffersIntro": "Mes services de coaching en anglais s’adaptent à vos besoins et proposent un accompagnement individuel personnalisé (en ligne ou en présentiel) ainsi que des ateliers en entreprise, réalisés en ligne ou directement sur site.",
   "h2OffersLegend": "Offres de Coaching individuel pour adultes",
 
   "thIndividualPilot": "Programme Découverte 6 Semaines",
@@ -47,7 +47,7 @@
   "tdCorporateMonthly": "700 € HT / mois (4 ateliers hebdomadaires – 90 min – présentiel – 4 à 6 participants)",
 
   "pCorporateOfferNote": "Tous les ateliers sont entièrement personnalisés selon les besoins professionnels (réunions, échanges techniques, présentations, communication en situation de travail).",
-"pCorporateTermsSummary": "Les séances uniques et les programmes pilotes sont payables à l’avance. Les formules mensuelles sont facturées en début de mois et payables à l’avance. Sessions cancelled more than 48 hours in advance may be rescheduled. Sessions cancelled less than 48 hours in advance are charged in full.",
+  "pCorporateTermsSummary": "Les séances uniques et les programmes pilotes sont payables à l’avance. Les formules mensuelles sont facturées en début de mois et payables à l’avance. Sessions cancelled more than 48 hours in advance may be rescheduled. Sessions cancelled less than 48 hours in advance are charged in full.",
   "thIndividualSingle": "Séance de Coaching Individuelle",
   "individualSingleDesc": "Une séance ponctuelle centrée sur un besoin précis en communication professionnelle.",
 
@@ -55,11 +55,13 @@
 
   "corporateSingleDesc": "Un atelier unique conçu pour répondre à un objectif de formation ou à un besoin de communication spécifique.",
 
-"individualSinglePrice": "75 € (90 mn)",
+  "individualSinglePrice": "75 € (90 mn)",
   "individualSinglePriceOnline": "45 € (60 mn en ligne)",
 
   "individualPilotPrice": "405 € total (6 x 90 mn en présentiel)",
   "individualPilotPriceOnline": "260 € total (6 x 60 mn en ligne)",
+  "coachinglink": "Coaching",
+  "workshoplink": "Ateliers en entreprise",
 
   "individualMonthlyPrice": "260 € / mois (4 x 90 mn)",
   "individualMonthlyPriceOnline": "160 € / mois (4 x 60 mn en ligne)",
@@ -72,11 +74,11 @@
 
   "corporateMonthlyPrice": "700 € HT / mois (4 x 90 mn)",
   "corporateMonthlyPriceOnline": "360 € HT / mois (4 x 60 mn en ligne)",
-   "lblInPerson":"Coaching en présentiel",
-  "lblOnline":"Coaching en ligne",
+  "lblInPerson": "Coaching en présentiel",
+  "lblOnline": "Coaching en ligne",
 
-    "lblInPersonCorporate":"Atelier en présentiel",
-  "lblOnlineCorporate":"Atelier en ligne",
+  "lblInPersonCorporate": "Atelier en présentiel",
+  "lblOnlineCorporate": "Atelier en ligne",
 
   "individualPilotDesc": "Une formule idéale pour identifier vos besoins, définir vos objectifs et découvrir l'approche pédagogique avant un engagement plus long.",
 

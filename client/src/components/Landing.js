@@ -19,10 +19,10 @@ const Landing = () => {
   const [visibility, setVisibility] = useState("visible")
 
   const [mode, setMode] = useState("online") // default: online (important)
-  const [selectedIndividualOffer, setIndividualSelectedOffer] = useState("individualMonthly")
-  const [selectedCorporateOffer, setCorporateSelectedOffer] = useState("corporateMonthly")
-
-
+  const [selectedIndividualOffer, setIndividualSelectedOffer] =
+    useState("individualMonthly")
+  const [selectedCorporateOffer, setCorporateSelectedOffer] =
+    useState("corporateMonthly")
 
   useEffect(() => {
     dispatch(fetchCookieValue())
@@ -55,7 +55,6 @@ const Landing = () => {
 
   return (
     <div className="page">
-      <div className="col"></div>
       {auth && !auth.hasConsultation && (
         <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
           <button className="actionbook">{t("btnActionbook")}</button>
@@ -79,23 +78,38 @@ const Landing = () => {
         </span>
       )}
 
-<h2>{t("H2OffersIntro")}</h2>
+      <div>
+        <h2>{t("H2OffersIntro")}</h2>
+        <div className="modeflex">
+
+        <a href="#coaching" className={`cardbtn `}>
+          {t("coachinglink")}
+        </a>
+
+        <a href="#coorporate" className={`cardbtn`}>
+          {t("workshoplink")}
+        </a>
+        </div>
+      </div>
+
       <fieldset>
         <legend>
           <h2>{t("h2OffersLegend")}</h2>
         </legend>
 
-        <p className="offerParagraph">{t("pIndividualOffers")}</p>
-        <div className="modeToggle">
+        <p id="ind" className="offerParagraph">
+          {t("pIndividualOffers")}
+        </p>
+        <div id="coaching" className="modeToggle">
           <button
-            className={mode === "online" ? "active" : ""}
+            className={`cardbtn ${mode === "online" ? "active" : ""}`}
             onClick={() => setMode("online")}
           >
             {t("lblOnline")}
           </button>
 
           <button
-            className={mode === "onsite" ? "active" : ""}
+            className={`cardbtn ${mode === "onsite" ? "active" : ""}`}
             onClick={() => setMode("onsite")}
           >
             {t("lblInPerson")}
@@ -140,21 +154,20 @@ const Landing = () => {
           />
         </div>
 
-        <p className="offerTerms">{t("pIndividualTermsSummary")}</p>
+        <p id="indterms" className="offerTerms">
+          {t("pIndividualTermsSummary")}
+        </p>
 
         <p className="offerNote">{t("pIndividualOfferNote")}</p>
-  
 
-          <div className="offerCTA">
-            <p>{t("pOfferBook")}</p>
+        <div className="offerCTA">
+          <p>{t("pOfferBook")}</p>
 
-            <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
-              <button className="actionupload">{t("btnActionbook")}</button>
-            </a>
-          </div>
-        
+          <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
+            <button className="actionupload">{t("btnActionbook")}</button>
+          </a>
+        </div>
       </fieldset>
-
 
       <fieldset>
         <legend>
@@ -162,16 +175,16 @@ const Landing = () => {
         </legend>
 
         <p className="offerParagraph">{t("pCorporateOffer")}</p>
-        <div className="modeToggle">
+        <div id="coorporate" className="modeToggle">
           <button
-            className={mode === "online" ? "active" : ""}
+            className={`cardbtn ${mode === "online" ? "active" : ""}`}
             onClick={() => setMode("online")}
           >
             {t("lblOnlineCorporate")}
           </button>
 
           <button
-            className={mode === "onsite" ? "active" : ""}
+            className={`cardbtn ${mode === "onsite" ? "active" : ""}`}
             onClick={() => setMode("onsite")}
           >
             {t("lblInPersonCorporate")}
@@ -216,19 +229,18 @@ const Landing = () => {
           />
         </div>
 
+        <p id="#workshopterms" className="offerNote">
+          {t("pCorporateOfferNote")}
+        </p>
+        <p>{t("pCorporateTermsSummary")}</p>
 
-        <p className="offerNote">{t("pCorporateOfferNote")}</p>
-  <p>{t("pCorporateTermsSummary")}</p>
+        <div className="offerCTA">
+          <p>{t("pOfferBook")}</p>
 
-
-          <div className="offerCTA">
-            <p>{t("pOfferBook")}</p>
-
-            <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
-              <button className="actionupload">{t("btnActionbook")}</button>
-            </a>
-          </div>
-  
+          <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
+            <button className="actionupload">{t("btnActionbook")}</button>
+          </a>
+        </div>
       </fieldset>
 
       <fieldset>

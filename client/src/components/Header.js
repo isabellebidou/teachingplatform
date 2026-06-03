@@ -37,8 +37,9 @@ function Header() {
   const isOnBoard = location.pathname === "/board"
   const isOnExercice = location.pathname === "/exercice"
   const isOnTopics = location.pathname === "/topics"
-
-  const language = auth?.language || "en"
+  const browserLocale = navigator.language || navigator.userLanguage
+  const code = browserLocale.split("-")[0]
+  const language = auth?.language ||  code || navigator.language || navigator.userLanguage
 
   useEffect(() => {
     if (isGuest) {
@@ -50,16 +51,14 @@ function Header() {
     <>
     <h2 className="headertitle"> Izzy Speak English</h2>
 
+
+
     <div className="authentication">
-      <Settings
-        visible={showSettings}
-        onClose={() => setShowSettings(false)}
-        auth={auth}
-      />
+      
 
       {/* 🌐 Language button */}
       {auth && (
-        <button className="button" onClick={() => setShowSettings(true)}>
+        <button  id ="languagebtn" className="button" onClick={() => setShowSettings(true)}>
           🌐 {language.toLowerCase()}
         </button>
       )}
@@ -136,6 +135,11 @@ function Header() {
         <MenuButton />
       </span>
 
+<Settings
+        visible={showSettings}
+        onClose={() => setShowSettings(false)}
+        auth={auth}
+      />
       {/* ✅ pending approval popup */}
 
       {showApproval && <Approval onClose={() => setShowApproval(false)} />}
