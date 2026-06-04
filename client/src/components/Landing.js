@@ -12,7 +12,7 @@ import PricingCard from "./PricingCard"
 
 const Landing = () => {
   const dispatch = useDispatch()
-  const { t } = useTranslation("landing")
+  const { t } = useTranslation(["landing", "offers"])
 
   const auth = useSelector((state) => state.auth)
   const cookie = useSelector((state) => state.cookie)
@@ -81,14 +81,13 @@ const Landing = () => {
       <div>
         <h2>{t("H2OffersIntro")}</h2>
         <div className="modeflex">
+          <a href="#coaching" className={`cardbtn `}>
+            {t("coachinglink")}
+          </a>
 
-        <a href="#coaching" className={`cardbtn `}>
-          {t("coachinglink")}
-        </a>
-
-        <a href="#coorporate" className={`cardbtn`}>
-          {t("workshoplink")}
-        </a>
+          <a href="#coorporate" className={`cardbtn`}>
+            {t("workshoplink")}
+          </a>
         </div>
       </div>
 
@@ -118,37 +117,76 @@ const Landing = () => {
 
         <div className="pricingGrid">
           <PricingCard
-            title={t("thIndividualSingle")}
+            title={
+              mode === "online"
+                ? t("offers:coachingOnlineSingleTitle")
+                : t("offers:coachingInPersonSingleTitle")
+            }
             price={
               mode === "online"
-                ? t("individualSinglePriceOnline")
-                : t("individualSinglePrice")
+                ? `€${t("offers:coachingOnlineSinglePrice")}`
+                : `€${t("offers:coachingInPersonSinglePrice")}`
             }
-            description={t("individualSingleDesc")}
+            description={
+              mode === "online"
+                ? t("offers:coachingOnlineSingleDesc")
+                : t("offers:coachingInPersonSingleDesc")
+            }
+            marketing={
+              mode === "online"
+                ? t("offers:coachingOnlineSingleMarketing")
+                : t("offers:coachingInPersonSingleMarketing")
+            }
             selected={selectedIndividualOffer === "individualSingle"}
             onClick={() => setIndividualSelectedOffer("individualSingle")}
           />
 
           <PricingCard
-            title={t("thIndividualPilot")}
+            title={
+              mode === "online"
+                ? t("offers:coachingOnlinePilotTitle")
+                : t("offers:coachingInPersonPilotTitle")
+            }
             price={
               mode === "online"
-                ? t("individualPilotPriceOnline")
-                : t("individualPilotPrice")
+                ? `€${t("offers:coachingOnlinePilotPrice")}`
+                : `€${t("offers:coachingInPersonPilotPrice")}`
             }
-            description={t("individualPilotDesc")}
+            description={
+              mode === "online"
+                ? t("offers:coachingOnlinePilotDesc")
+                : t("offers:coachingInPersonPilotDesc")
+            }
+            marketing={
+              mode === "online"
+                ? t("offers:coachingOnlinePilotMarketing")
+                : t("offers:coachingInPersonPilotMarketing")
+            }
             selected={selectedIndividualOffer === "individualPilot"}
             onClick={() => setIndividualSelectedOffer("individualPilot")}
           />
 
           <PricingCard
-            title={t("thIndividualMonthly")}
+            title={
+              mode === "online"
+                ? t("offers:coachingOnlineMonthlyTitle")
+                : t("offers:coachingInPersonMonthlyTitle")
+            }
             price={
               mode === "online"
-                ? t("individualMonthlyPriceOnline")
-                : t("individualMonthlyPrice")
+                ? `€${t("offers:coachingOnlineMonthlyPrice")}`
+                : `€${t("offers:coachingInPersonMonthlyPrice")}`
             }
-            description={t("individualMonthlyDesc")}
+            description={
+              mode === "online"
+                ? t("offers:coachingOnlineMonthlyDesc")
+                : t("offers:coachingInPersonMonthlyDesc")
+            }
+            marketing={
+              mode === "online"
+                ? t("offers:coachingOnlineMonthlyMarketing")
+                : t("offers:coachingInPersonMonthlyMarketing")
+            }
             selected={selectedIndividualOffer === "individualMonthly"}
             onClick={() => setIndividualSelectedOffer("individualMonthly")}
           />
@@ -193,37 +231,76 @@ const Landing = () => {
 
         <div className="pricingGrid">
           <PricingCard
-            title={t("thCorporateSingle")}
+            title={
+              mode === "online"
+                ? t("offers:corpOnlineSingleTitle")
+                : t("offers:corpOnsiteSingleTitle")
+            }
             price={
               mode === "online"
-                ? t("corporateSinglePriceOnline")
-                : t("corporateSinglePrice")
+                ? `€${t("offers:corpOnlineSinglePrice")}`
+                : `€${t("offers:corpOnsiteSinglePrice")}`
             }
-            description={t("corporateSingleDesc")}
+            description={
+              mode === "online"
+                ? t("offers:corpOnlineSingleDesc")
+                : t("offers:corpOnsiteSingleDesc")
+            }
+            marketing={
+              mode === "online"
+                ? t("offers:corpOnlineSingleMarketing")
+                : t("offers:corpOnsiteSingleMarketing")
+            }
             selected={selectedCorporateOffer === "corporateSingle"}
             onClick={() => setCorporateSelectedOffer("corporateSingle")}
           />
 
           <PricingCard
-            title={t("thCorporatePilot")}
+            title={
+              mode === "online"
+                ? t("offers:corpOnlinePilotTitle")
+                : t("offers:corpOnsitePilotTitle")
+            }
             price={
               mode === "online"
-                ? t("corporatePilotPriceOnline")
-                : t("corporatePilotPrice")
+                ? `€${t("offers:corpOnlinePilotPrice")}`
+                : `€${t("offers:corpOnsitePilotPrice")}`
             }
-            description={t("corporatePilotDesc")}
+            description={
+              mode === "online"
+                ? t("offers:corpOnlinePilotDesc")
+                : t("offers:corpOnsitePilotDesc")
+            }
+            marketing={
+              mode === "online"
+                ? t("offers:corpOnlinePilotMarketing")
+                : t("offers:corpOnsitePilotMarketing")
+            }
             selected={selectedCorporateOffer === "corporatePilot"}
             onClick={() => setCorporateSelectedOffer("corporatePilot")}
           />
 
           <PricingCard
-            title={t("thCorporateMonthly")}
+            title={
+              mode === "online"
+                ? t("offers:corpOnlineMonthlyTitle")
+                : t("offers:corpOnsiteMonthlyTitle")
+            }
             price={
               mode === "online"
-                ? t("corporateMonthlyPriceOnline")
-                : t("corporateMonthlyPrice")
+                ? `€${t("offers:corpOnlineMonthlyPrice")}`
+                : `€${t("offers:corpOnsiteMonthlyPrice")}`
             }
-            description={t("corporateMonthlyDesc")}
+            description={
+              mode === "online"
+                ? t("offers:corpOnlineMonthlyDesc")
+                : t("offers:corpOnsiteMonthlyDesc")
+            }
+            marketing={
+              mode === "online"
+                ? t("offers:corpOnlineMonthlyMarketing")
+                : t("offers:corpOnsiteMonthlyMarketing")
+            }
             selected={selectedCorporateOffer === "corporateMonthly"}
             onClick={() => setCorporateSelectedOffer("corporateMonthly")}
           />

@@ -1,0 +1,49 @@
+{
+  "coachingOnlineSingleTitle": "Séance unique de coaching en ligne",
+  "coachingOnlineSingleDesc": "Séance de coaching individuel en ligne (60 minutes).",
+  "coachingOnlineSinglePrice": "45",
+
+  "coachingOnlinePilotTitle": "Programme pilote de coaching en ligne (6 semaines)",
+  "coachingOnlinePilotDesc": "6 séances de coaching individuel en ligne (60 minutes chacune).",
+  "coachingOnlinePilotPrice": "260",
+
+  "coachingOnlineMonthlyTitle": "Programme mensuel de coaching en ligne",
+  "coachingOnlineMonthlyDesc": "4 séances de coaching individuel en ligne (60 minutes chacune) par mois.",
+  "coachingOnlineMonthlyPrice": "160",
+
+  "coachingInPersonSingleTitle": "Séance unique de coaching en présentiel",
+  "coachingInPersonSingleDesc": "Séance de coaching individuel en présentiel (90 minutes).",
+  "coachingInPersonSinglePrice": "75",
+
+  "coachingInPersonPilotTitle": "Programme pilote de coaching en présentiel (6 semaines)",
+  "coachingInPersonPilotDesc": "6 séances de coaching individuel en présentiel (90 minutes chacune).",
+  "coachingInPersonPilotPrice": "405",
+
+  "coachingInPersonMonthlyTitle": "Programme mensuel de coaching en présentiel",
+  "coachingInPersonMonthlyDesc": "4 séances de coaching individuel en présentiel (90 minutes chacune) par mois.",
+  "coachingInPersonMonthlyPrice": "260",
+
+  "corpOnlineSingleTitle": "Atelier de groupe en ligne – séance unique",
+  "corpOnlineSingleDesc": "Atelier de groupe en ligne (60 minutes).",
+  "corpOnlineSinglePrice": "100",
+
+  "corpOnlinePilotTitle": "Programme pilote d’ateliers de groupe en ligne (6 semaines)",
+  "corpOnlinePilotDesc": "6 ateliers de groupe en ligne (60 minutes chacun).",
+  "corpOnlinePilotPrice": "570",
+
+  "corpOnlineMonthlyTitle": "Programme mensuel d’ateliers de groupe en ligne",
+  "corpOnlineMonthlyDesc": "4 ateliers de groupe en ligne (60 minutes chacun) par mois.",
+  "corpOnlineMonthlyPrice": "360",
+
+  "corpOnsiteSingleTitle": "Atelier de groupe sur site – séance unique",
+  "corpOnsiteSingleDesc": "Atelier de groupe en présentiel (90 minutes).",
+  "corpOnsiteSinglePrice": "220",
+
+  "corpOnsitePilotTitle": "Programme pilote d’ateliers sur site (6 semaines)",
+  "corpOnsitePilotDesc": "6 ateliers de groupe en présentiel (90 minutes chacun).",
+  "corpOnsitePilotPrice": "1200",
+
+  "corpOnsiteMonthlyTitle": "Programme mensuel d’ateliers sur site",
+  "corpOnsiteMonthlyDesc": "4 ateliers de groupe en présentiel (90 minutes chacun) par mois.",
+  "corpOnsiteMonthlyPrice": "700"
+}

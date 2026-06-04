@@ -43,19 +43,19 @@ const LegalNotice = () => {
             <h2>Terms of payment:
             </h2>
             <p className='itemp'>Payment Terms:
-All services (individual coaching and group workshops) are invoiced on a monthly basis according to the agreed training plan. Payment is due within 30 days of the invoice date and must be made by bank transfer.
+Single sessions and single workshops are payable in advance at the time of booking.
 
-For ongoing coaching programs, the first invoice is issued at the start of the month or at the beginning of the program. Each subsequent month is billed in advance or at the end of the month depending on the agreed schedule.
+Pilot programmes are invoiced either in full before the programme begins or in two instalments: 50% upon acceptance of the quotation and 50% upon completion.
 
-For short programs (such as pilot workshops), a fixed invoice may be issued in two instalments: 50% upon acceptance of the quotation and 50% at the end of the program.
+Monthly programmes are invoiced at the beginning of each month and payable within 30 days by bank transfer.
             </p>
-            <h2>Cancellation Policy:
+            <h2>Termination Policy:
             </h2>
-            <p className='itemp'>AAll coaching sessions and workshops are scheduled on a recurring monthly basis. Sessions may be rescheduled when cancelled at least 48 hours in advance, subject to availability.
+            <p className='itemp'>Monthly individual coaching programmes may be terminated by either party with 30 days' written notice.
 
-Sessions cancelled less than 48 hours in advance are considered delivered and will be charged in full. Missed sessions without prior notice are non-refundable.
+Corporate monthly workshop programmes are subject to an initial six-month commitment period. After this period, either party may terminate the programme with 30 days' written notice.
 
-In the case of monthly ongoing programs, notice of termination must be given at least one month in advance. Any sessions already scheduled within the notice period remain payable.
+The trainer reserves the right to suspend or terminate services in the event of non-payment or circumstances preventing the proper delivery of the programme.
     </p>
         </div>
     );
