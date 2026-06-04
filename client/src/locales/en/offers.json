@@ -1,0 +1,49 @@
+{
+  "coachingOnlineSingleTitle": "Single Online Coaching Session",
+  "coachingOnlineSingleDesc": "One-to-one online coaching session (60 minutes).",
+  "coachingOnlineSinglePrice": "45",
+
+  "coachingOnlinePilotTitle": "6-Week Online Coaching Pilot Program",
+  "coachingOnlinePilotDesc": "6 one-to-one online coaching sessions (60 minutes each).",
+  "coachingOnlinePilotPrice": "260",
+
+  "coachingOnlineMonthlyTitle": "Monthly Online Coaching Program",
+  "coachingOnlineMonthlyDesc": "4 one-to-one online coaching sessions (60 minutes each) per month.",
+  "coachingOnlineMonthlyPrice": "160",
+
+  "coachingInPersonSingleTitle": "Single In-Person Coaching Session",
+  "coachingInPersonSingleDesc": "One-to-one in-person coaching session (90 minutes).",
+  "coachingInPersonSinglePrice": "75",
+
+  "coachingInPersonPilotTitle": "6-Week In-Person Coaching Pilot Program",
+  "coachingInPersonPilotDesc": "6 one-to-one in-person coaching sessions (90 minutes each).",
+  "coachingInPersonPilotPrice": "405",
+
+  "coachingInPersonMonthlyTitle": "Monthly In-Person Coaching Program",
+  "coachingInPersonMonthlyDesc": "4 one-to-one in-person coaching sessions (90 minutes each) per month.",
+  "coachingInPersonMonthlyPrice": "260",
+
+  "corpOnlineSingleTitle": "Single Online Group Workshop",
+  "corpOnlineSingleDesc": "Online group workshop (60 minutes).",
+  "corpOnlineSinglePrice": "100",
+
+  "corpOnlinePilotTitle": "6-Week Online Group Workshop Pilot Program",
+  "corpOnlinePilotDesc": "6 online group workshops (60 minutes each).",
+  "corpOnlinePilotPrice": "570",
+
+  "corpOnlineMonthlyTitle": "Monthly Corporate Online Workshop Program",
+  "corpOnlineMonthlyDesc": "4 online group workshops (60 minutes each) per month.",
+  "corpOnlineMonthlyPrice": "360",
+
+  "corpOnsiteSingleTitle": "Single On-Site Group Workshop",
+  "corpOnsiteSingleDesc": "On-site group workshop (90 minutes).",
+  "corpOnsiteSinglePrice": "220",
+
+  "corpOnsitePilotTitle": "6-Week On-Site Group Workshop Pilot Program",
+  "corpOnsitePilotDesc": "6 on-site group workshops (90 minutes each).",
+  "corpOnsitePilotPrice": "1200",
+
+  "corpOnsiteMonthlyTitle": "Monthly On-Site Corporate Workshop Program",
+  "corpOnsiteMonthlyDesc": "4 on-site group workshops (90 minutes each) per month.",
+  "corpOnsiteMonthlyPrice": "700"
+}

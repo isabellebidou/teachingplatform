@@ -53,17 +53,17 @@ const MentionsLegales = () => {
         Une fois le paiement effectué nous convenons des sessions de Coaching.
       </p>
       <h2>Modalités de paiement:</h2>
-      <p className="itemp">L’ensemble des prestations (coaching individuel et ateliers collectifs) est facturé sur une base mensuelle selon le programme de formation convenu. Le paiement est dû à 30 jours à compter de la date de facturation et s’effectue par virement bancaire.
+      <p className="itemp">Les séances uniques et les ateliers uniques sont payables à l'avance au moment de la réservation.
 
-Pour les programmes de coaching réguliers, la première facture est émise au début du mois ou au démarrage du programme. Les mois suivants sont facturés selon le planning convenu (à l’avance ou en fin de mois).
+Les programmes pilotes sont facturés en totalité avant le démarrage du programme ou en deux échéances : 50 % à l'acceptation du devis et 50 % à la fin du programme.
 
-Pour les programmes courts (type programme pilote), une facturation en deux échéances peut être appliquée : 50 % à l’acceptation du devis et 50 % à la fin du programme.</p>
+Les programmes mensuels sont facturés en début de mois et payables sous 30 jours par virement bancaire.</p>
     <h2>Politique d’annulation</h2>
-      <p className="itemp">L’ensemble des séances de coaching et ateliers est organisé sur une base mensuelle récurrente. Les séances peuvent être reprogrammées si elles sont annulées au moins 48 heures à l’avance, sous réserve de disponibilité.
+      <p className="itemp">Les programmes mensuels de coaching individuel peuvent être résiliés par l'une ou l'autre des parties moyennant un préavis écrit de 30 jours.
 
-Les séances annulées moins de 48 heures à l’avance sont considérées comme dues et facturées intégralement. Les séances non honorées sans préavis ne sont pas remboursables.
+Les programmes mensuels d'ateliers en entreprise sont soumis à un engagement initial de six mois. À l'issue de cette période, chaque partie peut mettre fin au programme moyennant un préavis écrit de 30 jours.
 
-Pour les programmes mensuels en cours, un préavis d’un mois est requis en cas de résiliation. Les séances prévues pendant la période de préavis restent dues.</p>
+Le formateur se réserve le droit de suspendre ou de mettre fin aux prestations en cas de non-paiement ou de circonstances empêchant le bon déroulement du programme.</p>
     
     
     </div>
