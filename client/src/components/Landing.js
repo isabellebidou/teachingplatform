@@ -52,6 +52,24 @@ const Landing = () => {
   // Browser locale for Legal Notice
   const browserLocale = navigator.language || navigator.userLanguage
   const countryCode = browserLocale.split("-")[1]
+  /*async function buyOffer(offerCode) {
+    const res = await fetch("/api/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ offerCode }),
+    })
+
+    const data = await res.json()
+
+    if (!res.ok) {
+      throw new Error(data.error || "Payment error")
+    }
+
+    // Redirect to Stripe Checkout
+    window.location.href = data.url
+  }*/
 
   return (
     <div className="page">
@@ -124,8 +142,8 @@ const Landing = () => {
             }
             price={
               mode === "online"
-                ? `€${t("offers:coachingOnlineSinglePrice")}`
-                : `€${t("offers:coachingInPersonSinglePrice")}`
+                ? `${t("offers:coachingOnlineSinglePrice")}`
+                : `${t("offers:coachingInPersonSinglePrice")}`
             }
             description={
               mode === "online"
@@ -136,6 +154,11 @@ const Landing = () => {
               mode === "online"
                 ? t("offers:coachingOnlineSingleMarketing")
                 : t("offers:coachingInPersonSingleMarketing")
+            }
+            paymentLink={
+              mode === "online"
+                ? "https://buy.stripe.com/test_dRm28sehN9nvaTeaC63ks03"
+                : "https://buy.stripe.com/test_4gM00kehNczH5yUfWq3ks05"
             }
             selected={selectedIndividualOffer === "individualSingle"}
             onClick={() => setIndividualSelectedOffer("individualSingle")}
@@ -149,8 +172,8 @@ const Landing = () => {
             }
             price={
               mode === "online"
-                ? `€${t("offers:coachingOnlinePilotPrice")}`
-                : `€${t("offers:coachingInPersonPilotPrice")}`
+                ? `${t("offers:coachingOnlinePilotPrice")}`
+                : `${t("offers:coachingInPersonPilotPrice")}`
             }
             description={
               mode === "online"
@@ -161,6 +184,11 @@ const Landing = () => {
               mode === "online"
                 ? t("offers:coachingOnlinePilotMarketing")
                 : t("offers:coachingInPersonPilotMarketing")
+            }
+            paymentLink={
+              mode === "online"
+                ? "https://buy.stripe.com/test_28E6oI2z57fnf9u4dI3ks04"
+                : "https://buy.stripe.com/test_9B68wQ7Tp2Z78L6h0u3ks06"
             }
             selected={selectedIndividualOffer === "individualPilot"}
             onClick={() => setIndividualSelectedOffer("individualPilot")}
@@ -174,8 +202,8 @@ const Landing = () => {
             }
             price={
               mode === "online"
-                ? `€${t("offers:coachingOnlineMonthlyPrice")}`
-                : `€${t("offers:coachingInPersonMonthlyPrice")}`
+                ? `${t("offers:coachingOnlineMonthlyPrice")}`
+                : `${t("offers:coachingInPersonMonthlyPrice")}`
             }
             description={
               mode === "online"
@@ -238,8 +266,8 @@ const Landing = () => {
             }
             price={
               mode === "online"
-                ? `€${t("offers:corpOnlineSinglePrice")}`
-                : `€${t("offers:corpOnsiteSinglePrice")}`
+                ? `${t("offers:corpOnlineSinglePrice")}`
+                : `${t("offers:corpOnsiteSinglePrice")}`
             }
             description={
               mode === "online"
@@ -263,8 +291,8 @@ const Landing = () => {
             }
             price={
               mode === "online"
-                ? `€${t("offers:corpOnlinePilotPrice")}`
-                : `€${t("offers:corpOnsitePilotPrice")}`
+                ? `${t("offers:corpOnlinePilotPrice")}`
+                : `${t("offers:corpOnsitePilotPrice")}`
             }
             description={
               mode === "online"
@@ -288,8 +316,8 @@ const Landing = () => {
             }
             price={
               mode === "online"
-                ? `€${t("offers:corpOnlineMonthlyPrice")}`
-                : `€${t("offers:corpOnsiteMonthlyPrice")}`
+                ? `${t("offers:corpOnlineMonthlyPrice")}`
+                : `${t("offers:corpOnsiteMonthlyPrice")}`
             }
             description={
               mode === "online"

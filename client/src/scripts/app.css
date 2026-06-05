@@ -1,35 +1,28 @@
-
 :root {
   --green: #49a049;
   --greenhover: #96ccba;
   --strongpink: #cd2ca0;
   --darkpurple: #7f5f87;
-  --background:   rgba(243, 236, 236, 0.9);
-  --evenBackground:rgba(214, 210, 210, 0.2);
+  --background: rgba(243, 236, 236, 0.9);
+  --evenBackground: rgba(214, 210, 210, 0.2);
   --oddBackground: rgb(183, 187, 184, 0.3);
-
 }
 
-
-body,#root
-{
-overflow:hidden;
-width:100%;
+body,
+#root {
+  overflow: hidden;
+  width: 100%;
 }
 
-
-
-.userdatadl dt{
+.userdatadl dt {
   font-size: medium;
-
 }
 .userdatadl dd {
   font-size: larger;
-  color: var(--green)
+  color: var(--green);
 }
 
 .col {
-
   -moz-column-count: 3;
   /* Firefox */
   -webkit-column-count: 3;
@@ -51,12 +44,17 @@ width:100%;
 hr {
   width: 20%;
 }
-li{
+li {
   border-radius: 20%;
 }
-.maincontentk div:first-child :not(.frame) :not(.mobilemenuul) :not(.mobilemenuli) :not(.btn) {
+.maincontentk
+  div:first-child
+  :not(.frame)
+  :not(.mobilemenuul)
+  :not(.mobilemenuli)
+  :not(.btn) {
   /* https://css-tricks.com/almanac/selectors/n/not/ */
-  
+
   color: rgb(79, 46, 78);
   position: fixed;
   z-index: 1;
@@ -67,7 +65,6 @@ li{
   margin-top: 4%;
 
   background-color: rgba(var(--background), 0.9);
-
 }
 
 input,
@@ -88,7 +85,7 @@ input,
   margin: auto;
 }
 
-#updatedb ,
+#updatedb,
 #upload fieldset:first-child {
   width: 60%;
   padding: 2%;
@@ -102,12 +99,9 @@ input,
   right: 5%;
 }
 
-
-iframe{
+iframe {
   padding: 1em;
   display: block;
-  
-  
 }
 .lang-btn {
   background: #2d2d44;
@@ -144,8 +138,6 @@ li.div {
   list-style-type: none;
 }
 
-
-
 .audiothumbnail {
   margin: 0.5em;
   position: relative;
@@ -158,34 +150,27 @@ li.div {
   -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
   -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
-
-
 }
-.audioDetails{
+.audioDetails {
   position: relative;
   padding-top: 2.5em;
   max-height: 350px;
   overflow-y: scroll;
-
-
-
 }
 .stressVisual {
   font-size: 1.2rem;
   font-weight: bold;
   letter-spacing: 1px;
 }
-.bkground{
-  background-color:var(--background);
+.bkground {
+  background-color: var(--background);
 }
-
-
 
 .back {
   position: fixed;
   bottom: 2%;
   left: 10%;
-  font-size: 1.500em;
+  font-size: 1.5em;
   visibility: visible;
   text-shadow: 2px 4px 2px rgba(160, 160, 160, 0.79);
   z-index: 2;
@@ -195,7 +180,7 @@ li.div {
   position: fixed;
   bottom: 2%;
   right: 10%;
-  font-size: 1.500em;
+  font-size: 1.5em;
   visibility: visible;
   text-shadow: 2px 4px 2px rgba(160, 160, 160, 0.79);
   z-index: 2;
@@ -214,7 +199,6 @@ li.div {
   visibility: visible;
 } */
 fieldset {
-
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   border-radius: 8px;
@@ -227,8 +211,8 @@ legend {
   color: rgba(193, 217, 188);
   font-size: 1.5em;
   z-index: 1.5;
-  font-family: "Dancing Script","Brush Script MT", "Lucida Console", Monaco, monospace;
-
+  font-family:
+    "Dancing Script", "Brush Script MT", "Lucida Console", Monaco, monospace;
 }
 
 .detailinput {
@@ -266,8 +250,6 @@ legend {
   height: 2em;
 }
 
-
-
 .editUserForm {
   position: absolute;
   width: 90%;
@@ -280,13 +262,10 @@ legend {
   width: auto;
 }
 
-
 .detailform {
   position: absolute;
   overflow-y: scroll;
   height: 120%;
-
-
 }
 
 .textarea {
@@ -317,7 +296,8 @@ legend {
   color: rgba(25, 98, 194, 0.356);
   font-size: 1em;
   z-index: 1.5;
-  font-family: "Dancing Script","Brush Script MT", "Lucida Console", Monaco, monospace;
+  font-family:
+    "Dancing Script", "Brush Script MT", "Lucida Console", Monaco, monospace;
 }
 .closePopupWindow {
   position: fixed;
@@ -327,11 +307,10 @@ legend {
   height: 10%;
   z-index: 2;
   text-decoration: none;
-  font-size: 1.500em;
+  font-size: 1.5em;
   visibility: visible;
   text-shadow: 2px 4px 2px rgba(160, 160, 160, 0.79);
 }
-
 
 .closeEyeWindow {
   position: fixed;
@@ -341,7 +320,7 @@ legend {
   height: 10%;
   z-index: 2;
   text-decoration: none;
-  font-size: 1.500em;
+  font-size: 1.5em;
   visibility: visible;
   text-shadow: 2px 4px 2px rgba(160, 160, 160, 0.79);
 }
@@ -362,11 +341,9 @@ legend {
   height: 98%;
 }
 
-
-
-#rightEyeButton,#leftEyeButton{
-  visibility:hidden;
- 
+#rightEyeButton,
+#leftEyeButton {
+  visibility: hidden;
 }
 
 .direction,
@@ -376,8 +353,8 @@ legend {
   font-size: 1.5em;
   text-decoration: none;
   z-index: 1;
-  font-family: "Dancing Script","Brush Script MT", "Lucida Console", Monaco, monospace;
-
+  font-family:
+    "Dancing Script", "Brush Script MT", "Lucida Console", Monaco, monospace;
 }
 
 html {
@@ -387,10 +364,7 @@ html {
   bottom: 0%;
   right: 0%;
   background-color: rgba(243, 236, 236, 0.9);
-
 }
-
-
 
 h1 {
   font-size: x-large;
@@ -400,13 +374,11 @@ h1,
 h2,
 h3 {
   color: var(--green);
-  
 }
 
 h2,
 h3 {
   font-size: larger;
-  
 }
 
 .header {
@@ -416,10 +388,11 @@ h3 {
   top: 0%;
   z-index: 1;
 
-  background: linear-gradient(rgba(243, 236, 236, 1),
-      rgba(243, 236, 236, 0.5));
-  background: -webkit-linear-gradient(rgba(243, 236, 236, 1),
-      rgba(243, 236, 236, 0.5));
+  background: linear-gradient(rgba(243, 236, 236, 1), rgba(243, 236, 236, 0.5));
+  background: -webkit-linear-gradient(
+    rgba(243, 236, 236, 1),
+    rgba(243, 236, 236, 0.5)
+  );
   -webkit-box-shadow: 1px 3px 5px 0px rgba(0, 0, 0, 0.44);
   -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
   box-shadow: 1px 3px 5px 0px rgba(0, 0, 0, 0.44);
@@ -433,11 +406,12 @@ h3 {
   font-size: 2em;
   top: 22%;
   z-index: 0;
-  font-family: "Dancing Script","Brush Script MT", "Lucida Console, Monaco, monospace";
+  font-family:
+    "Dancing Script", "Brush Script MT", "Lucida Console, Monaco, monospace";
+
 }
 
-
-.authentication>*,
+.authentication > *,
 #addcredits {
   margin: 0 20px;
 
@@ -447,10 +421,8 @@ h3 {
   font-style: oblique;
 }
 
-
 #addcredits {
   color: #45a049;
-
 }
 
 .navhold {
@@ -477,19 +449,18 @@ h3 {
   font-size: 0.8em;
   margin-bottom: 1%;
   padding-bottom: 2%;
-  background: linear-gradient(rgba(243, 236, 236, 0.5),
-      rgba(243, 236, 236, 1));
-  background: -webkit-linear-gradient(rgba(243, 236, 236, 0.5),
-      rgba(243, 236, 236, 1));
+  background: linear-gradient(rgba(243, 236, 236, 0.5), rgba(243, 236, 236, 1));
+  background: -webkit-linear-gradient(
+    rgba(243, 236, 236, 0.5),
+    rgba(243, 236, 236, 1)
+  );
   -webkit-box-shadow: 0px -5px 3px -2px rgba(0, 0, 0, 0.44);
   -moz-box-shadow: 0px -5px 3px -2px rgba(0, 0, 0, 0.44);
   box-shadow: 0px -5px 3px -2px rgba(0, 0, 0, 0.44);
-
-
 }
-.video{
-  width:"409" ;
-  height:"230" 
+.video {
+  width: "409";
+  height: "230";
 }
 .maincontent {
   color: rgb(196, 17, 17);
@@ -497,16 +468,12 @@ h3 {
   height: 100%;
   width: 100%;
   right: 0%;
-  
+
   margin-bottom: 10%;
   line-height: 1.5em;
   font-size: large;
   overflow-y: scroll;
   overflow-x: hidden;
-
-
-
-
 }
 .page,
 .readingnew {
@@ -524,7 +491,6 @@ h3 {
 #remedies,
 #healthmyths {
   padding-top: 7%;
-
 }
 
 .uploadeyepics {
@@ -533,8 +499,8 @@ h3 {
   margin-top: auto;
   margin-bottom: auto;
 }
-li::marker{
-  color:var(--strongpink);
+li::marker {
+  color: var(--strongpink);
 }
 .navigation-container {
   margin-top: 3em;
@@ -562,16 +528,13 @@ li::marker{
   text-decoration: none;
 }
 
-
-.me{
-  float:right;
+.me {
+  float: right;
   max-width: 15%;
   border-radius: 50%;
   border-color: var(--darkpurple);
   padding: 2em;
-
 }
-
 
 .imgright,
 .imgleft {
@@ -584,7 +547,6 @@ li::marker{
   -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
   -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
-
 }
 .imgsolo {
   margin: 1em;
@@ -596,9 +558,7 @@ li::marker{
   -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
   -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
-
 }
-
 
 .userrole {
   position: absolute;
@@ -636,19 +596,21 @@ li::marker{
   border-width: thin;
 }
 
-.usersTable th,th,
-.usersTable td,td{
- 
+.usersTable th,
+th,
+.usersTable td,
+td {
   border-radius: 6%;
   border: 1px dotted #45a049;
-  
 }
-table{  
+table {
   text-align: center;
   color: var(--darkpurple);
 }
 
-p, fieldset, table {
+p,
+fieldset,
+table {
   padding-top: 0.5em;
   padding-right: 2em;
   padding-bottom: 0.5em;
@@ -667,7 +629,6 @@ p, fieldset, table {
   padding: 0.5em;
   /*grid-auto-flow: column;https://css-tricks.com/equal-columns-with-flexbox-its-more-complicated-than-you-might-think/*/
   overflow-y: auto;
-
 }
 
 .sets-grid-container {
@@ -688,8 +649,12 @@ label {
   border-radius: 1%;
 }
 
-.left{float:left}
-.right{float:right}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
 .button,
 button {
   background-color: rgba(248, 245, 245, 0.89);
@@ -729,7 +694,6 @@ a.button:active {
   color: #aa25bc;
 }
 
-
 .actionbook {
   position: fixed;
   bottom: 6%;
@@ -743,17 +707,17 @@ a.button:active {
   height: fit-content;
   width: fit-content;
   z-index: 50;
-
 }
 
 .actionsign {
   position: fixed;
   bottom: 5%;
   right: 2em;
-  background: linear-gradient(rgba(243, 236, 236, 1),
-      rgba(243, 236, 236, 0.5));
-  background: -webkit-linear-gradient(rgba(243, 236, 236, 1),
-      rgba(243, 236, 236, 0.5));
+  background: linear-gradient(rgba(243, 236, 236, 1), rgba(243, 236, 236, 0.5));
+  background: -webkit-linear-gradient(
+    rgba(243, 236, 236, 1),
+    rgba(243, 236, 236, 0.5)
+  );
   -webkit-box-shadow: 1px 3px 5px 0px rgba(0, 0, 0, 0.44);
   -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
   box-shadow: 1px 3px 5px 0px rgba(0, 0, 0, 0.44);
@@ -764,11 +728,9 @@ a.button:active {
   height: fit-content;
   width: fit-content;
   z-index: 2;
-
 }
 
 .actionupload {
-
   right: 2em;
   background-color: #45a049;
   color: #fff;
@@ -783,7 +745,6 @@ a.button:active {
   height: fit-content;
   width: fit-content;
   z-index: 50;
-
 }
 
 .actionbook:active {
@@ -799,9 +760,8 @@ a.button:active {
   text-decoration: none;
   font-size: 1em;
   visibility: visible;
-  text-shadow: 2px 4px 2px rgba(160,160,160,0.79);
+  text-shadow: 2px 4px 2px rgba(160, 160, 160, 0.79);
 }
-
 
 .rightbutton {
   float: right;
@@ -813,7 +773,6 @@ a.button:active {
   font-size: 0.555em;
   padding: 1em;
 }
-
 
 .deletebutton {
   background-color: rgba(127, 95, 135, 0.2);
@@ -907,9 +866,7 @@ select,
   display: none;
 }
 
-
 .item {
-
   text-align: center;
   padding: 0.5em 0;
   margin-right: 0.5em;
@@ -917,13 +874,9 @@ select,
   border-radius: 1%;
 }
 
-
 #itemsContainer {
   width: 100%;
   text-align: center;
-
-
-
 }
 
 .itemtitle {
@@ -932,9 +885,8 @@ select,
   text-align: center;
   padding: 10px 10px;
   text-decoration: none;
-  font-size: 25px
+  font-size: 25px;
 }
-
 
 .itemp,
 dl,
@@ -949,8 +901,6 @@ dl,
   padding-right: 2em;
 
   border-radius: 2%;
-
-
 }
 
 .descriptionp {
@@ -962,9 +912,6 @@ dl,
   font-weight: bold;
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 2%;
-
-
-
 }
 .audiothumbnail {
   border: 2px solid transparent;
@@ -986,9 +933,6 @@ dl,
   line-height: 1em;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 2%;
-
-
-
 }
 
 dt {
@@ -1012,14 +956,12 @@ dd {
   bottom: 0%;
   overflow-y: auto;
   scrollbar-width: none;
-
-
 }
 
-.placeholder{
+.placeholder {
   height: 200px;
 }
-#selectSearch{
+#selectSearch {
   position: sticky;
   top: 15%;
 }
@@ -1038,7 +980,6 @@ dd {
   background-color: rgba(183, 187, 184, 0.1);
   border-inline-start-color: #45a049;
   border-inline-end-color: #7f5f87;
-
 }
 
 .imgcontainer {
@@ -1047,7 +988,6 @@ dd {
 
   display: flex;
   justify-content: center;
-
 }
 
 .diplayplant {
@@ -1055,15 +995,13 @@ dd {
   width: 100%;
   margin: auto;
   display: block;
-
 }
 .coupon {
   font-size: large;
   color: var(--green);
-  background-color: var(--background)
-
+  background-color: var(--background);
 }
-.audioCtrls{
+.audioCtrls {
   padding: 1em;
   position: fixed;
   top: 0%;
@@ -1074,52 +1012,82 @@ dd {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.pd-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.contentPd {
+  width: 90%;
+  max-width: 500px;
+
+  max-height: 80vh; /* important */
+  background: white;
+  border-radius: 8px;
+}
+
+.pdScroll {
+  max-height: 80vh; /* or slightly less */
+  overflow-y: auto;
+  padding: 1rem;
+}
 .settings-modal {
   background: #1e1e2f;
   color: white;
   padding: 24px;
   border-radius: 12px;
-  min-width: 300px;
+  min-width: 400px;
   position: relative;
 }
-
+.readable {
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+}
 .close-btn {
   position: absolute;
   top: 10px;
   right: 12px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 40px;
+  color: var(--strongpink);
 }
 #settingsSubmitButton {
-    background: green;
-    color: #fff;
-    margin-top: 10px;
-    width: 100%;
-    border-radius: 6px;
-    padding: 10px 0;
-    border: none;
-    font-weight: bolder;
-    cursor: pointer;
-  }
-  .offersTable{
-    width: 100%;
-  }
-  .offersTable>td,th{
-    padding: 0.5em;
-  }
-  .scriptSelect{
-    position: sticky;
-    top: 13%;
-    width: 40%;
-
-  }
+  background: green;
+  color: #fff;
+  margin-top: 10px;
+  width: 100%;
+  border-radius: 6px;
+  padding: 10px 0;
+  border: none;
+  font-weight: bolder;
+  cursor: pointer;
+}
+.offersTable {
+  width: 100%;
+}
+.offersTable > td,
+th {
+  padding: 0.5em;
+}
+.scriptSelect {
+  position: sticky;
+  top: 13%;
+  width: 40%;
+}
 #audioCtrls {
   display: flex;
   justify-content: center;
@@ -1140,25 +1108,41 @@ dd {
   padding: 14px 24px;
   font-weight: bold;
 }
-.readDivContainer{
-   display: flex;
+.pdBtn {
+  border-radius: 12px;
+  margin: 0%;
+  padding: 0%;
+}
+.bankTransferBox {
+  position: relative;
+  height: 90%;
+  overflow: scroll;
+}
+.pdBtn:active {
+  border-radius: 16px;
+  color: var(--strongpink);
+}
+.pdBtn:visited {
+  border-radius: 16px;
+  background-color: var(--darkpurple);
+}
+.readDivContainer {
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 16px;
-
 }
-  .readDiv{
-    max-width: 800px;
-    color: var(--darkpurple);
-    line-height: 2em;
-    font-size: larger;
-    margin: 2em;
-    padding: 2em;
-   text-align: justify;
-    
-  }
-  .pricingGrid {
+.readDiv {
+  max-width: 800px;
+  color: var(--darkpurple);
+  line-height: 2em;
+  font-size: larger;
+  margin: 2em;
+  padding: 2em;
+  text-align: justify;
+}
+.pricingGrid {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -1172,11 +1156,9 @@ dd {
   padding: 20px;
   background: white;
 }
-.pricingCard:hover{
-  
+.pricingCard:hover {
   border: 1px dotted var(--strongpink);
   border-radius: 12px;
-  
 }
 .pricingCard.selected {
   border: 2px solid #4f46e5;
@@ -1207,11 +1189,11 @@ dd {
 
 .modeToggle {
   padding: 8px 14px;
-  
+
   cursor: pointer;
   transition: all 0.2s ease;
 }
-.modeflex{
+.modeflex {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
@@ -1222,7 +1204,7 @@ dd {
   color: white;
   border-color: #4f46e5;
 }
-.cardbtn{
+.cardbtn {
   font-size: 1.3em;
   padding: 0.5em;
 }
