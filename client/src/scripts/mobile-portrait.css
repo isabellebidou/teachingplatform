@@ -1,6 +1,4 @@
 @media screen and (max-width: 800px) and (orientation: portrait) {
-
-
   #login fieldset:first-child,
   #upload fieldset:first-child,
   #updatedb fieldset:first-child {
@@ -59,22 +57,22 @@
     margin-bottom: 5%;
   }
 
- .authentication > * {
-  display: none;
-}
+  .authentication > * {
+    display: none;
+  }
 
-#languagebtn {
-  display: block;
-  height: 1.3em;
-  max-width: 1.3em;
-  position: fixed;
-   padding: 0.2em;
+  #languagebtn {
+    display: block;
+    height: 1.3em;
+    max-width: 1.3em;
+    position: fixed;
+    padding: 0.2em;
     margin: 0.2em;
     border-radius: 10%;
-  top: 2%;
-  right: 16%;
-  overflow: hidden;
-}
+    top: 2%;
+    right: 16%;
+    overflow: hidden;
+  }
 
   p {
     padding-top: 1em;
@@ -83,7 +81,8 @@
     padding-left: 1em;
   }
 
-  .grid-container, .shop-grid-container {
+  .grid-container,
+  .shop-grid-container {
     color: rgba(26, 152, 61, 0.89);
     margin: auto;
     display: grid;
@@ -105,11 +104,10 @@
     font-size: large;
     margin-top: 10%;
     margin-bottom: 10%;
-
   }
-  .video{
-    width:90% ;
-    height:auto 
+  .video {
+    width: 90%;
+    height: auto;
   }
   fieldset {
     padding: 0em;
@@ -143,12 +141,10 @@
     left: 1%;
     padding-top: 1em;
   }
-  .me{
-    
-   min-width: 40%;
+  .me {
+    min-width: 40%;
     border-radius: 50%;
     padding: 1em;
-  
   }
   .uploadjsonbutton {
     visibility: hidden;
@@ -156,7 +152,6 @@
 
   .tooltip {
     position: static;
-
   }
 
   .back {
@@ -199,9 +194,9 @@
     width: 50%;
   }
 
-  .actionsign{
-      bottom: 5%;
-  right: 0em;
+  .actionsign {
+    bottom: 5%;
+    right: 0em;
   }
 
   .footer {
@@ -210,39 +205,30 @@
 
     left: 0%;
     margin-bottom: 5%;
-
   }
-
-
-
-  
 
   .button,
   button {
-
     font-size: 2em;
     border-radius: 8%;
     margin: 0.4em;
     padding-left: 0.3em;
     padding-right: 0.3em;
-   
-
 
     cursor: pointer;
   }
-.largeBtn{
-  min-width: 100%;
+  .largeBtn {
+    min-width: 100%;
     padding: 0px 0px;
-  height: 2em;
-  position: sticky;
-  bottom:3%;
-}
+    height: 2em;
+    position: sticky;
+    bottom: 3%;
+  }
 
   .rightbutton {
     display: block;
     margin: auto;
     clear: both;
-
   }
 
   #mobilemenu {
@@ -250,31 +236,39 @@
     top: 8%;
 
     right: 0.5em;
-    background: -webkit-linear-gradient(bottom,
-        rgba(217, 217, 217, 0.7),
-        white,
-        rgba(217, 217, 217, 0.7) white);
+    background: -webkit-linear-gradient(
+      bottom,
+      rgba(217, 217, 217, 0.7),
+      white,
+      rgba(217, 217, 217, 0.7) white
+    );
     /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom,
-        rgba(217, 217, 217, 0.7),
-        rgba(255, 255, 255, 0.9),
-        white,
-        rgba(255, 255, 255, 0.9),
-        rgba(217, 217, 217, 0.7));
+    background: -o-linear-gradient(
+      bottom,
+      rgba(217, 217, 217, 0.7),
+      rgba(255, 255, 255, 0.9),
+      white,
+      rgba(255, 255, 255, 0.9),
+      rgba(217, 217, 217, 0.7)
+    );
     /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(top,
-        rgba(217, 217, 217, 0.7),
-        rgba(255, 255, 255, 0.9),
-        white,
-        rgba(255, 255, 255, 0.9),
-        rgba(217, 217, 217, 0.7));
+    background: -moz-linear-gradient(
+      top,
+      rgba(217, 217, 217, 0.7),
+      rgba(255, 255, 255, 0.9),
+      white,
+      rgba(255, 255, 255, 0.9),
+      rgba(217, 217, 217, 0.7)
+    );
     /* the standard */
-    background: linear-gradient(to bottom,
-        rgba(217, 217, 217, 0.7),
-        rgba(255, 255, 255, 0.9),
-        white,
-        rgba(255, 255, 255, 0.9),
-        rgba(217, 217, 217, 0.7));
+    background: linear-gradient(
+      to bottom,
+      rgba(217, 217, 217, 0.7),
+      rgba(255, 255, 255, 0.9),
+      white,
+      rgba(255, 255, 255, 0.9),
+      rgba(217, 217, 217, 0.7)
+    );
     width: auto;
     text-shadow: 0px 0px #000000;
     -webkit-box-shadow: 14px 10px 24px 0px rgba(217, 217, 217, 0.3);
@@ -288,12 +282,13 @@
     overflow-y: auto;
   }
 
-  .mobilemenuli, .credits {
+  .mobilemenuli,
+  .credits {
     padding: 1em;
     margin: auto auto;
-    
+
     width: 90%;
-    
+
     z-index: 50;
 
     border-radius: 5%;
@@ -320,15 +315,11 @@
     padding: 5%;
     opacity: 50%;
     top: 0%;
-
-
   }
-  .actionbook{
-
+  .actionbook {
     padding: 1em;
     margin: auto auto;
     bottom: 20%;
-    
   }
 
   .right {
@@ -339,7 +330,6 @@
     height: 200%;
 
     overflow-y: auto;
-
   }
 
   .imgcontainer {
@@ -348,7 +338,6 @@
 
     display: flex;
     justify-content: center;
-
   }
 
   .diplayplant {
@@ -356,7 +345,6 @@
     width: 100%;
     margin: auto;
     display: block;
-
   }
 
   .actionbook {
@@ -372,14 +360,12 @@
     height: fit-content;
     width: fit-content;
     z-index: 50;
-  
   }
-  .actionsign{
+  .actionsign {
     margin: auto auto;
     display: block;
-  
   }
-  .page{
+  .page {
     padding-top: 12%;
     padding-bottom: 6%;
     max-width: max-content;
@@ -393,135 +379,121 @@
     padding: 20px;
     border-radius: 10px;
     width: 250px;
-  
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
   .navigation-container {
-
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
   .nav-link {
-    
     padding: 15px;
     margin-bottom: 1em;
-    
   }
   .imgsolo {
-
     width: 90%;
-    
   }
-  .affiliatelogo{
+  .affiliatelogo {
     width: 70%;
-
   }
-  .itemp{
+  .itemp {
     padding-left: 0%;
     padding-right: 0%;
   }
-  .item{
+  .item {
     max-width: 100%;
   }
-.leftp {
-  
-  left: 0%;
-  padding:3%;
-  width: 95%;
-  height: 42%;
-  top: 2%;
+  .leftp {
+    left: 0%;
+    padding: 3%;
+    width: 95%;
+    height: 42%;
+    top: 2%;
+  }
 
-}
+  .rightp {
+    right: 0%;
+    padding: 1%;
+    margin: 2%;
+    width: 94%;
+    height: 50%;
+    bottom: 1%;
+  }
 
-.rightp {
-  
-  right: 0%;
-  padding:1%;
-  margin:2%;
-  width: 94%;
-  height: 50%;
-  bottom: 1%;
+  .placeholder {
+    height: 70px;
+  }
+  #selectSearch {
+    position: sticky;
+    top: 13%;
+  }
+  .stress_container {
+    width: 100%;
+    margin: auto auto;
+    padding: 0px;
+  }
+  .stress_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit);
+    gap: 2px;
+    margin: 0px 0;
+  }
+  .stress_table {
+    margin: 0em;
+    width: 100%;
+  }
 
-
-}
-
-.placeholder{
-  height: 70px;
-}
-#selectSearch{
-  position: sticky;
-  top: 13%;
-}
- .stress_container {
-  width: 100%;
-  margin: auto auto;
-  padding: 0px;
-}
-.stress_grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit);
-  gap: 2px;
-  margin: 0px 0;
-}
- .stress_table{
-  margin: 0em;
-  width: 100%;
- } 
-
-.stress_card {
- width: 100%;
-  padding: 0em;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
- .offersTable{
+  .stress_card {
+    width: 100%;
+    padding: 0em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  .offersTable {
     width: 81%;
   }
-  .offersTable>td,th{
+  .offersTable > td,
+  th {
     padding: 0em;
     margin: 0em;
   }
-    .readDiv{
-    
+  .readDiv {
     color: var(--darkpurple);
     line-height: 2em;
     font-size: large;
     margin: 0em;
     padding: 0em;
-   text-align: justify;
-   height: 50%;
-   overflow-x: scroll;
-    
+    text-align: justify;
+    height: 50%;
+    overflow-x: scroll;
   }
-    .scriptSelect{
+  .scriptSelect {
     position: sticky;
     top: 13%;
     width: 80%;
-
   }
-    .pricingGrid {
-
-  gap: 2px;
-
-}
+  .pricingGrid {
+    gap: 2px;
+  }
   .pricingCard {
+    width: 70%;
+    margin: 1px 0;
+  }
 
-  width: 70%;
-  margin: 1px 0;
-  
-}
-
-
-.cardbtn{
-  font-size: 1.1em;
-  margin: 0.1em;
-}
-.modeToggle{
-   width: 90%;
-   font-size: 1em;
-   margin: 0em;
-}
+  .cardbtn {
+    font-size: 1.1em;
+    margin: 0.1em;
+  }
+  .modeToggle {
+    width: 90%;
+    font-size: 1em;
+    margin: 0em;
+  }
+  .pdBtn {
+    padding: 2px;
+    margin: 2px;
+  }
 }
