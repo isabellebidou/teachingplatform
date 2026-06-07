@@ -60,7 +60,7 @@ export const OFFERS = {
       title: "Single In-Person Coaching Session",
     },
     description:
-      "1:1 90-minute in-person coaching session",
+      "1:1 90-minutes",
     price: 75,
     currency: "EUR",
     stripePriceId: "price_1Tea0tKDbU4dI5jkJRbGptzl",

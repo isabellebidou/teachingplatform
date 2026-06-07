@@ -16,14 +16,15 @@
 
   "h2Reviews": "Avis",
   "btnLeaveReview": "Laisser un avis",
+   "h2terms":"Termes",
 
   "h2faq": "Questions fréquentes",
   "h2Contact": "Contact",
-  "pContact": "Je m’appelle Isabelle Bidou. Je suis développeur Fullstack et professeur d'anglais. Je propose un service de coaching de professionnels qui ont besoin de s'exprimer en anglais avec des contraintes spécifiques à leurs activités.  Je prépare également les étudiants aux Khôlles de prépa. Si vous avez des questions, n’hésitez pas à me contacter.",
+  "pContact": "Je m’appelle Isabelle Bidou. Je suis développeur Fullstack et professeur d'anglais actuellement à Paris. Je propose un service de coaching de professionnels qui ont besoin de s'exprimer en anglais avec des contraintes spécifiques à leurs activités.  Je prépare également les étudiants aux Khôlles de prépa. Si vous avez des questions, n’hésitez pas à me contacter.",
 
   "pCookie": "Ce site utilise des cookies pour l’authentification avec Google OAuth et pour améliorer l’expérience utilisateur. En acceptant l’utilisation des cookies, vous pourrez tester les fonctionnalités après vous être connecté avec votre compte Google.",
-  "H2OffersIntro": "Mes services de coaching en anglais s’adaptent à vos besoins et proposent un accompagnement individuel personnalisé (en ligne ou en présentiel) ainsi que des ateliers en entreprise, réalisés en ligne ou directement sur site.",
-  "h2OffersLegend": "Offres de Coaching individuel pour adultes",
+  "H2OffersIntro": "J'adapte mes services  à vos besoins et je propose un accompagnement individuel personnalisé (en ligne ou en présentiel) ainsi que des ateliers en entreprise directement sur site.",
+  "h2OffersLegend": "Offres",
 
   "thIndividualPilot": "Programme Découverte 6 Semaines",
   "thIndividualMonthly": "Coaching Mensuel",
@@ -36,11 +37,14 @@
 
   "pIndividualTermsSummary": "Les séances uniques et les programmes pilotes sont payables à l’avance. Les formules mensuelles sont facturées en début de mois et payables à l’avance. Les séances annulées plus de 48 heures à l’avance peuvent être reprogrammées. Les séances annulées moins de 48 heures à l’avance sont dues.",
   "pIndividualOfferNote": "Les sessions de coaching sont entièrement personnalisées en fonction des besoins de communication professionnels (réunions, discussions techniques, présentations, interactions sur le lieu de travail).",
-  "pOfferBook": "Vous pouvez réserver une consultation gratuite de 10 minutes afin de discuter de vos besoins et objectifs spécifiques. C’est l’occasion idéale de voir comment je peux vous accompagner et adapter les séances à votre contexte professionnel. Il vous suffit de suivre ce lien pour choisir un créneau qui vous convient :",
-  "h2CorporateOffersLegend": "Ateliers d’Anglais Professionnel en Entreprise",
-  "pCorporateOffer": "Je propose des ateliers d’anglais professionnel sur mesure, conçus pour des équipes évoluant dans des environnements internationaux et opérationnels. Grâce à mon expérience en milieu corporate, dans des contextes techniques et de communication professionnelle, j’aide les collaborateurs à gagner en aisance et en clarté dans des situations concrètes telles que les réunions, la collaboration entre équipes, les échanges techniques ou les interactions avec des clients et partenaires. Les ateliers combinent communication pratique, mises en situation, renforcement ciblé de la grammaire et vocabulaire professionnel spécialisé afin de garantir un anglais précis, naturel et immédiatement applicable dans le cadre du travail.",
+  "pOfferBook": " Réservez votre consultation de 10 minutes gratuite pour discuter avec moi de vos besoins et objectifs spécifiques. Cela est nécessaire avant de vous engager dans des sessions en personne. C’est une excellente occasion pour moi de me familiariser avec les spécificités de votre contexte professionnel. Suivez simplement ce lien pour choisir une heure qui vous convient", 
   "thCorporatePilot": "Programme Découverte 6 Semaines",
   "thCorporateMonthly": "Programme Mensuel Entreprise",
+  "lblIndividualCoaching":"Coaching individuel",
+"lblCorporateWorkshops":"Ateliers en Entreprise",
+"lblOnline":"En ligne",
+"lblInPerson":"en présentiel",
+"lblOnSite":"sur site",
 
   "tdCorporatePilot": "990 € HT total (6 semaines – 1 séance/semaine – 90 min – petit groupe en présentiel)",
 
@@ -74,8 +78,7 @@
 
   "corporateMonthlyPrice": "700 € HT / mois (4 x 90 mn)",
   "corporateMonthlyPriceOnline": "360 € HT / mois (4 x 60 mn en ligne)",
-  "lblInPerson": "Coaching en présentiel",
-  "lblOnline": "Coaching en ligne",
+
 
   "lblInPersonCorporate": "Atelier en présentiel",
   "lblOnlineCorporate": "Atelier en ligne",

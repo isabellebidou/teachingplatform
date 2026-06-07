@@ -56,7 +56,9 @@
     left: 0%;
     margin-bottom: 5%;
   }
-
+.h2{
+  margin: 0.2em;
+}
   .authentication > * {
     display: none;
   }
@@ -75,10 +77,8 @@
   }
 
   p {
-    padding-top: 1em;
-    padding-right: 1em;
-    padding-bottom: 1em;
-    padding-left: 1em;
+    padding: 0.5em;
+    margin: 0.5;
   }
 
   .grid-container,
@@ -109,10 +109,11 @@
     width: 90%;
     height: auto;
   }
-  fieldset {
-    padding: 0em;
-    max-width: 100%;
-  }
+fieldset {
+  left: 0px;
+  width: 87%;
+  margin-left: 0%;
+}
 
   .headertitle {
     position: absolute;
@@ -366,8 +367,12 @@
     display: block;
   }
   .page {
+    width: 100%;
     padding-top: 12%;
     padding-bottom: 6%;
+    padding-right: 1%;
+    margin-left: 0%;
+    margin-right: 0%;
     max-width: max-content;
   }
   .content {
@@ -400,8 +405,8 @@
     width: 70%;
   }
   .itemp {
-    padding-left: 0%;
-    padding-right: 0%;
+    padding-left: 1%;
+    padding-right: 1%;
   }
   .item {
     max-width: 100%;
@@ -475,25 +480,121 @@
     top: 13%;
     width: 80%;
   }
-  .pricingGrid {
-    gap: 2px;
+
+
+
+
+  .pricingCardPrice {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 3px 0;
+    color: var(--strongpink);
   }
-  .pricingCard {
-    width: 70%;
-    margin: 1px 0;
+
+  .pricingCardFeatures {
+    margin: 0;
+    padding-left: 0px;
   }
 
   .cardbtn {
     font-size: 1.1em;
     margin: 0.1em;
   }
-  .modeToggle {
-    width: 90%;
+  .toggles{
+  display: block;
+
+}
+  .toggleContainer {
+    width: 98%;
+    display: grid;
+     grid-template-columns: auto auto;
+    gap: 0.25em;
+    margin: 0.5em;
+  }
+
+  .toggle {
+  
+width: 8em;
+    padding: 0.6em;
+    margin: 0.4em;
+
     font-size: 1em;
+
+    text-align: center;
+
+    border-radius: 12px;
+  }
+
+  /* ---------- Pricing Cards ---------- */
+
+  .pricingGrid {
+  display: grid ;
+  grid-template-columns: auto auto auto;
+
+    gap: 0em;
+
     margin: 0em;
+    padding: 0em;;
   }
-  .pdBtn {
-    padding: 2px;
-    margin: 2px;
+
+  .pricingCard {
+  
+
+    min-height: auto;
+
+    margin-right: 0.3em;
   }
+
+  .pricingCard{
+    font-size: 1.15em;
+  }
+
+  .pricingCardPrice {
+    font-size: 1.5em;
+  }
+
+  .pricingCardDescription {
+    font-size: 0.95em;
+  }
+
+  /* ---------- Selected Offer ---------- */
+
+  .selectedOffer {
+    padding: 0.2.em;
+
+    margin-top: 0.1em;
+    display: block;
+  }
+
+  .selectedOffer h3 {
+
+    text-align: center;
+  }
+
+  .offerPrice {
+    font-size: 2em;
+
+    text-align: center;
+
+    margin: 0.2em ;
+    color: var(--strongpink);
+  }
+
+  .marketing {
+    margin-top: 1em;
+
+    line-height: 1.7;
+  }
+.payment{
+  width: 5.5em ;
+  height: 2.3em;
+  font-size: 1.3em;
+
+    cursor:pointer;
+
+   border-radius: 12px;
+   text-decoration: none;
+
+    transition:.25s;
+}
 }

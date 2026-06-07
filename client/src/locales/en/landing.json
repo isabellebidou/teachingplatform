@@ -11,14 +11,15 @@
   "h2GrammarPractice": "📘 Grammar Practice",
   "pGrammarPractice": "Users can select a grammar topic. The system generates an A1-level gap-fill quiz. Users receive feedback on their answers to support learning.",
   "h2Reviews": "Reviews",
+  "h2terms":"Terms",
   "btnLeaveReview": "leave a review",
   "h2faq": "Frequently Asked Questions",
   "h2Contact": "Contact",
-  "pContact": "My name is Isabelle Bidou. I am a Fullstack developer and an English teacher. I offer a coaching service for professionals who need to speak English with specific constraints related to their activities.  I also prepare students for the  engineering schools oral entrance test exams. If you have questions, feel free to contact me",
+  "pContact": "My name is Isabelle Bidou. I am a Fullstack developer and an English teacher based in Paris. I offer a coaching service for professionals who need to speak English with specific constraints related to their activities.  I also prepare students for the engineering schools oral entrance test exams. If you have questions, feel free to contact me",
   "pCookie": "This website uses cookies for authentication with google OAuth, to enhance the user experience. If you consent tousing cookies. In order to try the features you must authenticate with your google credentials.",
-  "H2OffersIntro": "My English coaching services are designed to adapt to your needs, offering personalised 1:1 coaching (online or in-person) as well as corporate workshops delivered online or onsite in your workplace.",
+  "H2OffersIntro": "My services are designed to adapt to your needs, offering personalised 1:1 coaching (online or in-person) as well as corporate workshops delivered online or onsite in your workplace.",
 
-  "h2OffersLegend": "1:1 Coaching Offers for adults",
+  "h2OffersLegend": "Offers",
   "thIndividualPilot": "6-Week Pilot Program",
   "thIndividualMonthly": "Monthly Coaching Program",
 
@@ -31,11 +32,16 @@
   "pIndividualTermsSummary": "Single sessions and pilot programmes are payable in advance. Monthly programmes are invoiced at the beginning of each month and payable in advance. Sessions cancelled more than 48 hours in advance may be rescheduled. Sessions cancelled less than 48 hours in advance are charged in full.",
   "pIndividualOfferNote": "Coaching sessions are fully customized to professional communication needs (meetings, technical discussions, presentations, workplace interaction).",
 
-  "pOfferBook": "You can book a free 10-minute consultation to discuss your specific needs and goals. This is a great opportunity to see how I can support your progress and tailor sessions to your professional context. Simply follow this link to choose a time that suits you:",
+  "pOfferBook": "Book your free 10-minute consultation to discuss your specific needs and goals with me. This is necessary before you commit to in-person sessions. This is a great opportunity for me to get acquainted with the specifics of your professional context. Simply follow this link to choose a time that suits you:", 
   "h2CorporateOffersLegend": "Corporate English Communication Workshops",
   "pCorporateOffer": "I offer tailored English communication workshops designed for teams working in international and operational environments. With experience in corporate settings, technical fields, and professional communication coaching, I help employees develop confidence and clarity in real-world situations such as meetings, cross-team collaboration, technical discussions, and client interactions. Workshops combine practical communication, roleplay scenarios, targeted grammar reinforcement, and specialised professional vocabulary to ensure accurate, natural, and immediately applicable English in the workplace.",
   "thCorporatePilot": "6-Week Pilot Program",
   "thCorporateMonthly": "Monthly Corporate Program",
+"lblIndividualCoaching":"1:1 Coaching",
+"lblCorporateWorkshops":"Corporate Workshops",
+"lblOnline":"Online",
+"lblInPerson":"in-person",
+"lblOnSite":"on-site",
 
   "tdCorporatePilot": "€990 total (6 weeks – 1 session/week – 90 min – small group onsite)",
 
@@ -61,8 +67,7 @@
   "corporateSinglePriceOnline": "€100 (60 mn online)",
   "corporatePilotPriceOnline": "€570 total (6 x 60 mn online)",
   "corporateMonthlyPriceOnline": "€360 / month (4 x 60 mn online)",
-  "lblInPerson": "In-Person Coaching",
-  "lblOnline": "Online Coaching",
+
   "lblInPersonCorporate": "On-site Workshop",
   "lblOnlineCorporate": "Online Workshop",
 

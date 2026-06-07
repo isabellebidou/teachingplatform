@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import FaqList from "./faqs/FaqList"
@@ -9,20 +9,22 @@ import { fetchCookieValue, updateCookieAcceptance } from "../actions"
 import { useTranslation } from "react-i18next"
 import StarReview from "./StarReview"
 import PricingCard from "./PricingCard"
+import { landingOffers } from "../locales/landingOffers"
+import PaymentDetails from "./PaymentDetails"
+import { OFFERS } from "../locales/landingOffers"
 
 const Landing = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation(["landing", "offers"])
 
   const auth = useSelector((state) => state.auth)
+  const browserLocale = navigator.language || navigator.userLanguage
+  //const code = browserLocale.split("-")[0]
+  //const language =
+  // auth?.language || navigator.language || navigator.userLanguage
   const cookie = useSelector((state) => state.cookie)
   const [visibility, setVisibility] = useState("visible")
-
-  const [mode, setMode] = useState("online") // default: online (important)
-  const [selectedIndividualOffer, setIndividualSelectedOffer] =
-    useState("individualMonthly")
-  const [selectedCorporateOffer, setCorporateSelectedOffer] =
-    useState("corporateMonthly")
+  const stripe = false
 
   useEffect(() => {
     dispatch(fetchCookieValue())
@@ -50,7 +52,7 @@ const Landing = () => {
   }
 
   // Browser locale for Legal Notice
-  const browserLocale = navigator.language || navigator.userLanguage
+
   const countryCode = browserLocale.split("-")[1]
   /*async function buyOffer(offerCode) {
     const res = await fetch("/api/create-checkout-session", {
@@ -70,6 +72,26 @@ const Landing = () => {
     // Redirect to Stripe Checkout
     window.location.href = data.url
   }*/
+  const firstRender = useRef(true)
+
+  const [showPaymentDetails, setShowPaymentDetails] = useState(false)
+  const [trainingType, setTrainingType] = useState("individual")
+  const [mode, setMode] = useState("online")
+  const [selectedOffer, setSelectedOffer] = useState("pilot")
+  const [selectedOfferCode, setSelectedOfferCode] = useState("O_COACHING_PILOT")
+
+  const currentOffer = OFFERS.find((o) => o.code === selectedOfferCode)
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false
+      return
+    }
+
+    setSelectedOfferCode(null)
+  }, [trainingType, mode])
+  const visibleOffers = OFFERS.filter(
+    (o) => o.category === trainingType && o.delivery === mode,
+  )
 
   return (
     <div className="page">
@@ -96,272 +118,141 @@ const Landing = () => {
         </span>
       )}
 
-      <div>
-        <h2>{t("H2OffersIntro")}</h2>
-        <div className="modeflex">
-          <a href="#coaching" className={`cardbtn `}>
-            {t("coachinglink")}
-          </a>
-
-          <a href="#coorporate" className={`cardbtn`}>
-            {t("workshoplink")}
-          </a>
-        </div>
-      </div>
-
       <fieldset>
         <legend>
           <h2>{t("h2OffersLegend")}</h2>
         </legend>
 
-        <p id="ind" className="offerParagraph">
-          {t("pIndividualOffers")}
-        </p>
-        <div id="coaching" className="modeToggle">
-          <button
-            className={`cardbtn ${mode === "online" ? "active" : ""}`}
-            onClick={() => setMode("online")}
-          >
-            {t("lblOnline")}
-          </button>
+        <p className="itemp">{t("H2OffersIntro")}</p>
 
-          <button
-            className={`cardbtn ${mode === "onsite" ? "active" : ""}`}
-            onClick={() => setMode("onsite")}
-          >
-            {t("lblInPerson")}
-          </button>
+        {/* Training type */}
+        <div className="toggles center">
+          <div className="toggleContainer">
+            <button
+              className={
+                trainingType === "individual" ? "toggle active" : "toggle"
+              }
+              onClick={() => setTrainingType("individual")}
+            >
+              {t("lblIndividualCoaching")}
+            </button>
+
+            <button
+              className={
+                trainingType === "corporate" ? "toggle active" : "toggle"
+              }
+              onClick={() => setTrainingType("corporate")}
+            >
+              {t("lblCorporateWorkshops")}
+            </button>
+          </div>
+
+          {/* Delivery mode */}
+
+          <div className="toggleContainer">
+            <button
+              className={mode === "online" ? "toggle active" : "toggle"}
+              onClick={() => setMode("online")}
+            >
+              {t("lblOnline")}
+            </button>
+
+            <button
+              className={mode === "onsite" ? "toggle active" : "toggle"}
+              onClick={() => setMode("onsite")}
+            >
+              {trainingType === "individual"
+                ? t("lblInPerson")
+                : t("lblOnSite")}
+            </button>
+          </div>
         </div>
+
+        {/* Pricing cards */}
 
         <div className="pricingGrid">
-          <PricingCard
-            title={
-              mode === "online"
-                ? t("offers:coachingOnlineSingleTitle")
-                : t("offers:coachingInPersonSingleTitle")
-            }
-            price={
-              mode === "online"
-                ? `${t("offers:coachingOnlineSinglePrice")}`
-                : `${t("offers:coachingInPersonSinglePrice")}`
-            }
-            description={
-              mode === "online"
-                ? t("offers:coachingOnlineSingleDesc")
-                : t("offers:coachingInPersonSingleDesc")
-            }
-            marketing={
-              mode === "online"
-                ? t("offers:coachingOnlineSingleMarketing")
-                : t("offers:coachingInPersonSingleMarketing")
-            }
-            paymentLink={
-              mode === "online"
-                ? "https://buy.stripe.com/test_dRm28sehN9nvaTeaC63ks03"
-                : "https://buy.stripe.com/test_4gM00kehNczH5yUfWq3ks05"
-            }
-            selected={selectedIndividualOffer === "individualSingle"}
-            onClick={() => setIndividualSelectedOffer("individualSingle")}
-          />
-
-          <PricingCard
-            title={
-              mode === "online"
-                ? t("offers:coachingOnlinePilotTitle")
-                : t("offers:coachingInPersonPilotTitle")
-            }
-            price={
-              mode === "online"
-                ? `${t("offers:coachingOnlinePilotPrice")}`
-                : `${t("offers:coachingInPersonPilotPrice")}`
-            }
-            description={
-              mode === "online"
-                ? t("offers:coachingOnlinePilotDesc")
-                : t("offers:coachingInPersonPilotDesc")
-            }
-            marketing={
-              mode === "online"
-                ? t("offers:coachingOnlinePilotMarketing")
-                : t("offers:coachingInPersonPilotMarketing")
-            }
-            paymentLink={
-              mode === "online"
-                ? "https://buy.stripe.com/test_28E6oI2z57fnf9u4dI3ks04"
-                : "https://buy.stripe.com/test_9B68wQ7Tp2Z78L6h0u3ks06"
-            }
-            selected={selectedIndividualOffer === "individualPilot"}
-            onClick={() => setIndividualSelectedOffer("individualPilot")}
-          />
-
-          <PricingCard
-            title={
-              mode === "online"
-                ? t("offers:coachingOnlineMonthlyTitle")
-                : t("offers:coachingInPersonMonthlyTitle")
-            }
-            price={
-              mode === "online"
-                ? `${t("offers:coachingOnlineMonthlyPrice")}`
-                : `${t("offers:coachingInPersonMonthlyPrice")}`
-            }
-            description={
-              mode === "online"
-                ? t("offers:coachingOnlineMonthlyDesc")
-                : t("offers:coachingInPersonMonthlyDesc")
-            }
-            marketing={
-              mode === "online"
-                ? t("offers:coachingOnlineMonthlyMarketing")
-                : t("offers:coachingInPersonMonthlyMarketing")
-            }
-            selected={selectedIndividualOffer === "individualMonthly"}
-            onClick={() => setIndividualSelectedOffer("individualMonthly")}
-          />
+          {visibleOffers.map((offer) => (
+            <PricingCard
+              key={offer.code}
+              title={auth?.language === "fr" ? offer.titleFr : offer.titleEn}
+              price={`€${offer.price}`}
+              description={offer.description}
+              selected={selectedOfferCode === offer.code}
+              onClick={() => setSelectedOfferCode(offer.code)}
+              paymentLink={offer.paymentLink}
+            />
+          ))}
         </div>
 
-        <p id="indterms" className="offerTerms">
-          {t("pIndividualTermsSummary")}
-        </p>
+        {/* Selected offer */}
+        <div className="selectedOfferGlobal">
 
-        <p className="offerNote">{t("pIndividualOfferNote")}</p>
+        <div className="selectedOffer center">
+          {currentOffer && (
+            <>
+              <div className="selectedOfferChildren">
+                {auth?.language === "fr"
+                  ? currentOffer.titleFr
+                  : currentOffer.titleEn} 
+              </div>
 
-        <div className="offerCTA">
-          <p>{t("pOfferBook")}</p>
+              <div className=" selectedOfferChildren"> - {currentOffer.description}  </div>
 
-          <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
-            <button className="actionupload">{t("btnActionbook")}</button>
-          </a>
+              <div className="selectedOfferChildren ">
+                  €{currentOffer.price}
+              </div>
+            </>
+          )}
         </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>
-          <h2>{t("h2CorporateOffersLegend")}</h2>
-        </legend>
-
-        <p className="offerParagraph">{t("pCorporateOffer")}</p>
-        <div id="coorporate" className="modeToggle">
-          <button
-            className={`cardbtn ${mode === "online" ? "active" : ""}`}
-            onClick={() => setMode("online")}
-          >
-            {t("lblOnlineCorporate")}
-          </button>
-
-          <button
-            className={`cardbtn ${mode === "onsite" ? "active" : ""}`}
-            onClick={() => setMode("onsite")}
-          >
-            {t("lblInPersonCorporate")}
-          </button>
-        </div>
-
-        <div className="pricingGrid">
-          <PricingCard
-            title={
-              mode === "online"
-                ? t("offers:corpOnlineSingleTitle")
-                : t("offers:corpOnsiteSingleTitle")
-            }
-            price={
-              mode === "online"
-                ? `${t("offers:corpOnlineSinglePrice")}`
-                : `${t("offers:corpOnsiteSinglePrice")}`
-            }
-            description={
-              mode === "online"
-                ? t("offers:corpOnlineSingleDesc")
-                : t("offers:corpOnsiteSingleDesc")
-            }
-            marketing={
-              mode === "online"
-                ? t("offers:corpOnlineSingleMarketing")
-                : t("offers:corpOnsiteSingleMarketing")
-            }
-            selected={selectedCorporateOffer === "corporateSingle"}
-            onClick={() => setCorporateSelectedOffer("corporateSingle")}
-          />
-
-          <PricingCard
-            title={
-              mode === "online"
-                ? t("offers:corpOnlinePilotTitle")
-                : t("offers:corpOnsitePilotTitle")
-            }
-            price={
-              mode === "online"
-                ? `${t("offers:corpOnlinePilotPrice")}`
-                : `${t("offers:corpOnsitePilotPrice")}`
-            }
-            description={
-              mode === "online"
-                ? t("offers:corpOnlinePilotDesc")
-                : t("offers:corpOnsitePilotDesc")
-            }
-            marketing={
-              mode === "online"
-                ? t("offers:corpOnlinePilotMarketing")
-                : t("offers:corpOnsitePilotMarketing")
-            }
-            selected={selectedCorporateOffer === "corporatePilot"}
-            onClick={() => setCorporateSelectedOffer("corporatePilot")}
-          />
-
-          <PricingCard
-            title={
-              mode === "online"
-                ? t("offers:corpOnlineMonthlyTitle")
-                : t("offers:corpOnsiteMonthlyTitle")
-            }
-            price={
-              mode === "online"
-                ? `${t("offers:corpOnlineMonthlyPrice")}`
-                : `${t("offers:corpOnsiteMonthlyPrice")}`
-            }
-            description={
-              mode === "online"
-                ? t("offers:corpOnlineMonthlyDesc")
-                : t("offers:corpOnsiteMonthlyDesc")
-            }
-            marketing={
-              mode === "online"
-                ? t("offers:corpOnlineMonthlyMarketing")
-                : t("offers:corpOnsiteMonthlyMarketing")
-            }
-            selected={selectedCorporateOffer === "corporateMonthly"}
-            onClick={() => setCorporateSelectedOffer("corporateMonthly")}
-          />
+        <span className="paymentContainer">
+          {currentOffer && (
+            <>
+              <p className=" itemp">
+                <button  className="payment" onClick={() => setShowPaymentDetails(true)}>
+                  Bank transfer
+                </button>
+              </p>
+            </>
+          )}
+          <p >
+            {stripe && currentOffer?.paymentLink && (
+            
+                <a  className="payment"
+                  href={currentOffer.paymentLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="payment actionupload"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Stripe
+                </a>
+             
+            )}
+          </p>
+        </span>
         </div>
 
-        <p id="#workshopterms" className="offerNote">
-          {t("pCorporateOfferNote")}
-        </p>
-        <p>{t("pCorporateTermsSummary")}</p>
+        <p className="itemp">{t("pOfferBook")}</p>
 
-        <div className="offerCTA">
-          <p>{t("pOfferBook")}</p>
-
-          <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
-            <button className="actionupload">{t("btnActionbook")}</button>
-          </a>
-        </div>
+        <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
+          <button className="actionbook2">{t("btnActionbook")}</button>
+        </a>
       </fieldset>
 
       <fieldset>
         <legend>
           <h2>{t("h2Features")}</h2>
         </legend>
-        <p>{t("pFeatures")}</p>
+        <p className="itemp">{t("pFeatures")}</p>
         <h2>{t("h2AudioFeedback")}</h2>
-        <p>{t("pAudioFeedback")}</p>
+        <p className="itemp">{t("pAudioFeedback")}</p>
 
         <h2>{t("h2GrammarPractice")}</h2>
-        <p>{t("pGrammarPractice")}</p>
+        <p className="itemp">{t("pGrammarPractice")}</p>
         {false && (
           <>
             <h2>{t("h2SpellingFeedback")}</h2>
-            <p>{t("pSpellingFeedback")}</p>
+            <p className="itemp">{t("pSpellingFeedback")}</p>
           </>
         )}
       </fieldset>
@@ -374,6 +265,7 @@ const Landing = () => {
         <span id="reviews">
           <StarReviewList />
         </span>
+        <StarReview />
       </fieldset>
 
       <fieldset>
@@ -385,7 +277,17 @@ const Landing = () => {
         <FaqList />
         {renderFaqForm()}
       </fieldset>
+      <fieldset>
+        <legend>
+          <h2>{t("h2terms")}</h2>
+        </legend>
 
+        <p id="indterms" className="offerTerms itemp">
+          {t("pIndividualTermsSummary")}
+        </p>
+
+        <p className="offerNote itemp">{t("pIndividualOfferNote")}</p>
+      </fieldset>
       <fieldset>
         <legend>
           <h2>{t("h2Contact")}</h2>
@@ -407,6 +309,21 @@ const Landing = () => {
           </p>
         </div>
       </fieldset>
+      {showPaymentDetails && currentOffer && (
+        <PaymentDetails
+          visible={showPaymentDetails}
+          onClose={() => setShowPaymentDetails(false)}
+          title={
+            auth?.language === "fr"
+              ? currentOffer.titleFr
+              : currentOffer.titleEn
+          }
+          price={currentOffer.price}
+        />
+      )}
+      {showPaymentDetails && (
+        <PaymentDetails onClose={() => setShowPaymentDetails(false)} />
+      )}
 
       {cookie === true || cookie === "" || cookie === null}
 
@@ -435,8 +352,6 @@ const Landing = () => {
           </span>
         )}
       </CookieConsent>
-
-      <StarReview />
     </div>
   )
 }
