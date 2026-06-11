@@ -63,14 +63,11 @@
     /* background-color: #2196F3;  Comment this out later to remove the background color when not needed */
     padding-top: 1em;
   }
-  fieldset {
-  width: 97%;
-  margin-left: 0%;
-  padding-right: 2%;
-   left: 0px;
-
-
-
+fieldset {
+  left: 0px;
+  width: 96%;
+  margin: 0%;
+  padding: 1%;
 }
   .pricingGrid {
   display: grid ;

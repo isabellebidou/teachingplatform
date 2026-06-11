@@ -111,8 +111,9 @@
   }
 fieldset {
   left: 0px;
-  width: 87%;
-  margin-left: 0%;
+  width: 96%;
+  margin: 0%;
+  padding: 1%;
 }
 
   .headertitle {
