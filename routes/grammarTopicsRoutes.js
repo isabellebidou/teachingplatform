@@ -5,7 +5,7 @@ import { logError as error, log } from "../services/utils.js"
 export default (app) => {
   const GrammarTopic = mongoose.model("GrammarTopic")
   app.get("/api/grammarTopics", requireLogin, async (req, res) => {
-     console.log(" get  grammarTopics")
+
     try {
       log(
         "app.get   /api/grammarTopics from grammarTopicsRoutes level: " +
@@ -34,7 +34,7 @@ export default (app) => {
         },
       )*/
       const grammarTopics = await GrammarTopic.find({ active: true })
-      console.log("grammarTopics all",grammarTopics.length)
+
       res.send(grammarTopics)
     } catch (err) {
       error(err)

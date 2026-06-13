@@ -30,7 +30,6 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
 
   useEffect(() => {
     fetchGrammarTopics()
-     log("auth:", auth.level)
   }, [fetchGrammarTopics])
 
   useEffect(() => {
@@ -71,8 +70,7 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
     } finally {
     }
   } else {
-    console.log("not Ai")
-    console.log(selectedTopic.data.questions)
+
     setQuestions(selectedTopic.data.questions)
       setInstructions(selectedTopic.data.instructions)
       setStarted(true)
@@ -125,7 +123,7 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
     setSelectedAnswer(option)
   }
   const above80 = () => {
-    const congratulations = auth.level.startsWith("C")
+    const congratulations = auth?.level.startsWith("C")
       ? [
           "Excellent work! You really know your stuff.",
           "Great job! Your hard work is paying off.",
@@ -280,7 +278,7 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
   )
 }
 function mapStateToProps(state) {
-  console.log("mapStateToProps",state.grammarTopics.length)
+
   return { grammarTopics: state.grammarTopics, auth: state.auth }
 }
 export default connect(mapStateToProps, { fetchGrammarTopics })(UserExercise)
