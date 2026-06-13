@@ -13,7 +13,7 @@ import {
   FETCH_USER_AUDIO_URL,
   UPDATE_COOKIE_ACCEPTANCE,
   FETCH_SCRIPTS,
-  FETCH_USER_GRAMMAR_TOPICS,
+  //FETCH_USER_GRAMMAR_TOPICS,
   FETCH_GRAMMAR_TOPICS
 
 } from "./types";
@@ -105,14 +105,15 @@ export const fetchScripts = () => async (dispatch) => {
 
 };
 export const fetchGrammarTopics = () => async (dispatch) => {
-  const res = await axios.get("/api/grammarTopics");
-  dispatch({ type: FETCH_USER_GRAMMAR_TOPICS, payload: res.data });
+  const res = await axios.get("/api/grammarTopics_all");
+  //dispatch({ type: FETCH_USER_GRAMMAR_TOPICS, payload: res.data });
+  dispatch({ type: FETCH_GRAMMAR_TOPICS, payload: res.data });
 
 };
 export const fetchTopics = () => async (dispatch) => {
   const res = await axios.get("/api/grammarTopics_all");
+  //dispatch({ type: FETCH_GRAMMAR_TOPICS, payload: res.data });
   dispatch({ type: FETCH_GRAMMAR_TOPICS, payload: res.data });
-
 };
 
 

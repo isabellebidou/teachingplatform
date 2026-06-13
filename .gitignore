@@ -4,6 +4,7 @@ node_modules
 dev.js
 /.pnp
 .pnp.js
+r_data.json
 
 # misc
 .DS_Store

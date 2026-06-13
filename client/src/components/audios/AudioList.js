@@ -36,7 +36,8 @@ function AudioList({
 
   return (
     <section>
-      <h2>{t("h2Audios")}</h2>
+      <fieldset>
+      <legend>{t("h2Audios")}</legend>
       <div className="grid-container">
         {audios.length === 0 && <p>{t("pRecordYourself")}</p>}
 
@@ -104,7 +105,9 @@ function AudioList({
           {editMode && <button onClick={deleteAudios}>{t("btnDelete")}</button>}
         </>
       )}
+       </fieldset>
     </section>
+   
   )
 }
 

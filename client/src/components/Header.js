@@ -86,7 +86,7 @@ function Header() {
         </Link>
       )}
 
-      {auth && !isOnExercice && !isGuest && (
+      {!isOnExercice && (
         <Link to="/exercice" className="button">
           <MdOutlineSchool style={{ color: "#7f5f87" }} />
         </Link>

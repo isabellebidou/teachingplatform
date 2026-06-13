@@ -23,7 +23,9 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
   const [finished, setFinished] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [feedback, setFeedBack] = useState([])
-  const grade = Math.round((score * 100) / questions.length)
+  const Ai = false
+  const grade = Math.round((score * 100) / questions?.length)
+
 
 
   useEffect(() => {
@@ -52,10 +54,13 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
   setFeedBack([])
 }
 
+
+
   const handleClick = async (e) => {
     e.preventDefault()
     setIsLoading(true)
      log("selectedTopic", selectedTopic)
+     if (Ai){
     try {
       const res = await axios.post("/api/exercice", { selectedTopic })
       setQuestions(res.data.questions)
@@ -65,6 +70,14 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
        error("Error generating exercice:", err)
     } finally {
     }
+  } else {
+    console.log("not Ai")
+    console.log(selectedTopic.data.questions)
+    setQuestions(selectedTopic.data.questions)
+      setInstructions(selectedTopic.data.instructions)
+      setStarted(true)
+
+  }
   }
   const findCorrectAnswer = (q) => {
     for (let index = 0; index < q.options.length; index++) {
@@ -139,6 +152,7 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
         ]
     return congratulations[Math.floor(Math.random() * 10)]
   }
+
   return (
     <div className="page">
       <div className="exercice-div">
@@ -210,9 +224,11 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
         {/* once finished */}
 
         {finished && (
+
           <div className="exercicResultDiv">
             <table className="resultTable">
               <thead>
+              <tr>
                 <th>
                   <strong>Question:</strong>
                 </th>
@@ -225,6 +241,7 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
                 <th>
                   <strong></strong>
                 </th>
+                </tr>
               </thead>
 
               {feedback.map((f, index) => (
@@ -263,6 +280,7 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
   )
 }
 function mapStateToProps(state) {
+  console.log("mapStateToProps",state.grammarTopics.length)
   return { grammarTopics: state.grammarTopics, auth: state.auth }
 }
 export default connect(mapStateToProps, { fetchGrammarTopics })(UserExercise)

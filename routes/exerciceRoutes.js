@@ -4,7 +4,8 @@ import { logError as error, log, warn } from "../services/utils.js"
 import keys from "../config/keys.js"
 import OpenAI from "openai"
 import mongoose from "mongoose"
-import i18n from "../i18n.js";
+import i18n from "../i18n.js"
+import fs from "fs/promises"
 
 
 export default (app) => {
@@ -15,7 +16,17 @@ export default (app) => {
 } else {
   console.error("❌ Missing OpenAI key (keys or env)");
 }
-
+  app.post("/api/exercice_static", async (req, res) => {
+    const { selectedTopic } = req.body
+    
+    const lang = req.user.language || "en"
+    const t = i18n.getFixedT(lang)
+    if (!selectedTopic)
+      return res.status(400).json({ error: "No topic provided" })
+    const topicName = selectedTopic.name?.[lang] || selectedTopic.name?.en
+    const topicRule = selectedTopic.rule?.[lang] || selectedTopic.rule?.en
+    res.json({ ...fakeResponse, ...gptData })
+})
 
   app.post("/api/exercice", async (req, res) => {
     const { selectedTopic } = req.body
@@ -28,6 +39,15 @@ export default (app) => {
     const topicRule = selectedTopic.rule?.[lang] || selectedTopic.rule?.en
 
     log("/api/exercice selectedTopic", selectedTopic)
+    /*fs.appendFile(
+            "./r_data.json",
+            JSON.stringify("================================" )
+        );
+    fs.appendFile(
+            "./r_data.json",
+            JSON.stringify(selectedTopic + "\n")
+        );
+        */
 
     // Pick random theme
     let theme
@@ -242,6 +262,7 @@ RETURN FORMAT (STRICT JSON ONLY):
 
 `
 
+
     try {
       const completion = await openai.responses.create({
         model: "gpt-4.1-mini",
@@ -276,6 +297,11 @@ RETURN FORMAT (STRICT JSON ONLY):
         log("CLEANED TEXT:", cleaned)
 
         gptData = JSON.parse(cleaned)
+        
+        fs.appendFile(
+            "./r_data.json",
+            JSON.stringify(gptData)
+        );
       } catch (err) {
         logError("JSON parse error:", err)
       }

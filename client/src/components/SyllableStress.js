@@ -65,7 +65,7 @@ export default function SyllableStressPage() {
 
           <h3>{t("h3Practice")}</h3>
           <div className="stress_highlight">
-            <div class="example">
+            <div className="example">
               <p>I would like to ARGue that this solution is better.</p>
               <p>We should FOcus on the main problem.</p>
               <p>This often HAppens in society.</p>
@@ -379,7 +379,7 @@ function StressTable({ t }) {
 function Card({ title, children }) {
   return (
     <div className="stress_card">
-      <h4>{title}</h4>
+      <h4 className="card_title">{title}</h4>
       {children}
     </div>
   )

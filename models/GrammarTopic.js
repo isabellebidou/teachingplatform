@@ -24,7 +24,11 @@ const GrammarTopicSchema = new Schema(
     examples: { type: [String], default: [] },
     commonErrors: { type: [String], default: [] },
     detail: { type: String, default: null },
+    data: {type: Object, default: null},
     active: { type: Boolean, default: true }
+  },
+  {
+    data: { questions: [Object], instructions: String}
   },
   { timestamps: true }
 );

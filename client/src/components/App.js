@@ -59,7 +59,7 @@ function App({ fetchUser, fetchCookieValue }) {
 
         <ProtectedRoute exact path="/dashboard" component={UserDashboard} />
         <ProtectedRoute exact path="/board" component={UserBoard} />
-        <ProtectedRoute exact path="/exercice" component={UserExercice} />
+        <Route exact path="/exercice" component={UserExercice} />
         <ProtectedRoute exact path="/documents" component={UserDocuments} />
         <ProtectedRoute exact path="/readings/new" component={ReadingNew} />
         <ProtectedRoute exact path="/userdata/new" component={UserDataFormNew} />

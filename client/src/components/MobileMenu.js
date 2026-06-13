@@ -99,7 +99,7 @@ function MobileMenu() {
           </li>
         )}
 
-        {auth && !isOnExercice && !isGuest && (
+        {!isOnExercice && (
           <li>
             <Link
               key={8 + `exercice`}
