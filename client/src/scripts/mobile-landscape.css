@@ -69,6 +69,18 @@ fieldset {
   margin: 0%;
   padding: 1%;
 }
+    .scriptSelect {
+     position: fixed;
+    top: 13%;
+    width: 40%;
+        height: 2em;
+  }
+    #selectSearch {
+  position: fixed;
+    top: 13%;
+      width: 50%;
+  
+  }
   .pricingGrid {
   display: grid ;
   grid-template-columns: auto auto auto;

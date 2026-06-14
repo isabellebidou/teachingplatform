@@ -38,7 +38,6 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
     }
   }, [grammarTopics])
   useEffect(() => {
-     log("questions state changed:", questions)
   }, [questions])
   const resetGame = () => {
   setQuestions([])

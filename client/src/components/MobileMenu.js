@@ -99,7 +99,7 @@ function MobileMenu() {
           </li>
         )}
 
-        {!isOnExercice && (
+        {/*!isOnExercice && (
           <li>
             <Link
               key={8 + `exercice`}
@@ -112,7 +112,7 @@ function MobileMenu() {
               />
             </Link>
           </li>
-        )}
+        )*/}
         {!isOnStress && (
           <li>
             <Link key={`6stress`} to="/stress" className="mobilemenuli button">

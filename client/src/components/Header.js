@@ -86,11 +86,11 @@ function Header() {
         </Link>
       )}
 
-      {!isOnExercice && (
+      {/*!isOnExercice && (
         <Link to="/exercice" className="button">
           <MdOutlineSchool style={{ color: "#7f5f87" }} />
         </Link>
-      )}
+      )*/}
 
       {!isHome && (
         <Link to="/" className="button">

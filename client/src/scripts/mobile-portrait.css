@@ -226,6 +226,28 @@ fieldset {
     position: sticky;
     bottom: 3%;
   }
+   .exo {
+    width: 40%;
+    padding: 0px 0px;
+    margin: 0px 0px;
+    height: 2em;
+    top: 13%;
+    right: 1%;
+  position: fixed;
+     font-size: 1.5em;
+  }
+    .scriptSelect {
+     position: fixed;
+    top: 13%;
+    width: 40%;
+        height: 2em;
+  }
+    #selectSearch {
+  position: fixed;
+    top: 13%;
+      width: 50%;
+  
+  }
 
   .rightbutton {
     display: block;
@@ -416,8 +438,8 @@ fieldset {
     left: 0%;
     padding: 3%;
     width: 95%;
-    height: 42%;
-    top: 2%;
+    height: 45%;
+    top: 5%;
   }
 
   .rightp {
@@ -425,17 +447,21 @@ fieldset {
     padding: 1%;
     margin: 2%;
     width: 94%;
-    height: 50%;
+    height: 45%;
     bottom: 1%;
   }
 
   .placeholder {
     height: 70px;
   }
-  #selectSearch {
-    position: sticky;
-    top: 13%;
-  }
+.quizz{
+  position: fixed;
+  width: 98%;
+  height: 50%;
+  bottom: 8%;
+  right: 1%;
+  overflow: scroll;
+}
   .stress_container {
     width: 100%;
     margin: auto auto;
@@ -476,11 +502,7 @@ fieldset {
     height: 50%;
     overflow-x: scroll;
   }
-  .scriptSelect {
-    position: sticky;
-    top: 13%;
-    width: 80%;
-  }
+
 
 
 

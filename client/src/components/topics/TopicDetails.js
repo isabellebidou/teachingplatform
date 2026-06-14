@@ -6,7 +6,7 @@ function TopicDetails({ topic }) {
   //const lang = i18n.language
   const lang = i18n.language.startsWith("fr") ? "fr" : "en";
 
-  if (!topic) return <div>No topic selected</div>
+  if (!topic) return <div className="placeholder">No topic selected</div>
 
   return (
     <div >

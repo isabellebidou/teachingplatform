@@ -10,6 +10,12 @@ position: absolute;
     line-height: 2em;
      width: 100%;
 }
+.exo{
+  z-index: 50;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
 .quizz{
     background: #fff;
     padding-bottom: 20px;

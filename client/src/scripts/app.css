@@ -970,7 +970,7 @@ dd {
   top: 15%;
 }
 .rightp {
-  position: absolute;
+  position: fixed;
   width: 45%;
   padding: 1em;
   right: 5%;
@@ -985,7 +985,14 @@ dd {
   border-inline-start-color: #45a049;
   border-inline-end-color: #7f5f87;
 }
-
+.quizz{
+  position: fixed;
+  width: 100%;
+  height: 50%;
+  bottom: 8%;
+  right: 0%;
+  overflow: scroll;
+}
 .imgcontainer {
   width: 100%;
   height: 100%;
@@ -1112,6 +1119,22 @@ th {
   padding: 14px 24px;
   font-weight: bold;
 }
+.placeholder{
+  color: var(--strongpink);
+}
+   .exo {
+
+    padding: 2px 2px;
+    margin: 2px 2px;
+    height: 2em;
+    bottom: 20%;
+    right: 4%;
+  position: fixed;
+     font-size: 1.5em;
+     border-radius: 8%;
+     background-color: #45a049;
+     color: white;
+  }
 .pdBtn {
   border-radius: 12px;
   margin: 0%;
