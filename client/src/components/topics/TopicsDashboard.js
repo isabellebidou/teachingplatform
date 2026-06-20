@@ -87,7 +87,7 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
       }
     }
   
-  
+ 
     const displayNext = () => {
       if (!selectedAnswer) return
       const correct = findCorrectAnswer(questions[answeredQuestion])
@@ -234,11 +234,17 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
             onSelectAnswer={handleSelectAnswer}
           ></QuestionBundle>
         )}
+        {gameStarted && !finished &&(
+                 <button className="largeStopBtn" onClick={resetGame}>Stop</button>
+        )}
         {/* once one option is selected */}
         {gameStarted && selectedAnswer && (
+          
           <button className="next-button" onClick={displayNext}>
             {t("btnNext")}
           </button>
+   
+          
         )}
 
         {/* once finished */}

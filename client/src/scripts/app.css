@@ -1129,10 +1129,23 @@ th {
     height: 2em;
     bottom: 20%;
     right: 4%;
+    position: fixed;
+    font-size: 1.5em;
+    border-radius: 8%;
+    background-color: #45a049;
+    color: white;
+  }
+  .largeStopBtn{
+    z-index: 50;
+    padding: 2px 2px;
+    margin: 2px 2px;
+    height: 2em;
+    bottom: 20%;
+    right: 4%;
   position: fixed;
-     font-size: 1.5em;
+     font-size: 1em;
      border-radius: 8%;
-     background-color: #45a049;
+     background-color: var(--darkpurple);
      color: white;
   }
 .pdBtn {
