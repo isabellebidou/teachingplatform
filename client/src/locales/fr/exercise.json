@@ -3,5 +3,6 @@
 "btnLoading": "Veuillez patienter...",
 "btnGenerate":"Générer un exercice",
 "btnNext":"question suivante",
-"btnStartNew":"Générer un autre exercice"
+"btnStartNew":"nouvel exercice",
+"btnTopics":"retour"
 }

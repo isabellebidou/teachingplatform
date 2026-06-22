@@ -11,7 +11,6 @@ import axios from "axios"
 function TopicsDashboard({ topics = [], auth, fetchTopics }) {
   const [selectedTopic, setSelectedTopic] = useState(null)
 
-  const displayedTopic = selectedTopic || topics[0] || null
   const { t, i18n } = useTranslation("exercise")
   const lang = i18n.language.startsWith("fr") ? "fr" : "en"
   const [search, setSearch] = useState("")
@@ -21,7 +20,6 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
 
   // exercice
   const [questions, setQuestions] = useState([])
-  // const [selectedTopic, setSelectedTopic] = useState(null)
   const [instructions, setInstructions] = useState(null)
   const [answeredQuestion, setAnsweredQuestion] = useState(0) // index
   const [score, setScore] = useState(0)
@@ -31,7 +29,8 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [feedback, setFeedBack] = useState([])
   const Ai = false
-  const grade = Math.round((score * 100) / questions?.length)
+
+
 
   useEffect(() => {
     fetchTopics()
@@ -43,20 +42,45 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
     }
   }, [topics])
 
+
+  const [dataSetIndex, setDataSetIndex] = useState(0);
+
+
+  const grade = Math.round((score * 100) / questions?.length)
   // exercice
   useEffect(() => {}, [questions])
   const resetGame = () => {
     setQuestions([])
-    //setSelectedTopic(topics[0])
+    setSelectedTopic(topics[0])
     setStarted(false)
     setIsLoading(false)
-    setInstructions(null) // if you have it
+    setInstructions(null) 
     setAnsweredQuestion(0)
     setScore(0)
     setFinished(false)
     setSelectedAnswer(null)
     setFeedBack([])
+
   }
+  const startNewDrill = () => {
+  // reset game state
+  setStarted(false);
+  setIsLoading(false);
+  setAnsweredQuestion(0);
+  setScore(0);
+  setFinished(false);
+  setSelectedAnswer(null);
+  setFeedBack([]);
+
+  // next dataset
+
+ const nextIndex = (dataSetIndex + 1) % selectedTopic.data.length;
+
+  setDataSetIndex(nextIndex);
+  setInstructions(selectedTopic.data[nextIndex].instructions)
+  setQuestions(selectedTopic.data[nextIndex].questions)
+  setStarted(true)
+};
   const handleClick = async (e) => {
     e.preventDefault()
     setIsLoading(true)
@@ -73,7 +97,7 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
       }
     } else {
       const data = Array.isArray(selectedTopic.data)
-        ? selectedTopic.data[0]
+        ? selectedTopic.data[dataSetIndex]
         : selectedTopic.data
       setQuestions(data.questions)
       setInstructions(data.instructions)
@@ -168,7 +192,7 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
               />
             </div>
             <TopicList
-              topics={!filteredTopics == "" ? filteredTopics : topics}
+              topics={!filteredTopics === "" ? filteredTopics : topics}
               onSelect={setSelectedTopic}
               selectedTopic={selectedTopic}
             />
@@ -278,7 +302,11 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
             ) : (
               <div className="grade">{grade}/100</div>
             )}
-            <button onClick={resetGame}>{t("btnStartNew")}</button>
+            {Array.isArray(selectedTopic.data)  && dataSetIndex < selectedTopic.data.length-1 &&(
+            <button class="next-button" onClick={startNewDrill}>{t("btnStartNew")}</button>
+            )}
+
+            <button  class="largeStopBtn" onClick={resetGame}>{t("btnTopics")}</button>
           </div>
         )}
       </div>

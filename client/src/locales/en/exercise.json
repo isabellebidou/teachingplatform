@@ -3,5 +3,6 @@
 "btnLoading": "Generating...",
 "btnGenerate":"Generate Exercise",
 "btnNext":"Next",
-"btnStartNew":"Start New Exercise"
+"btnStartNew":"new drill",
+"btnTopics":"return to topics"
 }

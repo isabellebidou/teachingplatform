@@ -1,6 +1,15 @@
 import mongoose from "mongoose";
 
+
 const { Schema } = mongoose;
+
+const DataSchema = new Schema(
+  {
+    questions: { type: [Object], default: [] },
+    instructions: { type: String }
+  },
+  { _id: false }
+);
 
 const GrammarTopicSchema = new Schema(
   {
@@ -24,12 +33,13 @@ const GrammarTopicSchema = new Schema(
     examples: { type: [String], default: [] },
     commonErrors: { type: [String], default: [] },
     detail: { type: String, default: null },
-    data: {type: Object, default: null},
+    data: {
+      type: [DataSchema],   // 👈 array of objects
+      default: []
+    },
     active: { type: Boolean, default: true }
   },
-  {
-    data: { questions: [Object], instructions: String}
-  },
+
   { timestamps: true }
 );
 
