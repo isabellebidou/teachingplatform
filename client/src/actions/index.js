@@ -106,7 +106,6 @@ export const fetchScripts = () => async (dispatch) => {
 };
 export const fetchGrammarTopics = () => async (dispatch) => {
   const res = await axios.get("/api/grammarTopics_all");
-  //dispatch({ type: FETCH_USER_GRAMMAR_TOPICS, payload: res.data });
   dispatch({ type: FETCH_GRAMMAR_TOPICS, payload: res.data });
 
 };

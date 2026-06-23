@@ -1,5 +1,7 @@
 p, ul{color: #7f5f87;}
-
+.inactive-topic{
+    opacity: 0.4;
+}
 .exercise-div{
 padding-top: 4em;
 position: absolute;
@@ -15,6 +17,9 @@ position: absolute;
   position: fixed;
   bottom: 50px;
   right: 50px;
+}
+.topicsEditMode{
+  
 }
 .quizz{
     background: #fff;
@@ -104,7 +109,30 @@ button:active:not(:disabled) {
 button {
   transition: all 0.2s ease;
 }
+.datasetDivUpdate{
+  border: "2px solid #ccc";
+  margin-bottom: "15px";
+            padding: "10px";
+}
 
+.questionUpdate{
+border: "1px solid #999";
+margin-bottom: "15px";
+padding: "10px";
+}
+.sentenceUpdate{
+   width: "97%"; 
+   margin-bottom: "10px";
+}
+.optionUpdate{
+  display: "flex";
+  align-items: center;
+  gap: "10px";
+  margin-bottom: "8px";
+}
+.optionTextUpdate{
+  flex: 1 ;
+}
 @media screen and (max-width: 800px) and (orientation: portrait) {
     .next-button{
     position: fixed;

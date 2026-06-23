@@ -2,6 +2,21 @@ import mongoose from "mongoose";
 
 
 const { Schema } = mongoose;
+const OptionSchema = new Schema(
+  {
+    text: String,
+    isCorrect: Boolean
+  },
+  { _id: false }
+);
+
+const QuestionSchema = new Schema(
+  {
+    sentence: String,
+    options: [OptionSchema]
+  },
+  { _id: false }
+);
 
 const DataSchema = new Schema(
   {

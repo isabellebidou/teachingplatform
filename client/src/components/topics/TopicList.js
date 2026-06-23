@@ -10,12 +10,14 @@ function TopicList({ topics = [], onSelect, selectedTopic }) {
       {topics.map((topic, index) => (
         <li 
           key={topic._id}
+          className={!topic.active ? "inactive-topic" : ""}
           onClick={() => onSelect(topic)}
           style={{
             cursor: "pointer",
-            fontWeight: selectedTopic?._id === topic._id ? "bold" : "normal",
+            borderRadius:"6%",
+            border: selectedTopic?._id === topic._id ? "bold" : "normal",
             backgroundColor: selectedTopic?._id === topic._id ?   "rgba(183, 187, 184, 0.2)":"rgba(214, 210, 210, 0.1)" ,
-      
+            border:selectedTopic?._id === topic._id ? "1px ,solid ,rgba(205, 44, 160, 1)" : "0px"
           }}
         >
           <h3>{topic.name?.[lang]}</h3>

@@ -10,7 +10,7 @@ import axios from "axios"
 
 function TopicsDashboard({ topics = [], auth, fetchTopics }) {
   const [selectedTopic, setSelectedTopic] = useState(null)
-
+  const [editMode, setEditMode] = useState(false);
   const { t, i18n } = useTranslation("exercise")
   const lang = i18n.language.startsWith("fr") ? "fr" : "en"
   const [search, setSearch] = useState("")
@@ -41,6 +41,7 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
       setSelectedTopic(topics[0])
     }
   }, [topics])
+
 
 
   const [dataSetIndex, setDataSetIndex] = useState(0);
@@ -84,7 +85,7 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
   const handleClick = async (e) => {
     e.preventDefault()
     setIsLoading(true)
-    console.log("selectedTopic", selectedTopic)
+    //console.log("selectedTopic", selectedTopic)
     if (Ai) {
       try {
         const res = await axios.post("/api/exercice", { selectedTopic })
@@ -199,14 +200,18 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
             <div className="placeholder"></div>
           </div>
           <div className="rightp">
-            <TopicDetails topic={selectedTopic} />
+            <TopicDetails 
+            topic={selectedTopic} 
+            editMode={editMode}
+            setEditMode={setEditMode}
+            />
             <div className="placeholder"></div>
           </div>
         </>
       )}
 
       <div className="exercice-div">
-        {!gameStarted && selectedTopic && (
+        {!gameStarted && !editMode && selectedTopic && (
           <button className="exo" onClick={handleClick} disabled={isLoading}>
             {isLoading ? (
               <>
