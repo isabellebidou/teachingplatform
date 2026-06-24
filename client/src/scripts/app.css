@@ -533,7 +533,11 @@ li::marker {
   max-width: 15%;
   border-radius: 50%;
   border-color: var(--darkpurple);
-  padding: 2em;
+  margin: 1.5em;
+    -webkit-box-shadow: inset 1px 3px 6px 0px rgba(0, 0, 0, 0.44);
+  -moz-box-shadow: inset 0px 3px 6px 0px rgba(0, 0, 0, 0.44);
+  box-shadow: inset 1px 3px 6px 0px rgba(0, 0, 0, 0.44);
+
 }
 
 .imgright,
@@ -1281,7 +1285,11 @@ th {
   margin: 1em;
   border: 1px solid #ddd;
   border-radius: 12px;
-  background: white;
+    background-color: var(--evenBackground);
+
+  -webkit-box-shadow: inset 1px 3px 5px 0px rgba(0, 0, 0, 0.44);
+  -moz-box-shadow: inset 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
+  box-shadow: inset 1px 3px 5px 0px rgba(0, 0, 0, 0.44);
 }
 
 .toggle {
@@ -1327,8 +1335,13 @@ th {
   transition: 0.25s;
 }
 .selectedOfferGlobal {
+  margin-top: 2px;
+  border: solid, 0.5px, var(--strongpink);
   background-color: var(--evenBackground);
 
+  -webkit-box-shadow: inset 1px 3px 5px 0px rgba(0, 0, 0, 0.44);
+  -moz-box-shadow: inset 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
+  box-shadow: inset 1px 3px 5px 0px rgba(0, 0, 0, 0.44);
   cursor: pointer;
 
   border-radius: 12px;
