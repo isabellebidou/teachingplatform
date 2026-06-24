@@ -70,13 +70,7 @@ function Header() {
 
   ]
 
-  /*const isOnStress = location.pathname === "/stress"
-  const isOnDashboard = location.pathname === "/dashboard"
-  const isOnDocuments = location.pathname === "/documents"
-  const isHome = location.pathname === "/"
-  const isOnBoard = location.pathname === "/board"
-  const isOnExercice = location.pathname === "/exercice"
-  const isOnTopics = location.pathname === "/topics"*/
+
   const browserLocale = navigator.language || navigator.userLanguage
   const code = browserLocale.split("-")[0]
   const language =

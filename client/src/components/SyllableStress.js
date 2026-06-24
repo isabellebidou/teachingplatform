@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 
 export default function SyllableStressPage() {
   const { t, i18n } = useTranslation("stress")
-  const lang = i18n.language.startsWith("fr") ? "fr" : "en"
+
 
   return (
     <div className="page">
@@ -83,7 +83,7 @@ export default function SyllableStressPage() {
         <section>
           <h2>{t("h2TwoSyllableWords")}</h2>
           <p>{t("pRuleFirstStress")}</p>
-          <p className="stress_warning">{t("pWarningSecondStress")}</p>
+          <p className="stressWarning">{t("pWarningSecondStress")}</p>
 
           <div className="stress_grid">
             <Card title={t("h4FirstSyllable")}>

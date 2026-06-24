@@ -2,15 +2,12 @@ import { useSelector } from "react-redux"
 
 //import Payments from "./Payments";
 import { Link } from "react-router-dom"
-import { withRouter } from "react-router-dom"
-import { fetchCookieValue } from "../actions"
 import { AiOutlineLogout } from "react-icons/ai"
 //import { AiOutlineUser } from "react-icons/ai";
 import { BsPencil } from "react-icons/bs" // <BsPencil />
 import { MdHeadphones } from "react-icons/md";
 import { AiOutlineAudio } from "react-icons/ai" //<AiOutlineAudio />
 import { IoDocumentsOutline } from "react-icons/io5" //<IoDocumentsOutline />
-import { MdOutlineSchool } from "react-icons/md" //<MdOutlineSchool />
 import { FaUsers } from "react-icons/fa"
 import { AiOutlineHome } from "react-icons/ai"
 import { FaBookOpen } from "react-icons/fa6"
@@ -26,17 +23,50 @@ function MobileMenu() {
   const renderMobileMenu = () => {
     const isAdmin = auth && auth.type === "admin"
     const isGuest = auth && auth.type === "guest"
-    const isOnDashboard = location.pathname === "/dashboard"
-    const isOnDocuments = location.pathname === "/documents"
-    const isOnStress = location.pathname === "/stress"
-    const isHome = location.pathname === "/"
-    const isOnBoard = location.pathname === "/board"
-    const isOnExercice = location.pathname === "/exercice"
-    const isOnTopics = location.pathname === "/topics"
+    
+      const navItems = [
+       {
+      path: "/",
+      icon: AiOutlineHome,
+      visible: true,
+    },
+    {
+      path: "/topics",
+      icon: FaBookOpen,
+      visible: true,
+    },
+    {
+      path: "/users",
+      icon: FaUsers,
+      visible: isAdmin,
+    },
+    {
+      path: "/documents",
+      icon: IoDocumentsOutline,
+      visible: auth && isAdmin,
+    },
+    {
+      path: "/dashboard",
+      icon: AiOutlineAudio,
+      visible: auth && !isGuest,
+    },
+    {
+      path: "/board",
+      icon: BsPencil,
+      visible: auth && !isGuest,
+    },
+ 
+    {
+      path: "/stress",
+      icon: MdHeadphones,
+      visible: true,
+    },
+
+  ]
 
     return (
       <ul id="mobilemenuul">
-        {!auth && isHome && (
+        {!auth && (
           <a key={`${6}gg`} href="/auth/google">
             <img
               src="/btn_google_signin_dark_normal_web.png"
@@ -44,89 +74,24 @@ function MobileMenu() {
             />
           </a>
         )}
-        {auth && isAdmin && (
-          <li>
-            <Link key={`6users`} to="/users" className="mobilemenuli button">
-              <FaUsers style={{ color: "#7f5f87" }} key={"FaUsers"} />
-            </Link>
-          </li>
-        )}
-        {auth &&
-          !isOnDashboard &&
-          !isGuest && ( //ok
-            <li>
-              <Link
-                key={`${6}dashboard`}
-                to="/dashboard"
-                className="mobilemenuli button"
-              >
-                <AiOutlineAudio style={{ color: "#7f5f87" }} key={"FaUsers"} />
-              </Link>
-            </li>
-          )}
-        {auth &&
-          !isOnDocuments &&
-          !isGuest && ( //
-            <li>
-              <Link
-                key={`${2}docs`}
-                to="/documents"
-                className="mobilemenuli button"
-              >
-                <IoDocumentsOutline
-                  style={{ color: "#7f5f87" }}
-                  key={"IoDocumentsOutline"}
-                />
-              </Link>
-            </li>
-          )}
-        {!isHome && (
-          <li>
-            <Link key={`${3}home`} to={"/"} className="mobilemenuli button">
-              <AiOutlineHome
-                style={{ color: "#7f5f87" }}
-                key={"AiOutlineHome"}
-              />
-            </Link>
-          </li>
-        )}
+{navItems
+          .filter((item) => item.visible)
+          .map((item) => {
+            const Icon = item.icon
+            const isActive = location.pathname === item.path
 
-        {auth && isOnBoard === false && isGuest === false && (
-          <li>
-            <Link key={`${9}board`} to="/board" className="mobilemenuli button">
-              <BsPencil style={{ color: "#7f5f87" }} key={"FaUBsPencils"} />
-            </Link>
-          </li>
-        )}
-
-        {/*!isOnExercice && (
-          <li>
-            <Link
-              key={8 + `exercice`}
-              className="mobilemenuli button"
-              to="/exercice"
-            >
-              <MdOutlineSchool
-                style={{ color: "#7f5f87" }}
-                key={"AiOutlineAudio"}
-              />
-            </Link>
-          </li>
-        )*/}
-        {!isOnStress && (
-          <li>
-            <Link key={`6stress`} to="/stress" className="mobilemenuli button">
-              <MdHeadphones style={{ color: "#7f5f87" }} key={"MdHeadphones"} />
-            </Link>
-          </li>
-        )}
-        {!isOnTopics && (
-          <li>
-            <Link key={`3topics`} to="/topics" className="mobilemenuli button">
-              <FaBookOpen style={{ color: "#7f5f87" }} key={"FaBookOpen"} />
-            </Link>
-          </li>
-        )}
+            return (
+              <li  className="mobilemenuli button">
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`button ${isActive ? "onPathBtnMenuMobile" : "btnMenuMobile"}`}
+              >
+                <Icon />
+              </Link>
+              </li>
+            )
+          })}
         {auth && (
           <li>
             <a
@@ -141,13 +106,6 @@ function MobileMenu() {
             </a>
           </li>
         )}
-
-        {/*<li><Link key={3 + '/parasitedetox'}
-                    to={'/parasitedetox'}
-                    className="mobilemenuli button"
-                >
-                    link1
-                </Link></li>*/}
       </ul>
     )
   }

@@ -211,6 +211,7 @@ fieldset {
 
   .button,
   button {
+    background-color: none;
     font-size: 2em;
     border-radius: 8%;
     margin: 0.4em;
@@ -308,7 +309,6 @@ fieldset {
 
   .mobilemenuli,
   .credits {
-    padding: 1em;
     margin: auto auto;
 
     width: 90%;
