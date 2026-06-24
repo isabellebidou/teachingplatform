@@ -7,7 +7,7 @@ import { fetchCookieValue } from "../actions"
 
 import { AiOutlineLogout, AiOutlineAudio, AiOutlineHome } from "react-icons/ai"
 import { BsPencil } from "react-icons/bs"
-import { MdHeadphones } from "react-icons/md";
+import { MdHeadphones } from "react-icons/md"
 import { IoDocumentsOutline } from "react-icons/io5"
 import { MdOutlineSchool } from "react-icons/md"
 import { FaUsers } from "react-icons/fa"
@@ -27,19 +27,60 @@ function Header() {
   useEffect(() => {
     fetchCookieValue()
   }, [fetchCookieValue])
-
   const isAdmin = auth && auth.type === "admin"
   const isGuest = auth && auth.type === "guest"
-  const isOnStress = location.pathname === "/stress"
+
+  const navItems = [
+       {
+      path: "/",
+      icon: AiOutlineHome,
+      visible: true,
+    },
+    {
+      path: "/topics",
+      icon: FaBookOpen,
+      visible: true,
+    },
+    {
+      path: "/users",
+      icon: FaUsers,
+      visible: isAdmin,
+    },
+    {
+      path: "/documents",
+      icon: IoDocumentsOutline,
+      visible: auth && isAdmin,
+    },
+    {
+      path: "/dashboard",
+      icon: AiOutlineAudio,
+      visible: auth && !isGuest,
+    },
+    {
+      path: "/board",
+      icon: BsPencil,
+      visible: auth && !isGuest,
+    },
+ 
+    {
+      path: "/stress",
+      icon: MdHeadphones,
+      visible: true,
+    },
+
+  ]
+
+  /*const isOnStress = location.pathname === "/stress"
   const isOnDashboard = location.pathname === "/dashboard"
   const isOnDocuments = location.pathname === "/documents"
   const isHome = location.pathname === "/"
   const isOnBoard = location.pathname === "/board"
   const isOnExercice = location.pathname === "/exercice"
-  const isOnTopics = location.pathname === "/topics"
+  const isOnTopics = location.pathname === "/topics"*/
   const browserLocale = navigator.language || navigator.userLanguage
   const code = browserLocale.split("-")[0]
-  const language = auth?.language ||  code || navigator.language || navigator.userLanguage
+  const language =
+    auth?.language || code || navigator.language || navigator.userLanguage
 
   useEffect(() => {
     if (isGuest) {
@@ -49,80 +90,51 @@ function Header() {
 
   const renderContent = () => (
     <>
-    <h2 className="headertitle"> Izzy Speak English</h2>
+      <h2 className="headertitle"> Izzy Speak English</h2>
 
+      <div className="authentication">
+        {/* 🌐 Language button */}
+        {auth && (
+          <button
+            id="languagebtn"
+            className="button"
+            onClick={() => setShowSettings(true)}
+          >
+            🌐 {language.toLowerCase()}
+          </button>
+        )}
+        {navItems
+          .filter((item) => item.visible)
+          .map((item) => {
+            const Icon = item.icon
+            const isActive = location.pathname === item.path
 
-
-    <div className="authentication">
-      
-
-      {/* 🌐 Language button */}
-      {auth && (
-        <button  id ="languagebtn" className="button" onClick={() => setShowSettings(true)}>
-          🌐 {language.toLowerCase()}
-        </button>
-      )}
-      {isAdmin && (
-        <a className="button" href="/users">
-          <FaUsers style={{ color: "#7f5f87" }} />
-        </a>
-      )}
-
-      {auth && !isOnDocuments && isAdmin && (
-        <Link to="/documents" className="button">
-          <IoDocumentsOutline style={{ color: "#7f5f87" }} />
-        </Link>
-      )}
-
-      {auth && !isOnDashboard && !isGuest && (
-        <Link to="/dashboard" className="button">
-          <AiOutlineAudio style={{ color: "#7f5f87" }} />
-        </Link>
-      )}
-
-      {auth && !isOnBoard && !isGuest && (
-        <Link to="/board" className="button">
-          <BsPencil style={{ color: "#7f5f87" }} />
-        </Link>
-      )}
-
-      {/*!isOnExercice && (
-        <Link to="/exercice" className="button">
-          <MdOutlineSchool style={{ color: "#7f5f87" }} />
-        </Link>
-      )*/}
-
-      {!isHome && (
-        <Link to="/" className="button">
-          <AiOutlineHome style={{ color: "#7f5f87" }} />
-        </Link>
-      )}
-      {!isOnStress && (
-        <a className="button" href="/stress">
-          <MdHeadphones style={{ color: "#7f5f87" }} />
-        </a>
-      )}
-      {!isOnTopics && (
-        <a className="button" href="/topics">
-          <FaBookOpen style={{ color: "#7f5f87" }} />
-        </a>
-      )}
-      {auth && (
-        <a className="button" href="/api/logout">
-          <AiOutlineLogout style={{ color: "#7f5f87" }} />
-        </a>
-      )}
-      {!auth && (
-        <a href="/auth/google">
-          <img
-            src="/btn_google_signin_dark_normal_web.png"
-            loading="lazy"
-            alt="sign in with google"
-          />
-        </a>
-      )}
-    </div>
-        </>
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`button ${isActive ? "onPath" : ""}`}
+              >
+                <Icon />
+              </Link>
+            )
+          })}
+        {auth && (
+          <a className="button" href="/api/logout">
+            <AiOutlineLogout style={{ color: "#7f5f87" }} />
+          </a>
+        )}
+        {!auth && (
+          <a href="/auth/google">
+            <img
+              src="/btn_google_signin_dark_normal_web.png"
+              loading="lazy"
+              alt="sign in with google"
+            />
+          </a>
+        )}
+      </div>
+    </>
   )
 
   return (
@@ -135,7 +147,7 @@ function Header() {
         <MenuButton />
       </span>
 
-<Settings
+      <Settings
         visible={showSettings}
         onClose={() => setShowSettings(false)}
         auth={auth}

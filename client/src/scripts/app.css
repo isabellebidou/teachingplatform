@@ -527,6 +527,62 @@ li::marker {
   text-align: center;
   text-decoration: none;
 }
+.nav-icon {
+   display: block;
+  padding: 8px;
+  border: 0.5px solid #c1adc6;
+  border-radius: 6%;
+  font-style: italic;
+  text-align: center;
+  text-decoration: none;
+  color: #45a049;
+}
+.button,
+button {
+  background-color: rgba(248, 245, 245, 0.89);
+  border: 0.4em;
+  border-color: #b794c0;
+  -webkit-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.44);
+  -moz-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.44);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.44);
+  color: #7f5f87;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: larger;
+  border-radius: 4%;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+
+  cursor: pointer;
+}
+
+a.button:hover,
+button:hover,
+.button:hover {
+  border: 0.2em;
+  border-color: #96ccba;
+  color: #b794c0;
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.44);
+  -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.44);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.44);
+}
+
+a.button:active,
+button:active,
+a.button:active {
+  border: 0.3em;
+  border-color: #96ccba;
+  color: #aa25bc;
+}
+
+.onPath {
+  background-color: rgba(183, 187, 184, 0.1);
+  color: var(--strongpink);
+  border: var(--strongpink), 0.5px , solid;
+  -webkit-box-shadow:  inset 1px 2px 6px 0px rgba(0, 0, 0, 0.44);
+  -moz-box-shadow:  inset 0px 2px 6px 0px rgba(0, 0, 0, 0.44);
+  box-shadow:  inset 1px 2px 6px 0px rgba(0, 0, 0, 0.44);}
 
 .me {
   float: right;
@@ -649,44 +705,7 @@ label {
 .right {
   float: right;
 }
-.button,
-button {
-  background-color: rgba(248, 245, 245, 0.89);
-  border: 0.4em;
-  border-color: #b794c0;
-  -webkit-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.44);
-  -moz-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.44);
-  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.44);
-  color: #7f5f87;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: larger;
-  border-radius: 4%;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
 
-  cursor: pointer;
-}
-
-a.button:hover,
-button:hover,
-.button:hover {
-  border: 0.2em;
-  border-color: #96ccba;
-  color: #b794c0;
-  -webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.44);
-  -moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.44);
-  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.44);
-}
-
-a.button:active,
-button:active,
-a.button:active {
-  border: 0.3em;
-  border-color: #96ccba;
-  color: #aa25bc;
-}
 
 .actionbook {
   position: fixed;
