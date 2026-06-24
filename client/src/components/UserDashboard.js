@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { connect } from "react-redux"
+import { connect , useSelector} from "react-redux"
 import { fetchUserAudios } from "../actions"
 import { fetchScripts } from "../actions"
 import { fetchUserAudioUrl } from "../actions"
@@ -18,6 +18,7 @@ function UserDashboard({
   const [selectedScript, setSelectedScript] = useState(null)
   const [audio, setAudio] = useState(null)
   const [audioUrl, setAudioUrl] = useState(null)
+
 
   // 🔄 Fetch audios on mount AND when refreshKey changes
   useEffect(() => {
@@ -64,6 +65,7 @@ function UserDashboard({
           <fieldset className="readDiv">{selectedScript.sentence}</fieldset>
         )}
         </div>
+
         <AudioRecorder
           script={selectedScript}
           onUploadSuccess={triggerRefresh}

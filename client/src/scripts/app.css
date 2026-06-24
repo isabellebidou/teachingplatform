@@ -1391,3 +1391,7 @@ th {
     color: #7f5f87;
 
   }
+  .recordingTimer{
+    color: var(--strongpink);
+    font-size: 1em;
+  }

@@ -60,14 +60,14 @@ export default (app) => {
       const grammarTopics = await GrammarTopic.find({ level: req.user.level })
 
       res.send(grammarTopics)
-      console.log("grammarTopics", grammarTopics.length)
+      //console.log("grammarTopics", grammarTopics.length)
     } catch (err) {
       error(err)
       res.status(500).send("Failed to fetch grammarTopics")
     }
   })
   app.get("/api/grammarTopics_all", async (req, res) => {
-    console.log(" get grammarTopics_all")
+    //console.log(" get grammarTopics_all")
     try {
       log("app.get   /api/grammarTopics_all from grammarTopicsRoutes ")
 

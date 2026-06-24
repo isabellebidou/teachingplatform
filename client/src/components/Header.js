@@ -54,7 +54,7 @@ function Header() {
     {
       path: "/dashboard",
       icon: AiOutlineAudio,
-      visible: auth && !isGuest,
+      visible: auth,
     },
     {
       path: "/board",

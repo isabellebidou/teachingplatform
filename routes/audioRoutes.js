@@ -25,63 +25,68 @@ const Audio = mongoose.model("audios")
 const Script = mongoose.model("Script")
 
 export default (app) => {
-app.post(
-  "/api/audio",
-  requireLogin,
-  upload.single("audio"),
-  async (req, res) => {
-    try {
-      console.log("📥 [audio] request received");
-
-      if (!req.file) {
-        console.error("❌ [audio] No file in req.file");
-        return res.status(400).send("No audio file provided");
-      }
-
-      console.log("📦 [audio] file received:", {
-        mimetype: req.file.mimetype,
-        size: req.file.size,
-        originalname: req.file.originalname,
-      });
-
-      const { buffer, mimetype, originalname } = req.file;
-      const { scriptId, lang } = req.body;
-
-      // ================= SCRIPT LOAD =================
-      let script;
+  app.post(
+    "/api/audio",
+    requireLogin,
+    upload.single("audio"),
+    async (req, res) => {
       try {
-        script = await Script.findById(scriptId);
-        if (!script) {
-         // console.error("❌ [audio] Script not found:", scriptId);
-          return res.status(404).send("Script not found");
+        console.log("📥 [audio] request received")
+
+        if (!req.file) {
+          console.error("❌ [audio] No file in req.file")
+          return res.status(400).send("No audio file provided")
         }
-      } catch (err) {
-       // console.error("❌ [audio] Script DB error:", err);
-        return res.status(500).send("Script lookup failed");
-      }
 
-    //  console.log("📄 [audio] script loaded:", script._id);
+        console.log("📦 [audio] file received:", {
+          mimetype: req.file.mimetype,
+          size: req.file.size,
+          originalname: req.file.originalname,
+        })
+        if (user.role !== "admin" && req.file.size > 250000) {
+          return res.status(403).json({
+            message: "out of capacity",
+          })
+        }
 
-      // ================= TRANSCRIPTION =================
-      let transcriptionResult;
-      try {
-        transcriptionResult = await transcribeAudio(
-          buffer,
-          mimetype,
-          originalname,
-        );
-      } catch (err) {
-     //   console.error("❌ [audio] transcription failed:", err);
-        return res.status(500).send("Transcription failed");
-      }
+        const { buffer, mimetype, originalname } = req.file
+        const { scriptId, lang } = req.body
 
-      const transcriptText = transcriptionResult.text;
-      const wordsWithTimings = transcriptionResult.words;
+        // ================= SCRIPT LOAD =================
+        let script
+        try {
+          script = await Script.findById(scriptId)
+          if (!script) {
+            // console.error("❌ [audio] Script not found:", scriptId);
+            return res.status(404).send("Script not found")
+          }
+        } catch (err) {
+          // console.error("❌ [audio] Script DB error:", err);
+          return res.status(500).send("Script lookup failed")
+        }
 
-     // console.log("📝 [audio] transcript:", transcriptText);
+        //  console.log("📄 [audio] script loaded:", script._id);
 
-      // ================= WAV CONVERSION =================
-      /*
+        // ================= TRANSCRIPTION =================
+        let transcriptionResult
+        try {
+          transcriptionResult = await transcribeAudio(
+            buffer,
+            mimetype,
+            originalname,
+          )
+        } catch (err) {
+          //   console.error("❌ [audio] transcription failed:", err);
+          return res.status(500).send("Transcription failed")
+        }
+
+        const transcriptText = transcriptionResult.text
+        const wordsWithTimings = transcriptionResult.words
+
+        // console.log("📝 [audio] transcript:", transcriptText);
+
+        // ================= WAV CONVERSION =================
+        /*
       
       let wavBuffer;
       try {
@@ -94,8 +99,8 @@ app.post(
       console.log("🔄 [audio] WAV conversion OK");
       */
 
-      // ================= STRESS ENGINE =================
-   /*   let stressResult;
+        // ================= STRESS ENGINE =================
+        /*   let stressResult;
       try {
         const payload = buildStressRequest({
           scriptText: script.sentence,
@@ -109,52 +114,55 @@ app.post(
         return res.status(500).send("Stress analysis failed");
       }*/
 
-    //  console.log("🧠 [audio] stress analysis OK");
+        //  console.log("🧠 [audio] stress analysis OK");
 
-    //  const stressFeedback = generateStressFeedback(stressResult, lang);
+        //  const stressFeedback = generateStressFeedback(stressResult, lang);
 
-      // ================= TEXT FEEDBACK =================
-      const feedback = generateFeedback(
-        lang,
-        compareWords(
-          normalize(script.sentence).split(" "),
-          normalize(transcriptText).split(" "),
-        ),
-        transcriptText,
-      );
+        // ================= TEXT FEEDBACK =================
+        const feedback = generateFeedback(
+          lang,
+          compareWords(
+            normalize(script.sentence).split(" "),
+            normalize(transcriptText).split(" "),
+          ),
+          transcriptText,
+        )
 
-      // ================= STORAGE =================
-      const s3Key = `audios/${req.user.id}/${Date.now()}-${originalname}`;
+        // ================= STORAGE =================
+        const s3Key = `audios/${req.user.id}/${Date.now()}-${originalname}`
 
-      try {
-        await uploadFile(buffer, s3Key, mimetype);
+        try {
+          await uploadFile(buffer, s3Key, mimetype)
+        } catch (err) {
+          //   console.error("❌ [audio] S3 upload failed:", err);
+          return res.status(500).send("Upload failed")
+        }
+
+        //  console.log("☁️ [audio] uploaded to S3:", s3Key);
+
+        // ================= DB SAVE =================
+        const audio = await new Audio({
+          _user: req.user.id,
+          _script: scriptId,
+          s3Key,
+          mimeType: mimetype,
+          transcript: transcriptText,
+          feedback,
+          //  stressFeedback,
+        }).save()
+
+        console.log("💾 [audio] saved to DB:", audio._id)
+        await User.findByIdAndUpdate(req.user.id, {
+          $inc: { numberOfRecordings: 1 },
+        })
+
+        res.send(audio)
       } catch (err) {
-     //   console.error("❌ [audio] S3 upload failed:", err);
-        return res.status(500).send("Upload failed");
+        //  console.error("🔥 [audio] UNHANDLED ERROR:", err);
+        res.status(500).send("Audio upload failed")
       }
-
-    //  console.log("☁️ [audio] uploaded to S3:", s3Key);
-
-      // ================= DB SAVE =================
-      const audio = await new Audio({
-        _user: req.user.id,
-        _script: scriptId,
-        s3Key,
-        mimeType: mimetype,
-        transcript: transcriptText,
-        feedback,
-       //  stressFeedback,
-      }).save();
-
-      console.log("💾 [audio] saved to DB:", audio._id);
-
-      res.send(audio);
-    } catch (err) {
-    //  console.error("🔥 [audio] UNHANDLED ERROR:", err);
-      res.status(500).send("Audio upload failed");
-    }
-  },
-);
+    },
+  )
 
   function findAudiosKeys(ids) {
     return new Promise((resolve, reject) => {
