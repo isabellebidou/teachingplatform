@@ -180,6 +180,7 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
 
   return (
     <div className="page">
+      <div className="topicsContainer">
       {!gameStarted && (
         <>
           <div className="leftp">
@@ -211,17 +212,7 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
       )}
 
       <div className="exercice-div">
-        {!gameStarted && !editMode && selectedTopic && (
-          <button className="exo" onClick={handleClick} disabled={isLoading}>
-            {isLoading ? (
-              <>
-                <span className="loader"></span> {t("btnLoading")}
-              </>
-            ) : (
-              <>{t("btnGenerate")}</>
-            )}
-          </button>
-        )}
+
 
         {/* once exercice is generated and started */}
         {gameStarted && selectedTopic && questions.length > 0 &&
@@ -314,6 +305,18 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
             <button  class="largeStopBtn" onClick={resetGame}>{t("btnTopics")}</button>
           </div>
         )}
+                {!gameStarted && !editMode && selectedTopic && (
+          <button className="exo" onClick={handleClick} disabled={isLoading}>
+            {isLoading ? (
+              <>
+                <span className="loader"></span> {t("btnLoading")}
+              </>
+            ) : (
+              <>{t("btnGenerate")}</>
+            )}
+          </button>
+        )}
+      </div>
       </div>
     </div>
   )

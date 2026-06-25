@@ -143,8 +143,8 @@ function StarReview({ auth }) {
                 )}
 
             </div>
-            <textarea id="comment" placeholder={handlePlaceHolder()} onChange={(event) => setComment(event.target.value)}></textarea>
-            <textarea id="name" placeholder="type your name: Jane D." onChange={(event) => setName(event.target.value)}></textarea>
+            <textarea  className="starReviewTextarea" id="comment" placeholder={handlePlaceHolder()} onChange={(event) => setComment(event.target.value)}></textarea>
+            <textarea  className="starReviewTextarea"id="name" placeholder="type your name: Jane D." onChange={(event) => setName(event.target.value)}></textarea>
             <button id="reviewbutton" className={` ${!number && "disabled"} `} onClick={handleClick}>Submit</button>
           </div>
         </div>
