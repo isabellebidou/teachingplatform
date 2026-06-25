@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom"
 import MenuButton from "./MenuButton"
 //https://react-icons.github.io/react-icons/search/
 import { fetchCookieValue } from "../actions"
-
+import { MdLanguage } from "react-icons/md";
 import { AiOutlineLogout, AiOutlineAudio, AiOutlineHome } from "react-icons/ai"
 import { BsPencil } from "react-icons/bs"
 import { MdHeadphones } from "react-icons/md"
@@ -99,7 +99,7 @@ function Header() {
             className="button"
             onClick={() => setShowSettings(true)}
           >
-            🌐 {language.toLowerCase()}
+            <MdLanguage style={{ color: "#7f5f87" }}/> {language.toLowerCase()}
           </button>
         )}
         {navItems

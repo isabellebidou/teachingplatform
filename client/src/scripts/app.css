@@ -593,6 +593,7 @@ a.button:active {
 .onPath:disabled {
   color:grey;
   opacity: 0.4;
+  border: grey, solid, 0.5px;
   cursor: not-allowed;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;

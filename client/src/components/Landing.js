@@ -9,7 +9,7 @@ import { fetchCookieValue, updateCookieAcceptance } from "../actions"
 import { useTranslation } from "react-i18next"
 import StarReview from "./StarReview"
 import PricingCard from "./PricingCard"
-import { landingOffers } from "../locales/landingOffers"
+//import { landingOffers } from "../locales/landingOffers"
 import PaymentDetails from "./PaymentDetails"
 import { OFFERS } from "../locales/landingOffers"
 
@@ -77,7 +77,7 @@ const Landing = () => {
   const [showPaymentDetails, setShowPaymentDetails] = useState(false)
   const [trainingType, setTrainingType] = useState("individual")
   const [mode, setMode] = useState("online")
-  const [selectedOffer, setSelectedOffer] = useState("pilot")
+  //const [selectedOffer, setSelectedOffer] = useState("pilot")
   const [selectedOfferCode, setSelectedOfferCode] = useState("O_COACHING_PILOT")
 
   const currentOffer = OFFERS.find((o) => o.code === selectedOfferCode)
@@ -221,7 +221,7 @@ const Landing = () => {
                   href={currentOffer.paymentLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="payment actionupload"
+                  className="actionupload"
                   onClick={(e) => e.stopPropagation()}
                 >
                   Stripe
