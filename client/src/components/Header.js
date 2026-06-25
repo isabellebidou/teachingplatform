@@ -9,7 +9,7 @@ import { AiOutlineLogout, AiOutlineAudio, AiOutlineHome } from "react-icons/ai"
 import { BsPencil } from "react-icons/bs"
 import { MdHeadphones } from "react-icons/md"
 import { IoDocumentsOutline } from "react-icons/io5"
-import { MdOutlineSchool } from "react-icons/md"
+//import { MdOutlineSchool } from "react-icons/md"
 import { FaUsers } from "react-icons/fa"
 import { FaBookOpen } from "react-icons/fa6"
 
@@ -26,50 +26,55 @@ function Header() {
 
   useEffect(() => {
     fetchCookieValue()
-  }, [fetchCookieValue])
+  }, )
   const isAdmin = auth && auth.type === "admin"
   const isGuest = auth && auth.type === "guest"
 
   const navItems = [
-       {
+    {
       path: "/",
       icon: AiOutlineHome,
       visible: true,
+      disabled: false,
     },
     {
       path: "/topics",
       icon: FaBookOpen,
       visible: true,
+      disabled: false,
     },
     {
       path: "/users",
       icon: FaUsers,
       visible: isAdmin,
+      disabled: false,
     },
     {
       path: "/documents",
       icon: IoDocumentsOutline,
       visible: auth && isAdmin,
-    },
-    {
-      path: "/dashboard",
-      icon: AiOutlineAudio,
-      visible: auth,
+      disabled: false,
     },
     {
       path: "/board",
       icon: BsPencil,
       visible: auth && !isGuest,
+      disabled: false,
     },
- 
+
     {
       path: "/stress",
       icon: MdHeadphones,
       visible: true,
+      disabled: false,
     },
-
+    {
+      path: "/dashboard",
+      icon: AiOutlineAudio,
+      visible: true,
+      disabled: !auth || isGuest ? true : false,
+    },
   ]
-
 
   const browserLocale = navigator.language || navigator.userLanguage
   const code = browserLocale.split("-")[0]
@@ -107,7 +112,10 @@ function Header() {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`button ${isActive ? "onPath" : ""}`}
+                onClick={(e) => {
+                  if (item.disabled) e.preventDefault()
+                }}
+                className={`button ${isActive ? "onPath" : ""}${item.disabled ? "onPathDisabled" : ""}`}
               >
                 <Icon />
               </Link>

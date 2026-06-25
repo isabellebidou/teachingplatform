@@ -293,7 +293,7 @@ const Landing = () => {
           <h2>{t("h2Contact")}</h2>
         </legend>
 
-        <div id="contact">
+        <div id="contact" className="bottomItem">
           <img
             className="me"
             src="/isabellebidou.png"

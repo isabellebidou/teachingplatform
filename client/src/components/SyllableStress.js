@@ -351,7 +351,7 @@ function StressTable({ t }) {
 
   return (
     <section>
-      <table className="stress_table">
+      <table className="stress_table bottomItem" >
         <thead>
           <tr>
             <th className="stress_th">{t("thFirst")}</th>
