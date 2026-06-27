@@ -48,7 +48,10 @@
     /* background-color: #2196F3;  Comment this out later to remove the background color when not needed */
     padding: 5px;
   }
-
+p, h1, h2, h3, fieldset, table{
+  margin-left: 10px;
+    margin-right: 10px;
+}
   .header {
     width: 100%;
     height: 10%;
@@ -56,9 +59,9 @@
     left: 0%;
     margin-bottom: 5%;
   }
-.h2{
-  margin: 0.2em;
-}
+  .h2 {
+    margin: 0.2em;
+  }
   .authentication > * {
     display: none;
   }
@@ -109,12 +112,12 @@
     width: 90%;
     height: auto;
   }
-fieldset {
-  left: 0px;
-  width: 96%;
-  margin: 0%;
-  padding: 1%;
-}
+  fieldset {
+    left: 0px;
+    width: 96%;
+    margin: 0%;
+    padding: 1%;
+  }
 
   .headertitle {
     position: absolute;
@@ -227,27 +230,27 @@ fieldset {
     position: sticky;
     bottom: 3%;
   }
-   .exo {
+  .exo {
     width: 40%;
     padding: 0px 0px;
     margin: 0px 0px;
     height: 2em;
     top: 13%;
     right: 1%;
-  position: fixed;
-     font-size: 1.5em;
+    position: fixed;
+    font-size: 1.5em;
   }
-    .scriptSelect {
-     position: fixed;
+  .readDivContainer {
+    position: fixed;
     top: 13%;
-    width: 40%;
-        height: 2em;
+    width: 90%;
+    height: 2em;
   }
-    #selectSearch {
-  position: fixed;
+
+  #selectSearch {
+    position: fixed;
     top: 13%;
-      width: 50%;
-  
+    width: 50%;
   }
 
   .rightbutton {
@@ -332,6 +335,25 @@ fieldset {
     border-radius: 10%;
   }
 
+  .btnMenuMobile {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+  .onPathBtnMenuMobile {
+    background-color: rgba(183, 187, 184, 0.1);
+    color: var(--strongpink);
+    border: 0px;
+  }
+  .mobileMenuIcon {
+    padding: 0.3em;
+    border: 0px;
+    background-color: none;
+    font-size: 1.5em;
+    border-radius: 8%;
+    margin: 0.1em;
+    cursor: pointer;
+  }
   .left {
     position: fixed;
     width: 100%;
@@ -454,14 +476,14 @@ fieldset {
   .placeholder {
     height: 70px;
   }
-.quizz{
-  position: fixed;
-  width: 98%;
-  height: 50%;
-  bottom: 8%;
-  right: 1%;
-  overflow: scroll;
-}
+  .quizz {
+    position: fixed;
+    width: 98%;
+    height: 50%;
+    bottom: 8%;
+    right: 1%;
+    overflow: scroll;
+  }
   .stress_container {
     width: 100%;
     margin: auto auto;
@@ -503,10 +525,6 @@ fieldset {
     overflow-x: scroll;
   }
 
-
-
-
-
   .pricingCardPrice {
     font-size: 1.2em;
     font-weight: bold;
@@ -523,21 +541,19 @@ fieldset {
     font-size: 1.1em;
     margin: 0.1em;
   }
-  .toggles{
-  display: block;
-
-}
+  .toggles {
+    display: block;
+  }
   .toggleContainer {
     width: 98%;
     display: grid;
-     grid-template-columns: auto auto;
+    grid-template-columns: auto auto;
     gap: 0.25em;
     margin: 0.5em;
   }
 
   .toggle {
-  
-width: 8em;
+    width: 8em;
     padding: 0.6em;
     margin: 0.4em;
 
@@ -551,24 +567,22 @@ width: 8em;
   /* ---------- Pricing Cards ---------- */
 
   .pricingGrid {
-  display: grid ;
-  grid-template-columns: auto auto auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
 
     gap: 0em;
 
     margin: 0em;
-    padding: 0em;;
+    padding: 0em;
   }
 
   .pricingCard {
-  
-
     min-height: auto;
 
     margin-right: 0.3em;
   }
 
-  .pricingCard{
+  .pricingCard {
     font-size: 1.15em;
   }
 
@@ -590,7 +604,6 @@ width: 8em;
   }
 
   .selectedOffer h3 {
-
     text-align: center;
   }
 
@@ -599,7 +612,7 @@ width: 8em;
 
     text-align: center;
 
-    margin: 0.2em ;
+    margin: 0.2em;
     color: var(--strongpink);
   }
 
@@ -608,16 +621,16 @@ width: 8em;
 
     line-height: 1.7;
   }
-.payment{
-  width: 5.5em ;
-  height: 2.3em;
-  font-size: 1.3em;
+  .payment {
+    width: 5.5em;
+    height: 2.3em;
+    font-size: 1.3em;
 
-    cursor:pointer;
+    cursor: pointer;
 
-   border-radius: 12px;
-   text-decoration: none;
+    border-radius: 12px;
+    text-decoration: none;
 
-    transition:.25s;
-}
+    transition: 0.25s;
+  }
 }

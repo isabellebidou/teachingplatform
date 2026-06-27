@@ -76,14 +76,24 @@ body,
   column-rule: 2px outset rgb(230, 226, 226);
   width: 100%;
 }
-fieldset,
-.exercice-div {
+fieldset {
   width: 80%;
   margin-left: 10%;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.4);
+  text-align: justify;
+}
+
+.exercice-div {
+  width: 80%;
+  height: 80%;
+  overflow-y: scroll;
+  margin-left: 10%;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   text-align: justify;
 }
 
@@ -615,16 +625,7 @@ a.button:active {
   box-shadow: none;
 }
 
-.btnMenuMobile {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-.onPathBtnMenuMobile {
-  background-color: rgba(183, 187, 184, 0.1);
-  color: var(--strongpink);
-  border: var(--strongpink), 0.5px, solid;
-}
+
 
 .me {
   float: right;
@@ -632,6 +633,7 @@ a.button:active {
   border-radius: 50%;
   border-color: var(--darkpurple);
   margin: 1.5em;
+  padding: 0em;
   -webkit-box-shadow: inset 1px 3px 6px 0px rgba(0, 0, 0, 0.44);
   -moz-box-shadow: inset 0px 3px 6px 0px rgba(0, 0, 0, 0.44);
   box-shadow: inset 1px 3px 6px 0px rgba(0, 0, 0, 0.44);
@@ -1423,5 +1425,5 @@ th {
   font-size: 1em;
 }
 .bottomItem{
-  margin-bottom: 200px;
+  margin-bottom: 250px;
 }
