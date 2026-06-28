@@ -38,6 +38,7 @@ const Landing = () => {
   const handleDecline = () => {
     dispatch(updateCookieAcceptance(false))
   }
+  /*
   const toggleVisibility = () => {
     setVisibility(visibility === "visible" ? "hidden" : "visible")
     const signin = document.getElementById("signin")
@@ -45,7 +46,7 @@ const Landing = () => {
       signin.style.visibility =
         signin.style.visibility === "visible" ? "hidden" : "visible"
     }
-  }
+  }*/
   const renderFaqForm = () => {
     if (auth && auth.type === "admin") return <FaqForm />
     return null
@@ -100,7 +101,7 @@ const Landing = () => {
           <button className="actionbook">{t("btnActionbook")}</button>
         </a>
       )}
-      {!auth && visibility === "visible" && (
+      {/* Training{!auth && visibility === "visible" && (
         <span className="actionsign button" id="signin">
           {t("btnActionsign")}
           <br />
@@ -116,7 +117,7 @@ const Landing = () => {
             />
           </a>
         </span>
-      )}
+      )}*/}
 
       <fieldset>
         <legend>
@@ -186,50 +187,65 @@ const Landing = () => {
 
         {/* Selected offer */}
         <div className="selectedOfferGlobal">
+          <div className="selectedOffer center">
+            {currentOffer && (
+              <>
+                <div className="selectedOfferChildren">
+                  {auth?.language === "fr"
+                    ? currentOffer.titleFr
+                    : currentOffer.titleEn}
+                </div>
 
-        <div className="selectedOffer center">
-          {currentOffer && (
-            <>
-              <div className="selectedOfferChildren">
-                {auth?.language === "fr"
-                  ? currentOffer.titleFr
-                  : currentOffer.titleEn} 
-              </div>
+                <div className=" selectedOfferChildren">
+                  {" "}
+                  - {currentOffer.description}{" "}
+                </div>
 
-              <div className=" selectedOfferChildren"> - {currentOffer.description}  </div>
-
-              <div className="selectedOfferChildren ">
+                <div className="selectedOfferChildren ">
                   €{currentOffer.price}
-              </div>
-            </>
-          )}
-        </div>
-        <span className="paymentContainer">
-          {currentOffer && (
-            <>
+                </div>
+              </>
+            )}
+          </div>
+          <span
+            className={
+              stripe && auth
+                ? "paymentContainerDouble"
+                : "paymentContainerSingle"
+            }
+          >
+            {currentOffer && (
+              <>
+                <p className=" itemp">
+                  <button
+                    className="payment"
+                    onClick={() => setShowPaymentDetails(true)}
+                    disabled={!auth}
+                  >
+                    Bank transfer
+                  </button>
+                </p>
+              </>
+            )}
+
+            {stripe && auth && currentOffer?.paymentLink && (
               <p className=" itemp">
-                <button  className="payment" onClick={() => setShowPaymentDetails(true)}>
-                  Bank transfer
-                </button>
-              </p>
-            </>
-          )}
-          <p >
-            {stripe && currentOffer?.paymentLink && (
-            
-                <a  className="payment"
+                <a
                   href={currentOffer.paymentLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="actionupload"
+                  className="payment actionupload"
                   onClick={(e) => e.stopPropagation()}
+                  disabled={!auth}
                 >
                   Stripe
                 </a>
-             
+              </p>
             )}
-          </p>
-        </span>
+          </span>
+          {!auth && (
+            <span className="smallWarning">{t("divLoginToAccessPayment")}</span>
+          )}
         </div>
 
         <p className="itemp">{t("pOfferBook")}</p>

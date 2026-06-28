@@ -1313,7 +1313,12 @@ th {
 .stressWarning {
   color: var(--strongpink);
 }
-
+.smallWarning {
+  color: var(--strongpink);
+  font-size: 0.5em;
+  padding-left: 1em ;
+ 
+}
 .modeToggle {
   padding: 8px 14px;
 
@@ -1378,22 +1383,42 @@ th {
 
   border-color: var(--strongpink);
 }
-.paymentContainer {
+.paymentContainerDouble {
   display: grid;
   grid-template-columns: auto auto;
   justify-content: center;
   gap: 1em;
 }
+.paymentContainerSingle {
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  gap: 1em;
+}
+
 
 .payment {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
   width: 7em;
-  height: 2em;
+  height: 2.2em;
 
-  cursor: pointer;
-
+  border: none;
   border-radius: 12px;
 
-  transition: 0.25s;
+  cursor: pointer;
+  transition: .25s;
+
+  text-decoration: none; /* removes underline from <a> */
+  font: inherit;          /* same font as button */
+  color: inherit;
+  background: var(--green); 
+  color: white;      /* whatever color you want */
+  box-sizing: border-box;
+  padding: 2px;
+
 }
 .selectedOfferGlobal {
   margin-top: 2px;
