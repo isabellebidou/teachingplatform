@@ -149,7 +149,7 @@ p, h1, h2, h3, fieldset, table{
   .me {
     min-width: 40%;
     border-radius: 50%;
-    padding: 1em;
+    padding: 0em;
   }
   .uploadjsonbutton {
     visibility: hidden;
@@ -215,13 +215,16 @@ p, h1, h2, h3, fieldset, table{
   .button,
   button {
     background-color: none;
-    font-size: 2em;
+    font-size: 1.2em;
     border-radius: 8%;
-    margin: 0.4em;
+    margin: 1em;
     padding-left: 0.3em;
     padding-right: 0.3em;
 
     cursor: pointer;
+  }
+  #menubutton, #languagebtn{
+      font-size: 1.6em;
   }
   .largeBtn {
     min-width: 100%;
@@ -238,7 +241,7 @@ p, h1, h2, h3, fieldset, table{
     top: 13%;
     right: 1%;
     position: fixed;
-    font-size: 1.5em;
+    font-size: 1.3em;
   }
   .readDivContainer {
     position: fixed;
@@ -351,7 +354,10 @@ p, h1, h2, h3, fieldset, table{
     background-color: none;
     font-size: 1.5em;
     border-radius: 8%;
-    margin: 0.1em;
+    padding-left: 4em; 
+    padding-right: 4em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
     cursor: pointer;
   }
   .left {
@@ -517,7 +523,7 @@ p, h1, h2, h3, fieldset, table{
   .readDiv {
     color: var(--darkpurple);
     line-height: 2em;
-    font-size: large;
+    font-size: medium;
     margin: 0em;
     padding: 0em;
     text-align: justify;
@@ -587,11 +593,11 @@ p, h1, h2, h3, fieldset, table{
   }
 
   .pricingCardPrice {
-    font-size: 1.5em;
+    font-size: 1.3em;
   }
 
   .pricingCardDescription {
-    font-size: 0.95em;
+    font-size: 0.80em;
   }
 
   /* ---------- Selected Offer ---------- */
@@ -608,7 +614,7 @@ p, h1, h2, h3, fieldset, table{
   }
 
   .offerPrice {
-    font-size: 2em;
+    font-size: 1.3em;
 
     text-align: center;
 
@@ -624,7 +630,7 @@ p, h1, h2, h3, fieldset, table{
   .payment {
     width: 5.5em;
     height: 2.3em;
-    font-size: 1.3em;
+    font-size: 1.2em;
 
     cursor: pointer;
 
