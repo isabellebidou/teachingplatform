@@ -24,7 +24,7 @@ const Landing = () => {
   // auth?.language || navigator.language || navigator.userLanguage
   const cookie = useSelector((state) => state.cookie)
   const [visibility, setVisibility] = useState("visible")
-  const stripe = false
+  const stripe = true
 
   useEffect(() => {
     dispatch(fetchCookieValue())
@@ -93,6 +93,7 @@ const Landing = () => {
   const visibleOffers = OFFERS.filter(
     (o) => o.category === trainingType && o.delivery === mode,
   )
+  const prepaOffers = OFFERS.filter((o) => o.category === "prepa")
 
   return (
     <div className="page">
@@ -118,13 +119,18 @@ const Landing = () => {
           </a>
         </span>
       )}*/}
+      <fieldset>
+        <p className="itemp">{t("pOfferBook")}</p>
+
+        <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
+          <button className="actionbook2">{t("btnActionbook")}</button>
+        </a>
+      </fieldset>
 
       <fieldset>
         <legend>
           <h2>{t("h2OffersLegend")}</h2>
         </legend>
-
-        <p className="itemp">{t("H2OffersIntro")}</p>
 
         {/* Training type */}
         <div className="toggles center">
@@ -184,76 +190,97 @@ const Landing = () => {
             />
           ))}
         </div>
+      </fieldset>
+      <fieldset>
+        <legend>
+          <h2>{t("h2OffersLegendPrepa")}</h2>
+        </legend>
 
-        {/* Selected offer */}
-        <div className="selectedOfferGlobal">
-          <div className="selectedOffer center">
-            {currentOffer && (
-              <>
-                <div className="selectedOfferChildren">
-                  {auth?.language === "fr"
-                    ? currentOffer.titleFr
-                    : currentOffer.titleEn}
-                </div>
+        <div className="pricingGrid">
+          {prepaOffers.map((offer) => (
+            <PricingCard
+              key={offer.code}
+              title={auth?.language === "fr" ? offer.titleFr : offer.titleEn}
+              price={`€${offer.price}`}
+              description={offer.description}
+              selected={selectedOfferCode === offer.code}
+              onClick={() => setSelectedOfferCode(offer.code)}
+              paymentLink={offer.paymentLink}
+            />
+          ))}
+        </div>
+      </fieldset>
+      {currentOffer && (
+        <fieldset>
+          <legend>
+            <h2>Selected Offer</h2>
+          </legend>
+          {/* Selected offer */}
+          <div className="selectedOfferGlobal">
+            <div className="selectedOffer center">
+              {currentOffer && (
+                <>
+                  <div className="selectedOfferChildren">
+                    {auth?.language === "fr"
+                      ? currentOffer.titleFr
+                      : currentOffer.titleEn}
+                  </div>
 
-                <div className=" selectedOfferChildren">
-                  {" "}
-                  - {currentOffer.description}{" "}
-                </div>
+                  <div className=" selectedOfferChildren">
+                    {" "}
+                    - {currentOffer.description}{" "}
+                  </div>
 
-                <div className="selectedOfferChildren ">
-                  €{currentOffer.price}
-                </div>
-              </>
-            )}
-          </div>
-          <span
-            className={
-              stripe && auth
-                ? "paymentContainerDouble"
-                : "paymentContainerSingle"
-            }
-          >
-            {currentOffer && (
-              <>
+                  <div className="selectedOfferChildren ">
+                    €{currentOffer.price}
+                  </div>
+                </>
+              )}
+            </div>
+            <span
+              className={
+                stripe && auth
+                  ? "paymentContainerDouble"
+                  : "paymentContainerSingle"
+              }
+            >
+              {currentOffer && (
+                <>
+                  <p className=" itemp">
+                    <button
+                      className="payment"
+                      onClick={() => setShowPaymentDetails(true)}
+                      disabled={!auth}
+                    >
+                      Bank transfer
+                    </button>
+                  </p>
+                </>
+              )}
+
+              {stripe && auth && currentOffer?.paymentLink && (
                 <p className=" itemp">
-                  <button
-                    className="payment"
-                    onClick={() => setShowPaymentDetails(true)}
+                  <a
+                    href={currentOffer.paymentLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="payment actionupload"
+                    onClick={(e) => e.stopPropagation()}
                     disabled={!auth}
                   >
-                    Bank transfer
-                  </button>
+                    Stripe
+                  </a>
                 </p>
-              </>
+              )}
+            </span>
+            {!auth && (
+              <span className="smallWarning">
+                {t("divLoginToAccessPayment")}
+              </span>
             )}
-
-            {stripe && auth && currentOffer?.paymentLink && (
-              <p className=" itemp">
-                <a
-                  href={currentOffer.paymentLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="payment actionupload"
-                  onClick={(e) => e.stopPropagation()}
-                  disabled={!auth}
-                >
-                  Stripe
-                </a>
-              </p>
-            )}
-          </span>
-          {!auth && (
-            <span className="smallWarning">{t("divLoginToAccessPayment")}</span>
-          )}
-        </div>
-
-        <p className="itemp">{t("pOfferBook")}</p>
-
-        <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
-          <button className="actionbook2">{t("btnActionbook")}</button>
-        </a>
-      </fieldset>
+          </div>
+        </fieldset>
+      )}
 
       <fieldset>
         <legend>

@@ -24,7 +24,9 @@
 
   "pCookie": "Ce site utilise des cookies pour l’authentification avec Google OAuth et pour améliorer l’expérience utilisateur. En acceptant l’utilisation des cookies, vous pourrez tester les fonctionnalités après vous être connecté avec votre compte Google.",
   "H2OffersIntro": "J'adapte mes services  à vos besoins et je propose un accompagnement individuel personnalisé (en ligne ou en présentiel) ainsi que des ateliers en entreprise directement sur site.",
-  "h2OffersLegend": "Offres",
+  "h2OffersLegend": "Coaching d’anglais professionnel",
+
+  "h2OffersLegendPrepa": "Préparation aux khôlles et oraux",
 
   "thIndividualPilot": "Programme Découverte 6 Semaines",
   "thIndividualMonthly": "Coaching Mensuel",
