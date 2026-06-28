@@ -256,7 +256,7 @@ li.div {
 } */
 
 legend {
-  color: rgba(193, 217, 188);
+  color: var(--green);
   font-size: 1.5em;
   z-index: 1.5;
   font-family:
@@ -1144,6 +1144,15 @@ dd {
   cursor: pointer;
   font-size: 40px;
   color: var(--strongpink);
+}
+.closeOffer-btn {
+ 
+
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--strongpink);
+  float: right;
+  margin-right: 1em;
 }
 #settingsSubmitButton {
   background: green;

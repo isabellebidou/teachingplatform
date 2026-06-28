@@ -12,6 +12,7 @@ import PricingCard from "./PricingCard"
 //import { landingOffers } from "../locales/landingOffers"
 import PaymentDetails from "./PaymentDetails"
 import { OFFERS } from "../locales/landingOffers"
+import CollapsibleFieldset from "./CollapsibleFieldset"
 
 const Landing = () => {
   const dispatch = useDispatch()
@@ -23,7 +24,7 @@ const Landing = () => {
   //const language =
   // auth?.language || navigator.language || navigator.userLanguage
   const cookie = useSelector((state) => state.cookie)
-  const [visibility, setVisibility] = useState("visible")
+  //const [visibility, setVisibility] = useState("visible")
   const stripe = true
 
   useEffect(() => {
@@ -94,6 +95,9 @@ const Landing = () => {
     (o) => o.category === trainingType && o.delivery === mode,
   )
   const prepaOffers = OFFERS.filter((o) => o.category === "prepa")
+  const unselectOffer = () =>{
+    setSelectedOfferCode(null)
+  }
 
   return (
     <div className="page">
@@ -127,10 +131,8 @@ const Landing = () => {
         </a>
       </fieldset>
 
-      <fieldset>
-        <legend>
-          <h2>{t("h2OffersLegend")}</h2>
-        </legend>
+      <CollapsibleFieldset legend={t("h2OffersLegend")} defaultOpen= "true">
+        
 
         {/* Training type */}
         <div className="toggles center">
@@ -190,11 +192,9 @@ const Landing = () => {
             />
           ))}
         </div>
-      </fieldset>
-      <fieldset>
-        <legend>
-          <h2>{t("h2OffersLegendPrepa")}</h2>
-        </legend>
+    </CollapsibleFieldset>
+     <CollapsibleFieldset legend={t("h2OffersLegendPrepa")}>
+        
 
         <div className="pricingGrid">
           {prepaOffers.map((offer) => (
@@ -209,7 +209,7 @@ const Landing = () => {
             />
           ))}
         </div>
-      </fieldset>
+      </CollapsibleFieldset>
       {currentOffer && (
         <fieldset>
           <legend>
@@ -217,6 +217,7 @@ const Landing = () => {
           </legend>
           {/* Selected offer */}
           <div className="selectedOfferGlobal">
+            <span className="closeOffer-btn" onClick={unselectOffer}>X</span>
             <div className="selectedOffer center">
               {currentOffer && (
                 <>
@@ -282,10 +283,8 @@ const Landing = () => {
         </fieldset>
       )}
 
-      <fieldset>
-        <legend>
-          <h2>{t("h2Features")}</h2>
-        </legend>
+       <CollapsibleFieldset legend={t("h2Features")}>
+     
         <p className="itemp">{t("pFeatures")}</p>
         <h2>{t("h2AudioFeedback")}</h2>
         <p className="itemp">{t("pAudioFeedback")}</p>
@@ -298,29 +297,25 @@ const Landing = () => {
             <p className="itemp">{t("pSpellingFeedback")}</p>
           </>
         )}
-      </fieldset>
+      </CollapsibleFieldset>
 
-      <fieldset>
-        <legend>
-          <h2>{t("h2Reviews")}</h2>
-        </legend>
+      <CollapsibleFieldset legend={t("h2Reviews")}>
+        
 
         <span id="reviews">
           <StarReviewList />
         </span>
         <StarReview />
-      </fieldset>
+      </CollapsibleFieldset>
 
-      <fieldset>
-        <legend>
-          <h2>{t("h2faq")}</h2>
-        </legend>
+      <CollapsibleFieldset legend={t("h2faq")}>
+        
 
         <span id="faq"></span>
         <FaqList />
         {renderFaqForm()}
-      </fieldset>
-      <fieldset>
+      </CollapsibleFieldset>
+      <CollapsibleFieldset legend={t("h2terms")}>
         <legend>
           <h2>{t("h2terms")}</h2>
         </legend>
@@ -330,7 +325,7 @@ const Landing = () => {
         </p>
 
         <p className="offerNote itemp">{t("pIndividualOfferNote")}</p>
-      </fieldset>
+      </CollapsibleFieldset>
       <fieldset>
         <legend>
           <h2>{t("h2Contact")}</h2>
