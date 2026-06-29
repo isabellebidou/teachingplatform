@@ -1,11 +1,8 @@
 
 
-import { OFFERS } from "../locales/offers"
 
-function PaymentDetails({ visible, onClose, title, price }) {
-  const reference = Object.values(OFFERS).find(
-    (offer) => offer.fr.title === title || offer.en.title === title,
-  )?.reference
+function PaymentDetails({ visible, onClose, title, price, reference }) {
+  
 
   if (!visible) return null
 

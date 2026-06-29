@@ -9,7 +9,6 @@ import { fetchCookieValue, updateCookieAcceptance } from "../actions"
 import { useTranslation } from "react-i18next"
 import StarReview from "./StarReview"
 import PricingCard from "./PricingCard"
-//import { landingOffers } from "../locales/landingOffers"
 import PaymentDetails from "./PaymentDetails"
 import { OFFERS } from "../locales/landingOffers"
 import CollapsibleFieldset from "./CollapsibleFieldset"
@@ -95,7 +94,7 @@ const Landing = () => {
     (o) => o.category === trainingType && o.delivery === mode,
   )
   const prepaOffers = OFFERS.filter((o) => o.category === "prepa")
-  const unselectOffer = () =>{
+  const unselectOffer = () => {
     setSelectedOfferCode(null)
   }
 
@@ -131,9 +130,7 @@ const Landing = () => {
         </a>
       </fieldset>
 
-      <CollapsibleFieldset legend={t("h2OffersLegend")} defaultOpen= "true">
-        
-
+      <CollapsibleFieldset legend={t("h2OffersLegend")} defaultOpen="true">
         {/* Training type */}
         <div className="toggles center">
           <div className="toggleContainer">
@@ -192,10 +189,8 @@ const Landing = () => {
             />
           ))}
         </div>
-    </CollapsibleFieldset>
-     <CollapsibleFieldset legend={t("h2OffersLegendPrepa")}>
-        
-
+      </CollapsibleFieldset>
+      <CollapsibleFieldset legend={t("h2OffersLegendPrepa")}>
         <div className="pricingGrid">
           {prepaOffers.map((offer) => (
             <PricingCard
@@ -217,7 +212,9 @@ const Landing = () => {
           </legend>
           {/* Selected offer */}
           <div className="selectedOfferGlobal">
-            <span className="closeOffer-btn" onClick={unselectOffer}>X</span>
+            <span className="closeOffer-btn" onClick={unselectOffer}>
+              X
+            </span>
             <div className="selectedOffer center">
               {currentOffer && (
                 <>
@@ -240,9 +237,7 @@ const Landing = () => {
             </div>
             <span
               className={
-                stripe
-                  ? "paymentContainerDouble"
-                  : "paymentContainerSingle"
+                stripe ? "paymentContainerDouble" : "paymentContainerSingle"
               }
             >
               {currentOffer && (
@@ -262,12 +257,12 @@ const Landing = () => {
               {stripe && currentOffer?.paymentLink && (
                 <p className=" itemp">
                   <button
-          
-
                     rel="noopener noreferrer"
                     className="payment actionupload"
-  disabled={!auth}
-  onClick={() => window.open(currentOffer.paymentLink, "_blank")}
+                    disabled={!auth}
+                    onClick={() =>
+                      window.open(currentOffer.paymentLink, "_blank")
+                    }
                   >
                     Stripe
                   </button>
@@ -283,8 +278,7 @@ const Landing = () => {
         </fieldset>
       )}
 
-       <CollapsibleFieldset legend={t("h2Features")}>
-     
+      <CollapsibleFieldset legend={t("h2Features")}>
         <p className="itemp">{t("pFeatures")}</p>
         <h2>{t("h2AudioFeedback")}</h2>
         <p className="itemp">{t("pAudioFeedback")}</p>
@@ -300,8 +294,6 @@ const Landing = () => {
       </CollapsibleFieldset>
 
       <CollapsibleFieldset legend={t("h2Reviews")}>
-        
-
         <span id="reviews">
           <StarReviewList />
         </span>
@@ -309,8 +301,6 @@ const Landing = () => {
       </CollapsibleFieldset>
 
       <CollapsibleFieldset legend={t("h2faq")}>
-        
-
         <span id="faq"></span>
         <FaqList />
         {renderFaqForm()}
@@ -357,6 +347,7 @@ const Landing = () => {
               : currentOffer.titleEn
           }
           price={currentOffer.price}
+          reference={currentOffer.reference}
         />
       )}
       {showPaymentDetails && (
