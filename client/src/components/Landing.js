@@ -240,7 +240,7 @@ const Landing = () => {
             </div>
             <span
               className={
-                stripe && auth
+                stripe
                   ? "paymentContainerDouble"
                   : "paymentContainerSingle"
               }
@@ -259,18 +259,18 @@ const Landing = () => {
                 </>
               )}
 
-              {stripe && auth && currentOffer?.paymentLink && (
+              {stripe && currentOffer?.paymentLink && (
                 <p className=" itemp">
-                  <a
-                    href={currentOffer.paymentLink}
-                    target="_blank"
+                  <button
+          
+
                     rel="noopener noreferrer"
                     className="payment actionupload"
-                    onClick={(e) => e.stopPropagation()}
-                    disabled={!auth}
+  disabled={!auth}
+  onClick={() => window.open(currentOffer.paymentLink, "_blank")}
                   >
                     Stripe
-                  </a>
+                  </button>
                 </p>
               )}
             </span>
