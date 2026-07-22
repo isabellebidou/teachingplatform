@@ -23,6 +23,7 @@ import {
 
 const Audio = mongoose.model("audios")
 const Script = mongoose.model("Script")
+const User = mongoose.model("users")
 
 export default (app) => {
   app.post(
@@ -43,7 +44,7 @@ export default (app) => {
           size: req.file.size,
           originalname: req.file.originalname,
         })
-        if (user.role !== "admin" && req.file.size > 250000) {
+        if (req.user.role !== "admin" && req.file.size > 250000) {
           return res.status(403).json({
             message: "out of capacity",
           })
@@ -83,7 +84,7 @@ export default (app) => {
         const transcriptText = transcriptionResult.text
         const wordsWithTimings = transcriptionResult.words
 
-        // console.log("📝 [audio] transcript:", transcriptText);
+         console.log("📝 [audio] transcript:", transcriptText);
 
         // ================= WAV CONVERSION =================
         /*
@@ -134,11 +135,11 @@ export default (app) => {
         try {
           await uploadFile(buffer, s3Key, mimetype)
         } catch (err) {
-          //   console.error("❌ [audio] S3 upload failed:", err);
+             console.error("❌ [audio] S3 upload failed:", err);
           return res.status(500).send("Upload failed")
         }
 
-        //  console.log("☁️ [audio] uploaded to S3:", s3Key);
+          console.log("☁️ [audio] uploaded to S3:", s3Key);
 
         // ================= DB SAVE =================
         const audio = await new Audio({
@@ -158,7 +159,7 @@ export default (app) => {
 
         res.send(audio)
       } catch (err) {
-        //  console.error("🔥 [audio] UNHANDLED ERROR:", err);
+        console.error("🔥 [audio] UNHANDLED ERROR:", err);
         res.status(500).send("Audio upload failed")
       }
     },
