@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { connect , useSelector} from "react-redux"
+import { connect } from "react-redux"
 import { fetchUserAudios } from "../actions"
 import { fetchScripts } from "../actions"
 import { fetchUserAudioUrl } from "../actions"
@@ -53,7 +53,7 @@ function UserDashboard({
   }
   return (
     <div>
-      <div className="page">
+      <main className="page">
         <div className="readDivContainer">
         <SelectSentence className="readDiv"
           scripts={scripts}
@@ -78,7 +78,7 @@ function UserDashboard({
           selectedAudioId={audio?._id}
           selectedAudioUrl={audioUrl}
         />
-      </div>
+      </main>
     </div>
   )
 }

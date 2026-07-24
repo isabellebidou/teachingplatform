@@ -1,5 +1,5 @@
 import React from "react";
-import Feedback from "./FeedbackForm";
+//import Feedback from "./FeedbackForm";
 import UploadPdfDocument from "./UploadPdfDocument";
 
 
@@ -8,12 +8,12 @@ import UploadPdfDocument from "./UploadPdfDocument";
 function UserBoard(){
     return (
 
-        <div className="page" >
+        <main className="page" >
 
 
     <UploadPdfDocument></UploadPdfDocument>
 
-    </div>
+    </main>
     );
 
 }

@@ -39,11 +39,11 @@
  .usersetinput, .usersetlabel {
   width: auto;
 }
- .authentication > * {
+ .navigation > * {
   display: none;
 }
 
-.authentication > :first-child {
+.navigation > :first-child {
   display: block;
   height: 1em;
   width: 2em;

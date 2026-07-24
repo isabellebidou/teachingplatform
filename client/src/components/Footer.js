@@ -14,7 +14,7 @@ function Footer(){
     const countryCode = browserLocale.split('-')[1];
 
     return (
-      <div className="footer">
+      <footer className="footer">
         <hr />
         <span className="item">Isabelle Bidou - copyright {new Date().getFullYear()}</span>
         {(countryCode !== 'FR' || countryCode !== 'fr') &&
@@ -33,7 +33,7 @@ function Footer(){
               Mentions legales
             </Link>
           </span>}
-      </div>
+      </footer>
 
 
     );

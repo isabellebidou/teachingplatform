@@ -144,7 +144,7 @@ input,
   width: 100%;
 }
 
-.authentication,
+.navigation,
 .edit {
   position: fixed;
   z-index: 10;
@@ -464,7 +464,7 @@ h3 {
     "Dancing Script", "Brush Script MT", "Lucida Console, Monaco, monospace";
 }
 
-.authentication > *,
+.navigation > *,
 #addcredits {
   margin: 0 20px;
 

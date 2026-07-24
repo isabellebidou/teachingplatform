@@ -91,7 +91,7 @@ function Header() {
     <>
       <h2 className="headertitle"> Izzy Speak English</h2>
 
-      <div className="authentication">
+      <nav className="navigation">
         {/* 🌐 Language button */}
         {auth && (
           <button
@@ -135,12 +135,12 @@ function Header() {
             />
           </a>
         )}
-      </div>
+      </nav>
     </>
   )
 
   return (
-    <div className="header">
+    <header className="header">
       <Logo />
 
       {<span>{renderContent()}</span>}
@@ -160,7 +160,7 @@ function Header() {
 
       {/* ✅ Settings popup */}
       {showSettings && <Settings onClose={() => setShowSettings(false)} />}
-    </div>
+    </header>
   )
 }
 

@@ -20,98 +20,103 @@ function MobileMenu() {
     $("#mobilemenu").slideToggle()
   }
   const location = useLocation()
-  const renderMobileMenu = () => {
-    const isAdmin = auth && auth.type === "admin"
-    const isGuest = auth && auth.type === "guest"
+const renderMobileMenu = () => {
+  const isAdmin = auth && auth.type === "admin"
+  const isGuest = auth && auth.type === "guest"
 
-    const navItems = [
-      {
-        path: "/",
-        icon: AiOutlineHome,
-        visible: true,
-      },
-      {
-        path: "/topics",
-        icon: FaBookOpen,
-        visible: true,
-      },
-      {
-        path: "/users",
-        icon: FaUsers,
-        visible: isAdmin,
-      },
-      {
-        path: "/documents",
-        icon: IoDocumentsOutline,
-        visible: auth && isAdmin,
-      },
-      {
-        path: "/dashboard",
-        icon: AiOutlineAudio,
-        visible: auth,
-      },
-      {
-        path: "/board",
-        icon: BsPencil,
-        visible: auth && !isGuest,
-      },
+  const navItems = [
+    {
+      path: "/",
+      icon: AiOutlineHome,
+      visible: true,
+    },
+    {
+      path: "/topics",
+      icon: FaBookOpen,
+      visible: true,
+    },
+    {
+      path: "/users",
+      icon: FaUsers,
+      visible: isAdmin,
+    },
+    {
+      path: "/documents",
+      icon: IoDocumentsOutline,
+      visible: auth && isAdmin,
+    },
+    {
+      path: "/dashboard",
+      icon: AiOutlineAudio,
+      visible: auth,
+    },
+    {
+      path: "/board",
+      icon: BsPencil,
+      visible: auth && !isGuest,
+    },
+    {
+      path: "/stress",
+      icon: MdHeadphones,
+      visible: true,
+    },
+  ]
 
-      {
-        path: "/stress",
-        icon: MdHeadphones,
-        visible: true,
-      },
-    ]
-
-    return (
-      <ul id="mobilemenuul">
-        {!auth && (
-          <li className="mobilemenuli button">
-          <a key={`${6}gg`} href="/auth/google">
+  return (
+    <ul id="mobilemenuul">
+      {!auth && (
+        <li className="mobilemenuli button">
+          <a href="/auth/google">
             <img
               src="/btn_google_signin_dark_normal_web.png"
-              alt="sign in with google"
+              alt="Sign in with Google"
             />
           </a>
-          </li>
-        )}
-        {navItems
-          .filter((item) => item.visible)
-          .map((item, index) => {
-            const Icon = item.icon
-            const isActive = location.pathname === item.path
+        </li>
+      )}
 
-            return (
-              <li className="mobilemenuli button">
-                <Link
-                  key={item.path+index}
-                  to={item.path}
-                  className={`menubutton ${isActive ? "onPathBtnMenuMobile" : "btnMenuMobile"}`}
-                >
-                  <Icon className="mobileMenuIcon" />
-                </Link>
-              </li>
-            )
-          })}
-        {auth && (
-          <li className="mobilemenuli button">
-            <a key = "logout22" className="menubutton btnMenuMobile" href="/api/logout">
-              <AiOutlineLogout
-                className="mobileMenuIcon"
-                style={{ color: "#7f5f87" }}
-              />
-            </a>
-          </li>
-        )}
-      </ul>
-    )
-  }
+      {navItems
+        .filter((item) => item.visible)
+        .map((item) => {
+          const Icon = item.icon
+          const isActive = location.pathname === item.path
+
+          return (
+            <li key={item.path} className="mobilemenuli button">
+              <Link
+                to={item.path}
+                className={`menubutton ${
+                  isActive ? "onPathBtnMenuMobile" : "btnMenuMobile"
+                }`}
+              >
+                <Icon className="mobileMenuIcon" />
+              </Link>
+            </li>
+          )
+        })}
+
+      {auth && (
+        <li className="mobilemenuli button">
+          <a
+            className="menubutton btnMenuMobile"
+            href="/api/logout"
+          >
+            <AiOutlineLogout
+              className="mobileMenuIcon"
+              style={{ color: "#7f5f87" }}
+            />
+          </a>
+        </li>
+      )}
+    </ul>
+  )
+}
 
   return (
     <div>
-      <div data-role="navbar" id="mobilemenu" onClick={navClick}>
+      <nav data-role="navbar" id="mobilemenu" onClick={navClick}>
         {renderMobileMenu()}
-      </div>
+      </nav>
     </div>
   )
 }

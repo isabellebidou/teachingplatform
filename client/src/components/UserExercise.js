@@ -151,7 +151,7 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
   }
 
   return (
-    <div className="page">
+    <main className="page">
       <div className="exercice-div">
         {!gameStarted && (
           <h2>{t("h2SelectTopic")}</h2>
@@ -273,7 +273,7 @@ function UserExercise({ grammarTopics = [], auth, fetchGrammarTopics }) {
           </div>
         )}
       </div>
-    </div>
+    </main>
   )
 }
 function mapStateToProps(state) {

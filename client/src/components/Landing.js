@@ -99,7 +99,7 @@ const Landing = () => {
   }
 
   return (
-    <div className="page">
+    <main className="page">
       {auth && !auth.hasConsultation && (
         <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
           <button className="actionbook">{t("btnActionbook")}</button>
@@ -381,7 +381,7 @@ const Landing = () => {
           </span>
         )}
       </CookieConsent>
-    </div>
+    </main>
   )
 }
 

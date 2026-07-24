@@ -173,7 +173,7 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
   }
 
   return (
-    <div className="page">
+    <main className="page">
       <div className="topicsContainer">
         {!gameStarted && (
           <>
@@ -317,7 +317,7 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
           )}
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 

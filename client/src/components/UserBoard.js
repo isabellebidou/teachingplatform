@@ -8,12 +8,12 @@ import Feedback from "./FeedbackForm";
 function UserBoard(){
     return (
 
-        <div className="page" >
+        <main className="page" >
 
     <Feedback></Feedback>
 
 
-    </div>
+    </main>
     );
 
 }
