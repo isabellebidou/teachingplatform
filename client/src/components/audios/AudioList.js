@@ -75,7 +75,11 @@ function AudioList({
     wordsToHighlight.forEach((word) => {
       let matched = false
 
-      for (let index = sentenceCursor; index < sentenceParts.length; index += 1) {
+      for (
+        let index = sentenceCursor;
+        index < sentenceParts.length;
+        index += 1
+      ) {
         const part = sentenceParts[index]
         if (!part.normalized) continue
 
@@ -89,7 +93,9 @@ function AudioList({
 
       if (!matched) {
         const fallbackIndex = sentenceParts.findIndex(
-          (part) => part.normalized === word && !highlightedIndexes.includes(sentenceParts.indexOf(part)),
+          (part) =>
+            part.normalized === word &&
+            !highlightedIndexes.includes(sentenceParts.indexOf(part)),
         )
 
         if (fallbackIndex >= 0) {
@@ -118,91 +124,87 @@ function AudioList({
   return (
     <section className="audioList">
       <fieldset>
-      <legend>{t("h2Audios")}</legend>
-      <div className="grid-container">
-        {audios.length === 0 && <p>{t("pRecordYourself")}</p>}
+        <legend>{t("h2Audios")}</legend>
+        <div className="grid-container">
+          {audios.length === 0 && <p>{t("pRecordYourself")}</p>}
 
-        {audios.map((audio, i) => (
-          <div
-            key={audio._id}
-            className={`audiothumbnail ${audio._id === selectedAudioId ? "selected" : ""}`}
-            onClick={() => onSelectAudio(audio)}
-          >
-            
-
-            <div className="audioDetails">
-              <p>
-                audio #{i + 1}: {t("pRecordedOn")}{" "}
-                {new Date(audio.createdAt).toLocaleDateString()} - {new Date(audio.createdAt).toLocaleTimeString()}<br></br>
-                {audio._script?.visual && (
-                <span className="stressVisual">{audio._script?.visual}</span>
-              )}
-              </p>
-              {audio.transcript && (
-                <span>
-                  {t("pTranscript")}"{audio.transcript}"
-                </span>
-              )}
-              
-             
-              {audio.feedback && audio.feedback.length > 0 && (
-                <div>
-                  
-                  <h3>Feedback:</h3>
-                  
-                  <ul>
-                    {audio.feedback.map((line, index) => (
-                      <li key={index}>{line}</li>
-                    ))}
-                  </ul>
-              
-                  </div>
+          {audios.map((audio, i) => (
+            <div
+              key={audio._id}
+              className={`audiothumbnail ${audio._id === selectedAudioId ? "selected" : ""}`}
+              onClick={() => onSelectAudio(audio)}
+            >
+              <div className="audioDetails">
+                <p>
+                  audio #{i + 1}: {t("pRecordedOn")}{" "}
+                  {new Date(audio.createdAt).toLocaleDateString()} -{" "}
+                  {new Date(audio.createdAt).toLocaleTimeString()}
+                  <br></br>
+                  {audio._script?.visual && (
+                    <span className="stressVisual">
+                      {audio._script?.visual}
+                    </span>
                   )}
-             
-              {audio.feedback && audio.feedback.length > 0 && (
-                <>
-                  {renderScriptWithHighlights(audio)}
-                  <ul>
-                    {audio.stressFeedback.map((line, index) => (
-                      <li key={index}>{line}</li>
-                    ))}
-                  </ul>
+                </p>
+                {audio.transcript && (
+                  <span>
+                    {t("pTranscript")}"{audio.transcript}"
+                  </span>
+                )}
 
-                  
-                </>
+                {audio.feedback && audio.feedback.length > 0 && (
+                  <div>
+                    <h3>Feedback:</h3>
+
+                    <ul>
+                      {audio.feedback.map((line, index) => (
+                        <li key={index}>{line}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {audio.feedback && audio.feedback.length > 0 && (
+                  <>
+                    {renderScriptWithHighlights(audio)}
+                    <ul>
+                      {audio.stressFeedback.map((line, index) => (
+                        <li key={index}>{line}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </div>
+              {audio._id === selectedAudioId && selectedAudioUrl && (
+                <audio controls src={selectedAudioUrl} />
               )}
-        
+
+              {editMode && (
+                <input
+                  className="audioCheckbox"
+                  type="checkbox"
+                  checked={selectedAudios.includes(audio._id)}
+                  onChange={() => handleSelected(audio._id)}
+                />
+              )}
             </div>
-            {audio._id === selectedAudioId && selectedAudioUrl && (
-                    <audio
-  controls
-  src={selectedAudioUrl}
+          ))}
+        </div>
+        {audios.length > 0 && (
+          <>
+            <button className="largeBtn" onClick={toggleEditMode}>
+              {editMode ? t("btnDisableEdit") : t("btnEnableEdit")}
+            </button>
 
-/>
-           )}
-           
             {editMode && (
-              <input
-                type="checkbox"
-                checked={selectedAudios.includes(audio._id)}
-                onChange={() => handleSelected(audio._id)}
-              />
+              <button className="deletebutton" onClick={deleteAudios}>
+                {t("btnDelete")}
+              </button>
             )}
-          </div>
-        ))}
-      </div>
-      {audios.length > 0 && (
-        <>
-          <button className="largeBtn" onClick={toggleEditMode}>
-            {editMode ? t("btnDisableEdit") : t("btnEnableEdit")}
-          </button>
-
-          {editMode && <button className="deletebutton" onClick={deleteAudios}>{t("btnDelete")}</button>}
-        </>
-      )}
-       </fieldset>
+          </>
+        )}
+      </fieldset>
     </section>
-   
   )
 }
 
