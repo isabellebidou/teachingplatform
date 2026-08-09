@@ -43,6 +43,7 @@ function UserDashboard({
     try {
       const { payload } = await fetchUserAudioUrl(audioItem._id)
       const url = payload.url
+      console.log(url)
       setAudioUrl(url)
       setAudio({
         ...audioItem,
@@ -78,6 +79,7 @@ function UserDashboard({
           selectedAudioId={audio?._id}
           selectedAudioUrl={audioUrl}
         />
+        <div className="placeholder"></div>
       </main>
     </div>
   )

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { analyzeAudioStress } from "../index.js";
 import { decodeWav } from "../src/wav.js";
+import { buildStressRequest } from "../../services/buildStressRequest.js";
 
 test("decodeWav reads generated 16-bit PCM WAV", () => {
   const wav = decodeWav(makeWav([0.2, 0.8]));
@@ -50,6 +51,22 @@ test("analyzeAudioStress reports mismatch when observed stress differs", async (
 
   assert.equal(result.words[0].observedStress, 0);
   assert.equal(result.words[0].status, "mismatch");
+});
+
+test("buildStressRequest forwards parts of speech into the analyzer payload", () => {
+  const partsOfSpeech = new Map([[0, "verb"]]);
+  const payload = buildStressRequest({
+    scriptText: "record",
+    audioBuffer: Buffer.from("wav"),
+    elevenLabs: {
+      text: "record",
+      words: [{ text: "record", start: 0, end: 0.4, type: "word" }],
+    },
+    partsOfSpeech,
+  });
+
+  assert.ok(payload.partsOfSpeech instanceof Map);
+  assert.equal(payload.partsOfSpeech.get(0), "verb");
 });
 
 test("analyzeAudioStress accepts ElevenLabs spacing tokens", async () => {
@@ -265,6 +282,29 @@ test("analyzeAudioStress applies third syllable lexical overrides", async () => 
 
   assert.equal(result.words[0].expectedStress, 2);
   assert.equal(result.words[0].status, "match");
+});
+
+test("analyzeAudioStress uses the nth part-of-speech entry for repeated words", async () => {
+  const audioBase64 = makeWav([0.18, 0.9, 0.18, 0.9, 0.18]).toString("base64");
+  const result = await analyzeAudioStress({
+    expectedText: "record record",
+    audioBase64,
+    elevenLabs: {
+      text: "record record",
+      words: [
+        { text: "record", start: 0, end: 0.4 },
+        { text: "record", start: 0.4, end: 0.8 }
+      ]
+    },
+    partsOfSpeech: {
+      record: ["verb", "noun"]
+    }
+  });
+
+  assert.equal(result.words[0].expectedStress, 1);
+  assert.equal(result.words[1].expectedStress, 0);
+  assert.equal(result.words[0].status, "match");
+  assert.equal(result.words[1].status, "mismatch");
 });
 
 test("analyzeAudioStress accepts runtime stress override additions", async () => {

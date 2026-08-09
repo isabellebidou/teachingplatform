@@ -2,11 +2,13 @@ export function buildStressRequest({
   scriptText,
   audioBuffer,
   elevenLabs,
+  partsOfSpeech,
 }) {
   return {
     expectedText: scriptText,
     audioBase64: toBase64Wav(audioBuffer),
     elevenLabs: normalizeElevenLabs(elevenLabs),
+    partsOfSpeech,
   };
 }
 function toBase64Wav(buffer) {

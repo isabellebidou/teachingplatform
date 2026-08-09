@@ -10,30 +10,228 @@ const STRESS_RULES = {
         "open", "enter", "answer", "follow", "happen", "offer",
         "borrow", "argue", "focus", "order", "limit", "target"
       ],
-      exceptionStress: 0
+      exceptionStress: 0,
+      explanation:
+        "Most two-syllable verbs are stressed on the second syllable.",
+      exceptionExplanation:
+          "This is an exception: it is stressed on the first syllable."
     },
+
     nounsAdjectives: {
       defaultStress: 0,
       exceptions: [
         "alone", "alive", "afraid", "awake", "ashamed", "amazing",
         "direct", "correct", "complete", "precise", "polite"
       ],
-      exceptionStress: 1
+      exceptionStress: 1,
+      explanation:
+        "Most two-syllable nouns and adjectives are stressed on the first syllable.",
+      exceptionExplanation: "This is an exception: it is stressed on the second syllable."
     }
   },
 
-  suffixRules: [
-    { suffix: "tion", stress: -2 },
-    { suffix: "sion", stress: -2 },
-    { suffix: "ic", stress: -2 },
-    { suffix: "ity", stress: -2 }
-  ],
+  suffixRules: {
+    rules: [
+      { suffix: "tion", stress: -2 },
+      { suffix: "sion", stress: -2 },
+      { suffix: "ic", stress: -2 },
+      { suffix: "ity", stress: -2 }
+    ],
+
+    explanation:
+      "Certain suffixes in English words often determine the stress pattern. For example, words ending in 'tion' or 'sion' are typically stressed on the second-to-last syllable."
+  },
 
   threeSyllable: {
-    verbs: { defaultStress: 1 },
-    nouns: { defaultStress: 0 }
+    verbs: {
+      defaultStress: 1
+    },
+
+    nouns: {
+      defaultStress: 0
+    },
+
+    explanation:
+      "Three-syllable words generally follow a pattern where verbs are stressed on the second syllable and nouns on the first syllable."
   }
 };
+function determineStressRule(word, syllables, partOfSpeech, stressOverrides) {
+  if (syllables.length === 0) {
+    return {
+      stress: null,
+      explanation: null
+    };
+  }
+
+  if (syllables.length === 1) {
+    return {
+      stress: 0,
+      explanation:
+        "Single-syllable words are stressed on their only syllable."
+    };
+  }
+
+  const normalized = normalizeWord(word);
+
+  // ---------------------------------------------------------
+  // 1. Explicit override
+  // ---------------------------------------------------------
+  const overrideStress = stressFromOverride(
+    normalized,
+    partOfSpeech,
+    syllables.length,
+    stressOverrides
+  );
+
+  if (overrideStress !== null) {
+    return {
+      stress: overrideStress,
+      explanation:
+        "This word has a specific stress pattern that overrides the general stress rules."
+    };
+  }
+
+  // ---------------------------------------------------------
+  // 2. Suffix rule
+  // ---------------------------------------------------------
+  const suffixStress = stressFromSuffixRule(
+    normalized,
+    syllables.length
+  );
+
+  if (suffixStress !== null) {
+    return {
+      stress: suffixStress,
+      explanation: STRESS_RULES.suffixRules.explanation
+    };
+  }
+
+  // ---------------------------------------------------------
+  // 3. Two-syllable rules
+  // ---------------------------------------------------------
+  if (syllables.length === 2) {
+    if (partOfSpeech === "verb") {
+      const rule = STRESS_RULES.twoSyllable.verbs;
+
+      if (rule.exceptions.includes(normalized)) {
+        return {
+          stress: rule.exceptionStress,
+          explanation: `${rule.explanation} ${rule.exceptionExplanation}`
+        };
+      }
+
+      return {
+        stress: rule.defaultStress,
+        explanation: rule.explanation
+      };
+    }
+
+    if (
+      partOfSpeech === "noun" ||
+      partOfSpeech === "adjective"
+    ) {
+      const rule = STRESS_RULES.twoSyllable.nounsAdjectives;
+
+      if (rule.exceptions.includes(normalized)) {
+        return {
+          stress: rule.exceptionStress,
+          explanation: `${rule.explanation} ${rule.exceptionExplanation}`
+        };
+      }
+
+      return {
+        stress: rule.defaultStress,
+        explanation: rule.explanation
+      };
+    }
+  }
+
+  // ---------------------------------------------------------
+  // 4. Three-syllable rules
+  // ---------------------------------------------------------
+  if (syllables.length === 3) {
+    if (partOfSpeech === "verb") {
+      return {
+        stress: STRESS_RULES.threeSyllable.verbs.defaultStress,
+        explanation: STRESS_RULES.threeSyllable.explanation
+      };
+    }
+
+    if (partOfSpeech === "noun") {
+      return {
+        stress: STRESS_RULES.threeSyllable.nouns.defaultStress,
+        explanation: STRESS_RULES.threeSyllable.explanation
+      };
+    }
+  }
+
+  // ---------------------------------------------------------
+  // 5. Fallback
+  // ---------------------------------------------------------
+  return {
+    stress: 0,
+    explanation: "No specific stress rule applies to this word."
+  };
+}
+function determineStressRuleOld(word, syllables, partOfSpeech, stressOverrides) {
+  if (syllables.length === 0) {
+    return null;
+  }
+
+  if (syllables.length === 1) {
+    return "Single-syllable words are stressed on their only syllable.";
+  }
+
+  const normalized = normalizeWord(word);
+
+  // Explicit override
+  const overrideStress = stressFromOverride(
+    normalized,
+    partOfSpeech,
+    syllables.length,
+    stressOverrides
+  );
+
+  if (overrideStress !== null) {
+    return "This word has a specific stress pattern because it is an exception to the general stress rules.";
+  }
+
+  // Suffix rule
+  const suffixStress = stressFromSuffixRule(
+    normalized,
+    syllables.length
+  );
+
+  if (suffixStress !== null) {
+    return STRESS_RULES.suffixRules.explanation;
+  }
+
+  // Two-syllable rules
+  if (syllables.length === 2) {
+    if (partOfSpeech === "verb") {
+      const rule = STRESS_RULES.twoSyllable.verbs;
+
+      if (rule.exceptions.includes(normalized)) {
+        explanation: `${rule.explanation} ${rule.exceptionExplanation}`
+      }
+
+      return rule.explanation;
+    }
+
+    if (partOfSpeech === "noun" || partOfSpeech === "adjective") {
+      return STRESS_RULES.twoSyllable.nounsAdjectives.explanation;
+    }
+  }
+
+  // Three-syllable rules
+  if (syllables.length === 3) {
+    if (partOfSpeech === "verb" || partOfSpeech === "noun") {
+      return STRESS_RULES.threeSyllable.explanation;
+    }
+  }
+
+  return "No specific stress rule applies to this word.";
+}
 
 export async function analyzeAudioStress(input) {
   try {
@@ -43,29 +241,70 @@ export async function analyzeAudioStress(input) {
     const transcriptWords = normalizeElevenLabsWords(normalized.elevenLabs.words);
     const partsOfSpeech = normalizePartsOfSpeech(normalized.partsOfSpeech);
     const stressOverrides = normalizeStressOverrides(normalized.stressOverrides);
+
+    console.log("[stress-debug] input", {
+      expectedText: normalized.expectedText,
+      expectedWordCount: expectedWords.length,
+      transcriptWordCount: transcriptWords.length,
+      partOfSpeechCount: partsOfSpeech.size,
+      overrideCount: stressOverrides.size,
+      audioBase64Length: normalized.audioBase64.length,
+    });
+
+    const occurrenceCounts = new Map();
     const words = expectedWords.map((word, index) => {
+      const normalizedWord = normalizeWord(word);
+      const occurrenceIndex = occurrenceCounts.get(normalizedWord) || 0;
+      occurrenceCounts.set(normalizedWord, occurrenceIndex + 1);
+
       const syllables = splitSyllables(word);
-      const expectedStress = expectedStressForWord(word, syllables, partsOfSpeech.get(word), stressOverrides);
+      const partOfSpeech = resolvePartOfSpeech(partsOfSpeech, index, word, occurrenceIndex);
+      const expectedStress = expectedStressForWord(word, syllables, partOfSpeech, stressOverrides);
       const timing = transcriptWords[index];
       const observedStress = timing
-        ? observedStressForWord(wav, timing, syllables)
+        ? observedStressForWord(wav, timing, syllables, word)
         : null;
       const status = stressStatus(expectedStress, observedStress);
+      const rule = determineStressRule(word, syllables, partOfSpeech, stressOverrides);
 
-      return {
+      console.log("[stress-debug] word", {
+        index,
         word,
+        syllables,
         expectedStress,
         observedStress,
-        status
+        status,
+        partOfSpeech,
+        rule,
+        timing: timing ? {
+          word: timing.word,
+          startMs: timing.startMs,
+          endMs: timing.endMs,
+        } : null,
+      });
+
+      return {
+        index,
+        word,
+        syllables,
+        expectedStress,
+        observedStress,
+        status,
+        partOfSpeech,
+        rule: rule?.explanation ?? null
       };
     });
 
+    const summary = summarize(words);
+    console.log("[stress-debug] summary", summary);
+
     return {
       ok: true,
-      summary: summarize(words),
+      summary,
       words
     };
   } catch (error) {
+    console.error("[stress-debug] error", error);
     return {
       ok: false,
       error: error instanceof Error ? error.message : "Unable to analyze audio stress."
@@ -120,7 +359,7 @@ function normalizeElevenLabsWords(words) {
     .filter((word) => word.word && Number.isFinite(word.startMs) && Number.isFinite(word.endMs));
 }
 
-function observedStressForWord(wav, timing, syllables) {
+function observedStressForWord(wav, timing, syllables, word) {
   if (syllables.length <= 0 || timing.endMs <= timing.startMs) {
     return null;
   }
@@ -135,13 +374,63 @@ function observedStressForWord(wav, timing, syllables) {
   });
 
   if (prominence.every((value) => value === 0)) {
+    console.log("[stress-debug] observed prominence", {
+      word,
+      syllables,
+      startMs,
+      endMs,
+      durationMs,
+      prominence,
+      result: null,
+    });
     return null;
   }
 
-  return prominence.indexOf(Math.max(...prominence));
+  const observedIndex = prominence.indexOf(Math.max(...prominence));
+  console.log("[stress-debug] observed prominence", {
+    word,
+    syllables,
+    startMs,
+    endMs,
+    durationMs,
+    prominence,
+    result: observedIndex,
+  });
+
+  return observedIndex;
 }
 
 function expectedStressForWord(word, syllables, partOfSpeech, stressOverrides) {
+  const rule = determineStressRule(
+    word,
+    syllables,
+    partOfSpeech,
+    stressOverrides
+  );
+
+  return rule?.stress ?? null;
+}
+function expectedStressForWordOld(word, syllables, partOfSpeech, stressOverrides) {
+  const rule = determineStressRule(
+    word,
+    syllables,
+    partOfSpeech,
+    stressOverrides
+  );
+
+  console.log("[stress-debug] expected stress", {
+    word,
+    syllables,
+    partOfSpeech,
+    result: rule.stress,
+    source: rule.type,
+    rule
+  });
+
+  return rule.stress;
+}
+
+function expectedStressForWord2(word, syllables, partOfSpeech, stressOverrides) {
   if (syllables.length === 0) {
     return null;
   }
@@ -153,23 +442,31 @@ function expectedStressForWord(word, syllables, partOfSpeech, stressOverrides) {
   const normalized = normalizeWord(word);
   const overrideStress = stressFromOverride(normalized, partOfSpeech, syllables.length, stressOverrides);
   if (overrideStress !== null) {
+    console.log("[stress-debug] expected stress", { word, syllables, partOfSpeech, result: overrideStress, source: "override" });
     return overrideStress;
   }
 
   const suffixStress = stressFromSuffixRule(normalized, syllables.length);
   if (suffixStress !== null) {
+    console.log("[stress-debug] expected stress", { word, syllables, partOfSpeech, result: suffixStress, source: "suffix" });
     return suffixStress;
   }
 
   if (syllables.length === 2) {
-    return stressForTwoSyllableWord(normalized, partOfSpeech);
+    const result = stressForTwoSyllableWord(normalized, partOfSpeech);
+    console.log("[stress-debug] expected stress", { word, syllables, partOfSpeech, result, source: "two-syllable" });
+    return result;
   }
 
   if (syllables.length === 3) {
-    return stressForThreeSyllableWord(partOfSpeech);
+    const result = stressForThreeSyllableWord(partOfSpeech);
+    console.log("[stress-debug] expected stress", { word, syllables, partOfSpeech, result, source: "three-syllable" });
+    return result;
   }
 
-  return 0;
+  const result = 0;
+  console.log("[stress-debug] expected stress", { word, syllables, partOfSpeech, result, source: "default" });
+  return result;
 }
 
 function stressFromOverride(word, partOfSpeech, syllableCount, stressOverrides) {
@@ -190,7 +487,7 @@ function stressFromOverride(word, partOfSpeech, syllableCount, stressOverrides) 
 }
 
 function stressFromSuffixRule(word, syllableCount) {
-  const rule = STRESS_RULES.suffixRules.find((candidate) => word.endsWith(candidate.suffix));
+  const rule = STRESS_RULES.suffixRules.rules.find((candidate) => word.endsWith(candidate.suffix));
   if (!rule) {
     return null;
   }
@@ -553,22 +850,117 @@ function normalizeStressOverrideValue(override) {
 function normalizePartsOfSpeech(partsOfSpeech) {
   const normalized = new Map();
 
-  if (!partsOfSpeech || typeof partsOfSpeech !== "object") {
+  if (!partsOfSpeech) {
     return normalized;
   }
 
-  for (const [word, partOfSpeech] of Object.entries(partsOfSpeech)) {
-    const normalizedWord = normalizeWord(word);
-    const normalizedPartOfSpeech = normalizePartOfSpeech(partOfSpeech);
-    if (normalizedWord && normalizedPartOfSpeech) {
-      normalized.set(normalizedWord, normalizedPartOfSpeech);
+  const registerEntry = (key, value) => {
+    const normalizedValue = normalizePartOfSpeechValue(value);
+    if (!normalizedValue) {
+      return;
+    }
+
+    if (typeof key === "number" && Number.isInteger(key)) {
+      normalized.set(key, normalizedValue);
+      return;
+    }
+
+    if (typeof key === "string") {
+      const numericKey = Number(key);
+      if (Number.isInteger(numericKey) && !Number.isNaN(numericKey)) {
+        normalized.set(numericKey, normalizedValue);
+        return;
+      }
+
+      const wordKey = normalizeWord(key);
+      if (wordKey) {
+        normalized.set(wordKey, normalizedValue);
+      }
+    }
+  };
+
+  if (partsOfSpeech instanceof Map) {
+    for (const [key, value] of partsOfSpeech.entries()) {
+      registerEntry(key, value);
+    }
+    return normalized;
+  }
+
+  if (Array.isArray(partsOfSpeech)) {
+    for (const entry of partsOfSpeech) {
+      const key = entry?.index ?? entry?.tokenIndex ?? entry?.position ?? entry?.word ?? entry?.token ?? entry?.text;
+      const value = entry?.pos ?? entry?.value ?? entry?.partOfSpeech ?? entry?.label;
+      registerEntry(key, value);
+    }
+    return normalized;
+  }
+
+  if (typeof partsOfSpeech === "object") {
+    for (const [key, value] of Object.entries(partsOfSpeech)) {
+      registerEntry(key, value);
     }
   }
 
   return normalized;
 }
 
+function resolvePartOfSpeech(partsOfSpeech, index, word, occurrenceIndex = 0) {
+  const normalizedWord = normalizeWord(word);
+
+  if (partsOfSpeech instanceof Map) {
+    if (Number.isInteger(index) && partsOfSpeech.has(index)) {
+      return getPartOfSpeechValue(partsOfSpeech.get(index), occurrenceIndex);
+    }
+
+    if (normalizedWord && partsOfSpeech.has(normalizedWord)) {
+      return getPartOfSpeechValue(partsOfSpeech.get(normalizedWord), occurrenceIndex);
+    }
+  }
+
+  if (partsOfSpeech && typeof partsOfSpeech === "object") {
+    const byIndex = partsOfSpeech[index];
+    if (byIndex !== undefined) {
+      return getPartOfSpeechValue(byIndex, occurrenceIndex);
+    }
+
+    if (normalizedWord && partsOfSpeech[normalizedWord] !== undefined) {
+      return getPartOfSpeechValue(partsOfSpeech[normalizedWord], occurrenceIndex);
+    }
+  }
+
+  return null;
+}
+
+function getPartOfSpeechValue(value, occurrenceIndex) {
+  if (Array.isArray(value)) {
+    return normalizePartOfSpeech(value[occurrenceIndex] ?? value[0]);
+  }
+
+  return normalizePartOfSpeech(value);
+}
+
+function normalizePartOfSpeechValue(value) {
+  if (Array.isArray(value)) {
+    const normalizedValues = value
+      .map((entry) => normalizePartOfSpeech(entry))
+      .filter(Boolean);
+    return normalizedValues.length > 0 ? normalizedValues : null;
+  }
+
+  return normalizePartOfSpeech(value);
+}
+
 function normalizePartOfSpeech(value) {
+  if (Array.isArray(value)) {
+    for (const entry of value) {
+      const normalized = normalizePartOfSpeech(entry);
+      if (normalized) {
+        return normalized;
+      }
+    }
+    return null;
+  }
+
   const normalized = String(value ?? "").toLowerCase();
   if (["v", "verb"].includes(normalized)) return "verb";
   if (["n", "noun"].includes(normalized)) return "noun";

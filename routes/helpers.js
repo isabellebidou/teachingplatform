@@ -109,24 +109,29 @@ const t = i18n.getFixedT(lang, "stressFeedback");
 
   // ❌ CASE 2: errors exist
   const feedback = [];
-
-  feedback.push(t("intro", { lng: lang }));
+if (mismatches.length > 0) {
 
   for (const w of mismatches) {
     const syllables = w.syllables || [];
+    const posLabel = w.partOfSpeech
+      ? ` (${w.partOfSpeech})`
+      : "";
 
     const stressedWord = syllables
-      .map((s, i) => (i === w.expectedStress ? s.toUpperCase() : s.toLowerCase()))
+      .map((s, i) =>
+        i === w.expectedStress
+          ? s.toUpperCase()
+          : s.toLowerCase()
+      )
       .join("");
 
-    const rule =
-      w.rule || t("noRule", { lng: lang });
+    const rule = w.rule || "";
 
     feedback.push(
-      `${t("word", { lng: lang })} ${w.word} → ${stressedWord}\n` +
-      `${t("rule", { lng: lang })}: ${rule}`
+      `${t("word", { lng: lang })} ${w.word}${posLabel} → ${stressedWord} ${rule}`
     );
   }
+}
 
-  return feedback.join("\n\n");
+  return feedback;
 }

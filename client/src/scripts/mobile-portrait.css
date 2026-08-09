@@ -9,14 +9,14 @@
   input {
     width: 100%;
     height: 2em;
-    font-size: large;
+    font-size: medium;
   }
 
   /* https://stackoverflow.com/questions/15901030/reset-remove-css-styles-for-element-only */
   .usersetinput,
   .usersetlabel {
     width: auto;
-    font-size: medium;
+    font-size: normal;
   }
 
   .col {
@@ -109,7 +109,7 @@
     width: 100%;
     right: 0%;
     bottom: 0%;
-    font-size: large;
+    font-size: normal;
     margin-top: 10%;
     margin-bottom: 10%;
   }
@@ -220,7 +220,7 @@
   .button,
   button {
     background-color: none;
-    font-size: 1.2em;
+    font-size: 1.1em;
     border-radius: 8%;
     margin: 1em;
     padding-left: 0.3em;
@@ -230,7 +230,7 @@
   }
   #menubutton,
   #languagebtn {
-    font-size: 1.6em;
+    font-size: 1.3em;
   }
   .largeBtn {
     min-width: 100%;
@@ -247,7 +247,7 @@
     top: 13%;
     right: 1%;
     position: fixed;
-    font-size: 1.3em;
+    font-size: 1.1em;
   }
   .readDivContainer {
     display: flex;
@@ -543,7 +543,7 @@
     width: 95%;
     color: var(--darkpurple);
     line-height: 2em;
-    font-size: medium;
+    font-size: normal;
     margin: 0em;
     padding: 2%;
     text-align: justify;
@@ -552,7 +552,7 @@
   }
 
   .pricingCardPrice {
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: bold;
     margin: 3px 0;
     color: var(--strongpink);

@@ -1,6 +1,6 @@
 @media screen and (max-width: 1000px) and (orientation: landscape) {
   .maincontent {
-    font-size: large;
+    font-size: normal;
   }
   #login fieldset:first-child,
   #upload fieldset:first-child,
@@ -33,7 +33,7 @@
     padding: 0.5em;
     width: 100%;
     height: 2em;
-    font-size: large;
+    font-size: normal;
   }
    /* https://stackoverflow.com/questions/15901030/reset-remove-css-styles-for-element-only */
  .usersetinput, .usersetlabel {
@@ -109,7 +109,7 @@ fieldset {
   }
 
   .pricingCardPrice {
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
 
   .pricingCardDescription {

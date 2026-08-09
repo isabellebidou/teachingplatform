@@ -4,7 +4,7 @@ import { transcribeAudio } from "../services/elevenLabsTranscription.js"
 import fs from "fs"
 import { convertWebmToWav } from "../services/convertWebmToWav.js"
 import { analyzeAudioStress } from "../stress_engine/index.js"
-//import { safeAnalyzeAudioStress } from "../stress_engine/safe.js";
+import { safeAnalyzeAudioStress } from "../stress_engine/safe.js";
 import { buildStressRequest } from "../services/buildStressRequest.js"
 import upload from "../config/audioUpload.js"
 import i18n from "../i18n.js"
@@ -24,6 +24,7 @@ import {
 const Audio = mongoose.model("audios")
 const Script = mongoose.model("Script")
 const User = mongoose.model("users")
+const stress = true
 
 export default (app) => {
   app.post(
@@ -52,6 +53,10 @@ export default (app) => {
 
         const { buffer, mimetype, originalname } = req.file
         const { scriptId, lang } = req.body
+        const shouldGenerateStressFeedback =
+          req.body.stress === undefined
+            ? stress
+            : req.body.stress === true || req.body.stress === "true"
 
         // ================= SCRIPT LOAD =================
         let script
@@ -86,38 +91,7 @@ export default (app) => {
 
          console.log("📝 [audio] transcript:", transcriptText);
 
-        // ================= WAV CONVERSION =================
-        /*
-      
-      let wavBuffer;
-      try {
-        wavBuffer = await convertWebmToWav(buffer);
-      } catch (err) {
-        console.error("❌ [audio] WAV conversion failed:", err);
-        return res.status(500).send("Audio conversion failed");
-      }
 
-      console.log("🔄 [audio] WAV conversion OK");
-      */
-
-        // ================= STRESS ENGINE =================
-        /*   let stressResult;
-      try {
-        const payload = buildStressRequest({
-          scriptText: script.sentence,
-          audioBuffer: wavBuffer,
-          elevenLabs: transcriptionResult.raw,
-        });
-
-        stressResult = await analyzeAudioStress(payload);
-      } catch (err) {
-     //   console.error("❌ [audio] stress engine failed:", err);
-        return res.status(500).send("Stress analysis failed");
-      }*/
-
-        //  console.log("🧠 [audio] stress analysis OK");
-
-        //  const stressFeedback = generateStressFeedback(stressResult, lang);
 
         // ================= TEXT FEEDBACK =================
         const feedback = generateFeedback(
@@ -142,22 +116,40 @@ export default (app) => {
           console.log("☁️ [audio] uploaded to S3:", s3Key);
 
         // ================= DB SAVE =================
-        const audio = await new Audio({
+        const audioDoc = await new Audio({
           _user: req.user.id,
           _script: scriptId,
           s3Key,
           mimeType: mimetype,
           transcript: transcriptText,
           feedback,
-          //  stressFeedback,
         }).save()
 
-        console.log("💾 [audio] saved to DB:", audio._id)
+        // ================= STRESS FEEDBACK =================
+        let stressFeedbackResult = []
+        if (shouldGenerateStressFeedback) {
+          try {
+            stressFeedbackResult = await buildStressFeedback({
+              buffer,
+              script,
+              transcriptionResult,
+              lang,
+            })
+console.log("🧠 [audio] stress feedback generated:", stressFeedbackResult)
+            audioDoc.stressFeedback = stressFeedbackResult
+            await audioDoc.save()
+            console.log("🧠 [audio] stress analysis OK")
+          } catch (err) {
+            console.error("❌ [audio] stress engine failed:", err)
+          }
+        }
+
+        console.log("💾 [audio] saved to DB:", audioDoc._id)
         await User.findByIdAndUpdate(req.user.id, {
           $inc: { numberOfRecordings: 1 },
         })
 
-        res.send(audio)
+        res.send(audioDoc)
       } catch (err) {
         console.error("🔥 [audio] UNHANDLED ERROR:", err);
         res.status(500).send("Audio upload failed")
@@ -173,6 +165,38 @@ export default (app) => {
       })
     })
   }
+async function buildStressFeedback({ buffer, script, transcriptionResult, lang }) {
+  // ================= WAV CONVERSION =================
+  let wavBuffer
+  try {
+    wavBuffer = await convertWebmToWav(buffer)
+  } catch (err) {
+    console.error("❌ [audio] WAV conversion failed:", err)
+    return []
+  }
+
+  console.log("🔄 [audio] WAV conversion OK")
+
+  // ================= STRESS ENGINE =================
+  let stressResult
+  try {
+    const payload = buildStressRequest({
+      scriptText: script.sentence,
+      audioBuffer: wavBuffer,
+      elevenLabs: transcriptionResult.raw,
+      partsOfSpeech: script.partsOfSpeech,
+    })
+
+    stressResult = await analyzeAudioStress(payload)
+  } catch (err) {
+    console.error("❌ [audio] stress engine failed:", err)
+    return []
+  }
+
+  console.log("🧠 [audio] stress analysis OK")
+
+  return generateStressFeedback(stressResult, lang)
+}
 
   app.delete("/api/user_audios/delete", async (req, res) => {
     const idsToDelete = req.body.idsToDelete.map((id) =>

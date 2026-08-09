@@ -4,10 +4,10 @@
 "h2Audios": "Audios",
 "pRecordYourself": "Enregistrer",
 "pRecordedOn":"enregistré le",
-"pTranscript":"Text:",
+"pTranscript":"Nous avons entendu :",
 "pFeedback":"Remarques:",
-"btnDisableEdit":"désactiver modifier",
-"btnEnableEdit":"activer modifier",
+"btnDisableEdit":"désactiver effacer",
+"btnEnableEdit":"activer effacer",
 "btnDelete":"Effacer la selection",
 "btnRecord": "🎙 Enregistrer",
 "btnStopRecord": "⏹ Arrêt"

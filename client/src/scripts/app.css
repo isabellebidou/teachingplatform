@@ -44,9 +44,9 @@ body,
   margin-top: 10%;
   margin-left: 0%;
   margin-right: 0%;
-  margin-bottom: 200px;
+  margin-bottom: 10%;
   padding-bottom: 10%;
-  height: 90%;
+  height: 80%;
   width: 100%;
  
 
@@ -87,7 +87,9 @@ fieldset {
   background-color: rgba(255, 255, 255, 0.4);
   text-align: justify;
 }
-
+.audioList{
+  margin-bottom: 400px;
+}
 .exercice-div {
   width: 80%;
   height: 80%;
@@ -193,10 +195,11 @@ li.div {
 
 .audiothumbnail {
   margin: 0.5em;
+  padding: 0.5em;
   position: relative;
   display: inline-block;
   display: grid;
-  justify-content: center;
+  justify-items: center;
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0.6);
   overflow-x: scroll;
@@ -724,6 +727,7 @@ table {
   padding: 0.5em;
   /*grid-auto-flow: column;https://css-tricks.com/equal-columns-with-flexbox-its-more-complicated-than-you-might-think/*/
   overflow-y: auto;
+ 
 }
 
 .sets-grid-container {
@@ -848,15 +852,16 @@ label {
 .deletebutton {
   background-color: rgba(127, 95, 135, 0.2);
   border: 0.2em;
-  border-color: #bba2c2;
+  border-color: red;
   color: red;
-  padding: 0.1em;
+  padding: 0.4em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 1em;
-  margin: 0.1em;
+  margin: 1em;
   cursor: pointer;
+
 }
 
 a.deletebutton:hover {
@@ -872,7 +877,11 @@ a.deletebutton:active {
 }
 
 /* Style for form */
+.audioCheckbox{
+  position: absolute;
+  bottom: 0em;
 
+}
 input,
 select,
 .submit,
@@ -990,8 +999,9 @@ dl,
 }
 
 .audiothumbnail.selected {
-  border-color: #ff6600; /* or any color */
-  transform: scale(1.05); /* optional effect */
+  border-color:var(--strongpink); /* or any color */
+  box-shadow:  var(--strongpink)  0px 0px 4px;
+ /* optional effect */
 }
 
 .disclaimerp {

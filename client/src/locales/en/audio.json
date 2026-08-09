@@ -4,10 +4,10 @@
 "h2Audios": "Audios",
 "pRecordYourself": "You may record yourself",
 "pRecordedOn":"recorded on",
-"pTranscript":"Transcript:",
+"pTranscript":"We heard:",
 "pFeedback":"Feedback:",
-"btnDisableEdit":"Disable edit",
-"btnEnableEdit":"Enable edit",
+"btnDisableEdit":"Disable delete",
+"btnEnableEdit":"Enable delete",
 "btnDelete":"Delete selected",
 "btnRecord": "🎙 Start recording",
 "btnStopRecord": "⏹ Stop recording"
