@@ -297,7 +297,7 @@ const Landing = () => {
         <span id="reviews">
           <StarReviewList />
         </span>
-        <StarReview />
+        {auth && <StarReview auth = {auth}/>}
       </CollapsibleFieldset>
 
       <CollapsibleFieldset legend={t("h2faq")} defaultOpen="true">
@@ -306,9 +306,6 @@ const Landing = () => {
         {renderFaqForm()}
       </CollapsibleFieldset>
       <CollapsibleFieldset legend={t("h2terms")}>
-        <legend>
-          <h2>{t("h2terms")}</h2>
-        </legend>
 
         <p id="indterms" className="offerTerms itemp">
           {t("pIndividualTermsSummary")}
@@ -317,9 +314,6 @@ const Landing = () => {
         <p className="offerNote itemp">{t("pIndividualOfferNote")}</p>
       </CollapsibleFieldset>
       <fieldset>
-        <legend>
-          <h2>{t("h2Contact")}</h2>
-        </legend>
 
         <div id="contact" className="bottomItem">
           <img

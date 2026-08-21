@@ -20,14 +20,14 @@ function StarReview({ auth }) {
 
     if (auth) {
       const toggleReviewDiv = document.getElementById('toggleReviewDiv');
-      if (!auth.hasReviews && auth.type !== "guest") {
+      if (true) {
         setVisibility('visible')
         if (toggleReviewDiv) {
           toggleReviewDiv.style.visibility = 'hidden';
         }
       } else {
         if (toggleReviewDiv) {
-          toggleReviewDiv.style.visibility = 'hidden';
+          toggleReviewDiv.style.visibility = 'visible';
         }
 
       }
