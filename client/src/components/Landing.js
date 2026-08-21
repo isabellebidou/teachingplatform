@@ -300,7 +300,7 @@ const Landing = () => {
         <StarReview />
       </CollapsibleFieldset>
 
-      <CollapsibleFieldset legend={t("h2faq")}>
+      <CollapsibleFieldset legend={t("h2faq")} defaultOpen="true">
         <span id="faq"></span>
         <FaqList />
         {renderFaqForm()}
