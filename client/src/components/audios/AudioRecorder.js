@@ -68,7 +68,6 @@ export default function AudioRecorder({ onUploadSuccess, script }) {
   }*/
 
   const uploadAudio = async () => {
-    console.log("uploadAudio   from AudioRecorder.js")
     if (!audioBlob) return
     if (!auth.type === "admin" && durationInSeconds > 30) {
       alert("Only recordings under 30 seconds can be uploaded.")
@@ -76,7 +75,6 @@ export default function AudioRecorder({ onUploadSuccess, script }) {
     }
 
     const formData = new FormData()
-    console.log(script._id)
     formData.append("audio", audioBlob, "recording.webm")
     formData.append("scriptId", script._id)
     formData.append("lang", lang)
@@ -98,11 +96,11 @@ export default function AudioRecorder({ onUploadSuccess, script }) {
     }
   }
   const formatTime = (seconds) => {
-  const mins = Math.floor(seconds / 60)
-  const secs = seconds % 60
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
 
-  return `${mins}:${secs.toString().padStart(2, "0")}`
-}
+    return `${mins}:${secs.toString().padStart(2, "0")}`
+  }
 
   return (
     <div id="audioCtrls">
@@ -134,6 +132,7 @@ export default function AudioRecorder({ onUploadSuccess, script }) {
             onClick={uploadAudio}
             disabled={
               auth.type === "guest" ||
+              (auth.type !== "admin" && auth.numberOfRecordings >= 10) ||
               (auth.type !== "admin" && durationInSeconds > MAX_UPLOAD_DURATION)
                 ? true
                 : uploading
@@ -141,6 +140,16 @@ export default function AudioRecorder({ onUploadSuccess, script }) {
           >
             {uploading ? "Uploading..." : "⬆ Upload"}
           </button>
+
+          {durationInSeconds > MAX_UPLOAD_DURATION && auth.type !== "admin" && (
+            <span className="smallWarning"> {t("longFileWarning")}</span>
+          )}
+          {auth.numberOfRecordings >= 10 && auth.type !== "admin" && (
+            <span className="smallWarning"> {t("excededNumberOfReRecordingWarning")}</span>
+          )}
+          {auth.type === "guest" && (
+            <span className="smallWarning"> {t("limitedRightsWarning")}</span>
+          )}
         </>
       )}
     </div>

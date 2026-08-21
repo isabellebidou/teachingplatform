@@ -10,5 +10,9 @@
 "btnEnableEdit":"activer effacer",
 "btnDelete":"Effacer la selection",
 "btnRecord": "🎙 Enregistrer",
-"btnStopRecord": "⏹ Arrêt"
+"btnStopRecord": "⏹ Arrêt",
+"longFileWarning": " Le fichier est trop long. Veuillez enregistrer un échantillon audio plus court.",
+"excededNumberOfReRecordingWarning": "Vous avez dépassé le nombre maximum d'enregistrements autorisés. Veuillez supprimer certains enregistrements avant d'ajouter de nouveaux.",
+"limitedRightsWarning": "Vous êtes connecté en tant qu'invité. Vous avez des droits limités. Veuillez vous connecter pour accéder à toutes les fonctionnalités."
+
 }

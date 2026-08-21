@@ -85,7 +85,7 @@ function AudioList({
 
         if (part.normalized === word) {
           highlightedIndexes.push(index)
-          console.log(`Matched word "${word}" at index ${index}`)
+          //console.log(`Matched word "${word}" at index ${index}`)
           sentenceCursor = index + 1
           matched = true
           break

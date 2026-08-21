@@ -43,7 +43,6 @@ function UserDashboard({
     try {
       const { payload } = await fetchUserAudioUrl(audioItem._id)
       const url = payload.url
-      console.log(url)
       setAudioUrl(url)
       setAudio({
         ...audioItem,
@@ -86,7 +85,6 @@ function UserDashboard({
 }
 
 function mapStateToProps(state) {
-  console.log(state.audios.length)
 
   return { audios: state.audios, scripts: state.scripts }
 }

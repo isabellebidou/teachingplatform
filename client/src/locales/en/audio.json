@@ -10,5 +10,9 @@
 "btnEnableEdit":"Enable delete",
 "btnDelete":"Delete selected",
 "btnRecord": "🎙 Start recording",
-"btnStopRecord": "⏹ Stop recording"
+"btnStopRecord": "⏹ Stop recording",
+"longFileWarning": "The file is too long. Please record a shorter audio sample.",
+"excededNumberOfReRecordingWarning": "You have exceeded the maximum number of recordings allowed. Please delete some recordings before adding new ones.",
+"limitedRightsWarning": "You are logged in as a guest. You have limited rights. Please log in to access all features."
+
 }
