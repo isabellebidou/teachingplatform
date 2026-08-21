@@ -30,6 +30,7 @@ import MentionsLegales from "./MentionsLegales";
 import ProtectedRoute from "./ProtectedRoute";
 import TopicsDashboard from "./topics/TopicsDashboard";
 import SyllableStressPage from "./SyllableStress";
+import ArticlePage from "./articles/ArticlePage";
 
 function App({ fetchUser, fetchCookieValue }) {
   const auth = useSelector((state) => state.auth);
@@ -56,7 +57,7 @@ function App({ fetchUser, fetchCookieValue }) {
         <Route path="/api/feedback" component={Feedback} />
         <Route path="/payment" component={Payment} />
         <Route exact path="/completion" component={Completion} />
-
+        <Route path ="/articles/:slug" component={ArticlePage} />
         <ProtectedRoute exact path="/dashboard" component={UserDashboard} />
         <ProtectedRoute exact path="/board" component={UserBoard} />
         <Route exact path="/exercice" component={UserExercice} />

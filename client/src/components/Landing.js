@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import FaqList from "./faqs/FaqList"
 import FaqForm from "./faqs/FaqForm"
 import StarReviewList from "./starreviews/StarReviewList"
+import ArticleLinks from "./articles/ArticlesLinks"
 import CookieConsent from "react-cookie-consent"
 import { fetchCookieValue, updateCookieAcceptance } from "../actions"
 import { useTranslation } from "react-i18next"
@@ -297,7 +298,10 @@ const Landing = () => {
         <span id="reviews">
           <StarReviewList />
         </span>
-        {auth && <StarReview auth = {auth}/>}
+        {auth && <StarReview auth={auth} />}
+      </CollapsibleFieldset>
+      <CollapsibleFieldset legend={t("h2Articles")}>
+        <ArticleLinks />
       </CollapsibleFieldset>
 
       <CollapsibleFieldset legend={t("h2faq")} defaultOpen="true">
@@ -306,7 +310,6 @@ const Landing = () => {
         {renderFaqForm()}
       </CollapsibleFieldset>
       <CollapsibleFieldset legend={t("h2terms")}>
-
         <p id="indterms" className="offerTerms itemp">
           {t("pIndividualTermsSummary")}
         </p>
@@ -314,7 +317,6 @@ const Landing = () => {
         <p className="offerNote itemp">{t("pIndividualOfferNote")}</p>
       </CollapsibleFieldset>
       <fieldset>
-
         <div id="contact" className="bottomItem">
           <img
             className="me"
