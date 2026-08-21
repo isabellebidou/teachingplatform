@@ -1,4 +1,5 @@
 import { execFile } from "child_process";
+import ffmpegPath from "ffmpeg-static";
 import fs from "fs";
 import os from "os";
 import path from "path";
@@ -11,7 +12,7 @@ export function convertWebmToWav(buffer) {
     fs.writeFileSync(inputPath, buffer);
 
     execFile(
-      "ffmpeg",
+      ffmpegPath,
       [
         "-i", inputPath,
         "-ar", "16000",   // sample rate (important for speech)
