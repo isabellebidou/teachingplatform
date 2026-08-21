@@ -29,6 +29,7 @@ import "./models/UserData.js";
 import "./models/Reading.js";
 import "./models/Document.js";
 import "./models/Faq.js";
+import "./models/Article.js";
 import "./models/Link.js";
 import "./models/Offer.js";
 import "./models/StarReview.js";
@@ -52,6 +53,7 @@ import readingRoutes from "./routes/readingRoutes.js";
 import userDataRoutes from "./routes/userDataRoutes.js";
 import usersRoutes from "./routes/usersRoutes.js";
 import faqRoutes from "./routes/faqRoutes.js";
+import articleRoutes from "./routes/articleRoutes.js";
 import linkRoutes from "./routes/linkRoutes.js";
 import offerRoutes from "./routes/offerRoutes.js";
 import starReviewRoutes from "./routes/starReviewRoutes.js";
@@ -99,6 +101,7 @@ app.use(passport.session());
   userDataRoutes,
   usersRoutes,
   faqRoutes,
+  articleRoutes,
   linkRoutes,
   offerRoutes,
   starReviewRoutes,
