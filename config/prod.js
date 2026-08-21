@@ -17,5 +17,6 @@ export default {
     elevenLabsSpeechToTextKey: process.env.ELEVENLABS_SPEECH_TO_TEXT_KEY,
     elevenLabsSpeechToSpeechKey: process.env.ELEVENLABS_SPEECH_TO_SPEECH_KEY,
     elevenLabsTextToSpeechKey: process.env.ELEVENLABS_TEXT_TO_SPEECH_KEY,
+    VOWEL_QUALITY_URL: process.env.VOWEL_QUALITY_URL
 
 }

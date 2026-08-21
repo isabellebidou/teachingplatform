@@ -2,9 +2,13 @@ import mongoose from "mongoose";
 import keys from "../config/keys.js";
 import Script from "../models/Script.js";
 import scripts from "./data/scripts.js"; 
+//import scripts from "./data/scriptsWithTargetVowels.js"; // Import the scripts with target vowels
 
 async function seed() {
   await mongoose.connect(keys.mongoURI);
+  console.log("📦 First script:");
+  console.log(JSON.stringify(scripts[0], null, 2));
+
 
   console.log("🧹 Clearing old scripts...");
   await Script.deleteMany({});

@@ -242,14 +242,14 @@ export async function analyzeAudioStress(input) {
     const partsOfSpeech = normalizePartsOfSpeech(normalized.partsOfSpeech);
     const stressOverrides = normalizeStressOverrides(normalized.stressOverrides);
 
-    console.log("[stress-debug] input", {
+  /*  console.log("[stress-debug] input", {
       expectedText: normalized.expectedText,
       expectedWordCount: expectedWords.length,
       transcriptWordCount: transcriptWords.length,
       partOfSpeechCount: partsOfSpeech.size,
       overrideCount: stressOverrides.size,
       audioBase64Length: normalized.audioBase64.length,
-    });
+    });*/
 
     const occurrenceCounts = new Map();
     const words = expectedWords.map((word, index) => {
@@ -267,7 +267,7 @@ export async function analyzeAudioStress(input) {
       const status = stressStatus(expectedStress, observedStress);
       const rule = determineStressRule(word, syllables, partOfSpeech, stressOverrides);
 
-      console.log("[stress-debug] word", {
+    /*  console.log("[stress-debug] word", {
         index,
         word,
         syllables,
@@ -281,7 +281,7 @@ export async function analyzeAudioStress(input) {
           startMs: timing.startMs,
           endMs: timing.endMs,
         } : null,
-      });
+      });*/
 
       return {
         index,
@@ -296,7 +296,7 @@ export async function analyzeAudioStress(input) {
     });
 
     const summary = summarize(words);
-    console.log("[stress-debug] summary", summary);
+   // console.log("[stress-debug] summary", summary);
 
     return {
       ok: true,
@@ -374,7 +374,7 @@ function observedStressForWord(wav, timing, syllables, word) {
   });
 
   if (prominence.every((value) => value === 0)) {
-    console.log("[stress-debug] observed prominence", {
+  /*  console.log("[stress-debug] observed prominence", {
       word,
       syllables,
       startMs,
@@ -382,12 +382,12 @@ function observedStressForWord(wav, timing, syllables, word) {
       durationMs,
       prominence,
       result: null,
-    });
+    });*/
     return null;
   }
 
   const observedIndex = prominence.indexOf(Math.max(...prominence));
-  console.log("[stress-debug] observed prominence", {
+ /* console.log("[stress-debug] observed prominence", {
     word,
     syllables,
     startMs,
@@ -395,7 +395,7 @@ function observedStressForWord(wav, timing, syllables, word) {
     durationMs,
     prominence,
     result: observedIndex,
-  });
+  });*/
 
   return observedIndex;
 }
@@ -418,14 +418,14 @@ function expectedStressForWordOld(word, syllables, partOfSpeech, stressOverrides
     stressOverrides
   );
 
-  console.log("[stress-debug] expected stress", {
+ /* console.log("[stress-debug] expected stress", {
     word,
     syllables,
     partOfSpeech,
     result: rule.stress,
     source: rule.type,
     rule
-  });
+  });*/
 
   return rule.stress;
 }
@@ -442,30 +442,30 @@ function expectedStressForWord2(word, syllables, partOfSpeech, stressOverrides) 
   const normalized = normalizeWord(word);
   const overrideStress = stressFromOverride(normalized, partOfSpeech, syllables.length, stressOverrides);
   if (overrideStress !== null) {
-    console.log("[stress-debug] expected stress", { word, syllables, partOfSpeech, result: overrideStress, source: "override" });
+   // console.log("[stress-debug] expected stress", { word, syllables, partOfSpeech, result: overrideStress, source: "override" });
     return overrideStress;
   }
 
   const suffixStress = stressFromSuffixRule(normalized, syllables.length);
   if (suffixStress !== null) {
-    console.log("[stress-debug] expected stress", { word, syllables, partOfSpeech, result: suffixStress, source: "suffix" });
+   // console.log("[stress-debug] expected stress", { word, syllables, partOfSpeech, result: suffixStress, source: "suffix" });
     return suffixStress;
   }
 
   if (syllables.length === 2) {
     const result = stressForTwoSyllableWord(normalized, partOfSpeech);
-    console.log("[stress-debug] expected stress", { word, syllables, partOfSpeech, result, source: "two-syllable" });
+//console.log("[stress-debug] expected stress", { word, syllables, partOfSpeech, result, source: "two-syllable" });
     return result;
   }
 
   if (syllables.length === 3) {
     const result = stressForThreeSyllableWord(partOfSpeech);
-    console.log("[stress-debug] expected stress", { word, syllables, partOfSpeech, result, source: "three-syllable" });
+    // console.log("[stress-debug] expected stress", { word, syllables, partOfSpeech, result, source: "three-syllable" });
     return result;
   }
 
   const result = 0;
-  console.log("[stress-debug] expected stress", { word, syllables, partOfSpeech, result, source: "default" });
+ // console.log("[stress-debug] expected stress", { word, syllables, partOfSpeech, result, source: "default" });
   return result;
 }
 
