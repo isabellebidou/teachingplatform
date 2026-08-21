@@ -1,21 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const FaqForm = () => {
-  const [question, setQuestion] = useState('');
-  const [answer, setAnswer] = useState('')
+  const { i18n } = useTranslation();
+  const lang = i18n.language.startsWith("fr") ? "fr" : "en";
+  const createEmptyFaq = () => ({
+    question: { en: "", fr: "" },
+    answer: { en: "", fr: "" },
+  });
+  const [faq, setFaq] = useState(createEmptyFaq)
   
 
-  const handleAnswer = (e) => { setAnswer(e.target.value) }
-  const handleQuestion = (e) => { setQuestion(e.target.value) }
+  const handleLocalizedChange = (field, locale) => (e) => {
+    setFaq({
+      ...faq,
+      [field]: {
+        ...faq[field],
+        [locale]: e.target.value,
+      },
+    })
+  }
   
 
   const handleFaqSubmit = async (event) => {
     event.preventDefault();
-    axios.post('/api/faq', { question, answer })
+    axios.post('/api/faq', faq)
       .then(res=>{
-        setAnswer('');
-        setQuestion('');
+        setFaq(createEmptyFaq());
         
       })
   }
@@ -25,11 +37,11 @@ const FaqForm = () => {
     <div className=" ">
       <dl>
         <dt>
-        {question}
+        {faq.question[lang]}
           
         </dt>
         <dd>
-        {answer}
+        {faq.answer[lang]}
           
         </dd>
 
@@ -40,12 +52,20 @@ const FaqForm = () => {
 <form onSubmit={handleFaqSubmit}>
 
       <fieldset className="item photoThumbnail">
-        <legend >enter a question </legend>
-        <input type="text" name="question" value={question}onChange={handleQuestion} />
+        <legend >enter a question in English </legend>
+        <input type="text" name="question-en" value={faq.question.en} onChange={handleLocalizedChange("question", "en")} />
       </fieldset>
       <fieldset className="item photoThumbnail">
-        <legend >enter an answer</legend>
-        <input type="text" name="answer" value={answer} onChange={handleAnswer} />
+        <legend >enter a question in French </legend>
+        <input type="text" name="question-fr" value={faq.question.fr} onChange={handleLocalizedChange("question", "fr")} />
+      </fieldset>
+      <fieldset className="item photoThumbnail">
+        <legend >enter an answer in English</legend>
+        <input type="text" name="answer-en" value={faq.answer.en} onChange={handleLocalizedChange("answer", "en")} />
+      </fieldset>
+      <fieldset className="item photoThumbnail">
+        <legend >enter an answer in French</legend>
+        <input type="text" name="answer-fr" value={faq.answer.fr} onChange={handleLocalizedChange("answer", "fr")} />
       </fieldset>
       <button type="submit" className="">
         upload FAQ
