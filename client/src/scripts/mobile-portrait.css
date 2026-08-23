@@ -659,4 +659,9 @@
 
     transition: 0.25s;
   }
+  video{
+  width: 80%;
+  height: auto;
+}
+
 }

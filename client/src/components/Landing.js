@@ -13,6 +13,7 @@ import PricingCard from "./PricingCard"
 import PaymentDetails from "./PaymentDetails"
 import { OFFERS } from "../locales/landingOffers"
 import CollapsibleFieldset from "./CollapsibleFieldset"
+import VideoPlayer from "./VideoPlayer" 
 
 const Landing = () => {
   const dispatch = useDispatch()
@@ -123,9 +124,10 @@ const Landing = () => {
           </a>
         </span>
       )}*/}
-      <fieldset>
+      <fieldset id ="videoPlayerFieldset">
+         <VideoPlayer />
         <p className="itemp">{t("pOfferBook")}</p>
-
+     
         <a href="https://calendar.app.google/znY72K9W2gZQohNw5">
           <button className="actionbook2">{t("btnActionbook")}</button>
         </a>

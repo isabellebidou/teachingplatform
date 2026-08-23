@@ -1535,3 +1535,24 @@ th {
 .article li {
     margin-bottom: 10px;
 }
+#videoPlayerFieldset{
+ justify-content: center;
+}
+.video-player{
+   width: 100%;
+
+   display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.video-controls{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+video{
+  width: 50%;
+  height: auto;
+}

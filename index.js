@@ -39,6 +39,7 @@ import "./models/GrammarTopic.js";
 import "./models/Theme.js";
 import "./models/Level.js";
 import "./models/Exercise.js";
+import "./models/Video.js"; 
 
 // ------------------- Import services -------------------
 import "./services/passport.js";
@@ -62,6 +63,7 @@ import scriptRoutes from "./routes/scriptRoutes.js";
 import grammarTopicsRoutes from "./routes/grammarTopicsRoutes.js";
 import exerciceRoutes from "./routes/exerciceRoutes.js";
 import settingsRoutes from "./routes/settingsRoutes.js";
+import videoRoutes from "./routes/videoRoutes.js"; // Import video routes to register them with the app
 
 // ------------------- Express app -------------------
 const app = express();
@@ -110,6 +112,7 @@ app.use(passport.session());
   grammarTopicsRoutes,
   exerciceRoutes,
   settingsRoutes,
+  videoRoutes, // Add video routes to the list of routes to be mounted
 ].forEach((route) => route(app));
 
 // ------------------- Serve static React build -------------------
