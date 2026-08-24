@@ -53,9 +53,32 @@ const VideoPlayer = () => {
         setCurrentVideoUrl(null)
       }
     }
-
     loadVideoUrl()
   }, [currentVideo])
+  const handleReplay = async () => {
+  try {
+    const response = await fetch(`/api/video-url/${currentVideo._id}`);
+
+    if (!response.ok) {
+      throw new Error("Failed to refresh video URL");
+    }
+
+    const { url } = await response.json();
+
+    setCurrentVideoUrl(url);
+
+    // Wait for React to update the src, then play
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play();
+      }
+    }, 50);
+
+  } catch (err) {
+    console.error("Replay error:", err);
+  }
+}
 
   const handleVideoEnded = () => {
     if (videos.length <= 1) {
@@ -92,15 +115,8 @@ const VideoPlayer = () => {
       </div>
 
       <div className="video-controls">
-        <button
-          onClick={() => {
-            const video = document.querySelector("video")
-            video.currentTime = 0
-            video.play()
-          }}
-        >
-          🔄 Replay
-        </button>
+
+        <button onClick={handleReplay}>🔄 Replay</button>
 
         <button onClick={() => setIsMuted(!isMuted)}>
           {isMuted ? "🔊 Play sound" : "🔇 Mute"}
