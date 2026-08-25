@@ -65,7 +65,7 @@ const UserList = ({ users, fetchUsers }) => {
             <div key={user._id} className="bkground">
               {user.firstName && user.lastName && user.avatar ? (
                 <>
-                  <img src={user.avatar} alt={user.firstName + " " + user.lastName} / >
+                  <img src={user.avatar} referrerPolicy="no-referrer"  alt={user.firstName + " " + user.lastName} / >
                   <p>
                     <strong>First name:</strong> {user.firstName}
                   </p>
