@@ -7,6 +7,14 @@
   --evenBackground: rgba(214, 210, 210, 0.2);
   --oddBackground: rgb(183, 187, 184, 0.3);
 }
+html {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  bottom: 0%;
+  right: 0%;
+  background-color: rgba(243, 236, 236, 0.9);
+}
 
 body,
 #root {
@@ -418,14 +426,6 @@ textarea {
     "Dancing Script", "Brush Script MT", "Lucida Console", Monaco, monospace;
 }
 
-html {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  bottom: 0%;
-  right: 0%;
-  background-color: rgba(243, 236, 236, 0.9);
-}
 
 h1 {
   font-size: x-large;

@@ -1,100 +1,86 @@
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { useParams } from "react-router-dom"
 
 function ArticlePage() {
-    const { slug } = useParams();
+  const { slug } = useParams()
 
-    const { i18n } = useTranslation();
-    const lang = i18n.language.startsWith("fr") ? "fr" : "en";
+  const { i18n } = useTranslation()
+  const lang = i18n.language.startsWith("fr") ? "fr" : "en"
 
-    const localizedText = (field) => {
-        if (typeof field === "string") return field;
-        return field?.[lang] || field?.en || field?.fr || "";
-    };
+  const localizedText = (field) => {
+    if (typeof field === "string") return field
+    return field?.[lang] || field?.en || field?.fr || ""
+  }
 
-    const [article, setArticle] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const [article, setArticle] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-    useEffect(() => {
-        const fetchArticle = async () => {
-            try {
-                const response = await fetch(`/api/articles/${slug}`);
+  useEffect(() => {
+    const fetchArticle = async () => {
+      try {
+        const response = await fetch(`/api/articles/${slug}`)
 
-                if (!response.ok) {
-                    throw new Error("Article not found");
-                }
+        if (!response.ok) {
+          throw new Error("Article not found")
+        }
 
-                const data = await response.json();
-                setArticle(data);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchArticle();
-    }, [slug]);
-
-    if (loading) {
-        return <p>Loading...</p>;
+        const data = await response.json()
+        setArticle(data)
+      } catch (err) {
+        setError(err.message)
+      } finally {
+        setLoading(false)
+      }
     }
 
-    if (error) {
-        return <p>{error}</p>;
-    }
+    fetchArticle()
+  }, [slug])
 
-    if (!article) {
-        return <p>Article not found.</p>;
-    }
+  if (loading) {
+    return <p>Loading...</p>
+  }
 
-    return (
-        <div className = "page">
-        <article className="article">
+  if (error) {
+    return <p>{error}</p>
+  }
 
-            <h1>{localizedText(article.title)}</h1>
+  if (!article) {
+    return <p>Article not found.</p>
+  }
 
-            <p className="itemp">
-                {localizedText(article.excerpt)}
-            </p>
+  return (
+    <div className="page">
+      <div className="article">
+        <h1>{localizedText(article.title)}</h1>
 
-            {article.sections?.map((section, index) => (
-                <section key={index}>
+        <p className="itemp">{localizedText(article.excerpt)}</p>
 
-                    {section.heading && (
-                        <h2>
-                            {localizedText(section.heading)}
-                        </h2>
-                    )}
+        {article.sections?.map((section, index) => (
+          <section key={index}>
+            {section.heading && <h2>{localizedText(section.heading)}</h2>}
 
-                    {section.body &&
-                        localizedText(section.body).map((paragraph, i) => (
-                            <p className="itemp" key={i}>
-                                {paragraph}
-                            </p>
-                        ))
-                    }
+            {section.body &&
+              localizedText(section.body).map((paragraph, i) => (
+                <p className="itemp" key={i}>
+                  {paragraph}
+                </p>
+              ))}
 
-                    {section.items &&
-                        localizedText(section.items).length > 0 && (
-                            <ul className="itemp">
-                                {localizedText(section.items).map((item, i) => (
-                                    <li key={i}>
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        )
-                    }
-
-                </section>
-            ))}
-
-        </article>
-        </div>
-    );
+            {section.items && localizedText(section.items).length > 0 && (
+              <ul className="itemp">
+                {localizedText(section.items).map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            )}
+          </section>
+        ))}
+      </div>
+      <div className="placeholder"></div>
+    </div>
+  )
 }
 
-export default ArticlePage;
+export default ArticlePage

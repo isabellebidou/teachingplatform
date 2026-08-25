@@ -1,15 +1,165 @@
-import React from "react";
-import { Component } from "react";
-import { connect } from "react-redux";
-import { fetchUsers } from "../../actions";
-import { withRouter } from "react-router-dom";
-import store from "../store";
-import { selectUser } from "../../actions";
+import { useEffect, useState } from "react"
+import { connect } from "react-redux"
+import { fetchUsers } from "../../actions"
 
+const UserList = ({ users, fetchUsers }) => {
+  const [editedUsers, setEditedUsers] = useState({})
 
+  useEffect(() => {
+    fetchUsers()
+  }, [fetchUsers])
 
+  const handleChange = (userId, field, value) => {
+    setEditedUsers((prev) => ({
+      ...prev,
+      [userId]: {
+        ...prev[userId],
+        [field]: value,
+      },
+    }))
+  }
 
-class UserList extends Component {
+  const handleSave = async (userId) => {
+    const changes = editedUsers[userId]
+
+    if (!changes) return
+
+    try {
+      const response = await fetch(`/api/users/${userId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(changes),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to update user")
+      }
+
+      // Remove the local edits after successful save
+      setEditedUsers((prev) => {
+        const updated = { ...prev }
+        delete updated[userId]
+        return updated
+      })
+    } catch (error) {
+      console.error("Error saving user:", error)
+    }
+  }
+
+  const getValue = (user, field) => {
+    return editedUsers[user._id]?.[field] ?? user[field]
+  }
+
+  return (
+    <div className="page">
+      <fieldset>
+        <legend>
+          <h2>Users Dashboard</h2>
+        </legend>
+
+        <div className="grid-container">
+          {users.map((user) => (
+            <div key={user._id} className="bkground">
+              <p>
+                <strong>User ID:</strong> {user._id}
+              </p>
+
+              <p>
+                <strong>Email:</strong> {user.email}
+              </p>
+
+              <p>
+                <strong>Google ID:</strong> {user.googleId}
+              </p>
+
+              <p>
+                <strong>Documents:</strong> {user.numberOfDocuments}
+              </p>
+
+              <p>
+                <strong>Recordings:</strong> {user.numberOfRecordings}
+              </p>
+
+              <p>
+                <strong>Reviews:</strong> {user.hasReviews ? "Yes" : "No"}
+              </p>
+
+              <p>
+                <strong>Consultation:</strong>{" "}
+                {user.hasConsultation ? "Yes" : "No"}
+              </p>
+
+              <p>
+                <strong>Consultation date:</strong>{" "}
+                {user.consultationDate
+                  ? new Date(user.consultationDate).toLocaleString()
+                  : "None"}
+              </p>
+
+              <label>
+                <strong>Type:</strong>
+
+                <select
+                  value={getValue(user, "type") || "guest"}
+                  onChange={(e) =>
+                    handleChange(user._id, "type", e.target.value)
+                  }
+                >
+                  <option value="guest">Guest</option>
+                  <option value="student">Student</option>
+                  <option value="teacher">Teacher</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </label>
+
+              <label>
+                <strong>Level:</strong>
+
+                <select
+                  value={getValue(user, "level") || ""}
+                  onChange={(e) =>
+                    handleChange(user._id, "level", e.target.value)
+                  }
+                >
+                  <option value="">Not set</option>
+                  <option value="A1">A1</option>
+                  <option value="A2">A2</option>
+                  <option value="B1">B1</option>
+                  <option value="B2">B2</option>
+                  <option value="C1">C1</option>
+                  <option value="C2">C2</option>
+                </select>
+              </label>
+
+              <p>
+                <strong>Language:</strong> {user.language}
+              </p>
+
+              <button
+                type="button"
+                onClick={() => handleSave(user._id)}
+                disabled={!editedUsers[user._id]}
+              >
+                Save
+              </button>
+            </div>
+          ))}
+        </div>
+      </fieldset>
+      <div className="placeholder"></div>
+    </div>
+  )
+}
+
+function mapStateToProps({ users }) {
+  return { users }
+}
+
+export default connect(mapStateToProps, { fetchUsers })(UserList)
+
+/*class UserList extends Component {
 
   componentDidMount() {
     this.props.fetchUsers();
@@ -35,27 +185,10 @@ class UserList extends Component {
 
             user id: {user._id}<br />
             </p>
-            {user.readings.length >0 &&
-            <h2 className="itemp">Readings booked</h2>
+            {user.numberOfRecordings>0 &&
+            <h2 className="itemp">Recordings: {user.numberOfRecordings}</h2>
     }
-            <ul className=" itemp">
-              {user.readings.map((reading) => (
-                <li key={reading._id}>
-                  <span>Expectations: {reading.expectations}</span> <br />
-                  <span>date booked: {new Date(reading.dateSent).toLocaleDateString()}</span> <br />
-                  {!reading.dateCompleted &&
-                    <span className="flag">New Feedback booked! </span>
-                  }
-                  {reading.dateCompleted &&
-                    <span>date Completed: {new Date(reading.dateCompleted).toLocaleDateString()}</span>
-                  }
-
-                  {/* Render other properties as needed */}
-                </li>
-              ))}
-            </ul>
-          
-
+   
         </div>
 
       );
@@ -84,4 +217,4 @@ function mapStateToProps({ users }) {
 }
 
 
-export default withRouter(connect(mapStateToProps, { fetchUsers })(UserList));
+export default withRouter(connect(mapStateToProps, { fetchUsers })(UserList));*/
