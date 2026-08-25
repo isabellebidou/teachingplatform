@@ -4,6 +4,9 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
   googleId: String,
+  firstName: String,
+  lastName: String,
+  avatar: String,
   numberOfDocuments: { type: Number, default: 0 },
   numberOfRecordings: { type: Number, default: 0 },
   type: { type: String, default: "guest" },

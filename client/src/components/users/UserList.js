@@ -60,8 +60,20 @@ const UserList = ({ users, fetchUsers }) => {
         </legend>
 
         <div className="grid-container">
+
           {users.map((user) => (
             <div key={user._id} className="bkground">
+              {user.firstName && user.lastName && user.avatar ? (
+                <>
+                  <img src={user.avatar} alt={user.firstName + " " + user.lastName} / >
+                  <p>
+                    <strong>First name:</strong> {user.firstName}
+                  </p>
+                  <p>
+                    <strong>Last name:</strong> {user.lastName}
+                  </p>{" "}
+                </>
+              ) : null}
               <p>
                 <strong>User ID:</strong> {user._id}
               </p>
@@ -136,6 +148,7 @@ const UserList = ({ users, fetchUsers }) => {
               <p>
                 <strong>Language:</strong> {user.language}
               </p>
+         
 
               <button
                 type="button"
@@ -146,7 +159,7 @@ const UserList = ({ users, fetchUsers }) => {
               </button>
             </div>
           ))}
-        </div>
+          </div>
       </fieldset>
       <div className="placeholder"></div>
     </div>
@@ -159,62 +172,4 @@ function mapStateToProps({ users }) {
 
 export default connect(mapStateToProps, { fetchUsers })(UserList)
 
-/*class UserList extends Component {
 
-  componentDidMount() {
-    this.props.fetchUsers();
-
-  }
-
-  handleClick = (userId) => {
-    store.dispatch(selectUser(userId));
-    this.props.history.push({
-      pathname: '/users/dashboard'
-    });
-  };
-
-  renderUsers() {
-    return this.props.users.map(user => {
-      return (
-
-        <div key={user._id} className="bkground" onClick={() => this.handleClick(user._id)} >
-
-          <p className="itemp photoThumbnail ">
-
-            type: {user.type} <br />email: {user.email}<br />
-
-            user id: {user._id}<br />
-            </p>
-            {user.numberOfRecordings>0 &&
-            <h2 className="itemp">Recordings: {user.numberOfRecordings}</h2>
-    }
-   
-        </div>
-
-      );
-
-    });
-  }
-
-
-  render() {
-    return (
-      <div className="page">
-
-        <fieldset>
-          <legend><h2> Users Dashboard </h2></legend>
-
-          <div className="grid-container">{this.renderUsers()}</div>
-        </fieldset>
-
-      </div>
-    );
-  }
-}
-
-function mapStateToProps({ users }) {
-  return { users };
-}
-
-
-export default withRouter(connect(mapStateToProps, { fetchUsers })(UserList));*/

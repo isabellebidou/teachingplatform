@@ -28,11 +28,35 @@ passport.use(
       if (existingUser) {
         log(email + "     existingUser**")
         // we already have a record with the given profile ID
+        const updates = {}
+        if (!existingUser.firstName && profile.name?.givenName) {
+        
+          updates.firstName = profile.name.givenName
+        }
+
+        if (!existingUser.lastName && profile.name?.familyName) {
+          updates.lastName = profile.name.familyName
+        }
+
+        if (!existingUser.avatar && profile.photos?.[0]?.value) {
+          updates.avatar = profile.photos[0].value
+        }
+
+        if (Object.keys(updates).length > 0) {
+          await User.findByIdAndUpdate(existingUser._id, updates)
+          Object.assign(existingUser, updates)
+        }
         return done(null, existingUser)
       }
       // we don't have a user record with this ID, make a new record!
       log(email + "     New User **")
-      const user = await new User({ googleId: profile.id, email }).save()
+      const user = await new User({
+        googleId: profile.id,
+        firstName,
+        lastName,
+        avatar,
+        email,
+      }).save()
       done(null, user)
     },
   ),
