@@ -219,11 +219,27 @@ li.div {
   -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
 }
+
 .audioDetails {
   position: relative;
   padding-top: 2.5em;
   max-height: 350px;
   overflow-y: scroll;
+}
+.userthumbnail {
+  margin: 0.5em;
+  padding: 0.5em;
+  position: relative;
+  display: inline-block;
+  display: grid;
+  color: var(--darkpurple);
+
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.6);
+  overflow-x: scroll;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.44);
 }
 .stressVisual {
   font-size: 1.2em;

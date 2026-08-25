@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { fetchUsers } from "../../actions"
+import CollapsibleFieldset from "../CollapsibleFieldset"
+
 
 const UserList = ({ users, fetchUsers }) => {
   const [editedUsers, setEditedUsers] = useState({})
@@ -60,55 +62,42 @@ const UserList = ({ users, fetchUsers }) => {
         </legend>
 
         <div className="grid-container">
-
           {users.map((user) => (
-            <div key={user._id} className="bkground">
+            <div key={user._id} className="userthumbnail">
               {user.firstName && user.lastName && user.avatar ? (
                 <>
-                  <img src={user.avatar} referrerPolicy="no-referrer"  alt={user.firstName + " " + user.lastName} / >
-                  <p>
-                    <strong>First name:</strong> {user.firstName}
-                  </p>
-                  <p>
-                    <strong>Last name:</strong> {user.lastName}
-                  </p>{" "}
+                  <img
+                    src={user.avatar}
+                    referrerPolicy="no-referrer"
+                    alt={user.firstName + " " + user.lastName}
+                  />
+                  <span>First name: {user.firstName}</span>
+                  <strong>Last name: {user.lastName}</strong>{" "}
                 </>
               ) : null}
-              <p>
-                <strong>User ID:</strong> {user._id}
-              </p>
 
-              <p>
-                <strong>Email:</strong> {user.email}
-              </p>
 
-              <p>
-                <strong>Google ID:</strong> {user.googleId}
-              </p>
+             
 
-              <p>
-                <strong>Documents:</strong> {user.numberOfDocuments}
-              </p>
-
-              <p>
-                <strong>Recordings:</strong> {user.numberOfRecordings}
-              </p>
-
-              <p>
-                <strong>Reviews:</strong> {user.hasReviews ? "Yes" : "No"}
-              </p>
-
-              <p>
-                <strong>Consultation:</strong>{" "}
-                {user.hasConsultation ? "Yes" : "No"}
-              </p>
-
-              <p>
-                <strong>Consultation date:</strong>{" "}
+              <strong>Email: {user.email}</strong>
+               <CollapsibleFieldset legend= "...">
+               <ul>
+                <li>Google ID: {user.googleId}</li>
+                <li>Documents: {user.numberOfDocuments}</li>
+                <li>Recordings: {user.numberOfRecordings}</li>
+                <li>Reviews: {user.hasReviews ? "Yes" : "No"}</li>
+                <li>Consultation: {user.hasConsultation ? "Yes" : "No"}</li>
+                <li>Language: {user.language}</li>
+               </ul>
+             </CollapsibleFieldset>
+            
+              <strong>
+                Consultation date:{" "}
                 {user.consultationDate
                   ? new Date(user.consultationDate).toLocaleString()
                   : "None"}
-              </p>
+              </strong>
+
 
               <label>
                 <strong>Type:</strong>
@@ -145,10 +134,7 @@ const UserList = ({ users, fetchUsers }) => {
                 </select>
               </label>
 
-              <p>
-                <strong>Language:</strong> {user.language}
-              </p>
-         
+              
 
               <button
                 type="button"
@@ -159,7 +145,7 @@ const UserList = ({ users, fetchUsers }) => {
               </button>
             </div>
           ))}
-          </div>
+        </div>
       </fieldset>
       <div className="placeholder"></div>
     </div>
@@ -171,5 +157,3 @@ function mapStateToProps({ users }) {
 }
 
 export default connect(mapStateToProps, { fetchUsers })(UserList)
-
-
