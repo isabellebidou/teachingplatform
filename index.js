@@ -40,6 +40,7 @@ import "./models/Theme.js";
 import "./models/Level.js";
 import "./models/Exercise.js";
 import "./models/Video.js"; 
+import "./models/Consultation.js";
 
 // ------------------- Import services -------------------
 import "./services/passport.js";

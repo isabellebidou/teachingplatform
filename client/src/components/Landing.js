@@ -193,7 +193,7 @@ const Landing = () => {
           ))}
         </div>
       </CollapsibleFieldset>
-      <CollapsibleFieldset legend={t("h2OffersLegendPrepa")}>
+      <CollapsibleFieldset legend={t("h2OffersLegendPrepa")} defaultOpen="true">
         <div className="pricingGrid">
           {prepaOffers.map((offer) => (
             <PricingCard
@@ -202,7 +202,7 @@ const Landing = () => {
               price={`€${offer.price}`}
               description={offer.description}
               selected={selectedOfferCode === offer.code}
-              onClick={() => setSelectedOfferCode(offer.code)}
+              onClick={() => {setMode("online"); setTrainingType("individual"); setSelectedOfferCode(offer.code) ; }}
               paymentLink={offer.paymentLink}
             />
           ))}
@@ -296,17 +296,17 @@ const Landing = () => {
         )}
       </CollapsibleFieldset>
 
-      <CollapsibleFieldset legend={t("h2Reviews")}>
+      <CollapsibleFieldset legend={t("h2Reviews")}defaultOpen="true">
         <span id="reviews">
           <StarReviewList />
         </span>
-        {auth && <StarReview auth={auth} />}
+        {auth &&  auth.type === "student" && !auth.hasReviews &&<StarReview auth={auth} />}
       </CollapsibleFieldset>
       <CollapsibleFieldset legend={t("h2Articles")}>
         <ArticleLinks />
       </CollapsibleFieldset>
 
-      <CollapsibleFieldset legend={t("h2faq")} defaultOpen="true">
+      <CollapsibleFieldset legend={t("h2faq")}>
         <span id="faq"></span>
         <FaqList />
         {renderFaqForm()}
