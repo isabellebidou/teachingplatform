@@ -25,7 +25,7 @@ passport.use(
       const email = profile.emails?.[0]?.value
 
       if (existingUser) {
-        console.log(email + "     existingUser**")
+        //console.log(email + "     existingUser**")
         // we already have a record with the given profile ID
         const updates = {}
         if (!existingUser.firstName && profile.name?.givenName) {
@@ -51,12 +51,17 @@ passport.use(
       console.log(email + "     New User **")
       const user = await new User({
         googleId: profile.id,
-        //firstName,
-        //lastName,
-        //avatar,
-        email,
+        firstName: profile.name?.givenName || null,
+        lastName: profile.name?.familyName || null,
+        avatar: profile.photos?.[0]?.value || null,
+        email: profile.emails?.[0]?.value || null
       }).save()
+      console.log(user)
       done(null, user)
     },
   ),
 )
+
+    
+  
+
