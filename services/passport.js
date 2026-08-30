@@ -2,7 +2,6 @@ import passport from "passport"
 import { Strategy as GoogleStrategy } from "passport-google-oauth20"
 import mongoose from "mongoose"
 import keys from "../config/keys.js"
-import { log } from "../services/utils.js"
 passport.serializeUser((user, done) => {
   done(null, user.id)
 })
@@ -26,7 +25,7 @@ passport.use(
       const email = profile.emails?.[0]?.value
 
       if (existingUser) {
-        log(email + "     existingUser**")
+        console.log(email + "     existingUser**")
         // we already have a record with the given profile ID
         const updates = {}
         if (!existingUser.firstName && profile.name?.givenName) {
@@ -49,12 +48,12 @@ passport.use(
         return done(null, existingUser)
       }
       // we don't have a user record with this ID, make a new record!
-      log(email + "     New User **")
+      console.log(email + "     New User **")
       const user = await new User({
         googleId: profile.id,
-        firstName,
-        lastName,
-        avatar,
+        //firstName,
+        //lastName,
+        //avatar,
         email,
       }).save()
       done(null, user)
