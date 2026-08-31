@@ -121,13 +121,14 @@ function Header() {
               </Link>
             )
           })}
-        {auth && (
+          {auth && (
           <a className="button" href="/api/logout">
             <AiOutlineLogout style={{ color: "#7f5f87" }} />
           </a>
         )}
         {!auth && (
           <a href="/auth/google">
+            
             <img
               src="/btn_google_signin_dark_normal_web.png"
               loading="lazy"
@@ -142,6 +143,7 @@ function Header() {
   return (
     <header className="header">
       <Logo />
+
 
       {<span>{renderContent()}</span>}
 

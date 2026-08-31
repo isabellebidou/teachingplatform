@@ -261,7 +261,7 @@ const Landing = () => {
                 
                   <button
                     rel="noopener noreferrer"
-                    className="payment actionupload"
+                    className="payment"
                     disabled={!auth}
                     onClick={() =>
                       window.open(currentOffer.paymentLink, "_blank")
