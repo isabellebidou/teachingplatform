@@ -209,7 +209,7 @@ const Landing = () => {
         </div>
       </CollapsibleFieldset>
       {currentOffer && (
-        <fieldset>
+        <fieldset id= "selectedOfferFieldset">
           <legend>
             <h2>Selected Offer</h2>
           </legend>
@@ -245,7 +245,7 @@ const Landing = () => {
             >
               {currentOffer && (
                 <>
-                  <p className=" itemp">
+                  
                     <button
                       className="payment"
                       onClick={() => setShowPaymentDetails(true)}
@@ -253,12 +253,12 @@ const Landing = () => {
                     >
                       Bank transfer
                     </button>
-                  </p>
+                  
                 </>
               )}
 
               {stripe && currentOffer?.paymentLink && (
-                <p className=" itemp">
+                
                   <button
                     rel="noopener noreferrer"
                     className="payment actionupload"
@@ -269,7 +269,7 @@ const Landing = () => {
                   >
                     Stripe
                   </button>
-                </p>
+                
               )}
             </span>
             {!auth && (

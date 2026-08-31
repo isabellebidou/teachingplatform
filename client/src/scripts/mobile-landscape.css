@@ -19,11 +19,11 @@
   .footer {
     width: 100%;
     height: 10%;
-    
+
     left: 0%;
     margin-bottom: 0%;
   }
- .readDivContainer {
+  .readDivContainer {
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -35,30 +35,32 @@
     height: 2em;
     font-size: normal;
   }
-   /* https://stackoverflow.com/questions/15901030/reset-remove-css-styles-for-element-only */
- .usersetinput, .usersetlabel {
-  width: auto;
-}
- .navigation > * {
-  display: none;
-}
+  /* https://stackoverflow.com/questions/15901030/reset-remove-css-styles-for-element-only */
+  .usersetinput,
+  .usersetlabel {
+    width: auto;
+  }
+  .navigation > * {
+    display: none;
+  }
 
-.navigation > :first-child {
-  display: block;
-  height: 1em;
-  width: 2em;
-  position: fixed;
-  top: 3%;
-  right: 10%;
-  overflow: hidden;
-}
+  .navigation > :first-child {
+    display: block;
+    height: 1em;
+    width: 2em;
+    position: fixed;
+    top: 3%;
+    right: 10%;
+    overflow: hidden;
+  }
   p {
     padding-top: 1em;
     padding-right: 1em;
     padding-bottom: 1em;
     padding-left: 1em;
   }
-  .grid-container , .shop-grid-container{
+  .grid-container,
+  .shop-grid-container {
     color: rgba(32, 162, 104, 0.89);
     margin: auto;
     display: grid;
@@ -68,43 +70,40 @@
     /* background-color: #2196F3;  Comment this out later to remove the background color when not needed */
     padding-top: 1em;
   }
-fieldset {
-  left: 0px;
-  width: 96%;
-  margin: 0%;
-  padding: 1%;
-}
-    .scriptSelect {
-     position: fixed;
+  fieldset {
+    left: 0px;
+    width: 96%;
+    margin: 0%;
+    padding: 1%;
+  }
+  .scriptSelect {
+    position: fixed;
     top: 13%;
     width: 40%;
-        height: 2em;
+    height: 2em;
   }
-    #selectSearch {
-  position: fixed;
+  #selectSearch {
+    position: fixed;
     top: 13%;
-      width: 50%;
-  
+    width: 50%;
   }
   .pricingGrid {
-  display: grid ;
-  grid-template-columns: auto auto auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
 
     gap: 0em;
 
     margin: 0em;
-    padding: 0em;;
+    padding: 0em;
   }
 
   .pricingCard {
-  
-
     min-height: auto;
 
     margin-right: 0.3em;
   }
 
-  .pricingCard{
+  .pricingCard {
     font-size: 1.15em;
   }
 
@@ -118,14 +117,13 @@ fieldset {
   .toggleContainer {
     width: 98%;
     display: grid;
-     grid-template-columns: auto auto;
+    grid-template-columns: auto auto;
     gap: 0.25em;
     margin: 0.5em;
   }
 
   .toggle {
-  
-width: 8em;
+    width: 8em;
     padding: 0.6em;
     margin: 0.4em;
 
@@ -285,9 +283,9 @@ width: 8em;
   .mobilemenuli {
     padding: 1em;
     margin: auto auto;
-    
+
     width: 90%;
-    
+
     z-index: 50;
     font-style: italic;
 
@@ -305,12 +303,12 @@ width: 8em;
     border-radius: 10%;
   }
 
-  .actionsign{
+  .actionsign {
     position: sticky;
     margin: auto;
-  
   }
-  .landing, .dashboard{
+  .landing,
+  .dashboard {
     padding-top: 10%;
     padding-bottom: 5%;
   }
@@ -323,59 +321,57 @@ width: 8em;
     padding: 20px;
     border-radius: 10px;
     width: 250px;
-  
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
- 
-
   }
-  .itemp{
+  .itemp {
     padding-left: 2%;
     padding-right: 2%;
   }
-  .item{
+  .item {
     max-height: 100%;
     max-width: 100%;
   }
   .leftp {
-  
-  left: 0%;
-  padding: 1%;
-  height: 68%;
+    left: 0%;
+    padding: 1%;
+    height: 68%;
+  }
 
-
-
-}
-
-.rightp {
-  width: 40%;
-  right: 0%;
-  padding:1%;
-  height: 68%;
-  
-
-}
-.placeholder{
-  height: 70px;
-}
-#selectSearch{
-  position: sticky;
-  top: 7%;
-}
- .selectedOffer {
+  .rightp {
+    width: 40%;
+    right: 0%;
+    padding: 1%;
+    height: 68%;
+  }
+  .placeholder {
+    height: 70px;
+  }
+  #selectSearch {
+    position: sticky;
+    top: 7%;
+  }
+  .selectedOffer {
     padding: 0.2em;
 
     margin-top: 0em;
     display: flex;
   }
-  .selectedOfferChildren{
+  .selectedOfferChildren {
+    font-size: small;
+  }
+  #selectedOfferFieldset {
+    position: fixed;
+    max-height: 50%;
+    bottom: 8%;
     padding: 0%;
     margin: 0%;
-    color: #7f5f87;
-
+    background-color: var(--background);
   }
-
+  .selectedOfferChildren {
+    font-size: small;
+  }
 }
