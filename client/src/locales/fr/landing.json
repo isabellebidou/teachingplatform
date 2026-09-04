@@ -20,8 +20,8 @@
 "h2Articles": "Articles",
   "h2faq": "Questions fréquentes",
   "h2Contact": "Contact",
-  "pContact": "Je m’appelle Isabelle Bidou. Je suis développeur Fullstack et professeur d'anglais actuellement à Paris. Je propose un service de coaching de professionnels qui ont besoin de s'exprimer en anglais avec des contraintes spécifiques à leurs activités.  Je prépare également les étudiants aux Khôlles de prépa. Si vous avez des questions, n’hésitez pas à me contacter.",
-
+  "pContact": "Je m’appelle Isabelle Bidou. Je suis développeur Fullstack IA et professeur d'anglais actuellement à Paris. Je propose un service de coaching de professionnels qui ont besoin de s'exprimer en anglais avec des contraintes spécifiques à leurs activités.  Je prépare également les étudiants aux Khôlles de prépa. Si vous avez des questions, n’hésitez pas à me contacter avec ",
+ "pContactOr": " ou visitez mon hub à ",
   "pCookie": "Ce site utilise des cookies pour l’authentification avec Google OAuth et pour améliorer l’expérience utilisateur. En acceptant l’utilisation des cookies, vous pourrez tester les fonctionnalités après vous être connecté avec votre compte Google.",
   "H2OffersIntro": "J'adapte mes services  à vos besoins et je propose un accompagnement individuel personnalisé (en ligne ou en présentiel) ainsi que des ateliers en entreprise directement sur site.",
   "h2OffersLegend": "Coaching d’anglais professionnel pour adultes",

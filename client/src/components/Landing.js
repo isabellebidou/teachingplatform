@@ -331,9 +331,11 @@ const Landing = () => {
             {t("pContact")}{" "}
             <a href="mailto:isa.bidou@gmail.com?subject= Izzy Speak English Teaching Platform Enquiry">
               isa.bidou@gmail.com
-            </a>
+            </a>  {t("pContactOr")}: <a href="https://www.isabellebidou.com">
+            isabellebidou.com
+          </a>
           </p>
-        </div>
+          </div>
       </fieldset>
       {showPaymentDetails && currentOffer && (
         <PaymentDetails
