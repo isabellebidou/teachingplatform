@@ -31,6 +31,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import TopicsDashboard from "./topics/TopicsDashboard";
 import SyllableStressPage from "./SyllableStress";
 import ArticlePage from "./articles/ArticlePage";
+import AnalyticsTracker from './AnalyticsTracker';
 
 function App({ fetchUser, fetchCookieValue }) {
   const auth = useSelector((state) => state.auth);
@@ -50,7 +51,9 @@ function App({ fetchUser, fetchCookieValue }) {
 
   return (
     <div className="maincontent">
+      <AnalyticsTracker /> 
       <BrowserRouter>
+
         <Header />
 
         <Route exact path="/" component={Landing} />
