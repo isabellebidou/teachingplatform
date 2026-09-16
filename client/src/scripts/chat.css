@@ -11,8 +11,8 @@
 
 .hf-chat-container {
   position: fixed;
-  bottom: 20px;
-  right: 0px;
+  bottom: 12%;
+  right: 5px;
   z-index: 9999;
   font-family: sans-serif;
   border-radius: 16px;
@@ -78,7 +78,10 @@
 @media (max-width: 640px) {
   #ai-chat-widget {
     right: 16px;
-    bottom: 35px;
+    bottom: 10%;
+  }
+  .hf-chat-container {
+    bottom: 2%;
   }
   .hf-chat-window {
     position: fixed;
