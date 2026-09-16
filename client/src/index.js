@@ -6,6 +6,8 @@ import './scripts/stress.css';
 import './scripts/exercice.css';
 import './scripts/mobile-landscape.css';
 import './scripts/mobile-portrait.css';
+import './scripts/chat.css';
+
 
 
 import "./i18n";

@@ -14,6 +14,7 @@ import PaymentDetails from "./PaymentDetails"
 import { OFFERS } from "../locales/landingOffers"
 import CollapsibleFieldset from "./CollapsibleFieldset"
 import VideoPlayer from "./VideoPlayer" 
+import Chatbot from "./Chatbot"
 
 const Landing = () => {
   const dispatch = useDispatch()
@@ -337,6 +338,7 @@ const Landing = () => {
           </p>
           </div>
       </fieldset>
+      <Chatbot></Chatbot>
       {showPaymentDetails && currentOffer && (
         <PaymentDetails
           visible={showPaymentDetails}

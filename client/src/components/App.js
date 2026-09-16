@@ -33,6 +33,7 @@ import SyllableStressPage from "./SyllableStress";
 import ArticlePage from "./articles/ArticlePage";
 import AnalyticsTracker from './AnalyticsTracker';
 
+
 function App({ fetchUser, fetchCookieValue }) {
   const auth = useSelector((state) => state.auth);
 
