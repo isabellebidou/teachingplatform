@@ -22,7 +22,6 @@ export default function HFChatWidget() {
           <iframe
             src="https://isabellebidou-izzy-speak-english.hf.space"
             className="hf-chat-body"
-            frameBorder="0"
             width="100%"
             height="100%"
             title="Izzy Speak English Chat"
