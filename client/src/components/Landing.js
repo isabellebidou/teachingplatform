@@ -301,7 +301,7 @@ const Landing = () => {
         <span id="reviews">
           <StarReviewList />
         </span>
-        {auth &&  auth.type === "student" && !auth.hasReviews &&<StarReview auth={auth} />}
+        {auth  && !auth.hasReviews &&<StarReview auth={auth} />}
       </CollapsibleFieldset>
       <CollapsibleFieldset legend={t("h2Articles")}>
         <ArticleLinks />
