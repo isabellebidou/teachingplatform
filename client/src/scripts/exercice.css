@@ -1,3 +1,13 @@
+:root {
+  --green: #49a049;
+  --greenhover: #96ccba;
+  --strongpink: #cd2ca0;
+  --darkpurple: #7f5f87;
+  --background: rgba(243, 236, 236, 0.9);
+  --evenBackground: rgba(214, 210, 210, 0.2);
+  --oddBackground: rgb(183, 187, 184, 0.3);
+}
+
 p, ul{color: #7f5f87;}
 .inactive-topic{
     opacity: 0.4;
@@ -42,11 +52,42 @@ position: absolute;
   cursor: pointer;
 }
 .next-button{
+    justify-content: center;
     position: fixed;
+    background-color: var(--green);
+    color: #fff;
+    height:2em;
     bottom: 20%;
     right: 15%;
-    z-index: 100;
+    z-index: 900;
 
+}
+.exo {
+  position: fixed;
+  z-index: 100;
+  bottom: 70px;
+  right: 50px;
+
+  padding: 2px 2px;
+  margin: 2px 2px;
+  height: 2em;
+
+  font-size: 1.5em;
+  border-radius: 8%;
+  background-color: #45a049;
+  color: white;
+}
+.largeStopBtn {
+    position: fixed;
+  z-index: 50;
+  justify-content: center;
+  height: 2em;
+  bottom: 20%;
+  right: 4%;
+
+  border-radius: 8%;
+  background-color: var(--darkpurple);
+  color: white;
 }
 .resultTable{
     width: 80%;
@@ -131,23 +172,24 @@ padding: "10px";
 @media screen and (max-width: 800px) and (orientation: portrait) {
     .next-button{
     position: fixed;
-    bottom: 5%;
+    bottom: 6%;
     right: 5%;
      width: 40%;
-    z-index: 100;
+    z-index: 900;
     padding: 0%;
-    margin: 0%;
-    text-align: center;
+    margin: 1%;
+
 
 }
 .largeStopBtn{
 
  position: fixed;
  width: 40%;
-    bottom: 5%;
+    bottom: 6%;
     left: 5%;
-     text-align: center;
-    z-index: 100;
+  
+    padding: 0%;
+    margin: 1%;
 }
     
 

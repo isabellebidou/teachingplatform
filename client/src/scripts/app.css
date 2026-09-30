@@ -1255,34 +1255,7 @@ th {
 .placeholder {
   color: var(--strongpink);
 }
-.exo {
-  position: fixed;
-  z-index: 100;
-  bottom: 70px;
-  right: 50px;
 
-  padding: 2px 2px;
-  margin: 2px 2px;
-  height: 2em;
-
-  font-size: 1.5em;
-  border-radius: 8%;
-  background-color: #45a049;
-  color: white;
-}
-.largeStopBtn {
-  z-index: 50;
-  padding: 2px 2px;
-  margin: 2px 2px;
-  height: 2em;
-  bottom: 20%;
-  right: 4%;
-  position: fixed;
-  font-size: 1em;
-  border-radius: 8%;
-  background-color: var(--darkpurple);
-  color: white;
-}
 .pdBtn {
   border-radius: 12px;
   margin: 0%;
