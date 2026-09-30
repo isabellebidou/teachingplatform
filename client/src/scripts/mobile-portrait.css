@@ -518,6 +518,13 @@
   .placeholder {
     height: 70px;
   }
+  .game-rules{
+
+  height: 35%;
+    margin-left: 10%;
+  overflow-y: scroll;
+
+}
   .quizz {
     position: fixed;
     width: 98%;

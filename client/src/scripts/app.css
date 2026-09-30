@@ -105,12 +105,33 @@ fieldset {
 .exercice-div {
   width: 80%;
   height: 80%;
-  overflow-y: scroll;
-  margin-left: 10%;
+  overflow: scroll;
+
+  padding-bottom: 200px;
+
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   border-radius: 8px;
   text-align: justify;
+
+
+}
+.game-rules{
+  width: 100%;
+  height: 24%;
+    margin-left: 10%;
+    margin-bottom: 2%;
+  overflow: scroll;
+
+}
+
+.quizz {
+  position: fixed;
+  width: 100%;
+  height: 50%;
+  bottom: 8%;
+  right: 0%;
+  overflow: scroll;
 }
 
 table {
@@ -1094,14 +1115,7 @@ dd {
 .topicsEditModeBtnDiv {
   display: flex;
 }
-.quizz {
-  position: fixed;
-  width: 100%;
-  height: 50%;
-  bottom: 8%;
-  right: 0%;
-  overflow: scroll;
-}
+
 .imgcontainer {
   width: 100%;
   height: 100%;

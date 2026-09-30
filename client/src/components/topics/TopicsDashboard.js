@@ -206,6 +206,7 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
         )}
         <div className="placeholder"></div>
         <div className="exercice-div">
+          <div className="game-rules">
           {/* once exercice is generated and started */}
           {gameStarted && selectedTopic && questions.length > 0 && (
             <h2>{selectedTopic.name?.[lang]}</h2>
@@ -222,7 +223,7 @@ function TopicsDashboard({ topics = [], auth, fetchTopics }) {
               selectedTopic.examples &&
               selectedTopic.examples.map((e, i) => <li key={i + "st"}>{e}</li>)}
           </ul>
-
+        </div>
           {!finished && gameStarted && (
             <QuestionBundle
               questionIndex={answeredQuestion}
