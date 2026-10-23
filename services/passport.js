@@ -2,6 +2,7 @@ import passport from "passport"
 import { Strategy as GoogleStrategy } from "passport-google-oauth20"
 import mongoose from "mongoose"
 import keys from "../config/keys.js"
+import { notifyNewUser} from "./webhook.js"
 passport.serializeUser((user, done) => {
   done(null, user.id)
 })
@@ -29,7 +30,6 @@ passport.use(
         // we already have a record with the given profile ID
         const updates = {}
         if (!existingUser.firstName && profile.name?.givenName) {
-        
           updates.firstName = profile.name.givenName
         }
 
@@ -45,6 +45,9 @@ passport.use(
           await User.findByIdAndUpdate(existingUser._id, updates)
           Object.assign(existingUser, updates)
         }
+
+        //notifyUserLogin(existingUser)
+ 
         return done(null, existingUser)
       }
       // we don't have a user record with this ID, make a new record!
@@ -54,14 +57,13 @@ passport.use(
         firstName: profile.name?.givenName || null,
         lastName: profile.name?.familyName || null,
         avatar: profile.photos?.[0]?.value || null,
-        email: profile.emails?.[0]?.value || null
+        email: profile.emails?.[0]?.value || null,
       }).save()
+  
+        notifyNewUser(user)
+
       console.log(user)
       done(null, user)
     },
   ),
 )
-
-    
-  
-

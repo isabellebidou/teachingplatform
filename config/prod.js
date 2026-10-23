@@ -17,6 +17,9 @@ export default {
     elevenLabsSpeechToTextKey: process.env.ELEVENLABS_SPEECH_TO_TEXT_KEY,
     elevenLabsSpeechToSpeechKey: process.env.ELEVENLABS_SPEECH_TO_SPEECH_KEY,
     elevenLabsTextToSpeechKey: process.env.ELEVENLABS_TEXT_TO_SPEECH_KEY,
-    VOWEL_QUALITY_URL: process.env.VOWEL_QUALITY_URL
+    VOWEL_QUALITY_URL: process.env.VOWEL_QUALITY_URL,
+    newUserWebhookUrlRailway: process.env.WEBHOOK_URL
+    //newUserWebhookUrl: process.env.NEW_USER_WEBHOOK_URL,
+    //loginWebHookUrl: process.env.LOGIN_WEBHOOK_URL  
 
 }
